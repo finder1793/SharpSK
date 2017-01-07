@@ -10,7 +10,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import fr.xephi.authme.AuthMe;
-import fr.xephi.authme.cache.auth.PlayerCache;
+import fr.xephi.authme.data.auth.PlayerCache;
 import fr.xephi.authme.datasource.DataSource;
 import fr.xephi.authme.security.PasswordSecurity;
 
@@ -46,7 +46,7 @@ public class ExprHashedPasswordOf extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		String pass = PlayerCache.getInstance().getAuth(a.getSingle(e).getName()).getPassword().getHash();
+		String pass = fr.xephi.authme.data.auth.PlayerCache.getInstance().getAuth(a.getSingle(e).getName()).getPassword().getHash();
 		return new String[]{pass};
 
 	}
