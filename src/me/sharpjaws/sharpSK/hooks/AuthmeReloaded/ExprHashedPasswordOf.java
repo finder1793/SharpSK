@@ -1,0 +1,54 @@
+package me.sharpjaws.sharpSK.hooks.AuthmeReloaded;
+
+import javax.annotation.Nullable;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.util.SimpleExpression;
+import ch.njol.util.Kleenean;
+import fr.xephi.authme.AuthMe;
+import fr.xephi.authme.cache.auth.PlayerCache;
+import fr.xephi.authme.datasource.DataSource;
+import fr.xephi.authme.security.PasswordSecurity;
+
+
+public class ExprHashedPasswordOf extends SimpleExpression<String> {
+	private Expression<Player> a;
+	private DataSource dataSource;
+
+	@Override
+	public Class<? extends String> getReturnType() {
+		return String.class;
+	}
+
+	@Override
+	public boolean isSingle() {
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+			SkriptParser.ParseResult paramParseResult) {
+		a = (Expression<Player>) expr[0];
+		return true;
+	}
+
+	@Override
+	public String toString(@Nullable Event arg0, boolean arg1) {
+		// TODO Auto-generated method stub
+		return "[authme] hashed password of %player%";
+	}
+
+	@Override
+	@Nullable
+	protected String[] get(Event e) {
+		String pass = PlayerCache.getInstance().getAuth(a.getSingle(e).getName()).getPassword().getHash();
+		return new String[]{pass};
+
+	}
+
+}
