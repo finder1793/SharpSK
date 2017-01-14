@@ -82,7 +82,7 @@ public class EffRollback extends Effect{
 		 		
 		 		
 		 		 List<String[]> lookup = null;	
-		 				lookup = api.performRollback((int)times.getSingle(e).getTicks_i()/20, users, null, null,exclude,Arrays.asList(mark), n.getSingle(e).intValue(),l.getSingle(e));	
+		 				lookup = api.performRollback((int)times.getSingle(e).getTicks()/20, users, null, null,exclude,Arrays.asList(mark), n.getSingle(e).intValue(),l.getSingle(e));	
 		 				if (lookup!=null){
 		 				    for (String[] value : lookup){
 		 		      ParseResult result = api.parseResult(value);

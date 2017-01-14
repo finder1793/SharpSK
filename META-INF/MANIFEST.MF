@@ -15,6 +15,5 @@ Export-Package: com.codingforcookies.armorequip,
  me.sharpjaws.sharpSK.hooks.MythicMobs,
  me.sharpjaws.sharpSK.hooks.PermissionsEx,
  me.sharpjaws.sharpSK.hooks.mcMMO,
- me.sharpjaws.sharpSK.hooks.uCars,
- me.sharpjaws.sharpSK.utils.Bungee
+ me.sharpjaws.sharpSK.hooks.uCars
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

@@ -15,7 +15,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import net.minecraft.server.v1_8_R3.MobSpawnerAbstract.a;
+
 
 public class ExprJobsofPlayer extends SimpleExpression<Job> {
 	private Expression<OfflinePlayer> p;
