@@ -9,16 +9,16 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
+import org.bukkit.block.Dispenser;
 import org.bukkit.block.DoubleChest;
 import org.bukkit.block.Hopper;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.craftbukkit.v1_8_R1.block.CraftDispenser;
-import org.bukkit.craftbukkit.v1_8_R1.block.CraftDropper;
-import org.bukkit.craftbukkit.v1_8_R1.block.CraftFurnace;
-import org.bukkit.craftbukkit.v1_8_R1.block.CraftHopper;
+import org.bukkit.block.Hopper;
+import org.bukkit.block.Furnace;
+import org.bukkit.block.Dropper;
 import org.bukkit.entity.EnderDragon.Phase;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.HopperMinecart;
@@ -38,12 +38,13 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.eclipse.jdt.annotation.Nullable;
 
 import com.codingforcookies.armorequip.ArmorEquipEvent;
 import com.codingforcookies.armorequip.ArmorListener;
 import com.codingforcookies.armorequip.ArmorunEquipEvent;
 import com.codingforcookies.armorequip.ArmorunEquipListener;
-import com.sun.istack.internal.Nullable;
+
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
@@ -206,24 +207,24 @@ public static JavaPlugin plugin;
 								Chest b = (Chest) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();	
-								}else if(iH instanceof CraftHopper){
-								CraftHopper b = (CraftHopper) iH;
+								}else if(iH instanceof Hopper){
+								Hopper b = (Hopper) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();		
-								}else if(iH instanceof CraftDispenser){
-								CraftDispenser b = (CraftDispenser) iH;
+								}else if(iH instanceof Dispenser){
+								Dispenser b = (Dispenser) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();		
-								}else if(iH instanceof CraftDropper){
-								CraftDropper b = (CraftDropper) iH;
+								}else if(iH instanceof Dropper){
+								Dropper b = (Dropper) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();
 								}else if(iH instanceof DoubleChest){
 									DoubleChest b = (DoubleChest) iH;
 									Block b2 = b.getLocation().getBlock();
 									b3 = b2;
-								}else if(iH instanceof CraftFurnace){
-									CraftFurnace b = (CraftFurnace) iH;
+								}else if(iH instanceof Furnace){
+									Furnace b = (Furnace) iH;
 									Block b2 = b.getLocation().getBlock();
 									b3 = b2;
 								}
@@ -243,24 +244,24 @@ public static JavaPlugin plugin;
 								Chest b = (Chest) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();	
-								}else if(iH instanceof CraftHopper){
-								CraftHopper b = (CraftHopper) iH;
+								}else if(iH instanceof Hopper){
+								Hopper b = (Hopper) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();		
-								}else if(iH instanceof CraftDispenser){
-								CraftDispenser b = (CraftDispenser) iH;
+								}else if(iH instanceof Dispenser){
+								Dispenser b = (Dispenser) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();		
-								}else if(iH instanceof CraftDropper){
-								CraftDropper b = (CraftDropper) iH;
+								}else if(iH instanceof Dropper){
+								Dropper b = (Dropper) iH;
 								BlockState b2 = b.getBlock().getState();
 								b3 = b2.getBlock();
 								}else if(iH instanceof DoubleChest){
 									DoubleChest b = (DoubleChest) iH;
 									Block b2 = b.getLocation().getBlock();
 									b3 = b2;
-								}else if(iH instanceof CraftFurnace){
-								CraftFurnace b = (CraftFurnace) iH;
+								}else if(iH instanceof Furnace){
+								Furnace b = (Furnace) iH;
 								Block b2 = b.getLocation().getBlock();
 								b3 = b2;
 							}
