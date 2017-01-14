@@ -14,10 +14,6 @@
         <id>spigot-repo</id>
         <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
     </repository>
-<repository>
-		<id>njol-repo</id>
-		<url>http://maven.njol.ch/repo/</url>
-	</repository>
 </repositories>
 
 
