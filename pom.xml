@@ -26,12 +26,20 @@
 <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
+        <plugin>
+      <artifactId>maven-clean-plugin</artifactId>
+      <version>3.0.0</version>
+      <configuration>
+        <failOnError>false</failOnError>
+      </configuration>
+    </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.5.1</version>
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
+           <failOnError>false</failOnError>
         </configuration>
       </plugin>
  </plugins>
@@ -50,7 +58,7 @@
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot</artifactId>
 			<version>1.11.2-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
+			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 	</dependencies>
