@@ -58,8 +58,8 @@
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot</artifactId>
 			<version>1.11.2-R0.1-SNAPSHOT</version>
-			<scope>runtime</scope>
-			<optional>true</optional>
+			<scope>compile</scope>
+			<optional>false</optional>
 		</dependency>
 	</dependencies>
 	
