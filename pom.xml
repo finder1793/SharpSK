@@ -34,21 +34,6 @@
           <target>1.7</target>
         </configuration>
       </plugin>
-    <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <includes>
-                    </includes>
-                    <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                    </archive>
-                </configuration>
-</plugin>
-
  </plugins>
 </build>
 
@@ -63,15 +48,9 @@
 		<dependency>
 			<groupId>org.spigotmc</groupId>
 			<artifactId>spigot-api</artifactId>
-			<version>1.11-R0.1-SNAPSHOT</version>
+			<version>1.10-R0.1-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
-	<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>1.8-R0.1-SNAPSHOT</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/utils/craftbukkit-1.8-R0.1-SNAPSHOT.jar</systemPath>
-	</dependency>
 <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
