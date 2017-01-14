@@ -73,7 +73,7 @@ public class JobsRegistry {
 		
 		try {
 
-			Classes.registerClass(new ClassInfo<Job>(Job.class, "job").name("job").parser(new Parser<Job>() {
+			Classes.registerClass(new ClassInfo<Job>(Job.class, "job").name("Job").parser(new Parser<Job>() {
 			
 			@Override
 			public String getVariableNamePattern() {
@@ -88,7 +88,7 @@ public class JobsRegistry {
 			@Nullable
 			public Job parse(String s, ParseContext cont) {
 				try {
-					return Jobs.getJob(String.valueOf(s.replace(" ", "_").trim().toUpperCase()));
+					return Jobs.getJob(s.replace(" ", "_").toUpperCase());
 				} catch (IllegalArgumentException e) {
 					return null;
 				}
@@ -107,17 +107,26 @@ public class JobsRegistry {
 	}catch (IllegalArgumentException ex){
 
 	}
+		Converters.registerConverter(String.class, Job.class, new Converter<String, Job>(){
+
+			@Override
+			@Nullable
+			public Job convert(String s) {
+				return Jobs.getJob(s.replace(" ", "_").toUpperCase());
+			}
+			
+		});
 		Converters.registerConverter(Job.class, String.class, new Converter<Job, String>() {
 
 			@Override
 			@Nullable
 			public String convert(Job j) {
-				return j.getName();
+				return j.getName().replace("_", " ").toUpperCase();
 			}
 	
-
 });
 		
+	
 		Skript.registerEffect(EffMakeJoinJob.class, "make %player% join job %job%");
 		Skript.registerEffect(EffMakeLeaveJob.class, "make %player% leave job %job%");
 		Skript.registerEffect(EffLeaveAllJobs.class, "make %player% leave all jobs ");
@@ -128,7 +137,7 @@ public class JobsRegistry {
 		
 		if (Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.5") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.6") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.7")){
 		
-		Skript.registerExpression(ExprJobsofPlayer.class, Job.class, ExpressionType.PROPERTY, "jobs of %offlineplayer%");
+		Skript.registerExpression(ExprJobsofPlayer.class, Job.class, ExpressionType.SIMPLE, "jobs of %offlineplayer%");
 		Skript.registerExpression(ExprJobLevel.class, Integer.class, ExpressionType.SIMPLE, "[the] level of job %job% of %offlineplayer%");
 		}else{			
 		Skript.registerExpression(ExprJobsofPlayerOld.class, Job.class, ExpressionType.PROPERTY, "jobs of %offlineplayer%");
