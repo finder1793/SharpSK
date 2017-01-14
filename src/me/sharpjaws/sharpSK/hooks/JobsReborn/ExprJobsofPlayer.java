@@ -1,8 +1,7 @@
 package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Iterator;
 
 import javax.annotation.Nullable;
 
@@ -11,19 +10,19 @@ import org.bukkit.event.Event;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.Job;
-import com.gamingmesh.jobs.container.PlayerInfo;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import net.minecraft.server.v1_8_R3.MobSpawnerAbstract.a;
 
 public class ExprJobsofPlayer extends SimpleExpression<Job> {
 	private Expression<OfflinePlayer> p;
-	
+
 	@Override
 	public boolean isSingle() {
-		return true;
+		return false;
 	}
 
 	@Override
@@ -33,8 +32,8 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
+	public boolean init(final Expression<?>[] expr, final int matchedPattern, final Kleenean paramKleenean,
+			final SkriptParser.ParseResult ParseResult) {
 		p = (Expression<OfflinePlayer>) expr[0];
 		return true;
 	}
@@ -44,33 +43,35 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 		return "jobs of %offlineplayer%";
 	}
 
+	
+	
 	@Override
 	@Nullable
 	protected Job[] get(Event e) {
-
-		List<Job> a = new ArrayList<Job>();
-		try {
-		if (!p.getSingle(e).isOnline()){		
-		for (Job j : Jobs.getJobs()){
-			
-			if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getName()).isInJob(j)){
-				a.add(j);
-			}
-		
+		ArrayList<Job> a = new ArrayList<Job>();
+		if (!a.isEmpty()){
+			a.clear();
 		}
+		
+		if (p.getSingle(e).isOnline()){		
+		for (Job j : Jobs.getJobs()){		
+		if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer().getName()).isInJob(j)) {
+		a.add(j);
+	
+				}
+			}
 		}else{
 			for (Job j : Jobs.getJobs()){
-				if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).isInJob(j) == true){
+				if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getName()).isInJob(j)){
 					a.add(j);
 				}
 			
 			}
 		}
-		}catch(NullPointerException ex){
-			a.clear();
-		}
 		
-		return  Arrays.copyOf(a.toArray(), a.toArray().length, Job[].class);
+	
+		return a.toArray(new Job[a.size()]);
+
 	}
 
 
