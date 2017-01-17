@@ -112,7 +112,11 @@ public class JobsRegistry {
 			@Override
 			@Nullable
 			public Job convert(String s) {
+				try{
 				return Jobs.getJob(s.replace(" ", "_").toUpperCase());
+				}catch (Exception ex){
+				return Jobs.getNoneJob();
+				}
 			}
 			
 		});
