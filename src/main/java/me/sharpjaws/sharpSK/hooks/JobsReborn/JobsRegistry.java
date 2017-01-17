@@ -15,10 +15,7 @@ import com.gamingmesh.jobs.container.Job;
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Converter;
-import ch.njol.skript.classes.EnumSerializer;
 import ch.njol.skript.classes.Parser;
-import ch.njol.skript.expressions.base.EventValueExpression;
-import ch.njol.skript.lang.DefaultExpression;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.lang.util.SimpleEvent;
@@ -40,6 +37,15 @@ public class JobsRegistry {
 						return p;
 					}
 				}, 0);
+		EventValues.registerEventValue(JobsJoinEvent.class, Job.class,
+				new Getter<Job, JobsJoinEvent>() {
+					@Override
+					@Nullable
+					public Job get(JobsJoinEvent e) {
+						Job j = e.getJob();
+						return j;
+					}
+				}, 0);
 		Skript.registerEvent("Job Leave", SimpleEvent.class, JobsLeaveEvent.class, "job leave");
 		EventValues.registerEventValue(JobsLeaveEvent.class, Player.class,
 				new Getter<Player, JobsLeaveEvent>() {
@@ -48,6 +54,15 @@ public class JobsRegistry {
 					public Player get(JobsLeaveEvent e) {
 						Player p = e.getPlayer().getPlayer();
 						return p;
+					}
+				}, 0);
+		EventValues.registerEventValue(JobsLeaveEvent.class, Job.class,
+				new Getter<Job, JobsLeaveEvent>() {
+					@Override
+					@Nullable
+					public Job get(JobsLeaveEvent e) {
+						Job j = e.getJob();
+						return j;
 					}
 				}, 0);
 		Skript.registerEvent("Job Payment", SimpleEvent.class, JobsPaymentEvent.class, "job payment");
@@ -68,6 +83,15 @@ public class JobsRegistry {
 					public Player get(JobsLevelUpEvent e) {
 						Player p = e.getPlayer().getPlayer();
 						return p;
+					}
+				}, 0);
+		EventValues.registerEventValue(JobsLevelUpEvent.class, Job.class,
+				new Getter<Job, JobsLevelUpEvent>() {
+					@Override
+					@Nullable
+					public Job get(JobsLevelUpEvent e) {
+						Job j = Jobs.getJob(e.getJobName());
+						return j;
 					}
 				}, 0);
 		
