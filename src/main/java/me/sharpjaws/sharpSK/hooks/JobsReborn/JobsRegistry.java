@@ -165,10 +165,10 @@ public class JobsRegistry {
 		
 		if (Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.5") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.6") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.7")|| Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.8")|| Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.9")){
 		
-		Skript.registerExpression(ExprJobsofPlayer.class, Job.class, ExpressionType.SIMPLE, "jobs of %offlineplayer%");
+		Skript.registerExpression(ExprJobsofPlayer.class, Job.class, ExpressionType.SIMPLE, "[all] jobs of %offlineplayer%");
 		Skript.registerExpression(ExprJobLevel.class, Integer.class, ExpressionType.SIMPLE, "[the] level of job %job% of %offlineplayer%");
 		}else{			
-		Skript.registerExpression(ExprJobsofPlayerOld.class, Job.class, ExpressionType.PROPERTY, "jobs of %offlineplayer%");
+		Skript.registerExpression(ExprJobsofPlayerOld.class, Job.class, ExpressionType.PROPERTY, "[all] jobs of %offlineplayer%");
 		Skript.registerExpression(ExprJobLevelOld.class, Integer.class, ExpressionType.SIMPLE, "[the] level of job %job% of %offlineplayer%");
 				
 		}
