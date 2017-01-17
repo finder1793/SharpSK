@@ -36,7 +36,7 @@ public class JobsRegistry {
 					@Override
 					@Nullable
 					public Player get(JobsJoinEvent e) {
-						Player p = e.getPlayer().getPlayer().getPlayer();
+						Player p = e.getPlayer().getPlayer();
 						return p;
 					}
 				}, 0);
@@ -46,7 +46,7 @@ public class JobsRegistry {
 					@Override
 					@Nullable
 					public Player get(JobsLeaveEvent e) {
-						Player p = e.getPlayer().getPlayer().getPlayer();
+						Player p = e.getPlayer().getPlayer();
 						return p;
 					}
 				}, 0);
@@ -56,7 +56,7 @@ public class JobsRegistry {
 					@Override
 					@Nullable
 					public Player get(JobsPaymentEvent e) {
-						Player p = e.getPlayer().getPlayer().getPlayer();
+						Player p = e.getPlayer().getPlayer();
 						return p;
 					}
 				}, 0);
@@ -66,7 +66,7 @@ public class JobsRegistry {
 					@Override
 					@Nullable
 					public Player get(JobsLevelUpEvent e) {
-						Player p = e.getPlayer().getPlayer().getPlayer();
+						Player p = e.getPlayer().getPlayer();
 						return p;
 					}
 				}, 0);
@@ -135,7 +135,7 @@ public class JobsRegistry {
 		Skript.registerCondition(CondPlayerNotInJob.class, "%player% is not in job %job%");
 		Skript.registerExpression(ExprAllJobs.class, Job.class, ExpressionType.COMBINED, "[(all|the)] (jobs|1¦JRJobs)");
 		
-		if (Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.5") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.6") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.7")){
+		if (Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.5") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.6") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.7")|| Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.8")|| Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.9")){
 		
 		Skript.registerExpression(ExprJobsofPlayer.class, Job.class, ExpressionType.SIMPLE, "jobs of %offlineplayer%");
 		Skript.registerExpression(ExprJobLevel.class, Integer.class, ExpressionType.SIMPLE, "[the] level of job %job% of %offlineplayer%");
