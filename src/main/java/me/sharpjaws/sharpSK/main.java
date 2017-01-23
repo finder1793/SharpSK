@@ -13,14 +13,13 @@ import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Dispenser;
 import org.bukkit.block.DoubleChest;
+import org.bukkit.block.Dropper;
+import org.bukkit.block.Furnace;
 import org.bukkit.block.Hopper;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.block.Hopper;
-import org.bukkit.block.Furnace;
-import org.bukkit.block.Dropper;
 import org.bukkit.entity.EnderDragon.Phase;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.HopperMinecart;
@@ -46,7 +45,6 @@ import com.codingforcookies.armorequip.ArmorEquipEvent;
 import com.codingforcookies.armorequip.ArmorListener;
 import com.codingforcookies.armorequip.ArmorunEquipEvent;
 import com.codingforcookies.armorequip.ArmorunEquipListener;
-
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
@@ -179,7 +177,7 @@ public static JavaPlugin plugin;
 							return i;
 						}
 					}, 0);
-			if (Bukkit.getServer().getVersion().contains("MC: 1.9")|| Bukkit.getServer().getVersion().contains("MC: 1.10")){
+			if (Bukkit.getServer().getVersion().contains("MC: 1.9")|| Bukkit.getServer().getVersion().contains("MC: 1.10")||Bukkit.getServer().getVersion().contains("MC: 1.11") ){
 			EventValues.registerEventValue(InventoryMoveItemEvent.class, Block.class,
 					new Getter<Block, InventoryMoveItemEvent>() {
 						@Override
