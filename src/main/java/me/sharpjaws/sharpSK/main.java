@@ -505,8 +505,8 @@ public static JavaPlugin plugin;
 				
 				
 			}else{
-				getLogger().info("Error: Unable to register the addon and the features");
-				getLogger().info("Skript is not allowing registerations.");
+				getLogger().warning("Error: Unable to register the addon and the features");
+				getLogger().warning("Error: Skript is not allowing registerations.");
 				Bukkit.getPluginManager().disablePlugin(this);
 			}
 			}else if (!Bukkit.getPluginManager().isPluginEnabled(skript)) {
