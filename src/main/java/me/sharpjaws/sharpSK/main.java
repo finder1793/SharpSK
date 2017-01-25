@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Nullable;
+import javax.print.attribute.standard.NumberUpSupported;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -502,6 +503,34 @@ public static JavaPlugin plugin;
 			
 				//Unlisted stuff.
 				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan%");
+				Skript.registerEvent("Timer Tick", SimpleEvent.class, EvtTimerTick.class, "timer tick");
+				EventValues.registerEventValue(EvtTimerTick.class, String.class,
+						new Getter<String, EvtTimerTick>() {
+							@Override
+							@Nullable
+							public String get(EvtTimerTick e) {
+								return e.getTimer();
+							}
+						}, 0);
+				EventValues.registerEventValue(EvtTimerTick.class, Number.class,
+						new Getter<Number, EvtTimerTick>() {
+							@Override
+							@Nullable
+							public Number get(EvtTimerTick e) {
+								return e.getTimeLeft();
+							}
+						}, 0);
+				
+				Skript.registerEvent("Timer Complete", SimpleEvent.class, EvtTimerComplete.class, "timer complete");
+				EventValues.registerEventValue(EvtTimerComplete.class, String.class,
+						new Getter<String, EvtTimerComplete>() {
+							@Override
+							@Nullable
+							public String get( EvtTimerComplete e) {
+								return e.getTimer();
+							}
+						}, 0);
+				
 				
 				
 			}else{
@@ -528,7 +557,8 @@ public static JavaPlugin plugin;
 	
 	
 	public Boolean main2() throws Exception {
-		String up = Updater.main();
+		String up = Updater.main(
+				);
 		Boolean check = false;
 		try {
 	    if (!up.equals(this.getDescription().getVersion())){
