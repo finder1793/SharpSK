@@ -65,7 +65,6 @@ public class EffRollback extends Effect{
 	 			users.add(b.getName());
 	 		}
 	 		}
-		System.out.println(users);
 		  final List<Object> exclude = new ArrayList<Object>();
 	 		if (exblocks != null){
 	 		for (ItemStack b : exblocks.getAll(e)){
