@@ -1,7 +1,5 @@
 package me.sharpjaws.sharpSK.Threads;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 import org.bukkit.Bukkit;
 
 import me.sharpjaws.sharpSK.EvtTimerComplete;
