@@ -45,6 +45,15 @@ public class MythicMobsRegistry {
 						return en;
 					}
 				}, 0);
+		EventValues.registerEventValue(MythicMobSpawnEvent.class, String.class,
+				new Getter<String, MythicMobSpawnEvent>() {
+					@Override
+					@Nullable
+					public String get(MythicMobSpawnEvent e) {
+						String name = e.getMobType().getDisplayName();
+						return name;
+					}
+				}, 0);
 		Skript.registerExpression(ExprEvtMMDrops.class, ItemStack.class, ExpressionType.SIMPLE, "[all] [event-]mmdrops");
 		Skript.registerCondition(CondIsMythicMob.class, "%entity% is a mythicmob");
 		Skript.registerCondition(CondNotMythicMob.class, "%entity% is not a mythicmob");
