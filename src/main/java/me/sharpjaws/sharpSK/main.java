@@ -56,12 +56,14 @@ import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import me.sharpjaws.sharpSK.Threads.CTimerThread;
 import me.sharpjaws.sharpSK.hooks.GlowAPI.ExprGlowingStateEntity;
 
 public class main extends JavaPlugin implements Listener {
 
 public static JavaPlugin plugin;
 
+	@SuppressWarnings("static-access")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("sharpsk")) {
@@ -78,6 +80,7 @@ public static JavaPlugin plugin;
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk help" + org.bukkit.ChatColor.GREEN + " // "+ "All of the plugin commands");
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk version "+ org.bukkit.ChatColor.GREEN + " // "+ "Current version of SharpSK");
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk check" + org.bukkit.ChatColor.GREEN + " // "+ "Checks for any new versions");
+						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk timers" + org.bukkit.ChatColor.GREEN + " // "+ "Count of all running timers");
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.RED+ "====== SharpSK Commands =====");
 						sender.sendMessage("");
 					} else if (args[0].equalsIgnoreCase("version")) {
@@ -101,6 +104,20 @@ public static JavaPlugin plugin;
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
+					} else if (args[0].equalsIgnoreCase("timers")){
+						 
+						int activetimers = 0;
+						for (Thread t : Thread.getAllStackTraces().keySet()) {
+						        if (t instanceof CTimerThread) {
+						        	activetimers++;
+						        }
+						    }
+						if (activetimers > 1) {
+						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"There are "+org.bukkit.ChatColor.YELLOW + activetimers + org.bukkit.ChatColor.GREEN + " Timers active.");
+						}else{
+						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"There is "+org.bukkit.ChatColor.YELLOW + activetimers +  org.bukkit.ChatColor.GREEN + " Timer active.");	
+						}
+					
 					}else
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK]" + org.bukkit.ChatColor.GREEN
 								+ " Use " + org.bukkit.ChatColor.YELLOW + "/sharpsk help" + org.bukkit.ChatColor.GREEN
