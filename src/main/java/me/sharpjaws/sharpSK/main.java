@@ -519,6 +519,7 @@ public static JavaPlugin plugin;
 			
 			//PirateSK Syntaxes
 			//-------------------
+			if (Bukkit.getServer().getPluginManager().getPlugin("PirateSK") == null){
 			 Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
 		        Skript.registerExpression(ExprExplodedBlocks.class, Block.class, ExpressionType.SIMPLE, "exploded[(-| )]blocks");
 		        Skript.registerExpression(ExprEntityAI.class, Boolean.class, ExpressionType.PROPERTY, "[the] ai of %livingentities%", "%livingentities%'[s] ai");
@@ -526,8 +527,9 @@ public static JavaPlugin plugin;
 		        Skript.registerEffect(EffTame.class, "tame %entities% (to|for) %player%", "untame %entities%");
 		        Skript.registerCondition(CondIsTamed.class, "%entity% is tamed", "%entity% (is not|isn't) tamed");
 		        Skript.registerExpression(ExprTameOwner.class, Player.class, ExpressionType.PROPERTY, "%entities%'s (tamer|[pet] owner)", "[the] (tamer|[pet] owner) of %entities%");
-		        
-		    //-------------------
+			}
+		   
+		        //-------------------
 	
 			
 				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan%");
