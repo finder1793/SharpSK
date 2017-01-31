@@ -114,8 +114,10 @@ public static JavaPlugin plugin;
 						    }
 						if (activetimers > 1) {
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"There are "+org.bukkit.ChatColor.YELLOW + activetimers + org.bukkit.ChatColor.GREEN + " Timers active.");
-						}else{
+						}else if (activetimers > 0){
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"There is "+org.bukkit.ChatColor.YELLOW + activetimers +  org.bukkit.ChatColor.GREEN + " Timer active.");	
+						}else{
+							sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"There are no running timers active");	
 						}
 					
 					}else
