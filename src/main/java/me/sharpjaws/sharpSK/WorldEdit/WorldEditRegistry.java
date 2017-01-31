@@ -8,9 +8,7 @@ public class WorldEditRegistry {
 	public static void registerWorldEdit() {
 		 
 	        if (Bukkit.getServer().getPluginManager().getPlugin("WorldEdit") != null) {
-	        	
-	        	
-	        	
+
 	        	//PirateSK Merged Features
 	        	
 	        	if (Bukkit.getServer().getPluginManager().getPlugin("PirateSK") == null){
