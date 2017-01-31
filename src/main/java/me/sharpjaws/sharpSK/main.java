@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Nullable;
-import javax.print.attribute.standard.NumberUpSupported;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -41,7 +40,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
 import com.codingforcookies.armorequip.ArmorEquipEvent;
 import com.codingforcookies.armorequip.ArmorListener;
 import com.codingforcookies.armorequip.ArmorunEquipEvent;
@@ -56,6 +54,7 @@ import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import ch.njol.skript.util.Timespan;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 import me.sharpjaws.sharpSK.hooks.GlowAPI.ExprGlowingStateEntity;
 
@@ -63,7 +62,6 @@ public class main extends JavaPlugin implements Listener {
 
 public static JavaPlugin plugin;
 
-	@SuppressWarnings("static-access")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("sharpsk")) {
@@ -519,8 +517,19 @@ public static JavaPlugin plugin;
 
 			hman.RegisterHooks();
 			
+			//PirateSK Syntaxes
+			//-------------------
+			 Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
+		        Skript.registerExpression(ExprExplodedBlocks.class, Block.class, ExpressionType.SIMPLE, "exploded[(-| )]blocks");
+		        Skript.registerExpression(ExprEntityAI.class, Boolean.class, ExpressionType.PROPERTY, "[the] ai of %livingentities%", "%livingentities%'[s] ai");
+		        Skript.registerExpression(ExprInvulnerabilityTime.class, Timespan.class, ExpressionType.PROPERTY, "[the] (invulnerability [time]|no damage [time]) of %livingentity%", "%livingentity%'s (invulnerability [time]|no damage [time])");
+		        Skript.registerEffect(EffTame.class, "tame %entities% (to|for) %player%", "untame %entities%");
+		        Skript.registerCondition(CondIsTamed.class, "%entity% is tamed", "%entity% (is not|isn't) tamed");
+		        Skript.registerExpression(ExprTameOwner.class, Player.class, ExpressionType.PROPERTY, "%entities%'s (tamer|[pet] owner)", "[the] (tamer|[pet] owner) of %entities%");
+		        
+		    //-------------------
+	
 			
-				//Unlisted stuff.
 				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan%");
 				Skript.registerEvent("Timer Tick", SimpleEvent.class, EvtTimerTick.class, "timer tick");
 				EventValues.registerEventValue(EvtTimerTick.class, String.class,

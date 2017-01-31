@@ -1,10 +1,10 @@
 name: SharpSK
 author: Sharpjaws
 description: A addon made for automating your favourite plugins.
-version: 1.6.1B
+version: 1.6.1.2
 main: me.sharpjaws.sharpSK.main
 depend: [Skript]
-softdepend: [LightAPI, Jobs, AuthMe, MythicMobs, PermissionsEx, ExertSK, SkRambled, Umbaska, mcMMO, uCars, Multiverse-Core]
+softdepend: [LightAPI, Jobs, AuthMe, MythicMobs, PermissionsEx, ExertSK, SkRambled, Umbaska, mcMMO, uCars, Multiverse-Core, WorldEdit]
 commands:
   sharpsk:
     description: All sharpsk commands

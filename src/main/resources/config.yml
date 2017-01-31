@@ -1,4 +1,4 @@
-cfgver: "1.6.1B"
+cfgver: "1.6.1.2"
 
 # SharpSK Config
 metrics: true
@@ -16,3 +16,4 @@ glowapi: true
 mcmmo: true
 coreprotect: true
 multiverse: true
+worldedit: true

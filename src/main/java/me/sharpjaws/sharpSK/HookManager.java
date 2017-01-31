@@ -3,6 +3,7 @@ package me.sharpjaws.sharpSK;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.sharpjaws.sharpSK.WorldEdit.WorldEditRegistry;
 import me.sharpjaws.sharpSK.hooks.AuthmeReloaded.AuthmeRegistry;
 import me.sharpjaws.sharpSK.hooks.CoreProtect.CorePRegistry;
 import me.sharpjaws.sharpSK.hooks.GlowAPI.GlowAPIRegistry;
@@ -180,6 +181,23 @@ public class HookManager {
 					} catch (NoClassDefFoundError e){
 						mainp.getLogger().info("Could not hook into Multiverse v"
 								+ Bukkit.getPluginManager().getPlugin("Multiverse-Core").getDescription().getVersion()
+								+ " Because errors occured.");
+					}
+				}					
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
+				if (mainp.getConfig().getBoolean("worldedit") == true) {
+					try {
+						WorldEditRegistry.registerWorldEdit();
+						mainp.getLogger().info("Hooked into WorldEdit v" + Bukkit.getPluginManager()
+						.getPlugin("WorldEdit").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().info("Could not hook into WorldEdit v"
+								+ Bukkit.getPluginManager().getPlugin("WorldEdit").getDescription().getVersion()
+								+ " Because errors occured.");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().info("Could not hook into WorldEdit v"
+								+ Bukkit.getPluginManager().getPlugin("WorldEdit").getDescription().getVersion()
 								+ " Because errors occured.");
 					}
 				}					
