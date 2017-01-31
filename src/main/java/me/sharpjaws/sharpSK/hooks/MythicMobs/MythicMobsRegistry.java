@@ -50,7 +50,7 @@ public class MythicMobsRegistry {
 					@Override
 					@Nullable
 					public String get(MythicMobSpawnEvent e) {
-						String name = e.getMobType().getDisplayName();
+						String name = e.getMobType().getInternalName();
 						return name;
 					}
 				}, 0);
