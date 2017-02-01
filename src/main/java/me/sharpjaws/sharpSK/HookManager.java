@@ -12,6 +12,7 @@ import me.sharpjaws.sharpSK.hooks.LightAPI.LightAPIRegistry;
 import me.sharpjaws.sharpSK.hooks.Multiverse.MultiverseRegistry;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.MythicMobsRegistry;
 import me.sharpjaws.sharpSK.hooks.PermissionsEx.PermissionsExRegistry;
+import me.sharpjaws.sharpSK.hooks.WorldGuard.WorldGuardRegistry;
 import me.sharpjaws.sharpSK.hooks.mcMMO.mcMMORegistry;
 import me.sharpjaws.sharpSK.hooks.uCars.uCarsRegistry;
 
@@ -198,6 +199,23 @@ public class HookManager {
 					} catch (NoClassDefFoundError e){
 						mainp.getLogger().info("Could not hook into WorldEdit v"
 								+ Bukkit.getPluginManager().getPlugin("WorldEdit").getDescription().getVersion()
+								+ " Because errors occured.");
+					}
+				}					
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("WorldGuard")) {
+				if (mainp.getConfig().getBoolean("worldguard") == true) {
+					try {
+						WorldGuardRegistry.registerwguard();
+						mainp.getLogger().info("Hooked into WorldGuard v" + Bukkit.getPluginManager()
+						.getPlugin("WorldEdit").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().info("Could not hook into WorldGuard v"
+								+ Bukkit.getPluginManager().getPlugin("WorldGuard").getDescription().getVersion()
+								+ " Because errors occured.");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().info("Could not hook into WorldGuard v"
+								+ Bukkit.getPluginManager().getPlugin("WorldGuard").getDescription().getVersion()
 								+ " Because errors occured.");
 					}
 				}					

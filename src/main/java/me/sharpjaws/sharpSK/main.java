@@ -512,25 +512,24 @@ public static JavaPlugin plugin;
 						"%player%'s offhand");
 			}
 		
-			
-			//Plugin Hook registration
-
-			hman.RegisterHooks();
-			
 			//PirateSK Syntaxes
 			//-------------------
 			if (Bukkit.getServer().getPluginManager().getPlugin("PirateSK") == null){
-			 Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
-		        Skript.registerExpression(ExprExplodedBlocks.class, Block.class, ExpressionType.SIMPLE, "exploded[(-| )]blocks");
-		        Skript.registerExpression(ExprEntityAI.class, Boolean.class, ExpressionType.PROPERTY, "[the] ai of %livingentities%", "%livingentities%'[s] ai");
-		        Skript.registerExpression(ExprInvulnerabilityTime.class, Timespan.class, ExpressionType.PROPERTY, "[the] (invulnerability [time]|no damage [time]) of %livingentity%", "%livingentity%'s (invulnerability [time]|no damage [time])");
-		        Skript.registerEffect(EffTame.class, "tame %entities% (to|for) %player%", "untame %entities%");
-		        Skript.registerCondition(CondIsTamed.class, "%entity% is tamed", "%entity% (is not|isn't) tamed");
-		        Skript.registerExpression(ExprTameOwner.class, Player.class, ExpressionType.PROPERTY, "%entities%'s (tamer|[pet] owner)", "[the] (tamer|[pet] owner) of %entities%");
+				Skript.registerEffect(EffLoadPlugin.class, new String[] { "load plugin %string%" });
+			     Skript.registerEffect(EffEnablePlugin.class, new String[] { "enable plugin %string%" });
+			     Skript.registerEffect(EffDisablePlugin.class, new String[] { "disable plugin %string%" });
+			     
+			 
+			     Skript.registerEffect(EffSaveWorlds.class, new String[] { "save %worlds%" });
 			}
 		   
 		        //-------------------
 	
+			//Plugin Hook registration
+
+			hman.RegisterHooks();
+			
+			
 			
 				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan%");
 				Skript.registerEvent("Timer Tick", SimpleEvent.class, EvtTimerTick.class, "timer tick");

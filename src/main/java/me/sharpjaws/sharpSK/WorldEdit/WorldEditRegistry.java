@@ -8,15 +8,11 @@ public class WorldEditRegistry {
 	public static void registerWorldEdit() {
 		 
 	        if (Bukkit.getServer().getPluginManager().getPlugin("WorldEdit") != null) {
-
-	        	//PirateSK Merged Features
-	        	
-	        	if (Bukkit.getServer().getPluginManager().getPlugin("PirateSK") == null){
-	            Skript.registerEffect(EffPasteSchematic.class,
-	                    "paste schem[atic] %string% at %location% [(ignor(e|ing)|without|[with] no) air]",
-	                    "paste schem[atic] %string% at %location% with air");
-	            Skript.registerEffect(EffSaveSchematic.class, "save blocks between %location% and %location% to [schem[atic]] [file] %string%");
-	        }
+	        	//PirateSK merged features
+	        	if (Bukkit.getPluginManager().getPlugin("PirateSK") == null){
+	        	  Skript.registerEffect(EffPasteSchematic.class, new String[] { "paste schematic %string% at %location%" }); 
+	        	}
+	        	  //-------------------------
 	        }
 		
 	}
