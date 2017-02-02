@@ -515,12 +515,12 @@ public static JavaPlugin plugin;
 			//PirateSK Syntaxes
 			//-------------------
 			if (Bukkit.getServer().getPluginManager().getPlugin("PirateSK") == null){
-				Skript.registerEffect(EffLoadPlugin.class, new String[] { "load plugin %string%" });
-			     Skript.registerEffect(EffEnablePlugin.class, new String[] { "enable plugin %string%" });
-			     Skript.registerEffect(EffDisablePlugin.class, new String[] { "disable plugin %string%" });
+				Skript.registerEffect(EffLoadPlugin.class, new String[] { "[sharpsk] load plugin %string%" });
+			     Skript.registerEffect(EffEnablePlugin.class, new String[] { "[sharpsk] enable plugin %string%" });
+			     Skript.registerEffect(EffDisablePlugin.class, new String[] { "[sharpsk] disable plugin %string%" });
 			     
 			 
-			     Skript.registerEffect(EffSaveWorlds.class, new String[] { "save %worlds%" });
+			     Skript.registerEffect(EffSaveWorlds.class, new String[] { "[sharpsk] save %worlds%" });
 			}
 		   
 		        //-------------------
