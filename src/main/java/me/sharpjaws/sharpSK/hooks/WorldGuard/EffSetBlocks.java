@@ -10,6 +10,7 @@ import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.regions.CuboidRegion;
+import com.sk89q.worldedit.regions.Region;
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 
@@ -48,7 +49,7 @@ import ch.njol.util.Kleenean;
      
      Vector v1 = regionManager.getRegion(name).getMaximumPoint();
      Vector v2 = regionManager.getRegion(name).getMinimumPoint();
-     com.sk89q.worldedit.regions.Region region = new CuboidRegion(v1, v2);
+     Region region = new CuboidRegion(v1, v2);
      BaseBlock b = new BaseBlock(block.getTypeId(), block.getData().getData());
      
      EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(new BukkitWorld(world), 262144);

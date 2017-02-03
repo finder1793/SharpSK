@@ -34,7 +34,7 @@ import ch.njol.util.Kleenean;
      
      RegionManager set = WGBukkit.getRegionManager(world);
      Map<String, ProtectedRegion> regions = set.getRegions();
-     List<String> list = new ArrayList(regions.keySet());
+     List<String> list = new ArrayList<String>(regions.keySet());
      
      String[] s = new String[list.size()];
      return (String[])list.toArray(s);
