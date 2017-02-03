@@ -1,16 +1,17 @@
  package me.sharpjaws.sharpSK.hooks.WorldGuard;
  
- import java.util.Iterator;
-import java.util.LinkedList;
+ import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 
-import com.sk89q.worldguard.bukkit.WGBukkit;
-import com.sk89q.worldguard.protection.ApplicableRegionSet;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
-import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
@@ -28,38 +29,20 @@ import ch.njol.util.Kleenean;
    
    protected String[] get(Event event) {
 	     Location loc = (Location)this.loc.getSingle(event);
+	     String a = null;
+	     WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+	     RegionManager regionManager = wg.getRegionManager(loc.getWorld());
 	     
-	     String rg = null;
-	     
-	     ApplicableRegionSet set = WGBukkit.getRegionManager(loc.getWorld()).getApplicableRegions(loc);
-	     LinkedList<String> parentNames = new LinkedList();
-	     LinkedList<String> regions = new LinkedList();
-	     Iterator localIterator = set.iterator();
-	     ProtectedRegion parent; for (Iterator local; localIterator.hasNext(); parent = null)
-	     {
-	       ProtectedRegion region = (ProtectedRegion)localIterator.next();
-	       String id = region.getId();
-	       regions.add(id);
-	       parent = region.getParent();
-	       parentNames.add(parent.getId());
-	       parent = parent.getParent();
-	       continue;
-	     }
-	     
-	     for (String name : parentNames) {
-	       regions.remove(name);
-	     }
-	     
-	     rg = regions.toString();
-	     
-	     rg = rg.replace("[", "");
-	     rg = rg.replace("]", "");
-	     
-	     return new String[] { rg };
+	    for (ProtectedRegion reg : regionManager.getApplicableRegions(loc)){
+	    	if (reg.contains((int)loc.getBlockX(),(int)loc.getBlockY(),(int)loc.getBlockZ())){
+	    		a = reg.getId();
+	    	}
+	    }
+	     return new String[]{a};
 	   }
 	   
 	   public boolean isSingle() {
-	     return true;
+	     return false;
 	   }
 	   
 	   public Class<? extends String> getReturnType() {
@@ -70,9 +53,8 @@ import ch.njol.util.Kleenean;
 	     return "wg region at" + this.loc.getSingle(event).toString();
 	   }
 	   
-	   public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-	     return null;
-	   }
+	
+	   
 	 }
 
 
