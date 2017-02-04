@@ -52,7 +52,7 @@ import ch.njol.util.Kleenean;
      Region region = new CuboidRegion(v1, v2);
      BaseBlock b = new BaseBlock(block.getTypeId(), block.getData().getData());
      
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(new BukkitWorld(world), 262144);
+     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession((com.sk89q.worldedit.world.World)world, 262144);
      try {
        es.setBlocks(region, b);
      } catch (Exception e) {

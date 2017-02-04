@@ -1,10 +1,6 @@
  package me.sharpjaws.sharpSK.hooks.WorldGuard;
  
- import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.bukkit.Bukkit;
+ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 
