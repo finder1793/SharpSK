@@ -16,15 +16,8 @@ public class WorldGuardRegistry {
 	       Skript.registerEffect(EffRemoveOwner.class,  "[sharpsk] remove owner %players/offlineplayers/strings% from wg region %string% in [world] %world%" );
 	       Skript.registerEffect(EffAddMember.class,  "[sharpsk] add member[s] %players/offlineplayers/strings% to wg region %string% in [world] %world%" );
 	       Skript.registerEffect(EffRemoveMember.class,  "[sharpsk] remove member[s] %players/offlineplayers/strings% from wg region %string% in [world] %world%" );
-	       Skript.registerExpression(ExprGetPoint1.class, Location.class, ExpressionType.SIMPLE, new String[] {
-	         "[sharpsk] point[-| ]1 of wg region %string% in [world] %world%", 
-	         "[sharpsk] pos[ition][-| ]1 of wg region %string% in [world] %world%", 
-	         "[sharpsk] (bottom|lower) corner of wg region %string% in %world%" });
-	       
-	       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE, new String[] {
-	         "[sharpsk] point 2 of wg region %string% in [world] %world%", 
-	         "[sharpsk] pos[ition][ ]2 of wg region %string% in [world] %world%" });
-	       
+	       Skript.registerExpression(ExprGetPoint1.class, Location.class, ExpressionType.SIMPLE, "(point|pos[ition])[ ] 1 of wg region %string% in [world] %world%");
+	       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE,"(point|pos[ition])[ ] 2 of wg region %string% in [world] %world%");
 	       Skript.registerExpression(ExprRegionAt.class, String.class, ExpressionType.SIMPLE, "[sharpsk] wg region at %location%");
 	       Skript.registerExpression(ExprAllRegionsInWorld.class, String.class, ExpressionType.SIMPLE,  "[sharpsk] [all] wg regions in %world%" );
 	       Skript.registerEffect(EffSetBlocks.class, "[sharpsk] (set [all] blocks in|fill) wg region %string% in [world] %world% (to|with) %itemstack%" );
@@ -37,7 +30,6 @@ public class WorldGuardRegistry {
 			       Skript.registerEffect(EffAddMember.class,  "add member[s] %players/offlineplayers/strings% to wg region %string% in [world] %world%" );
 			       Skript.registerEffect(EffRemoveMember.class, "remove member[s] %players/offlineplayers/strings% from wg region %string% in [world] %world%" );
 			       Skript.registerExpression(ExprGetPoint1.class, Location.class, ExpressionType.SIMPLE, "(point|pos[ition])[ ] 1 of wg region %string% in [world] %world%");
-			       
 			       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE,"(point|pos[ition])[ ] 2 of wg region %string% in [world] %world%");
 			       
 			       Skript.registerExpression(ExprRegionAt.class, String.class, ExpressionType.SIMPLE, "wg region at %location%" );
