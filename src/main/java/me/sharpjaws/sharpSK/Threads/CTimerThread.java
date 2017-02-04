@@ -10,6 +10,7 @@ public class CTimerThread extends Thread{
 	
 	private int secs;
 	private String Tname;
+	private int Countdown;
 	
 	public CTimerThread(String name, int seconds){
 	
@@ -20,7 +21,7 @@ public class CTimerThread extends Thread{
 	
 	@Override
     public void run() {
-		int Countdown = secs +1;
+		Countdown = secs +1;
 		this.setName(Tname);	
 		
 		while (Countdown >= 1){
@@ -40,6 +41,17 @@ public class CTimerThread extends Thread{
 		this.interrupt();
 		
 		
+	}
+	public void addTime(int time){
+		Countdown = Countdown + time;
+	}
+	
+	public void setTime(int time){
+		Countdown = time;
+	}
+	public void stopTimer(){
+		Countdown = 0;
+		this.interrupt();
 	}
 
 }

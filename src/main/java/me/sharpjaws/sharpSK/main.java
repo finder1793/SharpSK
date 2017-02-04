@@ -537,8 +537,12 @@ public static JavaPlugin plugin;
 			hman.RegisterHooks();
 			
 			
-			
+			//Timers
 				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan%");
+				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
+				Skript.registerEffect(EffTimerExtend.class, "extend timer %string% by %timespan%");
+				Skript.registerCondition(CondTimerActive.class, "timer %string% is active");
+				Skript.registerCondition(CondTimerNotActive.class, "timer %string% is not active");
 				Skript.registerEvent("Timer Tick", SimpleEvent.class, EvtTimerTick.class, "timer tick");
 				EventValues.registerEventValue(EvtTimerTick.class, String.class,
 						new Getter<String, EvtTimerTick>() {
@@ -567,7 +571,7 @@ public static JavaPlugin plugin;
 							}
 						}, 0);
 				
-				
+				//--------------------------
 				
 			}else{
 				getLogger().warning("Error: Unable to register the addon and the features");
