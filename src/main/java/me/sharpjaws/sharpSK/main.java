@@ -541,7 +541,7 @@ public static JavaPlugin plugin;
 				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan%");
 				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
 				Skript.registerExpression(ExprTimerTime.class,Integer.class,ExpressionType.SIMPLE, "time of timer %string%");
-				Skript.registerExpression(ExprAllTimers.class,String.class,ExpressionType.SIMPLE, "(all [of]|the) [running] timers");
+				Skript.registerExpression(ExprAllTimers.class,String.class,ExpressionType.SIMPLE, " [(the|all)] [of] [the] [running] timers");
 				Skript.registerCondition(CondTimerActive.class, "timer %string% is active");
 				Skript.registerCondition(CondTimerNotActive.class, "timer %string% is not active");
 				Skript.registerEvent("Timer Tick", SimpleEvent.class, EvtTimerTick.class, "timer tick");
