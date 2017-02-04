@@ -29,16 +29,21 @@ public class EffTimerStop extends Effect {
 
 	@Override
 	protected void execute(final Event e) {
-
+		CTimerThread a = null;
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
 	        if (t instanceof CTimerThread) {
-	        	if (t.getName().contains(timer.getSingle(e))){
-	        		((CTimerThread) t).stopTimer();
+	        	if (((CTimerThread) t).instance().getName().equals(timer.getSingle(e))){
+	        		a = ((CTimerThread) t).instance();
 	        		
 	        	}
-	
-	        }	
+	        }
 		}
+		try {
+			a.stopTimer(a.getName());
+		}catch(NullPointerException ex){
+			
+		}
+		
 	}
 	
 }

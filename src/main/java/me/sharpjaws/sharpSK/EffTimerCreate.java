@@ -34,7 +34,7 @@ public class EffTimerCreate extends Effect {
 	protected void execute(final Event e) {
 
 	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20);
-	th.start();
+	th.instance().start();
 	
 		
 	}

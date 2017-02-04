@@ -14,44 +14,55 @@ public class CTimerThread extends Thread{
 	
 	public CTimerThread(String name, int seconds){
 	
-		secs = seconds;
-		Tname = name;		
+		this.secs = seconds;
+		this.Tname = name;		
 	}
 	
 	
 	@Override
     public void run() {
-		Countdown = secs +1;
+		this.instance().Countdown = secs +1;
 		this.setName(Tname);	
+		try {
 		
-		while (Countdown >= 1){
+		while (!(Countdown < 2)){
 			Countdown--;
-			try {
-				EvtTimerTick ev = new EvtTimerTick(this.getName(),Countdown);
+			EvtTimerTick ev = new EvtTimerTick(this.getName(),Countdown);
 				Bukkit.getServer().getPluginManager().callEvent(ev);
-				sleep(1000);
-			} catch (InterruptedException e) {
-				this.interrupt();
-			}
-			
+				CTimerThread.sleep(1000);		
 		}
 		
 		EvtTimerComplete ev2 = new EvtTimerComplete(this.getName());
 		Bukkit.getServer().getPluginManager().callEvent(ev2);
-		this.interrupt();
+		this.instance().interrupt();
 		
-		
+		} catch (InterruptedException e) {
+			this.instance().interrupt();
+		}
 	}
 	public void addTime(int time){
-		Countdown = Countdown + time;
+		this.instance().Countdown = Countdown + time;
 	}
 	
 	public void setTime(int time){
-		Countdown = time;
+		this.instance().Countdown = time;
 	}
-	public void stopTimer(){
-		Countdown = 0;
-		this.interrupt();
+	public int getTime(){
+		return this.instance().Countdown;
 	}
+	public void stopTimer(String name){
+		if (name.contains(Tname)){
+		this.instance().Countdown = 0;
+		this.instance().interrupt();
+		}
+	}
+	public void removeTime(int time){
+		this.Countdown = this.instance().Countdown - time;
+		
+	}
+	public CTimerThread instance(){
+	return this;
+	}
+			
 
 }
