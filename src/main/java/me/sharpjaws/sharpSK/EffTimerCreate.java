@@ -14,6 +14,7 @@ import me.sharpjaws.sharpSK.Threads.CTimerThread;
 public class EffTimerCreate extends Effect {
 	private Expression<String> s;
 	private Expression<Timespan> duration;
+	private Expression<Boolean> active;
 	int task;
 
 	@SuppressWarnings("unchecked")
@@ -22,6 +23,7 @@ public class EffTimerCreate extends Effect {
 			SkriptParser.ParseResult paramParseResult) {
 		s = (Expression<String>) expr[0];
 		duration = (Expression<Timespan>) expr[1];
+		active = (Expression<Boolean>) expr[2];
 		return true;
 	}
 
@@ -32,10 +34,21 @@ public class EffTimerCreate extends Effect {
 
 	@Override
 	protected void execute(final Event e) {
-
-	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20);
+		try {
+			System.out.println(active);
+		}catch (NullPointerException ex){
+			
+		}
+	if (active.getSingle(e) == false){
+	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
 	th.instance().start();
-	
+	}else if (active.getSingle(e) == true){
+	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, true);
+	th.instance().start();
+	}else if (active.getSingle(e) == null){		
+	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
+	th.instance().start();
+	}
 		
 	}
 }

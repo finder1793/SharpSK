@@ -10,10 +10,11 @@ public class CTimerThread extends Thread{
 	
 	private int secs;
 	private String Tname;
+	private boolean active;
 	private int Countdown;
 	
-	public CTimerThread(String name, int seconds){
-	
+	public CTimerThread(String name, int seconds, Boolean activeT){
+		this.active = activeT;
 		this.secs = seconds;
 		this.Tname = name;		
 	}
@@ -27,8 +28,12 @@ public class CTimerThread extends Thread{
 		
 		while (!(Countdown < 2)){
 			Countdown--;
+			try {
 			EvtTimerTick ev = new EvtTimerTick(this.getName(),Countdown);
 				Bukkit.getServer().getPluginManager().callEvent(ev);
+			}catch (Exception ex){
+		
+			}
 				CTimerThread.sleep(1000);		
 		}
 		
@@ -62,6 +67,9 @@ public class CTimerThread extends Thread{
 	}
 	public CTimerThread instance(){
 	return this;
+	}
+	public Boolean isActive(){
+		return this.active;
 	}
 			
 

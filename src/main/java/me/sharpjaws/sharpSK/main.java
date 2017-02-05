@@ -2,6 +2,9 @@ package me.sharpjaws.sharpSK;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nullable;
 
@@ -54,7 +57,6 @@ import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import ch.njol.skript.util.Timespan;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 import me.sharpjaws.sharpSK.hooks.GlowAPI.ExprGlowingStateEntity;
 
@@ -179,6 +181,7 @@ public static JavaPlugin plugin;
 			getLogger().info("Attempting to register Addon...");
 			Skript.registerAddon(this);
 			getLogger().info("Attempting to register stuff...");
+			
 			try {
 				Skript.registerEvent("Firework Explode", SimpleEvent.class, FireworkExplodeEvent.class,
 						"firework explode");
@@ -538,7 +541,7 @@ public static JavaPlugin plugin;
 			
 			
 			//Timers
-				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan%");
+				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan% [keep active %-boolean%]");
 				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
 				Skript.registerExpression(ExprTimerTime.class,Integer.class,ExpressionType.SIMPLE, "time of timer %string%");
 				Skript.registerExpression(ExprAllTimers.class,String.class,ExpressionType.SIMPLE, "[(the|all)] [of] [the] [running] timers");
@@ -573,6 +576,22 @@ public static JavaPlugin plugin;
 						}, 0);
 				
 				//--------------------------
+				File cache = new File(getDataFolder(), "Tcache.yml");   				
+				if(cache.exists()){
+				getLogger().info("Resuming active timers...");
+				try{
+				
+				YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
+				Map<String, Object> b = Tcache.getConfigurationSection("timers").getValues(false);
+				for (Map.Entry<?,?> a : b.entrySet() ) {
+					CTimerThread th = new CTimerThread((String)a.getKey(),(int)a.getValue(),true);
+					th.instance().start();
+				}
+				cache.delete();
+				}catch (NullPointerException ex){
+					
+				}
+			}
 				
 			}else{
 				getLogger().warning("Error: Unable to register the addon and the features");
@@ -593,8 +612,55 @@ public static JavaPlugin plugin;
 
 	@Override
 	public void onDisable() {
+		
+		ArrayList<String> atimers = new ArrayList<String>();
+		for (Thread t1 : Thread.getAllStackTraces().keySet()) {
+	        if (t1 instanceof CTimerThread) {
+	        	if (((CTimerThread) t1).instance().isActive()){
+	       atimers.add(t1.getName());
+	        	}
+	        
+	        }
+		}
+	       
+	    if (!atimers.isEmpty()){
+	        
+		getLogger().info("Saving data for active timers...");
+		File cache = new File(getDataFolder(), "Tcache.yml");   		
+		
+		if (!cache.exists()){
+			try {
+				cache.createNewFile();
+			} catch (IOException e) {
+				
+			}
+			}
+		YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
+		Map<String, Integer> timers = new HashMap<String, Integer>();
+		
+		for (Thread t2 : Thread.getAllStackTraces().keySet()) {
+	        if (t2 instanceof CTimerThread) {
+	        	if (((CTimerThread) t2).instance().isActive()){
+	        timers.put(t2.getName(), ((CTimerThread) t2).getTime());
+	        	}
+	        
+	        }
+		}
+	    
+		
+		Tcache.createSection("timers", timers);
+		Tcache.getMapList("timers").add(timers);
+		try {
+			Tcache.save(cache);
+		} catch (IOException e) {
+
+		}
+	 }
+	    
 		getLogger().info("Successfully disabled.");
-	}
+	    }
+	    
+	
 	
 	
 	public Boolean main2() throws Exception {
