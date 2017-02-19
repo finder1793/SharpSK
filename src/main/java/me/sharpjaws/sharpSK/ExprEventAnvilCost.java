@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
-import org.bukkit.inventory.meta.Repairable;
+import org.bukkit.inventory.AnvilInventory;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
@@ -41,9 +41,12 @@ public class ExprEventAnvilCost extends SimpleExpression<Number>{
 	@Override
 	@Nullable
 	protected Number[] get(Event e) {
-		
-		Repairable a = (Repairable) ((PrepareAnvilEvent)e).getInventory().getItem(0);
+		try {
+	AnvilInventory a = ((PrepareAnvilEvent)e).getInventory();
     return new Number[]{a.getRepairCost()};
+		}catch (NullPointerException ex){
+			return new Number[]{0};
+		}
 	}
 
 }
