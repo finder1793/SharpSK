@@ -1,4 +1,4 @@
-package me.sharpjaws.sharpSK.hooks.MythicMobs;
+package me.sharpjaws.sharpSK.hooks.MythicMobs.old;
 
 import javax.annotation.Nullable;
 
@@ -12,11 +12,10 @@ import org.bukkit.event.Event;
  import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
  import ch.njol.util.Kleenean;
-import io.lumine.xikage.mythicmobs.MythicMobs;
+ import net.elseland.xikage.MythicMobs.MythicMobs;
 
 
-
- public class CondNotMythicMob extends Condition
+ public class CondNotMythicMobOld extends Condition
  {
  private Expression<Entity> mythicmob;
 @SuppressWarnings("unused")
@@ -46,7 +45,7 @@ mythicmob = (Expression<Entity>) expr[0];
  Boolean result2 = false;
  try
 {
- result = Boolean.valueOf(MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
+ result = Boolean.valueOf(MythicMobs.inst().getAPI().getMobAPI().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
  if (result.equals(false)){
 	 result2 = true;
  }

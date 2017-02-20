@@ -1,4 +1,4 @@
-package me.sharpjaws.sharpSK.hooks.MythicMobs;
+package me.sharpjaws.sharpSK.hooks.MythicMobs.old;
 
 import javax.annotation.Nullable;
 
@@ -9,11 +9,10 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import io.lumine.xikage.mythicmobs.MythicMobs;
-import io.lumine.xikage.mythicmobs.api.exceptions.InvalidMobTypeException;
+import net.elseland.xikage.MythicMobs.MythicMobs;
+import net.elseland.xikage.MythicMobs.API.Exceptions.InvalidMobTypeException;
 
-
-public class EffSpawnMM extends Effect{
+public class EffSpawnMMOld extends Effect{
 
 	private Expression<String> mn;
 	private Expression<Location> loc;
@@ -36,7 +35,7 @@ public class EffSpawnMM extends Effect{
 	@Override
 	protected void execute(Event e) {
 		try {
-			MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), level.getSingle(e));
+			MythicMobs.inst().getAPI().getMobAPI().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), level.getSingle(e));
 		} catch (InvalidMobTypeException e1) {
 
 		}

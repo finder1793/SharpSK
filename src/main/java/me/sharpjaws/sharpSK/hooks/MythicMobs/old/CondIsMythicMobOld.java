@@ -1,10 +1,9 @@
-package me.sharpjaws.sharpSK.hooks.MythicMobs;
+package me.sharpjaws.sharpSK.hooks.MythicMobs.old;
 
 import javax.annotation.Nullable;
 
  import org.bukkit.Location;
  import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
 import org.bukkit.event.Event;
 
 
@@ -12,11 +11,10 @@ import org.bukkit.event.Event;
  import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
  import ch.njol.util.Kleenean;
-import io.lumine.xikage.mythicmobs.MythicMobs;
+ import net.elseland.xikage.MythicMobs.MythicMobs;
 
 
-
- public class CondNotMythicMob extends Condition
+ public class CondIsMythicMobOld extends Condition
  {
  private Expression<Entity> mythicmob;
 @SuppressWarnings("unused")
@@ -43,17 +41,12 @@ mythicmob = (Expression<Entity>) expr[0];
 	public boolean check(Event e)
  {
  Boolean result = Boolean.valueOf(false);
- Boolean result2 = false;
  try
 {
- result = Boolean.valueOf(MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
- if (result.equals(false)){
-	 result2 = true;
- }
+ result = Boolean.valueOf(MythicMobs.inst().getAPI().getMobAPI().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
 } catch (NullPointerException ex) {
-
-	return false;
+return result.booleanValue();
 }
- return result2;
+ return result.booleanValue();
 }
 }

@@ -1,4 +1,4 @@
-package me.sharpjaws.sharpSK.hooks.MythicMobs;
+package me.sharpjaws.sharpSK.hooks.MythicMobs.old;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
-import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
+import net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobDeathEvent;
 
-public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
+public class ExprEvtMMDropsOld extends SimpleExpression<ItemStack> {
 
 	@Override
 	public Class<? extends ItemStack> getReturnType() {

@@ -11,8 +11,7 @@ import org.bukkit.event.Event;
  import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
  import ch.njol.util.Kleenean;
- import net.elseland.xikage.MythicMobs.MythicMobs;
-
+ import io.lumine.xikage.mythicmobs.MythicMobs;
 
  public class CondIsMythicMob extends Condition
  {
@@ -43,7 +42,7 @@ mythicmob = (Expression<Entity>) expr[0];
  Boolean result = Boolean.valueOf(false);
  try
 {
- result = Boolean.valueOf(MythicMobs.inst().getAPI().getMobAPI().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
+ result = Boolean.valueOf(MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
 } catch (NullPointerException ex) {
 return result.booleanValue();
 }
