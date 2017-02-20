@@ -63,7 +63,8 @@ public class MythicMobsRegistry {
 		Skript.registerCondition(CondIsMythicMobOld.class, "%entity% is a mythicmob");
 		Skript.registerCondition(CondNotMythicMobOld.class, "%entity% is not a mythicmob");
 		Skript.registerEffect(EffSpawnMMOld.class, "[sharpsk] spawn [a] mythicmob %string% at [the] %location% with level %integer%");
-	}else{
+		Skript.registerEvent("Mythicmob Skill", SimpleEvent.class, net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobSkillEvent.class,"([mythicmob|mm]) skill [cast]");
+		}else{
 		Skript.registerEvent("Mythicmob death", SimpleEvent.class, io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent.class,"([mythicmob|mm]) death");
 		EventValues.registerEventValue(io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent.class, Location.class,
 				new Getter<Location, io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent>() {
@@ -106,6 +107,7 @@ public class MythicMobsRegistry {
 		Skript.registerCondition(CondIsMythicMob.class, "%entity% is a mythicmob");
 		Skript.registerCondition(CondNotMythicMob.class, "%entity% is not a mythicmob");
 		Skript.registerEffect(EffSpawnMM.class, "[sharpsk] spawn [a] mythicmob %string% at [the] %location% with level %integer%");
-	}
+		Skript.registerEvent("Mythicmob Skill", SimpleEvent.class, io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMechanicLoadEvent.class,"([mythicmob|mm]) skill [cast]");
+		}
 	}
 }
