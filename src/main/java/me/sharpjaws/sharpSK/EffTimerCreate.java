@@ -34,11 +34,6 @@ public class EffTimerCreate extends Effect {
 
 	@Override
 	protected void execute(final Event e) {
-		try {
-			System.out.println(active);
-		}catch (NullPointerException ex){
-			
-		}
 	if (active.getSingle(e) == false){
 	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
 	th.instance().start();
