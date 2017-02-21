@@ -1,6 +1,12 @@
 package me.sharpjaws.sharpSK.Threads;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import me.sharpjaws.sharpSK.EvtTimerComplete;
 import me.sharpjaws.sharpSK.EvtTimerTick;
@@ -12,18 +18,23 @@ public class CTimerThread extends Thread{
 	private String Tname;
 	private boolean active;
 	private int Countdown;
-	
+
 	public CTimerThread(String name, int seconds, Boolean activeT){
 		this.active = activeT;
 		this.secs = seconds;
-		this.Tname = name;		
+		this.Tname = name;			
 	}
 	
 	
 	@Override
     public void run() {
 		this.instance().Countdown = secs +1;
-		this.setName(Tname);	
+		this.setName(Tname);
+		 Map<String, Integer> timer = new HashMap<String,Integer>();
+		timer.put(this.Tname, this.getTime());
+		File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
+		YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
+		Tcache.createSection("timers", timer);
 		try {
 		
 		while (!(Countdown < 2)){
@@ -34,9 +45,19 @@ public class CTimerThread extends Thread{
 			}catch (Exception ex){
 		
 			}
+							
+			if (active == true){
+			Tcache.getMapList("timers").add(timer);	
+			try {
+				Tcache.save(cache);
+			} catch (IOException e) {
+
+			}
+		}
 				CTimerThread.sleep(1000);		
 		}
-		
+		if (active == true){	
+		}
 		EvtTimerComplete ev2 = new EvtTimerComplete(this.getName());
 		Bukkit.getServer().getPluginManager().callEvent(ev2);
 		this.instance().interrupt();
