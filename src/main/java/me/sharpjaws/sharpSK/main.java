@@ -615,6 +615,49 @@ public static main instance;
 
 	@Override
 	public void onDisable() {
+		ArrayList<String> atimers = new ArrayList<String>();
+		for (Thread t1 : Thread.getAllStackTraces().keySet()) {
+	        if (t1 instanceof CTimerThread) {
+	        	if (((CTimerThread) t1).instance().isActive()){
+	       atimers.add(t1.getName());
+	        	}
+	        
+	        }
+		}
+	       
+	    if (!atimers.isEmpty()){
+	        
+		getLogger().info("Saving data for active timers...");
+		File cache = new File(getDataFolder(), "Tcache.yml");   		
+		
+		if (!cache.exists()){
+			try {
+				cache.createNewFile();
+			} catch (IOException e) {
+				
+			}
+			}
+		YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
+		Map<String, Integer> timers = new HashMap<String, Integer>();
+		
+		for (Thread t2 : Thread.getAllStackTraces().keySet()) {
+	        if (t2 instanceof CTimerThread) {
+	        	if (((CTimerThread) t2).instance().isActive()){
+	        timers.put(t2.getName(), ((CTimerThread) t2).getTime());
+	        	}
+	        
+	        }
+		}
+	    
+		
+		Tcache.createSection("timers", timers);
+		Tcache.getMapList("timers").add(timers);
+		try {
+			Tcache.save(cache);
+		} catch (IOException e) {
+
+		}
+	 }
 		getLogger().info("Successfully disabled.");
 	    }
 

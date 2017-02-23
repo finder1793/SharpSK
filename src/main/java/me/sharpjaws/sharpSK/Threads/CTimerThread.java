@@ -30,39 +30,55 @@ public class CTimerThread extends Thread{
     public void run() {
 		this.instance().Countdown = secs +1;
 		this.setName(Tname);
-		 Map<String, Integer> timer = new HashMap<String,Integer>();
-		timer.put(this.Tname, this.getTime());
+	
+
+		
 		File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
 		YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
-		Tcache.createSection("timers", timer);
+	
 		try {
-		
+		Map<String, Integer> timer = new HashMap<String,Integer>();
 		while (!(Countdown < 2)){
 			Countdown--;
+			if (active == true){
+			
+			timer.put(this.getName(), this.getTime());
+			Tcache.createSection("timers", timer);
+			Tcache.getMapList("timers").add(timer);
+			try {
+				Tcache.save(cache);
+			} catch (IOException e) {
+
+				}
+			}
 			try {
 			EvtTimerTick ev = new EvtTimerTick(this.getName(),Countdown);
 				Bukkit.getServer().getPluginManager().callEvent(ev);
 			}catch (Exception ex){
 		
 			}
-							
-			if (active == true){
-			Tcache.getMapList("timers").add(timer);	
-			try {
-				Tcache.save(cache);
-			} catch (IOException e) {
 
-			}
-		}
 				CTimerThread.sleep(1000);		
 		}
 		if (active == true){	
 		}
 		EvtTimerComplete ev2 = new EvtTimerComplete(this.getName());
 		Bukkit.getServer().getPluginManager().callEvent(ev2);
+		if (active == true){
+			
+			timer.put(this.getName(), 0);
+			Tcache.createSection("timers", timer);
+			Tcache.getMapList("timers").add(timer);
+			try {
+				Tcache.save(cache);
+			} catch (IOException e) {
+
+				}
+			}
 		this.instance().interrupt();
 		
 		} catch (InterruptedException e) {
+		
 			this.instance().interrupt();
 		}
 	}

@@ -2,6 +2,7 @@ package me.sharpjaws.sharpSK;
 
 import javax.annotation.Nullable;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
 import ch.njol.skript.lang.Effect;
@@ -34,6 +35,17 @@ public class EffTimerCreate extends Effect {
 
 	@Override
 	protected void execute(final Event e) {
+		Boolean exist = false;
+		for (Thread t : Thread.getAllStackTraces().keySet()) {
+	        if (t instanceof CTimerThread) {
+	        	CTimerThread ti = (CTimerThread)t;
+	        	if (ti.getName().equals(s.getSingle(e))){	        
+	        		exist = true;
+	        	}
+	        }
+		}
+	        
+		if (exist != true){
 	if (active.getSingle(e) == false){
 	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
 	th.instance().start();
@@ -43,7 +55,13 @@ public class EffTimerCreate extends Effect {
 	}else if (active.getSingle(e) == null){		
 	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
 	th.instance().start();
+	}	
+	}else{
+		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
+		core.getLogger().warning("Timer "+ s.getSingle(e) + " could not be created because a timer with the same name is already running.");
 	}
+	
 		
-	}
+		
+	}	
 }

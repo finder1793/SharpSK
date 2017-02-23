@@ -34,6 +34,7 @@ public class EffTimerStop extends Effect {
 	        if (t instanceof CTimerThread) {
 	        	if (((CTimerThread) t).instance().getName().equals(timer.getSingle(e))){
 	        		a = ((CTimerThread) t).instance();
+	        		break;
 	        		
 	        	}
 	        }
