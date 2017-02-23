@@ -23,6 +23,8 @@ import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.Converters;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import me.sharpjaws.sharpSK.hooks.JobsReborn.old.ExprJobLevelOld;
+import me.sharpjaws.sharpSK.hooks.JobsReborn.old.ExprJobsofPlayerOld;
 
 public class JobsRegistry {
 

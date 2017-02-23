@@ -1,4 +1,4 @@
-package me.sharpjaws.sharpSK.hooks.JobsReborn;
+package me.sharpjaws.sharpSK.hooks.JobsReborn.old;
 
 import javax.annotation.Nullable;
 
