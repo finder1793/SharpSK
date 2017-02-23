@@ -11,6 +11,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import fr.xephi.authme.*;
+import fr.xephi.authme.api.NewAPI;;
 
 public class EffAuthForceLogout extends Effect {
 	private Expression<Player> player;
@@ -31,7 +32,7 @@ public class EffAuthForceLogout extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		AuthMe.getInstance().api.plugin.management.performLogout(player.getSingle(e));
+		NewAPI.getInstance().forceLogout(player.getSingle(e));		
 		}
 	}
 
