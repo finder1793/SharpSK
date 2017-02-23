@@ -64,7 +64,6 @@ public class AuthmeRegistry {
 								}
 							}, 0);
 					Skript.registerExpression(ExprHashedPasswordOf.class, String.class, ExpressionType.PROPERTY, "[authme] hashed password of %player%");
-					Skript.registerExpression(ExprHashedPasswordOf.class, String.class, ExpressionType.PROPERTY, "[authme] hashed password of %player%");
 					Skript.registerEffect(EffAuthForceLogout.class, "[authme] force %player% to log[]out");
 					Skript.registerEffect(EffAuthForceLogin.class, "[authme] force %player% to log[]in");	
 					Skript.registerEffect(EffAuthForceRegister.class, "[authme] force %player% to register with pass[word] %string%");
