@@ -1,4 +1,4 @@
-package me.sharpjaws.sharpSK.WorldEdit;
+package me.sharpjaws.sharpSK.hooks.WorldEdit;
 
 import org.bukkit.Bukkit;
 
