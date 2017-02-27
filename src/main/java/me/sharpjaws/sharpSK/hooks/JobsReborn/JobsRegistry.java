@@ -170,7 +170,7 @@ public class JobsRegistry {
 		Skript.registerExpression(ExprJobsofPlayer.class, Job.class, ExpressionType.SIMPLE, "[all] jobs of %offlineplayer%");
 		Skript.registerExpression(ExprJobLevel.class, Integer.class, ExpressionType.SIMPLE, "[the] level of job %job% of %offlineplayer%");
 		}else{			
-		Skript.registerExpression(ExprJobsofPlayerOld.class, Job.class, ExpressionType.PROPERTY, "[all] jobs of %offlineplayer%");
+		Skript.registerExpression(ExprJobsofPlayerOld.class, Job.class, ExpressionType.PROPERTY, "[all] [the] jobs of %offlineplayer%");
 		Skript.registerExpression(ExprJobLevelOld.class, Integer.class, ExpressionType.SIMPLE, "[the] level of job %job% of %offlineplayer%");
 				
 		}

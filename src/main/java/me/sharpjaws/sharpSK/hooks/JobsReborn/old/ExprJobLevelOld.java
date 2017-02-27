@@ -52,7 +52,7 @@ public class ExprJobLevelOld extends SimpleExpression<Integer> {
 		int level = 0;
 		try{
 			if (!p.getSingle(e).isOnline()){
-        level = Jobs.getPlayerManager().getJobsPlayerOffline(p.getSingle(e)).getJobProgression(j.getSingle(e)).getLevel();			
+        level = Jobs.getPlayerManager().getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId())).getJobProgression(j.getSingle(e)).getLevel();			
 			}else{
 		 level = Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).getJobProgression(j.getSingle(e)).getLevel();					
 			}

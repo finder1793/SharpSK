@@ -11,6 +11,7 @@ import org.bukkit.event.Event;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.Job;
+import com.gamingmesh.jobs.container.PlayerInfo;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -51,7 +52,8 @@ public class ExprJobsofPlayerOld extends SimpleExpression<Job> {
 		try {
 		if (!p.getSingle(e).isOnline()){
 		for (Job j : Jobs.getJobs()){
-			if (Jobs.getPlayerManager().getJobsPlayerOffline(p.getSingle(e)).isInJob(j) == true){
+		
+			if (Jobs.getPlayerManager().getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId())).isInJob(j) == true){
 				a.add(j);
 			}
 		
