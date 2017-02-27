@@ -165,7 +165,7 @@ public class JobsRegistry {
 		Skript.registerCondition(CondPlayerNotInJob.class, "%player% is not in job %job%");
 		Skript.registerExpression(ExprAllJobs.class, Job.class, ExpressionType.COMBINED, "[(all|the)] (jobs|1¦JRJobs)");
 		
-		if (Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.5") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.6") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.7")|| Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.8")|| Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().contains("3.9")){
+		if (Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().matches("3.\\d.\\d") || Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().matches("4.\\d.\\d") ){
 		
 		Skript.registerExpression(ExprJobsofPlayer.class, Job.class, ExpressionType.SIMPLE, "[all] jobs of %offlineplayer%");
 		Skript.registerExpression(ExprJobLevel.class, Integer.class, ExpressionType.SIMPLE, "[the] level of job %job% of %offlineplayer%");
