@@ -30,15 +30,22 @@ p = (Expression<Player>) expr[0];
 @Override
 	public String toString(@Nullable Event e, boolean debug)
  {
- return "%entity% is a mythicmob";
+ return "%player% is authenticated";
 }
 
 
 @Override
-	public boolean check(Event e)
- {
-return NewAPI.getInstance().isAuthenticated(p.getSingle(e));
+	public boolean check(Event e) {
+	Boolean a = false;
+	try{
+	a = NewAPI.getInstance().isAuthenticated(p.getSingle(e));
+	}catch(NullPointerException ex){
+		return false;
+	}
+	return a;
+		
+}
 
 
 
- }}
+ }
