@@ -13,7 +13,6 @@ public class Updater {
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String v = in.readLine();
             in.close();
-            String line;
            result = v;
         }
         catch (MalformedURLException e) {
