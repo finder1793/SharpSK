@@ -17,7 +17,7 @@
     </repository>
     <repository>
 		<id>njol-repo</id>
-		<url>http://maven.njol.ch/repo/</url>
+		<url>https://raw.githubusercontent.com/bensku/mvn-repo/master/</url>
 	</repository>
 	<repository>
     <id>pex-repo</id>
@@ -66,8 +66,8 @@
 		</dependency>
 		<dependency>
 		<groupId>ch.njol</groupId>
-		<artifactId>skript</artifactId>
-		<version>2.2-SNAPSHOT</version>
+		<artifactId>Skript</artifactId>
+		<version>2.2-dev22b</version>
 		</dependency>
 	</dependencies>
 	
