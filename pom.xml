@@ -23,6 +23,10 @@
     <id>pex-repo</id>
     <url>http://pex-repo.aoeu.xyz</url>
 </repository>
+	<repository>
+    <id>vault-repo</id>
+    <url>http://maven.elmakers.com/repository/</url>
+</repository>
 </repositories>
 
 
@@ -64,6 +68,7 @@
 			<artifactId>spigot-api</artifactId>
 			<version>1.11.2-R0.1-SNAPSHOT</version>
 		</dependency>
+		
 		<dependency>
 		<groupId>ch.njol</groupId>
 		<artifactId>Skript</artifactId>
