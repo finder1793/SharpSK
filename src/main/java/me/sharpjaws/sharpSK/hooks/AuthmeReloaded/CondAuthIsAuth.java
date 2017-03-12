@@ -38,7 +38,12 @@ p = (Expression<Player>) expr[0];
 	public boolean check(Event e) {
 	Boolean a = false;
 	try{
-	a = NewAPI.getInstance().isAuthenticated(p.getSingle(e));
+	if (!(p.getSingle(e) instanceof Player)) {
+		a = false;
+		}else {
+		a = NewAPI.getInstance().isAuthenticated(p.getSingle(e));
+		}
+	
 	}catch(NullPointerException ex){
 		return false;
 	}
