@@ -46,16 +46,19 @@ public class EffTimerCreate extends Effect {
 		}
 	        
 		if (exist != true){
+			
+	if (active == null)	{
+		CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
+		th.instance().start();
+	}else {
 	if (active.getSingle(e) == false){
 	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
 	th.instance().start();
 	}else if (active.getSingle(e) == true){
 	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, true);
 	th.instance().start();
-	}else if (active.getSingle(e) == null){		
-	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
-	th.instance().start();
-	}	
+	}
+	}
 	}else{
 		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
 		core.getLogger().warning("Timer "+ s.getSingle(e) + " could not be created because a timer with the same name is already running.");
