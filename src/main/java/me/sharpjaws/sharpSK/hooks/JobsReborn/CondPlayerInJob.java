@@ -13,7 +13,7 @@ import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import net.elseland.xikage.MythicMobs.MythicMobs;
+
 
 
  public class CondPlayerInJob extends Condition
