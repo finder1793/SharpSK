@@ -5,6 +5,7 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.LocalWorld;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.blocks.BaseBlock;
@@ -52,7 +53,7 @@ import ch.njol.util.Kleenean;
      Region region = new CuboidRegion(v1, v2);
      BaseBlock b = new BaseBlock(block.getTypeId(), block.getData().getData());
      
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession((com.sk89q.worldedit.world.World)world, 262144);
+     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession((LocalWorld)world, 262144);
      try {
        es.setBlocks(region, b);
      } catch (Exception e) {
