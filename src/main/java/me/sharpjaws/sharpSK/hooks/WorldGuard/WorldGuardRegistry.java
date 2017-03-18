@@ -20,7 +20,7 @@ public class WorldGuardRegistry {
 	       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE,"[sharpsk] [wg|worldguard] (point|pos[ition])[ ] 2 of wg region %string% in [world] %world%");
 	       Skript.registerExpression(ExprRegionAt.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [wg|worldguard] wg region at %location%");
 	       Skript.registerExpression(ExprAllRegionsInWorld.class, String.class, ExpressionType.SIMPLE,  "[sharpsk] [wg|worldguard] [all] wg regions in %world%" );
-	       Skript.registerEffect(EffSetBlocks.class, "[sharpsk] [wg|worldguard] (set [all] blocks in|fill) wg region %string% in [world] %world% (to|with) %itemstack%" );
+	       Skript.registerEffect(EffSetBlocks.class, "[sharpsk] [(wg|worldguard)] (set [all] blocks in|fill) wg region %string% in [world] %world% (to|with) %itemstack%");
 	  
 			}else{
 				 Skript.registerEffect(EffCreateRegion.class,  "[(wg|worldguard)] create wg region %string% between %location% and %location% in [world] %world%" );
