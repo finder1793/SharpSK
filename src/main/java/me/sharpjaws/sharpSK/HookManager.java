@@ -8,6 +8,7 @@ import me.sharpjaws.sharpSK.hooks.CoreProtect.CorePRegistry;
 import me.sharpjaws.sharpSK.hooks.GlowAPI.GlowAPIRegistry;
 import me.sharpjaws.sharpSK.hooks.JobsReborn.JobsRegistry;
 import me.sharpjaws.sharpSK.hooks.LightAPI.LightAPIRegistry;
+import me.sharpjaws.sharpSK.hooks.LogBlock.LogBlockRegistry;
 import me.sharpjaws.sharpSK.hooks.Multiverse.MultiverseRegistry;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.MythicMobsRegistry;
 import me.sharpjaws.sharpSK.hooks.PermissionsEx.PermissionsExRegistry;
@@ -223,7 +224,7 @@ public class HookManager {
 			if (Bukkit.getPluginManager().isPluginEnabled("LogBlock")) {
 				if (mainp.getConfig().getBoolean("logblock") == true) {
 					try {
-						WorldGuardRegistry.registerwguard();
+						LogBlockRegistry.registerLogBlock();
 						mainp.getLogger().info("Hooked into LogBlock v" + Bukkit.getPluginManager()
 						.getPlugin("LogBlock").getDescription().getVersion());
 					} catch (Exception ex) {
