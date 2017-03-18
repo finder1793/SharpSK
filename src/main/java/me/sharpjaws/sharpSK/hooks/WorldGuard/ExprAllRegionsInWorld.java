@@ -41,7 +41,7 @@ import ch.njol.util.Kleenean;
    }
    
    public boolean isSingle() {
-     return true;
+     return false;
    }
    
    public Class<? extends String> getReturnType() {
