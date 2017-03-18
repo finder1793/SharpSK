@@ -2,6 +2,7 @@
  
  import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
@@ -24,14 +25,15 @@ import ch.njol.util.Kleenean;
    public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
    {
     this.players = exprs[0];
-    this.name = exprs[0];
-    this.world = exprs[0];
+    this.name = exprs[1];
+    this.world = exprs[2];
      
     return true;
    }
    
    protected void execute(Event event) {
-    String name = (String)this.name.getSingle(event);
+	   String name = (String)this.name.getSingle(event);
+
     World world = (World)this.world.getSingle(event);
      
     RegionManager regionManager = WGBukkit.getRegionManager(world);
