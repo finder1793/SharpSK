@@ -220,6 +220,23 @@ public class HookManager {
 					}
 				}					
 			}
+			if (Bukkit.getPluginManager().isPluginEnabled("LogBlock")) {
+				if (mainp.getConfig().getBoolean("logblock") == true) {
+					try {
+						WorldGuardRegistry.registerwguard();
+						mainp.getLogger().info("Hooked into LogBlock v" + Bukkit.getPluginManager()
+						.getPlugin("WorldEdit").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().info("Could not hook into LogBlock v"
+								+ Bukkit.getPluginManager().getPlugin("LogBlock").getDescription().getVersion()
+								+ " Because errors occured.");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().info("Could not hook into LogBlock v"
+								+ Bukkit.getPluginManager().getPlugin("LogBlock").getDescription().getVersion()
+								+ " Because errors occured.");
+					}
+				}					
+			}
 	}
 	
 }

@@ -18,3 +18,4 @@ coreprotect: true
 multiverse: true
 worldedit: true
 worldguard: true
+logblock: true
