@@ -5,6 +5,7 @@ import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.LocalWorld;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
@@ -26,6 +27,8 @@ import ch.njol.util.Kleenean;
    private Expression<?> name;
    private Expression<?> world;
    private Expression<?> block;
+
+   
    
    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
    {
@@ -52,8 +55,9 @@ import ch.njol.util.Kleenean;
      Vector v2 = regionManager.getRegion(name).getMinimumPoint();
      Region region = new CuboidRegion(v1, v2);
      BaseBlock b = new BaseBlock(block.getTypeId(), block.getData().getData());
+     BukkitWorld bworld = new BukkitWorld(world);
      
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession((LocalWorld)world, 262144);
+     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(bworld , -1);
      try {
        es.setBlocks(region, b);
      } catch (Exception e) {
