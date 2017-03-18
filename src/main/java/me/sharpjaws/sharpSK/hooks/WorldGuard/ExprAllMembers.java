@@ -54,7 +54,7 @@ public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, Skrip
    }
    
    public String toString(Event event, boolean b) {
-     return "[(wg|worldguard)] [all] members of wg region %string% in %world%";
+     return "[(wg|worldguard)] [all] members of wg region %string% in world %world%";
    }
    
    public Class<?>[] acceptChange(Changer.ChangeMode mode) {

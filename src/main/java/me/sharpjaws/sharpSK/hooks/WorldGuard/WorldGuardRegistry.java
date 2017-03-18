@@ -37,7 +37,7 @@ public class WorldGuardRegistry {
 			}
 		   //---------------------
 		
-		   Skript.registerExpression(ExprAllMembers.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] [all] members of wg region %string% in %world%" );
+		   Skript.registerExpression(ExprAllMembers.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] [all] members of wg region %string% in [world] %world%" );
 		}
 	
 
