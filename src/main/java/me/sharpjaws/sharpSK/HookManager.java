@@ -225,7 +225,7 @@ public class HookManager {
 					try {
 						WorldGuardRegistry.registerwguard();
 						mainp.getLogger().info("Hooked into LogBlock v" + Bukkit.getPluginManager()
-						.getPlugin("WorldEdit").getDescription().getVersion());
+						.getPlugin("LogBlock").getDescription().getVersion());
 					} catch (Exception ex) {
 						mainp.getLogger().info("Could not hook into LogBlock v"
 								+ Bukkit.getPluginManager().getPlugin("LogBlock").getDescription().getVersion()
