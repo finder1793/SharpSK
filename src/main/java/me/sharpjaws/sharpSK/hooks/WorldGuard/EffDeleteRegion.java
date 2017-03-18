@@ -5,6 +5,7 @@ import org.bukkit.event.Event;
 
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.managers.RemovalStrategy;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
@@ -36,7 +37,7 @@ import ch.njol.util.Kleenean;
        return;
      }
      
-     regionManager.removeRegion(name);
+     regionManager.removeRegion(name, RemovalStrategy.REMOVE_CHILDREN);
      try {
        regionManager.save();
      } catch (Exception e) {
