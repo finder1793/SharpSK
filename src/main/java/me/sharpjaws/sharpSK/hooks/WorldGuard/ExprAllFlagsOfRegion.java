@@ -72,7 +72,7 @@ public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, Skrip
    }
    
    public String toString(Event event, boolean b) {
-     return "[(wg|worldguard)] [all] owners of wg region %string% in world %world%";
+     return "[(wg|worldguard)] [all] flags of wg region %string% in [world] %world%";
    }
    
    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
