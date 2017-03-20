@@ -1,4 +1,4 @@
- package me.sharpjaws.sharpSK.hooks.WorldGuard;
+ package me.sharpjaws.sharpSK.hooks.WorldEdit;
  
  import org.bukkit.World;
 import org.bukkit.event.Event;
