@@ -5,6 +5,7 @@ import org.bukkit.Location;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.ExpressionType;
+import me.sharpjaws.sharpSK.hooks.WorldEdit.EffSetBlocks;
 
 public class WorldGuardRegistry {
 	public static void registerwguard(){
@@ -38,6 +39,7 @@ public class WorldGuardRegistry {
 		   //---------------------
 		
 		   Skript.registerExpression(ExprAllMembers.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] [all] members of wg region %string% in [world] %world%" );
+		   Skript.registerExpression(ExprAllMembers.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] [all] owners of wg region %string% in [world] %world%" );
 		}
 	
 
