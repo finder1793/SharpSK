@@ -83,7 +83,7 @@ import ch.njol.util.Kleenean;
      	if (exair == false) {
     	cc.paste(es, v, false); 
      	}else {
-     	cc.paste(es, v, false); 	
+     	cc.paste(es, v, true); 	
      	}
      
      
