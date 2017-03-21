@@ -24,11 +24,13 @@ import ch.njol.util.Kleenean;
  {
    private Expression<?> name;
    private Expression<?> loc;
+   private Expression<?> exair;
    
    public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
    {
      this.name = expression[0];
      this.loc = expression[1];
+     this.exair = expression[2];
      
      return true;
    }
@@ -40,15 +42,19 @@ import ch.njol.util.Kleenean;
    protected void execute(Event event) {
      String name = (String)this.name.getSingle(event);
      Location loc = (Location)this.loc.getSingle(event);
+     Boolean exair = false;
+     if (exair != null) {
+     exair = (Boolean)this.exair.getSingle(event);
+     }
      try
      {
-       paste(name, loc);
+       paste(name, loc, exair);
      } catch (Exception e) {
        e.printStackTrace();
      }
    }
    
-   private static boolean paste(String f, Location loc) throws Exception {
+   private static boolean paste(String f, Location loc, Boolean exair) throws Exception {
      File file;
 
      if (f.startsWith("/")) {
@@ -74,7 +80,13 @@ import ch.njol.util.Kleenean;
      } catch (Exception e) {
        e.printStackTrace();
      }
-     cc.paste(es, v, false);
+     	if (exair == false) {
+    	cc.paste(es, v, false); 
+     	}else {
+     	cc.paste(es, v, false); 	
+     	}
+     
+     
      return true;
    
    }
