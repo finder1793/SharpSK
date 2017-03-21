@@ -12,7 +12,7 @@ public class WorldEditRegistry {
 	        	if (Bukkit.getPluginManager().getPlugin("PirateSK") != null){
 	        	  Skript.registerEffect(EffPasteSchematic.class, new String[] { "[sharpsk] paste schematic %string% at %location% [exclude air %-boolean%]" }); 
 	        	}else{
-	        		  Skript.registerEffect(EffPasteSchematic.class, new String[] { "paste schematic %string% at %location%" }); 
+	        		  Skript.registerEffect(EffPasteSchematic.class, new String[] { "[sharpsk] paste schematic %string% at %location% [exclude air %-boolean%]" }); 
 	        	}
 	        	  //-------------------------
 	        }
