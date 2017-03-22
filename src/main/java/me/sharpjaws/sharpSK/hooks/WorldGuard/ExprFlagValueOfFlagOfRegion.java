@@ -1,98 +1,95 @@
  package me.sharpjaws.sharpSK.hooks.WorldGuard;
  
- import java.util.ArrayList;
-import java.util.List;
+ import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.Event;
+import org.eclipse.jdt.annotation.Nullable;
 
 import com.sk89q.worldguard.bukkit.WGBukkit;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.flags.Flag;
+import com.sk89q.worldguard.protection.flags.StateFlag;
+import com.sk89q.worldguard.protection.flags.StateFlag.State;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
-import ch.njol.skript.Skript;
-import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
  
  
- public class ExprFlagValueOfFlagOfRegion
-   extends SimpleExpression<String>
- {
-   private Expression<String> flag;
-   private Expression<String> region;
-   private Expression<?> world;
-   
-   
-   @SuppressWarnings("unchecked")
-public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
-   {
-	 this.flag = (Expression<String>) expressions[0];
-	 this.region = (Expression<String>) expressions[1];
-     this.world = expressions[2];
-     return true;
-   }
-   
-   protected String[] get(Event event) {
-	   String value = null;
-	   try {
-	   World world = (World)this.world.getSingle(event);
-	   if (world == null) {
-		   for (RegionManager a : WGBukkit.getPlugin().getRegionContainer().getLoaded()) {
-			 for  (Entry<String, ProtectedRegion> b :a.getRegions().entrySet()) {
-				if ( b.getKey().equals(region.getSingle(event))) {
-					world = Bukkit.getWorld(a.getName());
-					break;
-				}
-				 
-			 }
-		   }
-	   }
-	   
-  
-     RegionManager rm = WGBukkit.getRegionManager(world);
-     if (rm.getRegion(region.getSingle(event)) == null) {
-    	 return new String[] {};
-     }
-    ProtectedRegion pregion = rm.getRegion(region.getSingle(event));
-   
-    
-    for (Entry<Flag<?>,Object> ra : pregion.getFlags().entrySet()){
-    	if (ra.getKey().getName().equals(this.flag.getSingle(event))){
-    	value = ra.getValue().toString();
-    		break;
-    		
-    	}else {
-    	return new String[] {};
-    	}
-    }
-	   }catch (NullPointerException ex1){
-		   return new String[] {};
-	   }
+ public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
+	 private Expression<String> flag;
+	  private Expression<String> region;
+	  private Expression<World> world;
+	
+	@Override
+	public Class<? extends String> getReturnType() {
+		return String.class;
+	}
 
-     return  new String[] {value};
-   }
-   
-   public boolean isSingle() {
-     return true;
-   }
-   
-   public Class<? extends String> getReturnType() {
-     return String.class;
-   }
-   
-   public String toString(Event event, boolean b) {
-     return "[(wg|worldguard)] flag value of flag %string% of wg region %string% in [world] %world%";
-   }
-   
-   public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-     return null;
-   }
+	@Override
+	public boolean isSingle() {
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean init(Expression<?>[] expression, int arg1, Kleenean arg2, ParseResult arg3) {
+		 flag = (Expression<String>) expression[0];
+		 region = (Expression<String>) expression[1];
+		 world = (Expression<World>) expression[2];
+		return true;
+		
+	}
+
+	@Override
+	public String toString(@Nullable Event arg0, boolean arg1) {
+		return "";
+	}
+
+	@Override
+	@Nullable
+	protected String[] get(Event e) {
+		 
+		WorldGuardPlugin wg =  (WorldGuardPlugin)Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");	   
+		RegionManager set = wg.getRegionManager(world.getSingle(e));
+		ProtectedRegion pr = null;
+		
+		String finalv = null;
+		
+		for (Entry<String, ProtectedRegion> a : set.getRegions().entrySet()) {
+			if (a.getKey().equals(region.getSingle(e))){
+				pr = a.getValue();
+		}
+			try {
+		for ( Entry<Flag<?>,Object> b : pr.getFlags().entrySet()) {
+			
+		if (b.getKey().getName().equalsIgnoreCase(flag.getSingle(e))) {
+			if (b.getValue() == StateFlag.State.ALLOW) {
+				finalv = "ALLOW";
+			}else if (b.getValue() == StateFlag.State.DENY){
+				finalv = "DENY";
+			}else {
+				return new String[] {};
+			}
+			}
+		}
+		
+		}catch (NullPointerException ex) {
+			return new String[] {};
+		}
+			
+	}
+		return new String[] {finalv};
+	}
+	
  }
-
-
+ 
+	 
+ 

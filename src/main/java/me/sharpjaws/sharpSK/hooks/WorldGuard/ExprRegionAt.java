@@ -4,6 +4,8 @@
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
@@ -15,23 +17,25 @@ import ch.njol.util.Kleenean;
  
  public class ExprRegionAt extends SimpleExpression<String>
  {
-   private Expression<?> loc;
+   private Expression<Location> loc;
    
-   public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
+   @SuppressWarnings("unchecked")
+public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
    {
-     this.loc = expressions[0];
+     this.loc = (Expression<Location>) expressions[0];
      return true;
    }
    
    protected String[] get(Event event) {
-	     Location loc = (Location)this.loc.getSingle(event);
+	     Location loc = this.loc.getSingle(event);
 	     String a = null;
 	     WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
-	     RegionManager regionManager = wg.getRegionManager(loc.getWorld());
+	     RegionManager regionManager = wg.getRegionContainer().get(loc.getWorld());
 	     
 	    for (ProtectedRegion reg : regionManager.getApplicableRegions(loc)){
-	    	if (reg.contains((int)loc.getBlockX(),(int)loc.getBlockY(),(int)loc.getBlockZ())){
-	    		a = reg.getId();
+	    	
+	    	if (reg.contains(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())){
+	    		a = reg.getId().toString();
 	    	}
 	    }
 	     return new String[]{a};
