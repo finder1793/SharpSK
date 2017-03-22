@@ -35,10 +35,11 @@ import ch.njol.util.Kleenean;
 	    	}
 	    }
 	     return new String[]{a};
+	    
 	   }
 	   
 	   public boolean isSingle() {
-	     return false;
+	     return true;
 	   }
 	   
 	   public Class<? extends String> getReturnType() {

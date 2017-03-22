@@ -39,6 +39,8 @@ public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, Skrip
    }
    
    protected String[] get(Event event) {
+	   String value = null;
+	   try {
 	   World world = (World)this.world.getSingle(event);
 	   if (world == null) {
 		   for (RegionManager a : WGBukkit.getPlugin().getRegionContainer().getLoaded()) {
@@ -54,8 +56,11 @@ public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, Skrip
 	   
   
      RegionManager rm = WGBukkit.getRegionManager(world);
+     if (rm.getRegion(region.getSingle(event)) == null) {
+    	 return new String[] {};
+     }
     ProtectedRegion pregion = rm.getRegion(region.getSingle(event));
-    String value = null;
+   
     
     for (Entry<Flag<?>,Object> ra : pregion.getFlags().entrySet()){
     	if (ra.getKey().getName().equals(this.flag.getSingle(event))){
@@ -66,7 +71,9 @@ public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, Skrip
     	return new String[] {};
     	}
     }
-     
+	   }catch (NullPointerException ex1){
+		   return new String[] {};
+	   }
 
      return  new String[] {value};
    }

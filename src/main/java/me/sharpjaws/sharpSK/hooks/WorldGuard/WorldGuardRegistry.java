@@ -22,10 +22,10 @@ public class WorldGuardRegistry {
 			       Skript.registerEffect(EffSetBlocks.class, "[sharpsk] [(wg|worldguard)] (set [all] blocks in|fill) region %string% in [world] %world% (to|with) %itemstack%" );	
 		   //---------------------
 		
-		   Skript.registerExpression(ExprAllMembers.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] [all] members of wg region %string% in [world] %world%" );
-		   Skript.registerExpression(ExprAllOwners.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] [all] owners of wg region %string% in [world] %world%" );
-		   Skript.registerExpression(ExprAllFlagsOfRegion.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] [all] flags of wg region %string% in [world] %world%" );
-		   Skript.registerExpression(ExprFlagValueOfFlagOfRegion.class, String.class, ExpressionType.SIMPLE,  "[(wg|worldguard)] value of flag %string% of wg region %string% in [world] %world%" );
+		   Skript.registerExpression(ExprAllMembers.class, String.class, ExpressionType.SIMPLE,  "[sharpsk] [(wg|worldguard)] [all] members of wg region %string% in [world] %world%" );
+		   Skript.registerExpression(ExprAllOwners.class, String.class, ExpressionType.SIMPLE,  "[sharpsk] [(wg|worldguard)] [all] owners of wg region %string% in [world] %world%" );
+		   Skript.registerExpression(ExprAllFlagsOfRegion.class, String.class, ExpressionType.SIMPLE,  "[sharpsk] [(wg|worldguard)] [all] flags of wg region %string% in [world] %world%" );
+		   Skript.registerExpression(ExprFlagValueOfFlagOfRegion.class, String.class, ExpressionType.SIMPLE,  "[sharpsk] [(wg|worldguard)] value of flag %string% of wg region %string% in [world] %world%" );
 	}
 	
 	
