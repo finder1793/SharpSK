@@ -238,6 +238,23 @@ public class HookManager {
 					}
 				}					
 			}
+			if (Bukkit.getPluginManager().isPluginEnabled("Towny")) {
+				if (mainp.getConfig().getBoolean("towny") == true) {
+					try {
+						LogBlockRegistry.registerLogBlock();
+						mainp.getLogger().info("Hooked into Towny v" + Bukkit.getPluginManager()
+						.getPlugin("LogBlock").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().info("Could not hook into Towny v"
+								+ Bukkit.getPluginManager().getPlugin("Towny").getDescription().getVersion()
+								+ " Because errors occured.");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().info("Could not hook into Towny v"
+								+ Bukkit.getPluginManager().getPlugin("Towny").getDescription().getVersion()
+								+ " Because errors occured.");
+					}
+				}					
+			}
 	}
 	
 }
