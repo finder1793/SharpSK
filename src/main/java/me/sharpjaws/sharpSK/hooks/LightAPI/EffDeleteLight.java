@@ -35,10 +35,10 @@ public class EffDeleteLight extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		if (Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion().contains("3.0.0")){
+		if (Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion().matches("3.\\d.\\d")){
 			LightAPI.deleteLight(loc.getSingle(e), async.getSingle(e));
 			for(ChunkInfo info: LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())){
-				LightAPI.updateChunks(info);
+				LightAPI.updateChunk(info);
 			}
 		}else{	
 			LightAPI.deleteLight(loc.getSingle(e), async.getSingle(e));
