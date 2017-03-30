@@ -52,10 +52,10 @@ public class LightAPIRegistry {
 	                return e.getWorld();
 	            }
 	        }, 0);
-			
+	
 			Skript.registerExpression(ExprEvtLightLevel.class, Number.class, ExpressionType.SIMPLE, "event-lightlevel");
-			Skript.registerEffect(EffCreateLight.class, "create light [source] at %location% [light[]level] %integer% [async] %boolean%");
-			Skript.registerEffect(EffDeleteLight.class, "(delete|remove) light [source] at %location% [async] %boolean%");
+			Skript.registerEffect(EffCreateLight.class, "[(sharpsk|lightapi)] (create|make) [a] [fake] light [source] at [the] %location% [with] [light[ ]level] %integer% [using] [async] %boolean%");
+			Skript.registerEffect(EffDeleteLight.class, "[(sharpsk|lightapi)] (delete|remove) light [source] at %location% [async] %boolean%");
 
 	}
 }
