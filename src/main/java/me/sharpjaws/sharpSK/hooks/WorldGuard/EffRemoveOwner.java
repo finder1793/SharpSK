@@ -24,8 +24,9 @@ import ch.njol.util.Kleenean;
    private Expression<?> players;
    private Expression<?> name;
    private Expression<?> world;
+   private int mark = 0;
    
-   public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
+   public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult Result)
    {
      this.players = exprs[0];
      this.name = exprs[1];
@@ -59,14 +60,26 @@ import ch.njol.util.Kleenean;
      DefaultDomain owners = regionManager.getRegion(name).getOwners();
      Object[] arrayOfObject;
      int j = (arrayOfObject = this.players.getArray(event)).length; for (int i = 0; i < j; i++) { Object o = arrayOfObject[i];
-       if ((o instanceof Player)) {
-         owners.removePlayer(((Player)o).getName());
-       } else if ((o instanceof OfflinePlayer)) {
-         owners.removePlayer(((OfflinePlayer)o).getName());
-       } else {
-         owners.removePlayer(o.toString());
-       }
+     if ((o instanceof Player)) {
+  	   if (mark == -1) {
+  	         owners.removePlayer(((Player)o).getName());
+  	    	   }else if (mark == 1) {
+  	    		 owners.removePlayer(((Player)o).getUniqueId());	   
+  	    	   }else if (mark == 0) {
+  	    		 owners.removePlayer(((Player)o).getName());	
+  	    	   }
+     } else if ((o instanceof OfflinePlayer)) {
+  	   if (mark == -1) {
+  		 owners.removePlayer(((OfflinePlayer)o).getName());
+  	    	   }else if (mark == 1) {
+  	    		 owners.removePlayer(((OfflinePlayer)o).getUniqueId());	   
+  	    	   }else if (mark == 0) {
+  	    		 owners.removePlayer(((OfflinePlayer)o).getName());	
+  	    	   }
+     } else {
+    	 owners.removePlayer(o.toString());
      }
+   }
      
      regionManager.getRegion(name).setOwners(owners);
      try {

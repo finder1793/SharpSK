@@ -24,13 +24,14 @@ import ch.njol.util.Kleenean;
    private Expression<?> players;
    private Expression<?> name;
    private Expression<?> world;
+   private int mark;
    
-   public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
+   public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult Result)
    {
      this.players = exprs[0];
      this.name = exprs[1];
      this.world = exprs[2];
-     
+     mark = Result.mark;
      return true;
    }
    
@@ -60,9 +61,21 @@ import ch.njol.util.Kleenean;
      Object[] arrayOfObject;
      int j = (arrayOfObject = this.players.getArray(event)).length; for (int i = 0; i < j; i++) { Object o = arrayOfObject[i];
        if ((o instanceof Player)) {
-         members.removePlayer(((Player)o).getName());
+    	   if (mark == -1) {
+    	         members.removePlayer(((Player)o).getName());
+    	    	   }else if (mark == 1) {
+    	    		   members.removePlayer(((Player)o).getUniqueId());	   
+    	    	   }else if (mark == 0) {
+    	    		   members.removePlayer(((Player)o).getName());	
+    	    	   }
        } else if ((o instanceof OfflinePlayer)) {
-         members.removePlayer(((OfflinePlayer)o).getName());
+    	   if (mark == -1) {
+    	         members.removePlayer(((OfflinePlayer)o).getName());
+    	    	   }else if (mark == 1) {
+    	    		   members.removePlayer(((OfflinePlayer)o).getUniqueId());	   
+    	    	   }else if (mark == 0) {
+    	    		   members.removePlayer(((OfflinePlayer)o).getName());	
+    	    	   }
        } else {
          members.removePlayer(o.toString());
        }

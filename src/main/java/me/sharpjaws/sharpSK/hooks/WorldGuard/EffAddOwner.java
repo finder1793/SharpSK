@@ -31,7 +31,7 @@ import ch.njol.util.Kleenean;
     this.players = exprs[0];
     this.name = exprs[1];
     this.world = exprs[2];
-     
+     mark = Result.mark;
     return true;
    }
    

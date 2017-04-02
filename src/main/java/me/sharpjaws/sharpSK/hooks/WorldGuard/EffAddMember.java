@@ -58,7 +58,7 @@ import ch.njol.util.Kleenean;
        Skript.error("Region \"" + name + "\" in world \"" + world.getName() + "\" does not exists.");
        return;
      }
-     
+     System.out.println(mark);
      DefaultDomain members = regionManager.getRegion(name).getMembers();
      Object[] arrayOfObject;
      int j = (arrayOfObject = this.players.getArray(event)).length; for (int i = 0; i < j; i++) { Object o = arrayOfObject[i];
