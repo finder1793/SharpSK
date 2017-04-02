@@ -245,7 +245,7 @@ public class HookManager {
 					try {
 						LogBlockRegistry.registerLogBlock();
 						mainp.getLogger().info("Hooked into Towny v" + Bukkit.getPluginManager()
-						.getPlugin("LogBlock").getDescription().getVersion());
+						.getPlugin("Towny").getDescription().getVersion());
 					} catch (Exception ex) {
 						mainp.getLogger().info("Could not hook into Towny v"
 								+ Bukkit.getPluginManager().getPlugin("Towny").getDescription().getVersion()
