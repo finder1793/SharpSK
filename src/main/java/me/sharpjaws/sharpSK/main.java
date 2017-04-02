@@ -149,20 +149,23 @@ public static main instance;
 
 		try{
 		if (!config.getString("cfgver").contains(this.getDescription().getVersion())){	
-			getLogger().info("A old config has been found and updated.");
+			getLogger().info("Old config Detected. It has been updated.");
 			configfile.renameTo(new File(getDataFolder(),  "config_" + System.currentTimeMillis()+".yml.old"));
-			this.saveDefaultConfig();
+			saveDefaultConfig();
 		}
 		}catch(NullPointerException ex2){
 			if (configfile.exists() == false){
 			getLogger().info("Generating config...");
-			this.saveDefaultConfig();
+			saveDefaultConfig();
 			}else{
-				getLogger().info("A old config has been found and updated.");
+				getLogger().info("Old config Detected. It has been updated.");
 				configfile.renameTo(new File(getDataFolder(), "config-"+ System.currentTimeMillis()+".yml.old"));
-				this.saveDefaultConfig();
+				saveDefaultConfig();
 			}
 		}
+
+		
+		
 		
 		if (this.getConfig().getBoolean("metrics") == true) {
 			getLogger().info("Enabling Metrics...");
