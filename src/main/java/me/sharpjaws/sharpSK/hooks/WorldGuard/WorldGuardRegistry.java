@@ -11,9 +11,9 @@ public class WorldGuardRegistry {
 		//PirateSK merged features
 				 Skript.registerEffect(EffCreateRegion.class,  "[sharpsk] [(wg|worldguard)] create wg region %string% between %location% and %location% in [world] %world%" );
 			       Skript.registerEffect(EffDeleteRegion.class, "[sharpsk] [(wg|worldguard)] (delete|remove) wg region %string% (in|from) [world] %world%" );
-			       Skript.registerEffect(EffAddOwner.class,  "[sharpsk] [(wg|worldguard)] add owner[s] %players/offlineplayers/strings% to wg region %string% in [world] %world%" );
+			       Skript.registerEffect(EffAddOwner.class,  "[sharpsk] [(wg|worldguard)] add owner[s] [(-1在y name|1在y uuid)] %players/offlineplayers/strings% to wg region %string% in [world] %world%" );
 			       Skript.registerEffect(EffRemoveOwner.class,  "[sharpsk] [(wg|worldguard)] remove owner %players/offlineplayers/strings% from wg region %string% in [world] %world%" );
-			       Skript.registerEffect(EffAddMember.class,  "[sharpsk] [(wg|worldguard)] add member[s] %players/offlineplayers/strings% to wg region %string% in [world] %world%" );
+			       Skript.registerEffect(EffAddMember.class,  "[sharpsk] [(wg|worldguard)] add member[s] [(-1在y name|1在y uuid)] %players/offlineplayers/strings% to wg region %string% in [world] %world%" );
 			       Skript.registerEffect(EffRemoveMember.class, "[sharpsk] [(wg|worldguard)] remove member[s] %players/offlineplayers/strings% from wg region %string% in [world] %world%" );
 			       Skript.registerExpression(ExprGetPoint1.class, Location.class, ExpressionType.SIMPLE, "[sharpsk] [(wg|worldguard)] (point|pos[ition])[ ] 1 of wg region %string% in [world] %world%");
 			       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE,"[sharpsk] [(wg|worldguard)] (point|pos[ition])[ ] 2 of wg region %string% in [world] %world%");
