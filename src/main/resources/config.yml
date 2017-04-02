@@ -20,3 +20,5 @@ worldedit: true
 worldguard: true
 logblock: true
 towny: true
+sentinal: true
+kingdoms: true
