@@ -35,16 +35,18 @@ public class EffCreateLight extends Effect {
 	@Override
 	protected void execute(Event e) {
 		if (Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion().matches("3.\\d.\\d")){
+			LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
 			for(ChunkInfo info: LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())){
 				LightAPI.updateChunk(info);
 			}
-	LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
+	
 	
 	}else{
+		LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
 		for(ChunkInfo info: LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())){
 			LightAPI.updateChunks(info);
 		}
-	LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
+	
 	
 }
 }

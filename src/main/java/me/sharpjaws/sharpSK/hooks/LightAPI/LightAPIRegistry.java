@@ -56,7 +56,6 @@ public class LightAPIRegistry {
 			Skript.registerExpression(ExprEvtLightLevel.class, Number.class, ExpressionType.SIMPLE, "event-lightlevel");
 			Skript.registerEffect(EffCreateLight.class, "[(sharpsk|lightapi)] (create|make) [a] [fake] light [source] at [the] %location% [with] [light[ ]level] %integer% [using] [async] %boolean%");
 			Skript.registerEffect(EffDeleteLight.class, "[(sharpsk|lightapi)] (delete|remove) light [source] at %location% [async] %boolean%");
-
 	}
 }
 
