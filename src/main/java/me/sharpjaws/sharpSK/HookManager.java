@@ -7,11 +7,13 @@ import me.sharpjaws.sharpSK.hooks.AuthmeReloaded.AuthmeRegistry;
 import me.sharpjaws.sharpSK.hooks.CoreProtect.CorePRegistry;
 import me.sharpjaws.sharpSK.hooks.GlowAPI.GlowAPIRegistry;
 import me.sharpjaws.sharpSK.hooks.JobsReborn.JobsRegistry;
+import me.sharpjaws.sharpSK.hooks.Kingdoms.KingdomsRegistry;
 import me.sharpjaws.sharpSK.hooks.LightAPI.LightAPIRegistry;
 import me.sharpjaws.sharpSK.hooks.LogBlock.LogBlockRegistry;
 import me.sharpjaws.sharpSK.hooks.Multiverse.MultiverseRegistry;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.MythicMobsRegistry;
 import me.sharpjaws.sharpSK.hooks.PermissionsEx.PermissionsExRegistry;
+import me.sharpjaws.sharpSK.hooks.Sentinal.SentinalRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldEdit.WorldEditRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldGuard.WorldGuardRegistry;
 import me.sharpjaws.sharpSK.hooks.mcMMO.mcMMORegistry;
@@ -251,6 +253,40 @@ public class HookManager {
 					} catch (NoClassDefFoundError e){
 						mainp.getLogger().info("Could not hook into Towny v"
 								+ Bukkit.getPluginManager().getPlugin("Towny").getDescription().getVersion()
+								+ " Because errors occured.");
+					}
+				}					
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("Sentinal")) {
+				if (mainp.getConfig().getBoolean("sentinal") == true) {
+					try {
+					SentinalRegistry.RegisterSentinal();
+						mainp.getLogger().info("Hooked into Sentinal v" + Bukkit.getPluginManager()
+						.getPlugin("Sentinal").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().info("Could not hook into Sentinal v"
+								+ Bukkit.getPluginManager().getPlugin("Sentinal").getDescription().getVersion()
+								+ " Because errors occured.");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().info("Could not hook into Sentinal v"
+								+ Bukkit.getPluginManager().getPlugin("Sentinal").getDescription().getVersion()
+								+ " Because errors occured.");
+					}
+				}					
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("Kingdoms")) {
+				if (mainp.getConfig().getBoolean("kingdoms") == true) {
+					try {
+						KingdomsRegistry.RegisterKingdoms();
+						mainp.getLogger().info("Hooked into Kingdoms v" + Bukkit.getPluginManager()
+						.getPlugin("Kingdoms").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().info("Could not hook into Kingdoms v"
+								+ Bukkit.getPluginManager().getPlugin("Sentinal").getDescription().getVersion()
+								+ " Because errors occured.");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().info("Could not hook into Kingdoms v"
+								+ Bukkit.getPluginManager().getPlugin("Kingdoms").getDescription().getVersion()
 								+ " Because errors occured.");
 					}
 				}					
