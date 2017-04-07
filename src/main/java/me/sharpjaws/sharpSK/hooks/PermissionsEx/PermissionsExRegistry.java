@@ -25,13 +25,9 @@ public class PermissionsExRegistry {
 		Skript.registerEffect(EffPexRenameGroup.class, "pex rename group %string% to %string%");
 		Skript.registerExpression(ExprPexGroupRank.class, Number.class, ExpressionType.SIMPLE,
 				"rank of [the] group %string%");
-		try{
-		Skript.registerExpression(ExprPexGroupOf.class, String.class, ExpressionType.SIMPLE,
-				"groups of %offlineplayer%");
-		}catch(Exception ex){
-			Skript.registerExpression(ExprPexGroupOfOnline.class, String.class, ExpressionType.SIMPLE,
-					"groups of %player%");	
-		}
+		Skript.registerExpression(ExprPexGroupOf.class, String.class, ExpressionType.COMBINED,
+				"[pex] groups of %offlineplayer%");
+
 		Skript.registerExpression(ExprPexGroupRankLadder.class, String.class, ExpressionType.SIMPLE,
 				"rank[]ladder of [the] group %string%");
 	}
