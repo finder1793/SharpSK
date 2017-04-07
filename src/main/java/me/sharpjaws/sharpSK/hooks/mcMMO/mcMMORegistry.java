@@ -285,7 +285,7 @@ public class mcMMORegistry {
 		Skript.registerEffect(EffmcMMOToggleParty.class, "[mcmmo] toggle %player%['s] party[]chat");
 		Skript.registerEffect(EffmcMMOToggleAdmin.class, "[mcmmo] toggle %player%['s] admin[]chat");
 		
-		//Other Stuff
+		//Other mcMMO Stuff
 		Skript.registerExpression(ExprmcMMOPowerLevel.class, Integer.class, ExpressionType.SIMPLE,"[mcmmo] power[]level of [the] %player%");
 		Skript.registerExpression(ExprmcMMOPowerLvlcap.class, Integer.class, ExpressionType.SIMPLE,"[mcmmo] power[]level cap[acity]");
 		
