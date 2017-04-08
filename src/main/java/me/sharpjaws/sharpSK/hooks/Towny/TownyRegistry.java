@@ -3,8 +3,11 @@ package me.sharpjaws.sharpSK.hooks.Towny;
 
 import javax.annotation.Nullable;
 
+import org.bukkit.entity.Entity;
+
 import com.palmergames.bukkit.towny.event.DeleteNationEvent;
 import com.palmergames.bukkit.towny.event.DeleteTownEvent;
+import com.palmergames.bukkit.towny.event.MobRemovalEvent;
 import com.palmergames.bukkit.towny.event.NationAddTownEvent;
 import com.palmergames.bukkit.towny.event.NationRemoveTownEvent;
 import com.palmergames.bukkit.towny.event.NewNationEvent;
@@ -18,6 +21,7 @@ import com.palmergames.bukkit.towny.event.TownUnclaimEvent;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
@@ -27,6 +31,26 @@ public class TownyRegistry {
 	public static void RegisterTowny() {
 		
 		//Towny Events:
+		Skript.registerEvent("Towny Mob Removal", SimpleEvent.class, MobRemovalEvent.class, "[towny] mob remov([al]|ed])");
+		EventValues.registerEventValue(MobRemovalEvent.class, Entity.class,
+				new Getter<Entity,   MobRemovalEvent>() {
+					@Override
+					@Nullable
+					public Entity get( MobRemovalEvent e) {
+						Entity en = e.getEntity();
+						return en;
+					}
+				}, 0);
+		Skript.registerEvent("Towny Nation Create", SimpleEvent.class, NewNationEvent.class, "[towny] nation create[d]");
+		EventValues.registerEventValue(NewNationEvent.class, String.class,
+				new Getter<String,   NewNationEvent>() {
+					@Override
+					@Nullable
+					public String get( NewNationEvent e) {
+						String s = e.getNation().getName();
+						return s;
+					}
+				}, 0);
 		Skript.registerEvent("Towny Nation Delete", SimpleEvent.class, DeleteNationEvent.class, "[towny] nation delete[d]");
 			EventValues.registerEventValue(DeleteNationEvent.class, String.class,
 					new Getter<String, DeleteNationEvent>() {
@@ -64,16 +88,6 @@ public class TownyRegistry {
 					@Nullable
 					public String get( NationRemoveTownEvent e) {
 						String s = e.getTown().getName();
-						return s;
-					}
-				}, 0);
-		Skript.registerEvent("Towny Nation Create", SimpleEvent.class, NewNationEvent.class, "[towny] nation create[d]");
-		EventValues.registerEventValue(NewNationEvent.class, String.class,
-				new Getter<String,   NewNationEvent>() {
-					@Override
-					@Nullable
-					public String get( NewNationEvent e) {
-						String s = e.getNation().getName();
 						return s;
 					}
 				}, 0);
@@ -152,12 +166,16 @@ public class TownyRegistry {
 						return s;
 					}
 				}, 0);
+		
+		
 		//Towny Effects:
 		
 		
 		
 		//Towny Expressions:
-		
+
+		Skript.registerExpression(ExprTownyAllNations.class, String.class, ExpressionType.SIMPLE, "[towny] (all|the) nations");
+		Skript.registerExpression(ExprTownyAllTowns.class, String.class, ExpressionType.SIMPLE, "[towny] (all|the) towns");
 		
 	}
 	
