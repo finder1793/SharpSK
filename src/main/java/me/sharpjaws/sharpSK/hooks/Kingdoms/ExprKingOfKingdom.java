@@ -34,7 +34,7 @@ public class ExprKingOfKingdom extends SimpleExpression<String>{
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "";
+		return "[kingdoms] king of [kingdom] %string%";
 	}
 
 	@Override

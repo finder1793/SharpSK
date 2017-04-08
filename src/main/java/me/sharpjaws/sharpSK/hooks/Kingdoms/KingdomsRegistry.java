@@ -20,6 +20,7 @@ import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import me.sharpjaws.sharpSK.hooks.JobsReborn.ExprAllJobs;
+import me.sharpjaws.sharpSK.hooks.Towny.ExprTownyAllTowns;
 
 public class KingdomsRegistry {
 
@@ -119,7 +120,7 @@ public class KingdomsRegistry {
 		//Kingdoms Expressions
 		Skript.registerExpression(ExprKingOfKingdom.class, String.class, ExpressionType.SIMPLE, "[kingdoms] king of [kingdom] %string%");
 		Skript.registerExpression(ExprKingOfKingdom.class, String.class, ExpressionType.SIMPLE, "[kingdoms] (RP|resource[ ]points) of [kingdom] %string%");
-		
+		Skript.registerExpression(ExprAllKingdoms.class, String.class, ExpressionType.SIMPLE, "[kingdoms] (all|the) kingdoms");
 		//Kingdoms Effects:
 		
 	}

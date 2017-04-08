@@ -1,21 +1,19 @@
-package me.sharpjaws.sharpSK.hooks.Towny;
+package me.sharpjaws.sharpSK.hooks.Kingdoms;
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
-
-import com.palmergames.bukkit.towny.object.Nation;
-import com.palmergames.bukkit.towny.object.TownyUniverse;
+import org.kingdoms.constants.kingdom.OfflineKingdom;
+import org.kingdoms.manager.game.GameManagement;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprTownyAllNations extends SimpleExpression<String> {
-
+public class ExprAllKingdoms extends SimpleExpression<String> {
+	private GameManagement kman;
 	
 	
 	
@@ -33,7 +31,7 @@ public class ExprTownyAllNations extends SimpleExpression<String> {
 	}
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[towny] (all|the) nations";
+		return "groups of %player%/%offlineplayer%";
 	}
 
 
@@ -44,9 +42,9 @@ public class ExprTownyAllNations extends SimpleExpression<String> {
 		
 		
 		ArrayList<String> narr = new ArrayList<String>(); 
-		for (Nation a1 : TownyUniverse.getDataSource().getNations()) {
+		for (OfflineKingdom k : kman.getKingdomManager().getKingdomList().values() ) {
 		
-			 narr.add(a1.getName());
+			 narr.add(k.getKingdomName());
 		 }
 		
 		 

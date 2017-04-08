@@ -34,7 +34,7 @@ public class ExprRPOfKingdom extends SimpleExpression<Number>{
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "";
+		return "[kingdoms] (RP|resource[ ]points) of [kingdom] %string%";
 	}
 
 	@Override

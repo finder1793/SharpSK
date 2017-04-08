@@ -34,7 +34,7 @@ public class ExprTownyAllTowns extends SimpleExpression<String> {
 	}
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "groups of %player%/%offlineplayer%";
+		return "[towny] (all|the) towns";
 	}
 
 
