@@ -33,7 +33,7 @@ public class TownyRegistry {
 		//Towny Events:
 		Skript.registerEvent("Towny Mob Removal", SimpleEvent.class, MobRemovalEvent.class, "[towny] mob remov([al]|ed])");
 		EventValues.registerEventValue(MobRemovalEvent.class, Entity.class,
-				new Getter<Entity,   MobRemovalEvent>() {
+				new Getter<Entity,MobRemovalEvent>() {
 					@Override
 					@Nullable
 					public Entity get( MobRemovalEvent e) {
@@ -43,17 +43,17 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Nation Create", SimpleEvent.class, NewNationEvent.class, "[towny] nation create[d]");
 		EventValues.registerEventValue(NewNationEvent.class, String.class,
-				new Getter<String,   NewNationEvent>() {
+				new Getter<String,NewNationEvent>() {
 					@Override
 					@Nullable
-					public String get( NewNationEvent e) {
+					public String get(NewNationEvent e) {
 						String s = e.getNation().getName();
 						return s;
 					}
 				}, 0);
 		Skript.registerEvent("Towny Nation Delete", SimpleEvent.class, DeleteNationEvent.class, "[towny] nation delete[d]");
 			EventValues.registerEventValue(DeleteNationEvent.class, String.class,
-					new Getter<String, DeleteNationEvent>() {
+					new Getter<String,DeleteNationEvent>() {
 						@Override
 						@Nullable
 						public String get(DeleteNationEvent e) {
@@ -63,7 +63,7 @@ public class TownyRegistry {
 					}, 0);
 		Skript.registerEvent("Towny Town Delete", SimpleEvent.class, DeleteTownEvent.class, "[towny] town delete[d]");
 		EventValues.registerEventValue(DeleteTownEvent.class, String.class,
-				new Getter<String, DeleteTownEvent>() {
+				new Getter<String,DeleteTownEvent>() {
 					@Override
 					@Nullable
 					public String get(DeleteTownEvent e) {
@@ -73,7 +73,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Nation Add Town", SimpleEvent.class, NationAddTownEvent.class, "[towny] nation town add[ed]");
 		EventValues.registerEventValue(NationAddTownEvent.class, String.class,
-				new Getter<String,  NationAddTownEvent>() {
+				new Getter<String,NationAddTownEvent>() {
 					@Override
 					@Nullable
 					public String get( NationAddTownEvent e) {
@@ -83,7 +83,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Nation Town Remove", SimpleEvent.class, NationRemoveTownEvent.class, "[towny] nation town remove[d]");
 		EventValues.registerEventValue(NationRemoveTownEvent.class, String.class,
-				new Getter<String,  NationRemoveTownEvent>() {
+				new Getter<String,NationRemoveTownEvent>() {
 					@Override
 					@Nullable
 					public String get( NationRemoveTownEvent e) {
@@ -93,7 +93,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Town Create", SimpleEvent.class, NewTownEvent.class, "[towny] town create[d]");
 		EventValues.registerEventValue(NewNationEvent.class, String.class,
-				new Getter<String,   NewNationEvent>() {
+				new Getter<String,NewNationEvent>() {
 					@Override
 					@Nullable
 					public String get( NewNationEvent e) {
@@ -103,7 +103,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Nation Rename", SimpleEvent.class, RenameNationEvent.class, "[towny] nation rename[d]");
 		EventValues.registerEventValue(NewNationEvent.class, String.class,
-				new Getter<String,   NewNationEvent>() {
+				new Getter<String,NewNationEvent>() {
 					@Override
 					@Nullable
 					public String get( NewNationEvent e) {
@@ -113,7 +113,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Town Rename", SimpleEvent.class, RenameTownEvent.class, "[towny] town rename[d]");
 		EventValues.registerEventValue(RenameTownEvent.class, String.class,
-				new Getter<String,  RenameTownEvent>() {
+				new Getter<String,RenameTownEvent>() {
 					@Override
 					@Nullable
 					public String get( RenameTownEvent e) {
@@ -123,10 +123,10 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Town Claim", SimpleEvent.class, TownClaimEvent.class, "[towny] town claim[ed]");	
 		EventValues.registerEventValue(TownClaimEvent.class, String.class,
-				new Getter<String,   TownClaimEvent>() {
+				new Getter<String,TownClaimEvent>() {
 					@Override
 					@Nullable
-					public String get(  TownClaimEvent e) {
+					public String get(TownClaimEvent e) {
 						String s = "";
 						try {
 							s = e.getTownBlock().getTown().getName();
@@ -138,7 +138,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Town Unclaim", SimpleEvent.class, TownUnclaimEvent.class, "[towny] town unclaime[d]");
 		EventValues.registerEventValue(TownUnclaimEvent.class, String.class,
-				new Getter<String,   TownUnclaimEvent>() {
+				new Getter<String,TownUnclaimEvent>() {
 					@Override
 					@Nullable
 					public String get( TownUnclaimEvent e) {	
@@ -148,7 +148,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Resident Add", SimpleEvent.class, TownAddResidentEvent.class, "[towny] resident add[ed]");
 		EventValues.registerEventValue(TownAddResidentEvent.class, String.class,
-				new Getter<String,   TownAddResidentEvent>() {
+				new Getter<String,TownAddResidentEvent>() {
 					@Override
 					@Nullable
 					public String get( TownAddResidentEvent e) {	
@@ -158,7 +158,7 @@ public class TownyRegistry {
 				}, 0);
 		Skript.registerEvent("Towny Resident Remove", SimpleEvent.class, TownRemoveResidentEvent.class, "[towny] resident remove[d]");
 		EventValues.registerEventValue(TownRemoveResidentEvent.class, String.class,
-				new Getter<String,  TownRemoveResidentEvent>() {
+				new Getter<String,TownRemoveResidentEvent>() {
 					@Override
 					@Nullable
 					public String get( TownRemoveResidentEvent e) {	

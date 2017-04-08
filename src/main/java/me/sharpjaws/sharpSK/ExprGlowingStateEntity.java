@@ -1,4 +1,4 @@
-package me.sharpjaws.sharpSK.hooks.GlowAPI;
+package me.sharpjaws.sharpSK;
 
 import javax.annotation.Nullable;
 

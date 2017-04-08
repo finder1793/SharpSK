@@ -45,6 +45,7 @@ public class KingdomsRegistry {
 						return k;
 					}
 				}, 0);
+		
 		Skript.registerEvent("Kingdoms Kingdom Member Join" , SimpleEvent.class, KingdomMemberJoinEvent.class, "[kingdoms] kingdom member join[ed]");
 		EventValues.registerEventValue(KingdomMemberJoinEvent.class, String.class,
 				new Getter<String, KingdomMemberJoinEvent>() {
@@ -55,6 +56,15 @@ public class KingdomsRegistry {
 						return k;
 					}
 				}, 0);
+		EventValues.registerEventValue(KingdomMemberJoinEvent.class, Player.class,
+				new Getter<Player, KingdomMemberJoinEvent>() {
+					@Override
+					@Nullable
+					public Player get(KingdomMemberJoinEvent e) {
+						Player p = e.getKp().getKingdomPlayer().getPlayer();
+						return p;
+					}
+				}, 0);
 		Skript.registerEvent("Kingdoms Kingdom Member Leave" , SimpleEvent.class, KingdomMemberLeaveEvent.class, "[kingdoms] kingdom member leave[d]");
 		EventValues.registerEventValue(KingdomMemberLeaveEvent.class, String.class,
 				new Getter<String, KingdomMemberLeaveEvent>() {
@@ -63,6 +73,15 @@ public class KingdomsRegistry {
 					public String get(KingdomMemberLeaveEvent e) {
 						String k = e.getKingdomName();
 						return k;
+					}
+				}, 0);
+		EventValues.registerEventValue(KingdomMemberLeaveEvent.class, Player.class,
+				new Getter<Player, KingdomMemberLeaveEvent>() {
+					@Override
+					@Nullable
+					public Player get(KingdomMemberLeaveEvent e) {
+						Player p = e.getKp().getKingdomPlayer().getPlayer();
+						return p;
 					}
 				}, 0);
 		Skript.registerEvent("Kingdoms Player Lose" , SimpleEvent.class, KingdomPlayerLostEvent.class, "[kingdoms] champion [player] (lose|defeat)");

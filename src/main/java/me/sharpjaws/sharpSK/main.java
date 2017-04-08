@@ -58,7 +58,6 @@ import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
-import me.sharpjaws.sharpSK.hooks.GlowAPI.ExprGlowingStateEntity;
 
 public class main extends JavaPlugin implements Listener {
 
