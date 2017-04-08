@@ -14,6 +14,7 @@ import me.sharpjaws.sharpSK.hooks.Multiverse.MultiverseRegistry;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.MythicMobsRegistry;
 import me.sharpjaws.sharpSK.hooks.PermissionsEx.PermissionsExRegistry;
 import me.sharpjaws.sharpSK.hooks.Sentinal.SentinalRegistry;
+import me.sharpjaws.sharpSK.hooks.Towny.TownyRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldEdit.WorldEditRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldGuard.WorldGuardRegistry;
 import me.sharpjaws.sharpSK.hooks.mcMMO.mcMMORegistry;
@@ -243,7 +244,7 @@ public class HookManager {
 			if (Bukkit.getPluginManager().isPluginEnabled("Towny")) {
 				if (mainp.getConfig().getBoolean("towny") == true) {
 					try {
-						LogBlockRegistry.registerLogBlock();
+						TownyRegistry.RegisterTowny();
 						mainp.getLogger().info("Hooked into Towny v" + Bukkit.getPluginManager()
 						.getPlugin("Towny").getDescription().getVersion());
 					} catch (Exception ex) {
