@@ -41,16 +41,19 @@ public class ExprRPOfKingdom extends SimpleExpression<Number>{
 	@Nullable
 	protected Number[] get(Event e) {
 		Kingdom kdm = null;
+		int rp = 0;
 		try {
-			kdm = kman.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
 			
+			kdm = kman.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
+			rp = kdm.getResourcepoints();
 		}catch(NullPointerException ex) {
 			return new Number[] {0};
 		}
 		
 		
 		
-		return new Number[] {kdm.getResourcepoints()};
+		
+		return new Number[] {rp};
 	}
 
 }
