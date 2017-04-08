@@ -15,8 +15,7 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
 public class ExprTownyAllNations extends SimpleExpression<String> {
-	private Expression<OfflinePlayer> p;
-	
+
 	
 	
 	
@@ -30,7 +29,6 @@ public class ExprTownyAllNations extends SimpleExpression<String> {
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult Result) {
-		p = (Expression<OfflinePlayer>) expr[0];	
 		return true;
 	}
 	@Override
