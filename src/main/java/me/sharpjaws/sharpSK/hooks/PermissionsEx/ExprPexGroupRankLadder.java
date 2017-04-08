@@ -35,7 +35,7 @@ public class ExprPexGroupRankLadder extends SimpleExpression<String> {
 
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "rank of [the] group %string%";
+		return "rank[]ladder of [the] group %string%";
 	}
 
 	@Override
