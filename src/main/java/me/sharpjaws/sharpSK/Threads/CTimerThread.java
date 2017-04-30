@@ -34,8 +34,7 @@ public class CTimerThread extends Thread{
 
 		
 		File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
-		YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
-	
+		YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);	
 		try {
 		Map<String, Integer> timer = new HashMap<String,Integer>();
 		while (!(Countdown < 2)){
