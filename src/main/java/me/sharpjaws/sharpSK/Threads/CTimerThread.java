@@ -7,9 +7,9 @@ import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.scheduler.BukkitScheduler;
 
-import me.sharpjaws.sharpSK.EvtTimerComplete;
-import me.sharpjaws.sharpSK.EvtTimerTick;
+import me.sharpjaws.sharpSK.TimerHandler;
 
 public class CTimerThread extends Thread{
 	
@@ -18,29 +18,36 @@ public class CTimerThread extends Thread{
 	private String Tname;
 	private boolean active;
 	private int Countdown;
-
+	
 	public CTimerThread(String name, int seconds, Boolean activeT){
 		this.active = activeT;
 		this.secs = seconds;
 		this.Tname = name;			
 	}
+	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
+	YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
+	 BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+   
 	
 	
 	@Override
     public void run() {
+		
+		
 		this.instance().Countdown = secs +1;
 		this.setName(Tname);
 	
 
 		
-		File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
-		YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);	
+			
 		try {
 		Map<String, Integer> timer = new HashMap<String,Integer>();
 		while (!(Countdown < 2)){
 			Countdown--;
 			if (active == true){
+				
 			
+				
 			timer.put(this.getName(), this.getTime());
 			Tcache.createSection("timers", timer);
 			Tcache.getMapList("timers").add(timer);
@@ -50,19 +57,15 @@ public class CTimerThread extends Thread{
 
 				}
 			}
-			try {
-			EvtTimerTick ev = new EvtTimerTick(this.getName(),Countdown);
-				Bukkit.getServer().getPluginManager().callEvent(ev);
-			}catch (Exception ex){
-		
-			}
-
+			scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));
 				CTimerThread.sleep(1000);		
 		}
-		if (active == true){	
-		}
-		EvtTimerComplete ev2 = new EvtTimerComplete(this.getName());
-		Bukkit.getServer().getPluginManager().callEvent(ev2);
+		
+		//Find a way to fix all the async bullshit
+	
+
+		
+		scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 2));
 		if (active == true){
 			
 			timer.put(this.getName(), 0);
