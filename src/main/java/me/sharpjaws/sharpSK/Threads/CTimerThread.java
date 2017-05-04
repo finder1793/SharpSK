@@ -61,7 +61,7 @@ public class CTimerThread extends Thread{
 				CTimerThread.sleep(1000);		
 		}
 		
-		//Find a way to fix all the async bullshit
+		
 	
 
 		
