@@ -43,7 +43,7 @@ import ch.njol.util.Kleenean;
      String name = (String)this.name.getSingle(event);
      Location loc = (Location)this.loc.getSingle(event);
      Boolean exair = false;
-     if (exair != null) {
+     if (this.exair != null) {
      exair = (Boolean)this.exair.getSingle(event);
      }
      try
