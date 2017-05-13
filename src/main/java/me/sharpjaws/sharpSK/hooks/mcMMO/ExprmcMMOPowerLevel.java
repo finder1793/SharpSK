@@ -41,7 +41,11 @@ public class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
 	@Override
 	@Nullable
 	protected Integer[] get(Event e) {
+		if (p != null){
 		return new Integer[] {ExperienceAPI.getPowerLevel(p.getSingle(e))};
+		}else{
+			return new Integer[] {0};
+		}
 	}
 
 	}

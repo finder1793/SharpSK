@@ -24,6 +24,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EnderDragon.Phase;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.HopperMinecart;
 import org.bukkit.event.Listener;
@@ -201,24 +202,6 @@ public static main instance;
 							return i;
 						}
 					}, 0);
-			if (Bukkit.getServer().getVersion().contains("MC: 1.9")|| Bukkit.getServer().getVersion().contains("MC: 1.10")||Bukkit.getServer().getVersion().contains("MC: 1.11") ){
-			EventValues.registerEventValue(InventoryMoveItemEvent.class, Block.class,
-					new Getter<Block, InventoryMoveItemEvent>() {
-						@Override
-						public Block get(InventoryMoveItemEvent e) {
-							Block b = e.getSource().getLocation().getBlock();
-							return b;
-						}
-					}, 0);
-			EventValues.registerEventValue(InventoryMoveItemEvent.class, Location.class,
-					new Getter<Location, InventoryMoveItemEvent>() {
-						@Override
-						public Location get(InventoryMoveItemEvent e) {
-							Location l = e.getDestination().getLocation();
-							return l;
-						}
-					}, 0);
-			}else if (Bukkit.getServer().getVersion().contains("MC: 1.8")){
 				EventValues.registerEventValue(InventoryMoveItemEvent.class, Block.class,
 						new Getter<Block, InventoryMoveItemEvent>() {
 							@Override
@@ -254,6 +237,23 @@ public static main instance;
 								}
 								
 								return b3;			
+							}
+						}, 0);
+				EventValues.registerEventValue(InventoryMoveItemEvent.class, Entity.class,
+						new Getter<Entity, InventoryMoveItemEvent>() {
+							@Override
+							public Entity get(InventoryMoveItemEvent e) {
+								try{
+									if (e.getSource().getHolder() instanceof Entity){
+									Entity en = (Entity)e.getSource().getHolder();
+									return en;
+									}
+								}catch(NullPointerException ex){
+										return null;
+									}
+								return null;
+								
+								
 							}
 						}, 0);
 				EventValues.registerEventValue(InventoryMoveItemEvent.class, Location.class,
@@ -293,7 +293,7 @@ public static main instance;
 								return b3.getLocation();		
 							}
 						}, 0);
-			}
+			
 			Skript.registerEvent("Pickup", SimpleEvent.class, InventoryPickupItemEvent.class, "[on] hopper pickup");
 			EventValues.registerEventValue(InventoryPickupItemEvent.class, Inventory.class,
 					new Getter<Inventory, InventoryPickupItemEvent>() {
@@ -368,6 +368,14 @@ public static main instance;
 			Skript.registerEvent("Enderman Teleport", SimpleEvent.class, EntityTeleportEvent.class,
 					"[on] enderman teleport");
 			Skript.registerEvent("Extract", SimpleEvent.class, FurnaceExtractEvent.class, "extract");
+			EventValues.registerEventValue(FurnaceExtractEvent.class, ItemStack.class,
+					new Getter<ItemStack,  FurnaceExtractEvent>() {
+						@Override
+						public ItemStack get( FurnaceExtractEvent e) {
+							ItemStack i = new ItemStack(e.getItemType(),e.getItemAmount());
+							return i;
+						}
+					}, 0);
 			new ArmorListener(null, this);
 			new ArmorunEquipListener(null, this);
 			Skript.registerEvent("Server Command", SimpleEvent.class, ServerCommandEvent.class, "[on] (server|console) command");
