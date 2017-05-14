@@ -32,7 +32,7 @@ public class HookManager {
 					JobsRegistry.registerJobs();
 					mainp.getLogger().info("Hooked into JobsReborn v"+ Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion());
 				}catch (NoClassDefFoundError ex) {
-					mainp.getLogger().warning("Could not hook into JobsReborn." + " Version not supported.");
+					mainp.getLogger().warning("Could not hook into JobsReborn." + " Version not supported");
 					
 				}
 			}
@@ -57,7 +57,7 @@ public class HookManager {
 				mcMMORegistry.registermcMMO();
 				mainp.getLogger().info("Hooked into mcMMO v"+ Bukkit.getPluginManager().getPlugin("mcMMO").getDescription().getVersion());
 				}catch (NoClassDefFoundError ex) {
-					mainp.getLogger().warning("Could not hook into mcMMO." + " Version not supported.");
+					mainp.getLogger().warning("Could not hook into mcMMO." + " Version not supported");
 		}
 	}
 }			
@@ -70,7 +70,7 @@ public class HookManager {
 					mainp.getLogger().info("Hooked into AuthmeReloaded v"
 							+ Bukkit.getPluginManager().getPlugin("AuthMe").getDescription().getVersion());
 				} catch (NoClassDefFoundError ex) {
-					mainp.getLogger().warning("Could not hook into AuthmeReloaded."+ " Version not supported.");
+					mainp.getLogger().warning("Could not hook into AuthmeReloaded."+ " Version not supported");
 				}
 			}
 		}
@@ -81,7 +81,7 @@ public class HookManager {
 					mainp.getLogger().info("Hooked into MythicMobs v"
 							+ Bukkit.getPluginManager().getPlugin("MythicMobs").getDescription().getVersion());
 				} catch (NoClassDefFoundError ex) {
-					mainp.getLogger().warning("Could not hook into MythicMobs."+ " Version not supported.");
+					mainp.getLogger().warning("Could not hook into MythicMobs."+ " Version not supported");
 				}
 			}
 		}
@@ -93,10 +93,10 @@ public class HookManager {
 				mainp.getLogger().info("Hooked into LightAPI v"
 						+ Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion());
 				} catch (Exception ex) {
-					mainp.getLogger().warning("Could not hook into LightAPI."+ " Version not supported.");
+					mainp.getLogger().warning("Could not hook into LightAPI."+ " Version not supported");
 					ex.printStackTrace();
 				} catch (NoClassDefFoundError ex2){
-					mainp.getLogger().warning("Could not hook into LightAPI."+" Version not supported.");
+					mainp.getLogger().warning("Could not hook into LightAPI."+" Version not supported");
 					ex2.printStackTrace();
 				}
 				
@@ -110,10 +110,10 @@ public class HookManager {
 				mainp.getLogger().info("Hooked into CoreProtect v"
 						+ Bukkit.getPluginManager().getPlugin("CoreProtect").getDescription().getVersion());
 				} catch (Exception ex) {
-					mainp.getLogger().warning("Could not hook into CoreProtect."+ " Version not supported.");
+					mainp.getLogger().warning("Could not hook into CoreProtect."+ " Version not supported");
 					ex.printStackTrace();
 				} catch (NoClassDefFoundError ex2){
-					mainp.getLogger().warning("Could not hook into CoreProtect."+ " Version not supported.");
+					mainp.getLogger().warning("Could not hook into CoreProtect."+ " Version not supported");
 					ex2.printStackTrace();
 				}
 				
@@ -130,9 +130,9 @@ public class HookManager {
 					mainp.getLogger().info("Hooked into uCars v"
 							+ Bukkit.getPluginManager().getPlugin("uCars").getDescription().getVersion());
 				} catch (Exception ex) {
-					mainp.getLogger().warning("Could not hook into uCars."+ " Version not supported.");
+					mainp.getLogger().warning("Could not hook into uCars."+ " Version not supported");
 				} catch (NoClassDefFoundError e){
-					mainp.getLogger().warning("Could not hook into uCars."+ " Version not supported.");
+					mainp.getLogger().warning("Could not hook into uCars."+ " Version not supported");
 				}	
 			}
 		}				
@@ -143,9 +143,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into PermissionsEx v" + Bukkit.getPluginManager()
 						.getPlugin("PermissionsEx").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into PermissionsEx."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into PermissionsEx."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into PermissionsEx."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into PermissionsEx."+ " Version not supported");
 					}
 				}					
 			}
@@ -157,9 +157,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into Multiverse v" + Bukkit.getPluginManager()
 						.getPlugin("Multiverse-Core").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into Multiverse."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Multiverse."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into Multiverse."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Multiverse."+ " Version not supported");
 					}
 				}					
 			}
@@ -170,9 +170,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into WorldEdit v" + Bukkit.getPluginManager()
 						.getPlugin("WorldEdit").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into WorldEdit."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into WorldEdit."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into WorldEdit."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into WorldEdit."+ " Version not supported");
 					}
 				}					
 			}
@@ -183,9 +183,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into WorldGuard v" + Bukkit.getPluginManager()
 						.getPlugin("WorldEdit").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into WorldGuard."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into WorldGuard."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into WorldGuard."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into WorldGuard."+ " Version not supported");
 					}
 				}					
 			}
@@ -196,9 +196,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into LogBlock v" + Bukkit.getPluginManager()
 						.getPlugin("LogBlock").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into LogBlock."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into LogBlock."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into LogBlock."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into LogBlock."+ " Version not supported");
 					}
 				}					
 			}
@@ -209,9 +209,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into Towny v" + Bukkit.getPluginManager()
 						.getPlugin("Towny").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into Towny."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Towny."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into Towny."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Towny."+ " Version not supported");
 					}
 				}					
 			}
@@ -222,9 +222,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into Sentinal v" + Bukkit.getPluginManager()
 						.getPlugin("Sentinal").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into Sentinal."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Sentinal."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into Sentinal."+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Sentinal."+ " Version not supported");
 					}
 				}					
 			}
@@ -235,9 +235,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into Kingdoms v" + Bukkit.getPluginManager()
 						.getPlugin("Kingdoms").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into Kingdoms"+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Kingdoms"+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into Kingdoms"+ " Version not supported.");
+						mainp.getLogger().warning("Could not hook into Kingdoms"+ " Version not supported");
 					}
 				}					
 			}
