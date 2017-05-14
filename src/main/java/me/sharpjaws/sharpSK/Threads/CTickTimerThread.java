@@ -24,7 +24,7 @@ public class CTickTimerThread extends Thread{
 		this.ticks = ticks;
 		this.Tname = name;			
 	}
-	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
+	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "TTickcache.yml");
 	YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
 	 BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
    

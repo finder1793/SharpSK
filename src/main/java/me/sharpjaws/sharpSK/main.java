@@ -58,6 +58,7 @@ import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
 public class main extends JavaPlugin implements Listener {
@@ -109,7 +110,7 @@ public static main instance;
 						 
 						int activetimers = 0;
 						for (Thread t : Thread.getAllStackTraces().keySet()) {
-						        if (t instanceof CTimerThread) {
+						        if (t instanceof CTimerThread || t instanceof CTickTimerThread) {
 						        	activetimers++;
 						        }
 						    }
@@ -586,7 +587,8 @@ public static main instance;
 						}, 0);
 				
 				//--------------------------
-				File cache = new File(getDataFolder(), "Tcache.yml");   				
+				File cache = new File(getDataFolder(), "Tcache.yml");   	
+				File Tickcache = new File(getDataFolder(), "TTickcache.yml");   		
 				if(cache.exists()){
 				getLogger().info("Resuming active timers...");
 				try{
@@ -603,6 +605,23 @@ public static main instance;
 				}catch (NullPointerException ex){
 					
 				}
+			}
+				if(Tickcache.exists()){
+					getLogger().info("Resuming active tick timers...");
+					try{
+					
+					YamlConfiguration TTickcache1 = YamlConfiguration.loadConfiguration(cache);
+					Map<String, Object> b = TTickcache1.getConfigurationSection("timers").getValues(false);
+					for (Map.Entry<?,?> a : b.entrySet() ) {
+						if((int)a.getValue() > 0 ){
+						CTickTimerThread th = new CTickTimerThread((String)a.getKey(),(int)a.getValue(),true);
+						th.instance().start();
+						}
+					}
+					cache.delete();
+					}catch (NullPointerException ex){
+						
+					}
 			}
 				
 			}else{

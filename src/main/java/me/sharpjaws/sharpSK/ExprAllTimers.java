@@ -9,6 +9,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
 public class ExprAllTimers extends SimpleExpression<String>{
@@ -40,7 +41,7 @@ public class ExprAllTimers extends SimpleExpression<String>{
 		ArrayList<String> timers = new ArrayList<>();
 		
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
-	        if (t instanceof CTimerThread) {
+	        if (t instanceof CTimerThread || t instanceof CTickTimerThread) {
 	        	timers.add(t.getName());
 	        
 	        }
