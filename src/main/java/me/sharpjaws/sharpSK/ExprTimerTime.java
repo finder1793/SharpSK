@@ -1,7 +1,5 @@
 package me.sharpjaws.sharpSK;
 
-import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -12,6 +10,7 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
 public class ExprTimerTime extends SimpleExpression<Integer>{
@@ -42,16 +41,24 @@ public class ExprTimerTime extends SimpleExpression<Integer>{
 	@Nullable
 	protected Integer[] get(Event e) {
 		int a = 0;
+		int time = 0;
+		
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
 	        if (t instanceof CTimerThread) {
 	        	if (t.getName().contains(timer.getSingle(e))){
 	        		a = ((CTimerThread) t).getTime();
-	        		
 	        	}
-	
+	        }else if (t instanceof CTickTimerThread) {
+	 	        	if (t.getName().contains(timer.getSingle(e))){
+	 	        		a = ((CTickTimerThread) t).getTime();
+	 	        		
+	 	        		
+	 	        	}
+	        	 }
 	        }	
-		}
-		return new Integer[] {a};
+		
+		time = a;
+		return new Integer[] {time};
 	}
 
 	@Override
@@ -64,16 +71,29 @@ public class ExprTimerTime extends SimpleExpression<Integer>{
 		        		
 		        	}
 		
-		        }	
-			}
+		        }else if (t instanceof CTickTimerThread) {
+		        	if (t.getName().contains(timer.getSingle(e))){
+		        	((CTickTimerThread) t).setTime((int)((Timespan)delta[0]).getTicks_i());
+		        		
+		        	}	
+		        }
 		}
+		}
+			
 		if (mode == Changer.ChangeMode.ADD) {
 			for (Thread t : Thread.getAllStackTraces().keySet()) {
 		        if (t instanceof CTimerThread) {
 		        	if (t.getName().contains(timer.getSingle(e))){
 		        	((CTimerThread) t).addTime(((Timespan)delta[0]).getTicks()/20);
-		        		
 		        	}
+		        	
+		        }else if (t instanceof CTickTimerThread) {
+			        	if (t.getName().contains(timer.getSingle(e))){
+			        		
+			        		Timespan ti= ((Timespan)delta[0]);
+				        	((CTickTimerThread) t).addTime((int)ti.getTicks_i());
+				        		
+				        	}	
 		
 		        }	
 			}
@@ -85,11 +105,21 @@ public class ExprTimerTime extends SimpleExpression<Integer>{
 		        	((CTimerThread) t).removeTime(((Timespan)delta[0]).getTicks()/20);
 		        		
 		        	}
+		        }else if (t instanceof CTickTimerThread) {
+			        	if (t.getName().contains(timer.getSingle(e))){
+				        	((CTickTimerThread) t).removeTime((int)((Timespan)delta[0]).getTicks_i());
+				        		
+				        	}
+		        	}
+		        }
+			}
+		
+		        	
 		
 		        }	
-			}
-		}
-	}
+			
+		
+	
 	
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {

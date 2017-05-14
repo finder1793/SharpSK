@@ -85,7 +85,7 @@ public class CTimerThread extends Thread{
 		}
 	}
 	public void addTime(int time){
-		this.instance().Countdown = Countdown + time;
+		this.instance().Countdown = this.instance().Countdown + time;
 	}
 	
 	public void setTime(int time){
@@ -101,7 +101,7 @@ public class CTimerThread extends Thread{
 		}
 	}
 	public void removeTime(int time){
-		this.Countdown = this.instance().Countdown - time;
+		this.instance().Countdown = this.instance().Countdown - time;
 		
 	}
 	public CTimerThread instance(){

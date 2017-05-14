@@ -42,7 +42,7 @@ public class CTickTimerThread extends Thread{
 			
 		try {
 		Map<String, Integer> timer = new HashMap<String,Integer>();
-		while (!(Countdown < 1)){
+		while (!(Countdown < 2)){
 			Countdown--;
 			if (active == true){
 				
@@ -85,23 +85,27 @@ public class CTickTimerThread extends Thread{
 		}
 	}
 	public void addTime(int time){
-		this.instance().Countdown = Countdown + time;
+		this.instance().Countdown = this.instance().Countdown + time;
 	}
 	
 	public void setTime(int time){
 		this.instance().Countdown = time;
 	}
+	
 	public int getTime(){
 		return this.instance().Countdown;
 	}
 	public void stopTimer(String name){
 		if (name.contains(Tname)){
 		this.instance().Countdown = 0;
+		
+		
+		
 		this.instance().interrupt();
 		}
 	}
 	public void removeTime(int time){
-		this.Countdown = this.instance().Countdown - time;
+		this.instance().Countdown = this.instance().Countdown - time;
 		
 	}
 	public CTickTimerThread instance(){

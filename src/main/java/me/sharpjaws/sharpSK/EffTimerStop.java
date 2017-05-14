@@ -8,6 +8,7 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
 public class EffTimerStop extends Effect {
@@ -30,6 +31,7 @@ public class EffTimerStop extends Effect {
 	@Override
 	protected void execute(final Event e) {
 		CTimerThread a = null;
+		CTickTimerThread b = null;
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
 	        if (t instanceof CTimerThread) {
 	        	if (((CTimerThread) t).instance().getName().equals(timer.getSingle(e))){
@@ -38,11 +40,29 @@ public class EffTimerStop extends Effect {
 	        		
 	        	}
 	        }
+	        	 if (t instanceof CTickTimerThread) {
+	 	        	if (((CTickTimerThread) t).instance().getName().equals(timer.getSingle(e))){
+	 	        		b = ((CTickTimerThread) t).instance();
+	 	        		break;
+	 	        		
+	 	        	}
+	        	 }
+	        
 		}
 		try {
-			a.stopTimer(a.getName());
-		}catch(NullPointerException ex){
+		if (!a.isActive())	{
+		a.stopTimer(a.getName());
+		}else{
 			
+		}
+		
+		}catch(NullPointerException ex){
+		
+			if (!b.isActive())	{
+		b.stopTimer(b.getName());	
+			}else{
+			b.stopTimer(b.getName());		
+		}
 		}
 		
 	}

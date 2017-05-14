@@ -48,6 +48,12 @@ public class EffTimerCreate extends Effect {
 	        		exist = true;
 	        	}
 	        }
+	        if (t instanceof CTickTimerThread) {
+	        	CTickTimerThread ti = (CTickTimerThread)t;
+	        	if (ti.getName().equals(s.getSingle(e))){	        
+	        		exist = true;
+	        	}
+	        }
 		}
 	        
 		if (exist != true){
