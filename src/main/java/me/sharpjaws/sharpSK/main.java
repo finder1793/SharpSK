@@ -171,9 +171,8 @@ public static main instance;
 			getLogger().info("Enabling Metrics...");
 			try {
 				Metrics metrics = new Metrics(this);
-				metrics.start();
 				getLogger().info("Metrics successfully enabled");
-			} catch (IOException e) {
+			} catch (Exception e) {
 				getLogger().info("A error occured while trying to enable metrics. Skipping...");
 			}
 		}
