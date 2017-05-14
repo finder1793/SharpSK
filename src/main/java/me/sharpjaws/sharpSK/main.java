@@ -610,7 +610,7 @@ public static main instance;
 					getLogger().info("Resuming active tick timers...");
 					try{
 					
-					YamlConfiguration TTickcache1 = YamlConfiguration.loadConfiguration(cache);
+					YamlConfiguration TTickcache1 = YamlConfiguration.loadConfiguration(Tickcache);
 					Map<String, Object> b = TTickcache1.getConfigurationSection("timers").getValues(false);
 					for (Map.Entry<?,?> a : b.entrySet() ) {
 						if((int)a.getValue() > 0 ){
@@ -618,7 +618,7 @@ public static main instance;
 						th.instance().start();
 						}
 					}
-					cache.delete();
+					Tickcache.delete();
 					}catch (NullPointerException ex){
 						
 					}
