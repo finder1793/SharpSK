@@ -18,7 +18,6 @@ public class TimerHandler implements Runnable{
 
 @Override
 public void run() {
-	 System.out.println(timername+" "+timercountdown+""+type);
 if (type == 1){	
 	EvtTimerTick ev1 = new EvtTimerTick(timername, timercountdown);
 	Bukkit.getPluginManager().callEvent(ev1);

@@ -551,7 +551,7 @@ public static main instance;
 			
 			
 			//Timers
-				Skript.registerEffect(EffTimerCreate.class, "create timer %string% for %timespan% [keep active %-boolean%]");
+				Skript.registerEffect(EffTimerCreate.class, "create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%]");
 				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
 				Skript.registerExpression(ExprTimerTime.class,Integer.class,ExpressionType.SIMPLE, "time of timer %string%");
 				Skript.registerExpression(ExprAllTimers.class,String.class,ExpressionType.SIMPLE, "[(the|all)] [of] [the] [running] timers");
