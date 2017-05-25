@@ -3,6 +3,7 @@ package me.sharpjaws.sharpSK.hooks.MythicMobs;
 import javax.annotation.Nullable;
 
 import org.bukkit.Location;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 
 import ch.njol.skript.lang.Effect;
@@ -11,6 +12,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.api.exceptions.InvalidMobTypeException;
+import io.lumine.xikage.mythicmobs.mobs.MythicMob;
 
 
 public class EffSpawnMM extends Effect{
@@ -36,9 +38,14 @@ public class EffSpawnMM extends Effect{
 	@Override
 	protected void execute(Event e) {
 		try {
+			try{
 			MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), level.getSingle(e));
+			}catch(NullPointerException ex){
+				
+				return;
+			}
 		} catch (InvalidMobTypeException e1) {
-
+			return;
 		}
 	}
 
