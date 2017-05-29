@@ -174,9 +174,12 @@ public class TownyRegistry {
 		
 		//Towny Expressions:
 
-		Skript.registerExpression(ExprTownyAllNations.class, String.class, ExpressionType.SIMPLE, "[towny] (all|the) nations");
-		Skript.registerExpression(ExprTownyAllTowns.class, String.class, ExpressionType.SIMPLE, "[towny] (all|the) towns");
-		
+		Skript.registerExpression(ExprTownyAllNations.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] (all|the) nations");
+		Skript.registerExpression(ExprTownyAllTowns.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] (all|the) towns");
+		Skript.registerExpression(ExprTownyTownAtLocation.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] town at %location%");
+		Skript.registerExpression(ExprTownyNationBalance.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [towny] nation balance of nation %string%");
+		Skript.registerExpression(ExprTownyTownOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] town of %player%");
+		Skript.registerExpression(ExprTownyNationOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] nation of %player%");
 	}
 	
 }
