@@ -11,16 +11,11 @@ import org.kingdoms.events.KingdomPlayerLostEvent;
 import org.kingdoms.events.KingdomPlayerWonEvent;
 import org.kingdoms.events.KingdomResourcePointChangeEvent;
 
-import com.gamingmesh.jobs.api.JobsJoinEvent;
-import com.gamingmesh.jobs.container.Job;
-
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import me.sharpjaws.sharpSK.hooks.JobsReborn.ExprAllJobs;
-import me.sharpjaws.sharpSK.hooks.Towny.ExprTownyAllTowns;
 
 public class KingdomsRegistry {
 

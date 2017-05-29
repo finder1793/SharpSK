@@ -278,6 +278,14 @@
     <systemPath>${project.basedir}/lib/sentinel-1.0.jar</systemPath>
 </dependency>
 
+<dependency>
+    <groupId>org</groupId>
+    <artifactId>kingdoms</artifactId>
+    <version>13.2.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/lib/Kingdoms+-13.2.0-ClassesOnly.jar</systemPath>
+</dependency>
+
 
 	</dependencies>
 
