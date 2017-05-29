@@ -597,7 +597,7 @@ public static main instance;
 				
 				YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
 				Map<String, Object> b = Tcache.getConfigurationSection("timers").getValues(false);
-				for (Map.Entry<?,?> a : b.entrySet() ) {
+				for (Map.Entry<?, Object> a : b.entrySet() ) {					
 					if((int)a.getValue() > 0 ){
 					CTimerThread th = new CTimerThread((String)a.getKey(),(int)a.getValue(),true);
 					th.instance().start();
@@ -614,7 +614,7 @@ public static main instance;
 					
 					YamlConfiguration TTickcache1 = YamlConfiguration.loadConfiguration(Tickcache);
 					Map<String, Object> b = TTickcache1.getConfigurationSection("timers").getValues(false);
-					for (Map.Entry<?,?> a : b.entrySet() ) {
+					for (Map.Entry<?,Object> a : b.entrySet() ) {
 						if((int)a.getValue() > 0 ){
 						CTickTimerThread th = new CTickTimerThread((String)a.getKey(),(int)a.getValue(),true);
 						th.instance().start();

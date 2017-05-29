@@ -2,6 +2,7 @@ package me.sharpjaws.sharpSK;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
 
 import org.bukkit.World;
 import org.bukkit.entity.EnderDragon;
@@ -9,7 +10,7 @@ import org.bukkit.entity.EnderDragon.Phase;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
-import com.sun.istack.internal.Nullable;
+
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
