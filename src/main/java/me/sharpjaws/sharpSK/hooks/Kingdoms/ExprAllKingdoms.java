@@ -42,7 +42,7 @@ public class ExprAllKingdoms extends SimpleExpression<String> {
 		
 		
 		ArrayList<String> narr = new ArrayList<String>(); 
-		for (OfflineKingdom k : kman.getKingdomManager().getKingdomList().values() ) {
+		for (OfflineKingdom k : GameManagement.getKingdomManager().getKingdomList().values() ) {
 		
 			 narr.add(k.getKingdomName());
 		 }

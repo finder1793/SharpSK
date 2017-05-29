@@ -44,7 +44,7 @@ public class ExprRPOfKingdom extends SimpleExpression<Number>{
 		int rp = 0;
 		try {
 			
-			kdm = kman.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
+			kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
 			rp = kdm.getResourcepoints();
 		}catch(NullPointerException ex) {
 			return new Number[] {0};

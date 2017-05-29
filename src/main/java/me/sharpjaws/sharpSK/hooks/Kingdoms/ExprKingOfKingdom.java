@@ -42,7 +42,7 @@ public class ExprKingOfKingdom extends SimpleExpression<String>{
 	protected String[] get(Event e) {
 		String king = null;
 		try {
-		Kingdom kdm = kman.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
+		Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
 		king = kdm.getKingName();
 		}catch(NullPointerException ex) {
 			
