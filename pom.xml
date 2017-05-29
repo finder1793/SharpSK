@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.sharpjaws.SharpSK</groupId>
 	<artifactId>SharpSK</artifactId>
-	<version>1.6.2-SNAPSHOT</version>
+	<version>1.6.2.1-SNAPSHOT</version>
 	<name>SharpSK</name>
 	<description>A addon made for automating your favourite plugins.</description>
 	<url>https://github.com/Sharpjaws/SharpSK</url>
