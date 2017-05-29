@@ -240,6 +240,39 @@
     <systemPath>${project.basedir}/libs/GlowAPI-1.4.4.jar</systemPath>
 </dependency>
 
+<dependency>
+    <groupId>ru.beykerykt</groupId>
+    <artifactId>lightapi</artifactId>
+    <version>3.2.4</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/LightAPI-3.2.4.jar</systemPath>
+</dependency>
+
+<dependency>
+    <groupId>com.onarandombox</groupId>
+    <artifactId>MultiverseCore</artifactId>
+    <version>2.5.0-SNAPSHOT</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/Multiverse-Core-2.5.0-SNAPSHOT.jar</systemPath>
+</dependency>
+
+<dependency>
+    <groupId>de.diddiz</groupId>
+    <artifactId>LogBlock</artifactId>
+    <version>1.10.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/LogBlock-1.10.0.jar</systemPath>
+</dependency>
+
+<dependency>
+    <groupId>org.mcmonkey</groupId>
+    <artifactId>sentinel</artifactId>
+    <version>1.0</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/sentinel-1.0.jar</systemPath>
+</dependency>
+
+
 	</dependencies>
 
 
