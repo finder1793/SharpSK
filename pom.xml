@@ -54,10 +54,6 @@
 			<url>https://repo.inventivetalent.org/content/groups/public/</url>
 		</repository>
 
-		<repository>
-			<id>authme-repo</id>
-			<url>http://ci.xephi.fr/plugin/repository/everything/</url>
-		</repository>
 
 		<repository>
 			<id>glowAPI-repo</id>
@@ -145,14 +141,6 @@
 			<version>1.5.04-SNAPSHOT</version>
 		</dependency>
 
-
-
-		<dependency>
-			<groupId>fr.xephi</groupId>
-			<artifactId>authme</artifactId>
-			<version>5.2-SNAPSHOT</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.inventivetalent</groupId>
 			<artifactId>glowapi</artifactId>
@@ -170,6 +158,25 @@
 		<version>0.91.1.0</version>
 		</dependency>
 		
+		
+		<dependency>
+    <groupId>fr.xephi</groupId>
+    <artifactId>authme</artifactId>
+    <version>5.2</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/AuthMe-5.2-spigot.jar</systemPath>
+</dependency>
+
+
+	
+	<dependency>
+    <groupId>org</groupId>
+    <artifactId>generallib</artifactId>
+    <version>0.1.3</version>
+    <scope>system</scope>
+    <systemPath>${project.basedir}/libs/GeneralLib-0.1.3.jar</systemPath>
+</dependency>
+
 	</dependencies>
 
 
