@@ -66,6 +66,7 @@ public class main extends JavaPlugin implements Listener {
 public static JavaPlugin plugin;
 public static main instance;
 
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("sharpsk")) {
