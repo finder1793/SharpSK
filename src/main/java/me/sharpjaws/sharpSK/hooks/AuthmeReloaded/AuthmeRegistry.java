@@ -70,8 +70,8 @@ public class AuthmeRegistry {
 					Skript.registerEffect(EffAuthForceUnregister.class, "[authme] force %player% to unregister");
 					Skript.registerCondition(CondAuthIsRegisterd.class, "[authme] %player% is registerd");
 					Skript.registerCondition(CondAuthIsNotRegisterd.class, "[authme] %player% is not registerd");
-					Skript.registerCondition(CondAuthIsAuth.class, "[authme] %player% is authenticated");
-					Skript.registerCondition(CondAuthIsNotAuth.class, "[authme] %player% is not authenticated");
+					Skript.registerCondition(CondAuthIsAuth.class, "[authme] %player% is (authenticated|logged [in])");
+					Skript.registerCondition(CondAuthIsNotAuth.class, "[authme] %player% is not (authenticated|logged [in])");
 					}
 				
 			
