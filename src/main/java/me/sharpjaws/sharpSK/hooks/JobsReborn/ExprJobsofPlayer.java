@@ -53,6 +53,7 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 			a.clear();
 		}
 		
+		if (p == null){return new Job[]{};}
 		if (p.getSingle(e).isOnline()){		
 		for (Job j : Jobs.getJobs()){		
 		if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer().getName()).isInJob(j)) {
