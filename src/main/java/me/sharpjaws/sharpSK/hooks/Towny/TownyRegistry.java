@@ -4,17 +4,23 @@ package me.sharpjaws.sharpSK.hooks.Towny;
 import javax.annotation.Nullable;
 
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 import com.palmergames.bukkit.towny.event.DeleteNationEvent;
 import com.palmergames.bukkit.towny.event.DeleteTownEvent;
+import com.palmergames.bukkit.towny.event.DisallowedPVPEvent;
 import com.palmergames.bukkit.towny.event.MobRemovalEvent;
 import com.palmergames.bukkit.towny.event.NationAddTownEvent;
 import com.palmergames.bukkit.towny.event.NationRemoveTownEvent;
 import com.palmergames.bukkit.towny.event.NewNationEvent;
 import com.palmergames.bukkit.towny.event.NewTownEvent;
+import com.palmergames.bukkit.towny.event.PlayerChangePlotEvent;
+import com.palmergames.bukkit.towny.event.PlotClearEvent;
 import com.palmergames.bukkit.towny.event.RenameNationEvent;
+import com.palmergames.bukkit.towny.event.RenameResidentEvent;
 import com.palmergames.bukkit.towny.event.RenameTownEvent;
 import com.palmergames.bukkit.towny.event.TownAddResidentEvent;
+import com.palmergames.bukkit.towny.event.TownBlockSettingsChangedEvent;
 import com.palmergames.bukkit.towny.event.TownClaimEvent;
 import com.palmergames.bukkit.towny.event.TownRemoveResidentEvent;
 import com.palmergames.bukkit.towny.event.TownUnclaimEvent;
@@ -101,12 +107,22 @@ public class TownyRegistry {
 						return s;
 					}
 				}, 0);
-		Skript.registerEvent("Towny Nation Rename", SimpleEvent.class, RenameNationEvent.class, "[towny] nation rename[d]");
-		EventValues.registerEventValue(NewNationEvent.class, String.class,
-				new Getter<String,NewNationEvent>() {
+		Skript.registerEvent("Towny Resident Rename", SimpleEvent.class, RenameNationEvent.class, "[towny] resident rename[d]");
+		EventValues.registerEventValue(RenameResidentEvent.class, String.class,
+				new Getter<String,RenameResidentEvent>() {
 					@Override
 					@Nullable
-					public String get( NewNationEvent e) {
+					public String get( RenameResidentEvent e) {
+						String s = e.getResident().getName();
+						return s;
+					}
+				}, 0);
+		Skript.registerEvent("Towny Nation Rename", SimpleEvent.class, RenameNationEvent.class, "[towny] nation rename[d]");
+		EventValues.registerEventValue(RenameNationEvent.class, String.class,
+				new Getter<String,RenameNationEvent>() {
+					@Override
+					@Nullable
+					public String get( RenameNationEvent e) {
 						String s = e.getNation().getName();
 						return s;
 					}
@@ -118,6 +134,16 @@ public class TownyRegistry {
 					@Nullable
 					public String get( RenameTownEvent e) {
 						String s = e.getTown().getName();
+						return s;
+					}
+				}, 0);
+		Skript.registerEvent("Towny Nation Rename", SimpleEvent.class, RenameNationEvent.class, "[towny] nation rename[d]");
+		EventValues.registerEventValue(RenameNationEvent.class, String.class,
+				new Getter<String,RenameNationEvent>() {
+					@Override
+					@Nullable
+					public String get( RenameNationEvent e) {
+						String s = e.getNation().getName();
 						return s;
 					}
 				}, 0);
@@ -166,7 +192,29 @@ public class TownyRegistry {
 						return s;
 					}
 				}, 0);
-		
+		Skript.registerEvent("Towny Plot Clear", SimpleEvent.class, PlotClearEvent.class, "[towny] plot clear[ed]");
+		Skript.registerEvent("Towny Player Plot Change", SimpleEvent.class, PlayerChangePlotEvent.class, "[towny] plot clear[ed]");
+		EventValues.registerEventValue(PlayerChangePlotEvent.class, Player.class,
+				new Getter<Player,PlayerChangePlotEvent>() {
+					@Override
+					@Nullable
+					public Player get( PlayerChangePlotEvent e) {	
+						Player p = e.getPlayer();
+						return p;
+					}
+				}, 0);
+		Skript.registerEvent("Towny PVP Disallow", SimpleEvent.class, DisallowedPVPEvent.class, "[towny] pvp disallow[ed]");
+		EventValues.registerEventValue(DisallowedPVPEvent.class, Player.class,
+				new Getter<Player,DisallowedPVPEvent>() {
+					@Override
+					@Nullable
+					public Player get( DisallowedPVPEvent e) {	
+						Player p = e.getAttacker();
+						return p;
+					}
+				}, 0);
+		Skript.registerEvent("Towny Town Block Settings Change", SimpleEvent.class,TownBlockSettingsChangedEvent.class, "[towny] town block settings chang(e|ed)");
+
 		
 		//Towny Effects:
 		
