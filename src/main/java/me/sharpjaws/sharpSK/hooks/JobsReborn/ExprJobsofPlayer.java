@@ -53,7 +53,7 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 			a.clear();
 		}
 		
-		if (p == null){return new Job[]{};}
+		try {
 		if (p.getSingle(e).isOnline()){		
 		for (Job j : Jobs.getJobs()){		
 		if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer().getName()).isInJob(j)) {
@@ -70,7 +70,9 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 			}
 		}
 		
-	
+		} catch (NullPointerException ex){
+			return new Job[]{};
+		}
 		return a.toArray(new Job[a.size()]);
 
 	}

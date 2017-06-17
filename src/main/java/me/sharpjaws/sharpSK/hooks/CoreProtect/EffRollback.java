@@ -59,7 +59,7 @@ public class EffRollback extends Effect{
 	@Override
 	protected void execute(final Event e) {	
 		 final List<String> users = new ArrayList<String>();
-	 		if (users != null){
+	 		if (users != null && players != null ){
 	 		for (OfflinePlayer b : players.getAll(e)){
 	 			
 	 			users.add(b.getName());
