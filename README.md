@@ -1,4 +1,4 @@
-# SharpSK [![Build Status](https://travis-ci.org/Sharpjaws/SharpSK.svg?branch=master)](https://travis-ci.org/Sharpjaws/SharpSK) [![Github All Releases](https://img.shields.io/github/downloads/sharpjaws/SharpSK/total.svg)]() [![GitHub release](https://img.shields.io/github/release/sharpjaws/sharpsk.svg)]()
+# SharpSK [![Build Status](https://travis-ci.org/Sharpjaws/SharpSK.svg?branch=master)](https://travis-ci.org/Sharpjaws/SharpSK) [![Github All Releases](https://img.shields.io/github/downloads/sharpjaws/SharpSK/total.svg)](https://github.com/Sharpjaws/SharpSK/releases/latest) [![GitHub release](https://img.shields.io/github/release/sharpjaws/sharpsk.svg)](https://github.com/Sharpjaws/SharpSK/releases/latest)
 SharpSK is a Addon for Skript that adds alot of plugin support and other features to Skript.
 <hr>
 
