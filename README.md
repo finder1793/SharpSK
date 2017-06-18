@@ -1,4 +1,4 @@
-# SharpSK [![Build Status](https://travis-ci.org/Sharpjaws/SharpSK.svg?branch=master)](https://travis-ci.org/Sharpjaws/SharpSK)
+# SharpSK [![Build Status](https://travis-ci.org/Sharpjaws/SharpSK.svg?branch=master)](https://travis-ci.org/Sharpjaws/SharpSK) [![Github All Releases](https://img.shields.io/github/downloads/sharpjaws/SharpSK/total.svg)]() [![GitHub release](https://img.shields.io/github/release/sharpjaws/sharpsk.svg)]()
 SharpSK is a Addon for Skript that adds alot of plugin support and other features to Skript.
 <hr>
 
@@ -35,33 +35,45 @@ What you'll need:
 >- In the SharpSK folder open folder "target"
 >- Copy the jar file to your server's plugins folder
 
-
-
 ### Linux:
-##### Fedora:
->- Open terminal
->- Install git with command: "sudo dnf install git"
->- Install maven with command: "sudo dnf install maven"
->- Install JDK 1.8 with command: "sudo dnf install openjdk-8-jdk"
->- Run command: "git clone https://github.com/Sharpjaws/SharpSK.git"
->- Wait until the cloning process is complete.
->- Run command: "cd SharpSK"
->- Run command: "mvn"
->- Wait until the compile process is complete.
->- In the SharpSK folder open folder "target"
->- Copy the jar file to your server's plugins folder
-
-##### Debian:
->- Open terminal
->- Install git with command: "sudo apt-get install git"
->- Install maven with command: "sudo apt-get install maven"
->- Install JDK 1.8 with command: "sudo apt-get install openjdk-8-jdk"
->- Run command: "git clone https://github.com/Sharpjaws/SharpSK.git"
->- Wait until the cloning process is complete.
->- Run command: "cd SharpSK"
->- Run command: "mvn"
->- Wait until the compile process is complete.
->- In the SharpSK folder open folder "target"
->- Copy the jar file to your server's plugins folder
-
+ ##### &emsp;Debian:
+  >- Open terminal
+  >- Install git with command: "sudo apt-get install git"
+  >- Install maven with command: "sudo apt-get install maven"
+  >- Install JDK 1.8 with command: "sudo apt-get install openjdk-8-jdk"
+  >- Run command: "git clone https://github.com/Sharpjaws/SharpSK.git ~/SharpSK"
+  >- Wait until the cloning process is complete.
+  >- If done successfully it should be in your home folder
+  >- Run command: "cd ~/SharpSK"
+  >- Run command: "mvn"
+  >- Wait until the compile process is complete.
+  >- In the SharpSK folder open folder "target"
+  >- Copy the jar file to your server's plugins folder
+  ##### &emsp;Fedora:
+   >- Open terminal
+   >- Install git with command: "sudo dnf install git"
+   >- Install maven with command: "sudo dnf install maven"
+   >- Install JDK 1.8 with command: "sudo dnf install openjdk-8-jdk"
+   >- Run command: "git clone https://github.com/Sharpjaws/SharpSK.git ~/SharpSK"
+   >- Wait until the cloning process is complete.
+   >- If done successfully it should be in your home folder
+   >- Run command: "cd ~/SharpSK"
+   >- Run command: "mvn"
+   >- Wait until the compile process is complete.
+   >- In the SharpSK folder open folder "target"
+   >- Copy the jar file to your server's plugins folder
+  ##### &emsp;Mint:
+   >- Open terminal
+  >- Install git with command: "apt install git"
+  >- Install maven with command: "apt install maven"
+  >- Install JDK 1.8 with command: "apt install openjdk-8-jdk"
+  >- Run command: "git clone https://github.com/Sharpjaws/SharpSK.git ~/SharpSK"
+  >- Wait until the cloning process is complete.
+  >- If done successfully it should be in your home folder
+  >- Run command: "cd ~/SharpSK"
+  >- Run command: "mvn"
+  >- Wait until the compile process is complete.
+  >- In the SharpSK folder open folder "target"
+  >- Copy the jar file to your server's plugins folder
+ 
 ##### Mac: (Coming soon)
