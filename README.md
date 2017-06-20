@@ -18,10 +18,10 @@ What you'll need:
 >- Install Java JDK 1.8 by running the installer.
 >- Make sure “JAVA_HOME” is added to the Windows environment variables
 >- Install git by running the installer.
->- Go through the Git installing process. (Make sure to tick "Git bash here")
->- Unzip Maven to: "C:\Program Files\Apache\Maven" or  "C:\Program Files (x86)\Apache\Maven"
+>- Go through the Git installing process. (Make sure to tick "Git bash here") You can leave everything else as it is.
+>- Unzip Maven and copy the files inside the folder to: "C:\Program Files\Apache\Maven" or  "C:\Program Files (x86)\Apache\Maven"
 >- Add "M2_HOME" and "MAVEN_HOME" to your Windows environment variables, and point them both to your Maven folder.
->- Add "M2" to your Windows envornment variables and point it to "%M2_HOME%\bin"
+>- Add "M2" to your Windows environment variables and point it to "%M2_HOME%\bin"
 >- Edit your system's PATH variable and add ";%M2%" to the end of it. (Recommended to backup first)
 >- Once finished, create folder "SharpSK" on your desktop or any other path.
 >- Right-click the folder and choose "Git Bash Here"
@@ -29,7 +29,7 @@ What you'll need:
 >- Wait until the cloning process is complete.
 >- Close git and open Windows Command Prompt.
 >- Check if maven is installed by runnning mvn --version
->- Navigate to the SharpSK folder by using "cd c:\Users\%username%\Desktop\SharpSK" if you placed it on your desktop (Note that %username% will be your windows username)
+>- Navigate to the SharpSK folder by using "cd c:\Users\ %username% \Desktop\SharpSK" if you placed it on your desktop (Note that %username% will be your windows username)
 >- Run command: "mvn"
 >- Wait until the compile process is complete.
 >- In the SharpSK folder open folder "target"
