@@ -1,7 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
 
-import java.util.ArrayList;
-
 import javax.annotation.Nullable;
 
 import org.bukkit.OfflinePlayer;
@@ -10,8 +8,6 @@ import org.bukkit.event.Event;
 
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.Resident;
-import com.palmergames.bukkit.towny.object.Town;
-import com.palmergames.bukkit.towny.object.TownyUniverse;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -21,7 +17,7 @@ import ch.njol.util.Kleenean;
 public class ExprTownyTownOfPlayer extends SimpleExpression<String> {
 
 	
-	private Expression<Player> resident;
+	private Expression<OfflinePlayer> resident;
 	
 
 	@Override
@@ -33,7 +29,7 @@ public class ExprTownyTownOfPlayer extends SimpleExpression<String> {
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult Result) {
-		resident = (Expression<Player>) expr[0];
+		resident = (Expression<OfflinePlayer>) expr[0];
 		return true;
 	}
 	@Override

@@ -25,16 +25,68 @@ import com.palmergames.bukkit.towny.event.TownClaimEvent;
 import com.palmergames.bukkit.towny.event.TownRemoveResidentEvent;
 import com.palmergames.bukkit.towny.event.TownUnclaimEvent;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.TownBlockType;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.classes.ClassInfo;
+import ch.njol.skript.classes.Converter;
+import ch.njol.skript.classes.EnumSerializer;
+import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ExpressionType;
+import ch.njol.skript.lang.ParseContext;
 import ch.njol.skript.lang.util.SimpleEvent;
+import ch.njol.skript.registrations.Classes;
+import ch.njol.skript.registrations.Converters;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 
 public class TownyRegistry {
 
-	public static void RegisterTowny() {
+	public static void RegisterTowny() {	
+		//Town Types:
+			Classes.registerClass(new ClassInfo<TownBlockType>(TownBlockType.class, "townblocktype").name("TownBlockType").parser(new Parser<TownBlockType>() {
+				
+				@Override
+				public String getVariableNamePattern() {
+					return ".+";
+				}
+				@Override
+				@Nullable
+				public TownBlockType parse(String s, ParseContext cont) {
+					try {
+						return TownBlockType.valueOf(s.replace(" ", "_").trim().toUpperCase());
+					} catch (IllegalArgumentException e) {
+						return null;
+					}
+				}
+				@Override
+				public boolean canParse(final ParseContext cont) {
+					return true;
+				}
+
+				@Override
+				public String toString(TownBlockType tbt, int i) {
+					return tbt.name().replace("_", " ").toUpperCase();
+				}
+
+				@Override
+				public String toVariableNameString(TownBlockType tbt) {
+					return tbt.name().replace("_", " ").toUpperCase();
+				}
+			}).serializer(new EnumSerializer<TownBlockType>(TownBlockType.class)).user("town ?blocktypes?"));
+			
+			Converters.registerConverter(TownBlockType.class, String.class, new Converter<TownBlockType, String>() {
+
+				@Override
+				@Nullable
+				public String convert(TownBlockType tbt) {
+					return tbt.name();
+				}
+			}
+		
+		);
+		
+		
 		
 		//Towny Events:
 		Skript.registerEvent("Towny Mob Removal", SimpleEvent.class, MobRemovalEvent.class, "[towny] mob remov([al]|ed])");
@@ -98,16 +150,16 @@ public class TownyRegistry {
 					}
 				}, 0);
 		Skript.registerEvent("Towny Town Create", SimpleEvent.class, NewTownEvent.class, "[towny] town create[d]");
-		EventValues.registerEventValue(NewNationEvent.class, String.class,
-				new Getter<String,NewNationEvent>() {
+		EventValues.registerEventValue(NewTownEvent.class, String.class,
+				new Getter<String,NewTownEvent>() {
 					@Override
 					@Nullable
-					public String get( NewNationEvent e) {
-						String s = e.getNation().getName();
+					public String get( NewTownEvent e) {
+						String s = e.getTown().getName();
 						return s;
 					}
 				}, 0);
-		Skript.registerEvent("Towny Resident Rename", SimpleEvent.class, RenameNationEvent.class, "[towny] resident rename[d]");
+		Skript.registerEvent("Towny Resident Rename", SimpleEvent.class, RenameResidentEvent.class, "[towny] resident rename[d]");
 		EventValues.registerEventValue(RenameResidentEvent.class, String.class,
 				new Getter<String,RenameResidentEvent>() {
 					@Override
@@ -133,7 +185,7 @@ public class TownyRegistry {
 					@Override
 					@Nullable
 					public String get( RenameTownEvent e) {
-						String s = e.getTown().getName();
+						String s = e.getOldName();
 						return s;
 					}
 				}, 0);
@@ -179,6 +231,7 @@ public class TownyRegistry {
 					@Nullable
 					public String get( TownAddResidentEvent e) {	
 						String s = e.getResident().getName();
+						
 						return s;
 					}
 				}, 0);
@@ -225,9 +278,12 @@ public class TownyRegistry {
 		Skript.registerExpression(ExprTownyAllNations.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] (all|the) nations");
 		Skript.registerExpression(ExprTownyAllTowns.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] (all|the) towns");
 		Skript.registerExpression(ExprTownyTownAtLocation.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] town at %location%");
-		Skript.registerExpression(ExprTownyNationBalance.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [towny] nation balance of nation %string%");
-		Skript.registerExpression(ExprTownyTownOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] town of %player%");
-		Skript.registerExpression(ExprTownyNationOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] nation of %player%");
+		Skript.registerExpression(ExprTownyNationBalance.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [towny] [nation] balance of nation %string%");
+		Skript.registerExpression(ExprTownyTownOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] town of %offlineplayer%");
+		Skript.registerExpression(ExprTownyNationOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] nation of %offlineplayer%");
+		Skript.registerExpression(ExprTownyTownBlocktypeAtLocation.class, TownBlockType.class, ExpressionType.SIMPLE, "[sharpsk] [towny] [town] (block|plot)type at %location%");
+		Skript.registerExpression(ExprTownyEventTown.class, String.class, ExpressionType.SIMPLE, "event-town");	
+		Skript.registerExpression(ExprTownyEventNation.class, String.class, ExpressionType.SIMPLE, "event-nation");
 	}
 	
 }

@@ -2,10 +2,10 @@ package me.sharpjaws.sharpSK.hooks.Towny;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
-import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.Nation;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 
@@ -17,7 +17,7 @@ import ch.njol.util.Kleenean;
 public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 
 	
-	private Expression<Player> resident;
+	private Expression<OfflinePlayer> resident;
 	
 
 	@Override
@@ -29,7 +29,7 @@ public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult Result) {
-		resident = (Expression<Player>) expr[0];
+		resident = (Expression<OfflinePlayer>) expr[0];
 		return true;
 	}
 	@Override
@@ -42,16 +42,18 @@ public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 	@Nullable
 	protected String[] get(Event e) {
 		
-		 Resident a = new Resident(resident.getSingle(e).getName());
-
-		 
-		 try {
-			return new String[]{ a.getTown().getNation().getName()};
-		} catch (NotRegisteredException e1) {
-			return new String[]{};
-		}
-		
+		String natname = null;
+		Resident pl = new Resident(resident.getSingle(e).getName());
+		 for (Nation a : TownyUniverse.getDataSource().getNations()){
+			if (a.getResidents().contains(pl)){
+				natname = a.getName();
+				break;
 			}
+		 }
+
+			return new String[]{natname};
+	}
+
 
 	@Override
 	public boolean isSingle() {
