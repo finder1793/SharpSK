@@ -27,7 +27,7 @@ import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
 import net.coreprotect.CoreProtectAPI.ParseResult;
 
-public class EffRollback extends Effect{
+public class EffCoreRollback extends Effect{
 	private int mark;
 	private Expression<Location> l;
 	private Expression<Number> n;

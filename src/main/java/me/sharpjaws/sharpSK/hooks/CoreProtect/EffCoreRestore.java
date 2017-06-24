@@ -27,7 +27,7 @@ import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
 import net.coreprotect.CoreProtectAPI.ParseResult;
 
-public class EffRestore extends Effect{
+public class EffCoreRestore extends Effect{
 	private Expression<Location> l;
 	private Expression<Number> n;
 	private Expression<Timespan> times;
