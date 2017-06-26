@@ -45,6 +45,8 @@ import ch.njol.util.Kleenean;
      Boolean exair = false;
      if (this.exair != null) {
      exair = (Boolean)this.exair.getSingle(event);
+     }else{
+    	 exair = false;
      }
      try
      {
@@ -72,7 +74,7 @@ import ch.njol.util.Kleenean;
      if ((!file.exists()) && (file.isDirectory())) {
        return false;
      }
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(new BukkitWorld(loc.getWorld()), 200000);
+     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(new BukkitWorld(loc.getWorld()), 400000);
      
      CuboidClipboard cc = null;
      try {
