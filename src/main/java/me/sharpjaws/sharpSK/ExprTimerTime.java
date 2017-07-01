@@ -1,7 +1,9 @@
 package me.sharpjaws.sharpSK;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.event.Event;
-import org.eclipse.jdt.annotation.Nullable;
+
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;

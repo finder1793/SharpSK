@@ -1,7 +1,8 @@
 package me.sharpjaws.sharpSK.hooks.Kingdoms;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.event.Event;
-import org.eclipse.jdt.annotation.Nullable;
 import org.kingdoms.constants.kingdom.Kingdom;
 import org.kingdoms.manager.game.GameManagement;
 

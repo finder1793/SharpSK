@@ -2,13 +2,14 @@ package me.sharpjaws.sharpSK.hooks.LogBlock;
 
 import java.sql.SQLException;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
-import org.eclipse.jdt.annotation.Nullable;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
