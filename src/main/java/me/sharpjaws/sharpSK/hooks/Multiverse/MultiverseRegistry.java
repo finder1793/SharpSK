@@ -73,10 +73,10 @@ Skript.registerEvent("MV On Config Reload",SimpleEvent.class, MVConfigReloadEven
 	Skript.registerEffect(EffMVCloneWorld.class, "(mv|multiverse) (clone|copy) world %string% to %string%");
 	Skript.registerEffect(EffMVRemovePlayersFromWorld.class, "(mv|multiverse) remove players from world %string%");
 	
-	Skript.registerExpression(ExprUnloadedWorlds.class, String.class, ExpressionType.SIMPLE, "([mv|multiverse]) [all] [the] unloaded worlds");
+	Skript.registerExpression(ExprUnloadedWorlds.class, String.class, ExpressionType.SIMPLE, "[(mv|multiverse)] [all] [the] unloaded worlds");
 	
-	Skript.registerCondition(CondMVUnloadedWorld.class, "([mv|multiverse]) world %string% is unloaded");
-	Skript.registerCondition(CondMVNotUnloadedWorld.class, "([mv|multiverse]) world %string% is not unloaded");
+	Skript.registerCondition(CondMVUnloadedWorld.class, "[(mv|multiverse)] world %string% is unloaded");
+	Skript.registerCondition(CondMVNotUnloadedWorld.class, "[(mv|multiverse)] world %string% is not unloaded");
 	
 	}
 
