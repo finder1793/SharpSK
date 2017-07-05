@@ -57,8 +57,6 @@ public class EffTimerCreate extends Effect {
 		}
 	        
 		if (exist != true){
-			
-			System.out.println(mark);
 	if (mark == -1){		
 	if (active == null)	{
 		CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
