@@ -26,7 +26,7 @@ public class WorldGuardRegistry {
 			       Skript.registerEffect(EffRemoveMember.class, "[sharpsk] [worldguard] remove member[s] %players/offlineplayers/strings% [(-1¦by name|1¦by uuid)] from region %string% in [world] %world%" );
 			       Skript.registerExpression(ExprGetPoint1.class, Location.class, ExpressionType.SIMPLE, "[sharpsk] [(worldguard)] (point|pos[ition])[ ] 1 of region %string% in [world] %world%");
 			       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE,"[sharpsk] [worldguard] (point|pos[ition])[ ] 2 of region %string% in [world] %world%");
-			       Skript.registerExpression(ExprRegionAt.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [worldguard] region at %location%" );
+			       Skript.registerExpression(ExprRegionAt.class, String.class, ExpressionType.SIMPLE, "sharpsk [worldguard] region at %location%" );
 			       Skript.registerExpression(ExprAllRegionsInWorld.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [all] [worldguard] regions in %world%" );
 			       Skript.registerEffect(EffSetBlocks.class, "[sharpsk] [worldguard] (set [all] blocks in|fill) region %string% in [world] %world% (to|with) %itemstack%" );	
 		   //---------------------
