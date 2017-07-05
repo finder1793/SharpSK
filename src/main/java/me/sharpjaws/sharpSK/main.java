@@ -327,7 +327,6 @@ public static main instance;
 						}
 					}, 0);
 			if (Bukkit.getPluginManager().getPlugin("Umbaska") != null) {
-				getLogger().info("Umbaska was found. Some event syntaxes are changed");
 			Skript.registerEvent("Armor Equip", SimpleEvent.class, ArmorEquipEvent.class, "sharpsk [on] (armor|armour) equip");
 			EventValues.registerEventValue( ArmorEquipEvent.class, ItemStack.class,
 					new Getter<ItemStack, ArmorEquipEvent>() {
@@ -347,7 +346,7 @@ public static main instance;
 						}
 					}, 0);
 			}else{
-				Skript.registerEvent("Armor Equip", SimpleEvent.class, ArmorEquipEvent.class, "[on] (armor|armour) equip");
+				Skript.registerEvent("Armor Equip", SimpleEvent.class, ArmorEquipEvent.class, "[sharpsk] [on] (armor|armour) equip");
 				EventValues.registerEventValue( ArmorEquipEvent.class, ItemStack.class,
 						new Getter<ItemStack, ArmorEquipEvent>() {
 							@Override
@@ -356,7 +355,7 @@ public static main instance;
 								return item;
 							}
 						}, 0);
-				Skript.registerEvent("Armor unEquip", SimpleEvent.class, ArmorunEquipEvent.class, "[on] (armor|armour) unequip");
+				Skript.registerEvent("Armor unEquip", SimpleEvent.class, ArmorunEquipEvent.class, "[sharpsk] [on] (armor|armour) unequip");
 				EventValues.registerEventValue( ArmorunEquipEvent.class, ItemStack.class,
 						new Getter<ItemStack,  ArmorunEquipEvent>() {
 							@Override
