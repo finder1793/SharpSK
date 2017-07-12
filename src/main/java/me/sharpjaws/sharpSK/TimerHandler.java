@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 
 public class TimerHandler implements Runnable{
 	
-	//Class implemented to be called synchronously meaning that it should not cause any critical Async problems caused by timers.
+	//Class implemented as a workaround for avoiding async problems in timers that are running synchronously.
 	String timername;
 	int timercountdown;
 	int type;

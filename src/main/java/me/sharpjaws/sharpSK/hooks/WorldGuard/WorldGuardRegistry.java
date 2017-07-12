@@ -16,7 +16,7 @@ import com.gamingmesh.jobs.api.JobsLevelUpEvent;
 import com.sk89q.worldguard.protection.events.DisallowedPVPEvent;
 
 public class WorldGuardRegistry {
-	public static void registerwguard(){
+	public static void registerWorldGuard(){
 		//PirateSK merged features
 				 Skript.registerEffect(EffCreateRegion.class,  "[sharpsk] [worldguard] create region %string% between %location% and %location% in [world] %world%" );
 			       Skript.registerEffect(EffDeleteRegion.class, "[sharpsk] [worldguard] (delete|remove) region %string% (in|from) [world] %world%" );

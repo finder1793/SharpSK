@@ -278,12 +278,20 @@ public class TownyRegistry {
 		Skript.registerExpression(ExprTownyAllNations.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] (all|the) nations");
 		Skript.registerExpression(ExprTownyAllTowns.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] (all|the) towns");
 		Skript.registerExpression(ExprTownyTownAtLocation.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] town at %location%");
-		Skript.registerExpression(ExprTownyNationBalance.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [towny] [nation] balance of nation %string%");
+		Skript.registerExpression(ExprTownyNationBalance.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [towny] balance of nation %string%");
+		Skript.registerExpression(ExprTownyTownBalance.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [towny] balance of town %string%");
 		Skript.registerExpression(ExprTownyTownOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] town of %offlineplayer%");
 		Skript.registerExpression(ExprTownyNationOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [towny] nation of %offlineplayer%");
 		Skript.registerExpression(ExprTownyTownBlocktypeAtLocation.class, TownBlockType.class, ExpressionType.SIMPLE, "[sharpsk] [towny] [town] (block|plot)type at %location%");
 		Skript.registerExpression(ExprTownyEventTown.class, String.class, ExpressionType.SIMPLE, "event-town");	
 		Skript.registerExpression(ExprTownyEventNation.class, String.class, ExpressionType.SIMPLE, "event-nation");
+		Skript.registerEffect(EffTownyCreateTown.class, "[sharpsk] [towny] create town %string% at %location% [with [bank] balance %-number%] [[and] with mayor %-offlineplayer%] [and residents %-offlineplayers%]");
+		Skript.registerEffect(EffTownyDeleteTown.class, "[sharpsk] [towny] delete town %string%");
+		Skript.registerEffect(EffTownyRenameTown.class, "[sharpsk] [towny] rename town %string% to %string%");
+		Skript.registerEffect(EffTownyKickPlayerFromTown.class, "[sharpsk] [towny] kick %offlineplayer% from [town] %string%");
+		Skript.registerEffect(EffTownyAddPlayerToTown.class, "[sharpsk] [towny] Add %offlineplayer% to [town] %string%");
+		Skript.registerEffect(EffTownyCreateNation.class, "[towny] create nation %string% in town %string% [with [bank] balance %-number%]");
+		
 	}
 	
 }

@@ -7,7 +7,7 @@ import ch.njol.skript.lang.ExpressionType;
 
 public class PermissionsExRegistry {
 	
-	public static void registerPermX() {
+	public static void registerPermissionsEx() {
 		Skript.registerEffect(EffRemovePexPerm.class,
 				"pex (remove|delete) permission %string% from %players%");
 		Skript.registerEffect(EffGiveTimedPexPerm.class,

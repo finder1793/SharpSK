@@ -139,7 +139,7 @@ public class HookManager {
 			if (Bukkit.getPluginManager().isPluginEnabled("PermissionsEx")) {
 				if (mainp.getConfig().getBoolean("permissionsex") == true) {
 					try {
-						PermissionsExRegistry.registerPermX();
+						PermissionsExRegistry.registerPermissionsEx();
 						mainp.getLogger().info("Hooked into PermissionsEx v" + Bukkit.getPluginManager()
 						.getPlugin("PermissionsEx").getDescription().getVersion());
 					} catch (Exception ex) {
@@ -153,7 +153,7 @@ public class HookManager {
 			if (Bukkit.getPluginManager().isPluginEnabled("Multiverse-Core")) {
 				if (mainp.getConfig().getBoolean("multiverse") == true) {
 					try {
-						MultiverseRegistry.registerMultiv();
+						MultiverseRegistry.registerMultiverse();
 						mainp.getLogger().info("Hooked into Multiverse v" + Bukkit.getPluginManager()
 						.getPlugin("Multiverse-Core").getDescription().getVersion());
 					} catch (Exception ex) {
@@ -179,7 +179,7 @@ public class HookManager {
 			if (Bukkit.getPluginManager().isPluginEnabled("WorldGuard")) {
 				if (mainp.getConfig().getBoolean("worldguard") == true) {
 					try {
-						WorldGuardRegistry.registerwguard();
+						WorldGuardRegistry.registerWorldGuard();
 						mainp.getLogger().info("Hooked into WorldGuard v" + Bukkit.getPluginManager()
 						.getPlugin("WorldEdit").getDescription().getVersion());
 					} catch (Exception ex) {

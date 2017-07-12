@@ -18,11 +18,11 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprTownyNationBalance extends SimpleExpression<Number> {
+public class ExprTownyTownBalance extends SimpleExpression<Number> {
 
 	
 	
-	private Expression<String> nation;
+	private Expression<String> town;
 
 	@Override
 	public Class<? extends Number> getReturnType() {
@@ -37,7 +37,7 @@ public class ExprTownyNationBalance extends SimpleExpression<Number> {
 	}
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [towny] balance of nation %string%";
+		return "[sharpsk] [towny] balance of town %string%";
 	}
 
 
@@ -45,7 +45,7 @@ public class ExprTownyNationBalance extends SimpleExpression<Number> {
 	@Nullable
 	protected Number[] get(Event e) {
 	try {
-		return new Number[] {TownyUniverse.getDataSource().getNation(nation.getSingle(e)).getHoldingBalance()};
+		return new Number[] {TownyUniverse.getDataSource().getTown(town.getSingle(e)).getHoldingBalance()};
 	} catch (NotRegisteredException e1) {
 		return new Number[]{0};
 	} catch (EconomyException e1) {

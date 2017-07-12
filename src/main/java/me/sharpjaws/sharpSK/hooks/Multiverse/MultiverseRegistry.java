@@ -26,7 +26,7 @@ import ch.njol.skript.util.Getter;
 public class MultiverseRegistry {
 	
 	@SuppressWarnings("unchecked")
-	public static void registerMultiv(){
+	public static void registerMultiverse(){
 Skript.registerEvent("MV On Portal Touch",SimpleEvent.class, MVPlayerTouchedPortalEvent.class, "(mv|multiverse) portal ([touch|enter])");
 EventValues.registerEventValue(MVPlayerTouchedPortalEvent.class, Player.class,
 		new Getter<Player, MVPlayerTouchedPortalEvent>() {
