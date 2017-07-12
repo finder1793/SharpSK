@@ -56,10 +56,10 @@ public class EffTownyCreateNation extends Effect {
 			Town town = TownyUniverse.getDataSource().getTown(tow.getSingle(e));
 			nation.addTown(town);
 			nation.setCapital(town);
-			if (TownySettings.isUsingEconomy()) {
-	
-					nation.setBalance(0, "Deleting Nation");
-			
+			if (bal != null) {
+					nation.setBalance(bal.getSingle(e).doubleValue(), "Nation Creation");	
+			}else{
+				nation.setBalance(bal.getSingle(e).doubleValue(), "Nation Creation");	
 			}
 			TownyUniverse.getDataSource().saveTown(town);
 			TownyUniverse.getDataSource().saveNation(nation);

@@ -106,13 +106,13 @@ public class EffTownyCreateTown extends Effect {
 			TownyUniverse.getDataSource().saveTownBlockList();
 		
 		
-		} catch (NotRegisteredException e1) {
+		} catch (NotRegisteredException ex1) {
 	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\"");
-		} catch (AlreadyRegisteredException e1) {
+		} catch (AlreadyRegisteredException ex2) {
 	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\""+ ". Town already exists");
-		} catch (TownyException e1) {
+		} catch (TownyException ex3) {
 	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\"");
-		} catch (EconomyException e1) {
+		} catch (EconomyException ex4) {
 	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\"");
 		}
 		
