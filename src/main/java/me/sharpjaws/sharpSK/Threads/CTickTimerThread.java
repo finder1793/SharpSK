@@ -18,6 +18,7 @@ public class CTickTimerThread extends Thread{
 	private String Tname;
 	private boolean active;
 	private int Countdown;
+	private boolean paused;
 	
 	public CTickTimerThread(String name, int ticks, Boolean activeT){
 		this.active = activeT;
@@ -43,6 +44,11 @@ public class CTickTimerThread extends Thread{
 		try {
 		Map<String, Integer> timer = new HashMap<String,Integer>();
 		while (!(Countdown < 2)){
+				 synchronized(this) {
+		             while(paused) {
+		                wait();
+		             }
+				 }
 			Countdown--;
 			if (active == true){
 				
@@ -92,6 +98,17 @@ public class CTickTimerThread extends Thread{
 		this.instance().Countdown = time;
 	}
 	
+	public void pauseTimer(String name) {
+		if (name.contains(Tname)){
+		paused = true;
+		}
+	}
+	public synchronized void resumeTimer(String name){
+		if (name.contains(Tname)){
+			paused = false;
+			notify();
+		}
+	}
 	public int getTime(){
 		return this.instance().Countdown;
 	}

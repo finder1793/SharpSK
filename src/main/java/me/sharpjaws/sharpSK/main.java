@@ -556,6 +556,8 @@ public static main instance;
 			//Timers
 				Skript.registerEffect(EffTimerCreate.class, "create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%]");
 				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
+				Skript.registerEffect(EffTimerPause.class, "pause timer %string%");
+				Skript.registerEffect(EffTimerResume.class, "resume timer %string%");
 				Skript.registerExpression(ExprTimerTime.class,Integer.class,ExpressionType.SIMPLE, "time of timer %string%");
 				Skript.registerExpression(ExprAllTimers.class,String.class,ExpressionType.SIMPLE, "[(the|all)] [of] [the] [running] timers");
 				Skript.registerCondition(CondTimerActive.class, "timer %string% is active");
@@ -569,14 +571,6 @@ public static main instance;
 								return e.getTimer();
 							}
 						}, 0);
-				EventValues.registerEventValue(EvtTimerTick.class, Number.class,
-						new Getter<Number, EvtTimerTick>() {
-							@Override
-							@Nullable
-							public Number get(EvtTimerTick e) {
-								return e.getTimeLeft();
-							}
-						}, 0);
 				
 				Skript.registerEvent("Timer Complete", SimpleEvent.class, EvtTimerComplete.class, "timer complete");
 				EventValues.registerEventValue(EvtTimerComplete.class, String.class,
@@ -587,12 +581,13 @@ public static main instance;
 								return e.getTimer();
 							}
 						}, 0);
+				Skript.registerExpression(ExprEventTimeLeft.class,Number.class,ExpressionType.SIMPLE, "event-time[left]");
 				
 				//--------------------------
 				File cache = new File(getDataFolder(), "Tcache.yml");   	
 				File Tickcache = new File(getDataFolder(), "TTickcache.yml");   		
 				if(cache.exists()){
-				getLogger().info("Resuming active timers...");
+				getLogger().info("Resuming active timers from cache...");
 				try{
 				
 				YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);

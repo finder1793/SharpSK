@@ -18,6 +18,7 @@ public class CTimerThread extends Thread{
 	private String Tname;
 	private boolean active;
 	private int Countdown;
+	private boolean paused;
 	
 	public CTimerThread(String name, int seconds, Boolean activeT){
 		this.active = activeT;
@@ -37,12 +38,15 @@ public class CTimerThread extends Thread{
 		this.instance().Countdown = secs +1;
 		this.setName(Tname);
 	
-
 		
-			
 		try {
 		Map<String, Integer> timer = new HashMap<String,Integer>();
 		while (!(Countdown < 2)){
+			 synchronized(this) {
+	             while(paused) {
+	                wait();
+	             }
+			 }
 			Countdown--;
 			if (active == true){
 				
@@ -83,6 +87,7 @@ public class CTimerThread extends Thread{
 		
 			this.instance().interrupt();
 		}
+		
 	}
 	public void addTime(int time){
 		this.instance().Countdown = this.instance().Countdown + time;
@@ -96,10 +101,25 @@ public class CTimerThread extends Thread{
 	}
 	public void stopTimer(String name){
 		if (name.contains(Tname)){
+		if (paused){
+			resumeTimer(this.getName());
+		}
 		this.instance().Countdown = 0;
 		this.instance().interrupt();
 		}
+		}
+	public void pauseTimer(String name) {
+		if (name.contains(Tname)){
+		paused = true;
+		}
 	}
+	public synchronized void resumeTimer(String name){
+		if (name.contains(Tname)){
+			paused = false;
+			notify();
+		}
+	}
+	
 	public void removeTime(int time){
 		this.instance().Countdown = this.instance().Countdown - time;
 		
@@ -107,6 +127,7 @@ public class CTimerThread extends Thread{
 	public CTimerThread instance(){
 	return this;
 	}
+	
 	public Boolean isActive(){
 		return this.active;
 	}
