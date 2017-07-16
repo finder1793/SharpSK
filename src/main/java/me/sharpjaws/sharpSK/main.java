@@ -554,7 +554,7 @@ public static main instance;
 			
 			
 			//Timers
-				Skript.registerEffect(EffTimerCreate.class, "create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%]");
+				Skript.registerEffect(EffTimerCreate.class, "create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]");
 				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
 				Skript.registerEffect(EffTimerPause.class, "pause timer %string%");
 				Skript.registerEffect(EffTimerResume.class, "resume timer %string%");
@@ -594,7 +594,7 @@ public static main instance;
 				Map<String, Object> b = Tcache.getConfigurationSection("timers").getValues(false);
 				for (Map.Entry<?, Object> a : b.entrySet() ) {					
 					if((int)a.getValue() > 0 ){
-					CTimerThread th = new CTimerThread((String)a.getKey(),(int)a.getValue(),true);
+					CTimerThread th = new CTimerThread((String)a.getKey(),(int)a.getValue(),true, 0);
 					th.instance().start();
 					}
 				}
@@ -611,7 +611,7 @@ public static main instance;
 					Map<String, Object> b = TTickcache1.getConfigurationSection("timers").getValues(false);
 					for (Map.Entry<?,Object> a : b.entrySet() ) {
 						if((int)a.getValue() > 0 ){
-						CTickTimerThread th = new CTickTimerThread((String)a.getKey(),(int)a.getValue(),true);
+						CTickTimerThread th = new CTickTimerThread((String)a.getKey(),(int)a.getValue(),true, 0);
 						th.instance().start();
 						}
 					}

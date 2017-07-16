@@ -3,6 +3,7 @@
  import java.io.File;
 import java.util.regex.Matcher;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 
@@ -17,6 +18,8 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import me.sharpjaws.sharpSK.main;
+import me.sharpjaws.sharpSK.hooks.WorldEdit.enums.SchemFacingDirection;
  
  
  public class EffPasteSchematic
@@ -25,13 +28,17 @@ import ch.njol.util.Kleenean;
    private Expression<?> name;
    private Expression<?> loc;
    private Expression<?> exair;
+   private Expression<Number> angle;
+   private int mark = 0;
    
-   public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
+   @SuppressWarnings("unchecked")
+public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, SkriptParser.ParseResult Result)
    {
-     this.name = expression[0];
-     this.loc = expression[1];
-     this.exair = expression[2];
-     
+     name = expression[0];
+     loc = expression[1];
+     exair = expression[2];
+     angle = (Expression<Number>)expression[3];
+     mark = Result.mark;
      return true;
    }
    
@@ -48,15 +55,34 @@ import ch.njol.util.Kleenean;
      }else{
     	 exair = false;
      }
+     
+     
      try
-     {
-       paste(name, loc, exair);
+     {   		 
+    		 switch (angle.getSingle(event).intValue()){
+    			 case 0: case 360:
+    				 paste(name, loc, exair,SchemFacingDirection.NORTH);
+    			  break;	 
+    			 case 90:
+    				 paste(name, loc, exair,SchemFacingDirection.EAST);
+    			  break;
+    			 case 180:
+    				 paste(name, loc, exair,SchemFacingDirection.SOUTH);
+    			  break;
+    			 case 270:
+    				 paste(name, loc, exair,SchemFacingDirection.WEST);	
+    			  break;
+    			 default:
+    				 paste(name, loc, exair,SchemFacingDirection.INVALID);	
+    			  break;
+    		 }
+
      } catch (Exception e) {
        e.printStackTrace();
      }
    }
    
-   private static boolean paste(String f, Location loc, Boolean exair) throws Exception {
+   private static boolean paste(String f, Location loc, Boolean exair, SchemFacingDirection facing) throws Exception {
      File file;
 
      if (f.startsWith("/")) {
@@ -71,6 +97,7 @@ import ch.njol.util.Kleenean;
      }
      Vector v = new Vector(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
      SchematicFormat format = SchematicFormat.getFormat(file);
+    
      if ((!file.exists()) && (file.isDirectory())) {
        return false;
      }
@@ -78,17 +105,33 @@ import ch.njol.util.Kleenean;
      
      CuboidClipboard cc = null;
      try {
+    	 
        cc = format.load(file);
+       if (facing != null) {
+
+    	   if (SchemFacingDirection.getDegree(facing) != -1){
+      	cc.rotate2D(SchemFacingDirection.getDegree(facing));
+    	   }else{
+    		   main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
+    			core.getLogger().warning("Invalid rotation angle for schematic: "+"\""+f+"\"");
+    			core.getLogger().warning("Valid angles are: 0, 90, 180, 270, 360");
+
+    	   }
+       }
+      
      } catch (Exception e) {
        e.printStackTrace();
      }
+     
+   
+     
      	if (exair == false) {
     	cc.paste(es, v, false); 
      	}else {
      	cc.paste(es, v, true); 	
      	}
      
-     
+ 
      return true;
    
    }

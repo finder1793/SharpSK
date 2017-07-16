@@ -18,12 +18,15 @@ public class CTickTimerThread extends Thread{
 	private String Tname;
 	private boolean active;
 	private int Countdown;
+	private int timetointv;
+	private int interv;
 	private boolean paused;
 	
-	public CTickTimerThread(String name, int ticks, Boolean activeT){
+	public CTickTimerThread(String name, int ticks, Boolean activeT, int interval){
 		this.active = activeT;
 		this.ticks = ticks;
-		this.Tname = name;			
+		this.Tname = name;
+		this.interv = interval;
 	}
 	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "TTickcache.yml");
 	YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
@@ -37,7 +40,11 @@ public class CTickTimerThread extends Thread{
 		
 		this.instance().Countdown = ticks +1;
 		this.setName(Tname);
-	
+		if (this.instance().Countdown < interv){
+			this.interv = 0;
+		}else{
+			timetointv = -1;
+		}
 
 		
 			
@@ -50,6 +57,10 @@ public class CTickTimerThread extends Thread{
 		             }
 				 }
 			Countdown--;
+			if (interv > 0){
+				timetointv++;
+					
+				}
 			if (active == true){
 				
 			
@@ -63,7 +74,14 @@ public class CTickTimerThread extends Thread{
 
 				}
 			}
-			scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));
+			if (interv > 0){
+				if (timetointv >= interv){
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));
+				timetointv = 0;
+				}
+			}else{
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));	
+			}
 				CTickTimerThread.sleep(50);		
 		}
 		
@@ -90,6 +108,23 @@ public class CTickTimerThread extends Thread{
 			this.instance().interrupt();
 		}
 	}
+
+	
+	
+	
+	
+	
+	//Method Calls:
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void addTime(int time){
 		this.instance().Countdown = this.instance().Countdown + time;
 	}

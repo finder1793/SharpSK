@@ -17,6 +17,7 @@ public class EffTimerCreate extends Effect {
 	private Expression<String> s;
 	private Expression<Timespan> duration;
 	private Expression<Boolean> active;
+	private Expression<Timespan> interval;
 	int task;
 	int mark;
 
@@ -27,6 +28,7 @@ public class EffTimerCreate extends Effect {
 		s = (Expression<String>) expr[0];
 		duration = (Expression<Timespan>) expr[1];
 		active = (Expression<Boolean>) expr[2];
+		interval = (Expression<Timespan>) expr[3];
 		this.mark = result.mark;
 		return true;
 	}
@@ -59,36 +61,69 @@ public class EffTimerCreate extends Effect {
 		if (exist != true){
 	if (mark == -1){		
 	if (active == null)	{
-		CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
-		th.instance().start();
+		
+		if (interval != null){
+			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,interval.getSingle(e).getTicks()/20);
+			th.instance().start();
+				}else{
+			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,0);	
+			th.instance().start();
+				}
 	}else {
 	if (active.getSingle(e) == false){
-	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, false);
+		
+		if (interval != null){
+	CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,interval.getSingle(e).getTicks()/20);
 	th.instance().start();
+		}else{
+	CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,0);	
+	th.instance().start();
+		}
+	
 	}else if (active.getSingle(e) == true){
-	CTimerThread th = new CTimerThread(s.getSingle(e),duration.getSingle(e).getTicks()/20, true);
-	th.instance().start();
+		if (interval != null){
+			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, true,interval.getSingle(e).getTicks()/20);
+			th.instance().start();
+				}else{
+			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, true,0);	
+			th.instance().start();
+				}
 	}
 }
 		
 	}else if(mark == 1){
 		if (active == null)	{
-			CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false);
+			if (interval != null){
+			CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,(int)interval.getSingle(e).getTicks_i());
 			th.instance().start();
+			}else{
+				CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,0);
+				th.instance().start();	
+			}
 		}else {
 		if (active.getSingle(e) == false){
-		CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false);
-		th.instance().start();
+			if (interval != null){
+				CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,(int)interval.getSingle(e).getTicks_i());
+				th.instance().start();
+				}else{
+					CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,0);
+					th.instance().start();	
+				}
 		}else if (active.getSingle(e) == true){
-		CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), true);
-		th.instance().start();
+			if (interval != null){
+				CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), true,(int)interval.getSingle(e).getTicks_i());
+				th.instance().start();
+				}else{
+					CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), true,0);
+					th.instance().start();	
+				}
 		}
 	}
 	}
 	
 	}else{
 		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-		core.getLogger().warning("Timer "+ s.getSingle(e) + " could not be created because a timer with the same name is already running.");
+		core.getLogger().warning("Timer "+"\"" +s.getSingle(e)+"\"" + " could not be created because a timer already exists with that name.");
 	}
 	
 		

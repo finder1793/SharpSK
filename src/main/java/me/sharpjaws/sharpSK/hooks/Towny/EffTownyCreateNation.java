@@ -59,7 +59,7 @@ public class EffTownyCreateNation extends Effect {
 			if (bal != null) {
 					nation.setBalance(bal.getSingle(e).doubleValue(), "Nation Creation");	
 			}else{
-				nation.setBalance(bal.getSingle(e).doubleValue(), "Nation Creation");	
+				nation.setBalance(0, "Nation Creation");	
 			}
 			TownyUniverse.getDataSource().saveTown(town);
 			TownyUniverse.getDataSource().saveNation(nation);
@@ -69,7 +69,7 @@ public class EffTownyCreateNation extends Effect {
 		} catch (NotRegisteredException ex1) {
 	core.getLogger().warning("Could not register nation: " + "\""+nat.getSingle(e)+"\"");
 		} catch (AlreadyRegisteredException ex2) {
-	core.getLogger().warning("Could not register nation: " + "\""+nat.getSingle(e)+"\""+ " Nation already exists");
+	core.getLogger().warning("Could not register nation: " + "\""+nat.getSingle(e)+"\""+ ". Nation already exists in town");
 		} catch (EconomyException ex3) {
 	core.getLogger().warning("Could not register nation: " + "\""+nat.getSingle(e)+"\"");
 		}

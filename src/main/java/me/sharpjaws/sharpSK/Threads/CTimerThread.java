@@ -18,13 +18,18 @@ public class CTimerThread extends Thread{
 	private String Tname;
 	private boolean active;
 	private int Countdown;
+	private int timetointv;
+	private int interv;
 	private boolean paused;
 	
-	public CTimerThread(String name, int seconds, Boolean activeT){
+	public CTimerThread(String name, int seconds, Boolean activeT,int interval){
 		this.active = activeT;
 		this.secs = seconds;
 		this.Tname = name;			
+		this.interv = interval;
+	
 	}
+	
 	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
 	YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
 	 BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
@@ -34,10 +39,13 @@ public class CTimerThread extends Thread{
 	@Override
     public void run() {
 		
-		
 		this.instance().Countdown = secs +1;
 		this.setName(Tname);
-	
+		if (this.instance().Countdown < interv){
+			this.interv = 0;
+		}else{
+			timetointv = -1;
+		}
 		
 		try {
 		Map<String, Integer> timer = new HashMap<String,Integer>();
@@ -48,6 +56,10 @@ public class CTimerThread extends Thread{
 	             }
 			 }
 			Countdown--;
+			if (interv > 0){
+			timetointv++;
+				
+			}
 			if (active == true){
 				
 			
@@ -61,14 +73,17 @@ public class CTimerThread extends Thread{
 
 				}
 			}
-			scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));
+			if (interv > 0){
+				if (timetointv >= interv){
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));
+				timetointv = 0;
+				}
+			}else{
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));	
+			}
+			
 				CTimerThread.sleep(1000);		
 		}
-		
-		
-	
-
-		
 		scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 2));
 		if (active == true){
 			
@@ -89,6 +104,24 @@ public class CTimerThread extends Thread{
 		}
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Method Calls:
+	
+	
+	
 	public void addTime(int time){
 		this.instance().Countdown = this.instance().Countdown + time;
 	}

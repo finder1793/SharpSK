@@ -288,10 +288,10 @@ public class TownyRegistry {
 		Skript.registerEffect(EffTownyCreateTown.class, "[sharpsk] [towny] create town %string% at %location% [with [bank] balance %-number%] [[and] with mayor %-offlineplayer%] [and residents %-offlineplayers%]");
 		Skript.registerEffect(EffTownyDeleteTown.class, "[sharpsk] [towny] delete town %string%");
 		Skript.registerEffect(EffTownyRenameTown.class, "[sharpsk] [towny] rename town %string% to %string%");
-		Skript.registerEffect(EffTownyKickPlayerFromTown.class, "[sharpsk] [towny] kick %offlineplayer% from [town] %string%");
-		Skript.registerEffect(EffTownyAddPlayerToTown.class, "[sharpsk] [towny] Add %offlineplayer% to [town] %string%");
+		Skript.registerEffect(EffTownyKickPlayerFromTown.class, "[sharpsk] [towny] kick %offlineplayer% from town %string%");
+		Skript.registerEffect(EffTownyAddPlayerToTown.class, "[sharpsk] [towny] add %offlineplayer% to [town] %string%");
 		Skript.registerEffect(EffTownyCreateNation.class, "[sharpsk] [towny] create nation %string% (of|in) town %string% [with [bank] balance %-number%]");
-		Skript.registerEffect(EffTownyKickPlayerFromNation.class, "[sharpsk] [towny] kick %offlineplayer% from town %string%");
+		Skript.registerEffect(EffTownyKickPlayerFromNation.class, "[sharpsk] [towny] kick %offlineplayer% from nation %string%");
 		Skript.registerEffect(EffTownyAddPlayerToNation.class, "[towny] add %offlineplayer% to nation %string%");
 		
 	}
