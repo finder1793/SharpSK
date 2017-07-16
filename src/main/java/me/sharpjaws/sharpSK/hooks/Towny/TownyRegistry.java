@@ -267,10 +267,6 @@ public class TownyRegistry {
 					}
 				}, 0);
 		Skript.registerEvent("Towny Town Block Settings Change", SimpleEvent.class,TownBlockSettingsChangedEvent.class, "[towny] town block settings chang(e|ed)");
-
-		
-		//Towny Effects:
-		
 		
 		
 		//Towny Expressions:
@@ -285,6 +281,8 @@ public class TownyRegistry {
 		Skript.registerExpression(ExprTownyTownBlocktypeAtLocation.class, TownBlockType.class, ExpressionType.SIMPLE, "[sharpsk] [towny] [town] (block|plot)type at %location%");
 		Skript.registerExpression(ExprTownyEventTown.class, String.class, ExpressionType.SIMPLE, "event-town");	
 		Skript.registerExpression(ExprTownyEventNation.class, String.class, ExpressionType.SIMPLE, "event-nation");
+			
+		//Towny Effects:
 		Skript.registerEffect(EffTownyCreateTown.class, "[sharpsk] [towny] create town %string% at %location% [with [bank] balance %-number%] [[and] with mayor %-offlineplayer%] [and residents %-offlineplayers%]");
 		Skript.registerEffect(EffTownyDeleteTown.class, "[sharpsk] [towny] delete town %string%");
 		Skript.registerEffect(EffTownyRenameTown.class, "[sharpsk] [towny] rename town %string% to %string%");
