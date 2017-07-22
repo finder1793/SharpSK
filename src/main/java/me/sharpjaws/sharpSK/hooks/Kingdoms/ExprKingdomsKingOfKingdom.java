@@ -2,6 +2,8 @@ package me.sharpjaws.sharpSK.hooks.Kingdoms;
 
 import javax.annotation.Nullable;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 import org.kingdoms.constants.kingdom.Kingdom;
 import org.kingdoms.manager.game.GameManagement;
@@ -11,14 +13,14 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprKingOfKingdom extends SimpleExpression<String>{
+public class ExprKingdomsKingOfKingdom extends SimpleExpression<OfflinePlayer>{
 
 	private GameManagement kman;
 	private Expression<String> kingdom;
 	
 	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
+	public Class<? extends OfflinePlayer> getReturnType() {
+		return OfflinePlayer.class;
 	}
 
 	@Override
@@ -40,18 +42,18 @@ public class ExprKingOfKingdom extends SimpleExpression<String>{
 
 	@Override
 	@Nullable
-	protected String[] get(Event e) {
-		String king = null;
+	protected OfflinePlayer[] get(Event e) {
+		OfflinePlayer king = null;
 		try {
 		Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
-		king = kdm.getKingName();
+		king = Bukkit.getOfflinePlayer(kdm.getKing());
 		}catch(NullPointerException ex) {
-			
+			return new OfflinePlayer[] {};
 		}
 		
 		
 		
-		return new String[] {king};
+		return new OfflinePlayer[] {king};
 	}
 
 }

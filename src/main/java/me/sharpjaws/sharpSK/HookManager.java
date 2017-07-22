@@ -235,9 +235,9 @@ public class HookManager {
 						mainp.getLogger().info("Hooked into Kingdoms v" + Bukkit.getPluginManager()
 						.getPlugin("Kingdoms").getDescription().getVersion());
 					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into Kingdoms"+ " Version not supported");
+						mainp.getLogger().warning("Could not hook into Kingdoms."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into Kingdoms"+ " Version not supported");
+						mainp.getLogger().warning("Could not hook into Kingdoms."+ " Version not supported");
 					}
 				}					
 			}

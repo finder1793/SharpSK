@@ -2,6 +2,7 @@ package me.sharpjaws.sharpSK;
 
 import javax.annotation.Nullable;
 
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
 import ch.njol.skript.lang.Effect;
@@ -50,6 +51,7 @@ public class EffTimerResume extends Effect {
 	        
 		}
 		try {
+		try {
 		if (!a.isActive())	{
 		a.resumeTimer(a.getName());
 		}else{
@@ -63,6 +65,10 @@ public class EffTimerResume extends Effect {
 			}else{
 			b.resumeTimer(b.getName());
 			}
+		}
+		}catch(NullPointerException ex){
+			main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
+			core.getLogger().warning("Timer "+ "\"" +timer.getSingle(e)+"\"" + " could not be resumed because it does not exist.");
 		}
 		
 	}

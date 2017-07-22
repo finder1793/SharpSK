@@ -12,7 +12,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprAllKingdoms extends SimpleExpression<String> {
+public class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
 	private GameManagement kman;
 	
 	

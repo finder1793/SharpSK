@@ -48,8 +48,10 @@ import com.codingforcookies.armorequip.ArmorEquipEvent;
 import com.codingforcookies.armorequip.ArmorListener;
 import com.codingforcookies.armorequip.ArmorunEquipEvent;
 import com.codingforcookies.armorequip.ArmorunEquipListener;
+import com.gamingmesh.jobs.stuff.ChatColor;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.SkriptAPIException;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Parser;
 import ch.njol.skript.lang.ExpressionType;
@@ -84,6 +86,7 @@ public static main instance;
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk version "+ org.bukkit.ChatColor.GREEN + " // "+ "Current version of SharpSK");
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk check" + org.bukkit.ChatColor.GREEN + " // "+ "Checks for any new versions");
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk timers" + org.bukkit.ChatColor.GREEN + " // "+ "Count of all running timers");
+						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.YELLOW + "/sharpsk timers list" + org.bukkit.ChatColor.GREEN + " // "+ "list of all running timers");
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.RED+ "====== SharpSK Commands =====");
 						sender.sendMessage("");
 					} else if (args[0].equalsIgnoreCase("version")) {
@@ -122,15 +125,35 @@ public static main instance;
 						}else{
 							sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"There are no running timers active");	
 						}
-					
 					}else
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK]" + org.bukkit.ChatColor.GREEN
 								+ " Use " + org.bukkit.ChatColor.YELLOW + "/sharpsk help" + org.bukkit.ChatColor.GREEN
 								+ " to see all the available commands");
-				} else
-					sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK]" + org.bukkit.ChatColor.GREEN + " Use "
-							+ org.bukkit.ChatColor.YELLOW + "/sharpsk help" + org.bukkit.ChatColor.GREEN
-							+ " to see all the available commands");
+					
+					
+				}else if (args.length == 2) {
+					if (args[0].equalsIgnoreCase("timers") && args[1].equalsIgnoreCase("list")){
+						 
+						ArrayList<String> timers = new ArrayList<String>();
+						for (Thread t : Thread.getAllStackTraces().keySet()) {
+						        if (t instanceof CTimerThread || t instanceof CTickTimerThread) {
+						        	timers.add(t.getName());
+						        }
+						    }
+						if (timers.size() > 0) {
+							sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.RED+ "====== SharpSK Timers =====");
+						for (String timer : timers){
+							sender.sendMessage(ChatColor.YELLOW+timer);
+						}
+						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.RED+ "====== SharpSK Timers =====");
+						}else if (timers.size() == 0){
+							sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"There are no running timers active");	
+						}
+					}else
+						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK]" + org.bukkit.ChatColor.GREEN
+								+ " Use " + org.bukkit.ChatColor.YELLOW + "/sharpsk help" + org.bukkit.ChatColor.GREEN
+								+ " to see all the available commands");
+				}
 			}
 
 		}
@@ -182,8 +205,9 @@ public static main instance;
 	
 
 		if (Bukkit.getPluginManager().isPluginEnabled(skript)) {
-			if(Skript.isAcceptRegistrations() == true) {
+			try{
 			getLogger().info("Attempting to register Addon...");
+			Skript.checkAcceptRegistrations();
 			Skript.registerAddon(this);
 			getLogger().info("Attempting to register stuff...");
 			
@@ -191,7 +215,7 @@ public static main instance;
 				Skript.registerEvent("Firework Explode", SimpleEvent.class, FireworkExplodeEvent.class,
 						"firework explode");
 			} catch (NoClassDefFoundError ex) {
-				getLogger().info("An error occurred while trying to register an event");
+				getLogger().info("An error occurred while trying to register Firework Explode event");
 			}
 			Skript.registerEvent("Shear", SimpleEvent.class,  PlayerShearEntityEvent.class,"[on] shear");
 			Skript.registerEvent("Transfer", SimpleEvent.class,  InventoryMoveItemEvent.class,"[on] transfer");
@@ -620,8 +644,9 @@ public static main instance;
 						
 					}
 			}
+				getLogger().warning("Loading Complete!");
 				
-			}else{
+			}catch (SkriptAPIException ex){
 				getLogger().warning("Error: Unable to register the addon and the features");
 				getLogger().warning("Error: Skript is not allowing registerations.");
 				Bukkit.getPluginManager().disablePlugin(this);

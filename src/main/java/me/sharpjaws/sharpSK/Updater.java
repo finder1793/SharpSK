@@ -16,8 +16,10 @@ public class Updater {
            result = v;
         }
         catch (MalformedURLException e) {
+        	return result;
       }
         catch (IOException e) {
+        	return result;
        }
         return result;
     }

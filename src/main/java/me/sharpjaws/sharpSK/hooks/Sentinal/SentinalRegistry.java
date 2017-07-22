@@ -3,6 +3,7 @@ package me.sharpjaws.sharpSK.hooks.Sentinal;
 import javax.annotation.Nullable;
 
 import org.bukkit.entity.Entity;
+import org.mcmonkey.sentinel.SentinelPlugin;
 import org.mcmonkey.sentinel.events.SentinelAttackEvent;
 
 import ch.njol.skript.Skript;
@@ -32,7 +33,6 @@ public class SentinalRegistry {
 						return st;
 					}
 				}, 0);
-		
 	}
 	
 }

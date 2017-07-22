@@ -2,6 +2,8 @@ package me.sharpjaws.sharpSK.hooks.Kingdoms;
 
 import javax.annotation.Nullable;
 
+import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.kingdoms.events.KingdomCreateEvent;
 import org.kingdoms.events.KingdomDeleteEvent;
@@ -113,11 +115,33 @@ public class KingdomsRegistry {
 				}, 0);
 		
 		//Kingdoms Expressions
-		Skript.registerExpression(ExprKingOfKingdom.class, String.class, ExpressionType.SIMPLE, "[kingdoms] king of [kingdom] %string%");
-		Skript.registerExpression(ExprRPOfKingdom.class, Number.class, ExpressionType.SIMPLE, "[kingdoms] (RP|resource[ ]points) of [kingdom] %string%");
-		Skript.registerExpression(ExprAllKingdoms.class, String.class, ExpressionType.SIMPLE, "[kingdoms] (all|the) kingdoms");
-		//Kingdoms Effects:
+		Skript.registerExpression(ExprKingdomsKingOfKingdom.class, OfflinePlayer.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] king of [kingdom] %string%");
+		Skript.registerExpression(ExprKingdomsMembersOfKingdom.class, OfflinePlayer.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] members (of|in) kingdom %string%");
+		Skript.registerExpression(ExprKingdomsEnemiesOfKingdom.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] enemies of kingdom %string%");
+		Skript.registerExpression(ExprKingdomsAlliesOfKingdom.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] allies of kingdom %string%");
+		Skript.registerExpression(ExprKingdomsMaxMembersInKingdom.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] (max[imum]|amount of) members (allowed in|limit of) kingdom %string%");
+		Skript.registerExpression(ExprKingdomsRPOfKingdom.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] (RP|resource[ ]points) of [kingdom] %string%");
+		Skript.registerExpression(ExprKingdomsMightOfKingdom.class, Number.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] might of [kingdom] %string%");
+		Skript.registerExpression(ExprKingdomsAllKingdoms.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] (all|the) kingdoms");
+		Skript.registerExpression(ExprKingdomsLoreOfKingdom.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] lore of kingdom %string%");
+		Skript.registerExpression(ExprKingdomsNexusLocOfKingdom.class, Location.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] nexus loc[ation] of kingdom %string%");
+		Skript.registerExpression(ExprKingdomsHomeLocOfKingdom.class, Location.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] home loc[ation] of kingdom %string%");
+	
 		
+		
+		//Kingdoms Effects:
+		Skript.registerEffect(EffKingdomsKingdomDelete.class, "[sharpsk] [kingdoms] remove kingdom %string%");
+		Skript.registerEffect(EffKingdomsKingdomMakeEnemy.class, "[sharpsk] [kingdoms] make kingdom %string% enemy of kingdom %string%");
+		Skript.registerEffect(EffKingdomsKingdomMakeAlly.class, "[sharpsk] [kingdoms] make kingdom %string% ally of kingdom %string%");
+		Skript.registerEffect(EffKingdomsKingdomCreate.class, "[sharpsk] [kingdoms] create kingdom %string% [with] king %player%");
+		Skript.registerEffect(EffKingdomsKingdomAddMember.class, "[sharpsk] [kingdoms] add member %offlineplayer% to kingdom %string%");
+		Skript.registerEffect(EffKingdomsKingdomGiveShield.class, "[sharpsk] [kingdoms] give [a] shield to kingdom %string%");
+		Skript.registerEffect(EffKingdomsKingdomRemoveShield.class, "[sharpsk] [kingdoms] remove shield from kingdom %string%");
+		
+		
+		//Kingdoms Conditions:
+		Skript.registerCondition(CondKingdomsKingdomIsOnline.class, "[sharpsk] [kingdoms] kingdom %string% (0¦is|1¦is (not)) online");
+		Skript.registerCondition(CondKingdomsKingdomHasShield.class, "[sharpsk] [kingdoms] kingdom %string% (0¦has|1¦doesn[']t (have|has)) [a] shield");
 	}
 	
 }
