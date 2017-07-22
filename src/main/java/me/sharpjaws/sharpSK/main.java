@@ -143,7 +143,7 @@ public static main instance;
 						if (timers.size() > 0) {
 							sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.RED+ "====== SharpSK Timers =====");
 						for (String timer : timers){
-							sender.sendMessage(ChatColor.YELLOW+timer);
+							sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ChatColor.YELLOW+timer);
 						}
 						sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+org.bukkit.ChatColor.RED+ "====== SharpSK Timers =====");
 						}else if (timers.size() == 0){

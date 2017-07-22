@@ -5,13 +5,10 @@ import javax.annotation.Nullable;
 import org.bukkit.event.Event;
 
 import com.palmergames.bukkit.towny.event.DeleteNationEvent;
-import com.palmergames.bukkit.towny.event.DeleteTownEvent;
+import com.palmergames.bukkit.towny.event.NationAddTownEvent;
+import com.palmergames.bukkit.towny.event.NationRemoveTownEvent;
 import com.palmergames.bukkit.towny.event.NewNationEvent;
-import com.palmergames.bukkit.towny.event.NewTownEvent;
 import com.palmergames.bukkit.towny.event.RenameNationEvent;
-import com.palmergames.bukkit.towny.event.RenameTownEvent;
-import com.palmergames.bukkit.towny.event.TownAddResidentEvent;
-import com.palmergames.bukkit.towny.event.TownRemoveResidentEvent;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
@@ -39,7 +36,11 @@ public class ExprTownyEventNation extends SimpleExpression<String> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(RenameNationEvent.class) && !ScriptLoader.isCurrentEvent(DeleteNationEvent.class)&& !ScriptLoader.isCurrentEvent(NewNationEvent.class)) {
+		if (!ScriptLoader.isCurrentEvent(RenameNationEvent.class) 
+				&& !ScriptLoader.isCurrentEvent(DeleteNationEvent.class)
+				&& !ScriptLoader.isCurrentEvent(NewNationEvent.class)
+				&& !ScriptLoader.isCurrentEvent(NationAddTownEvent.class)
+				&& !ScriptLoader.isCurrentEvent(NationRemoveTownEvent.class)) {
 			return false ;		
 		}
 		return true;
@@ -50,12 +51,14 @@ public class ExprTownyEventNation extends SimpleExpression<String> {
 	protected String[] get(Event e) {
 	if (e.getEventName().equals("RenameNationEvent")){	
 		return new String[]{((RenameNationEvent) e).getNation().getName()};	
-	}else if (e.getEventName().equals("DeleteTownEvent")){
+	}else if (e.getEventName().equals("DeleteNationEvent")){
 		return new String[]{((DeleteNationEvent) e).getNationName()};
-		
-	}else if (e.getEventName().equals("NewTownEvent")){
-		return new String[]{((NewNationEvent) e).getNation().getName()};
-		
+	}else if (e.getEventName().equals("NewNationEvent")){
+		return new String[]{((NewNationEvent) e).getNation().getName()};	
+	}else if (e.getEventName().equals("NationAddTownEvent")){
+		return new String[]{((NationAddTownEvent) e).getNation().getName()};	
+	}else if (e.getEventName().equals("NationRemoveTownEvent")){
+		return new String[]{((NationRemoveTownEvent) e).getNation().getName()};	
 	}
 		return null; 
 	}

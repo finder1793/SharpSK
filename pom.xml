@@ -152,11 +152,6 @@
 			<artifactId>glowapi</artifactId>
 			<version>1.4.4</version>
 		</dependency>
-		<dependency>
-			<groupId>net.citizensnpcs</groupId>
-			<artifactId>citizens</artifactId>
-			<version>2.0.18-SNAPSHOT</version>
-		</dependency>
 
 		<dependency>
 			<groupId>com.palmergames</groupId>
@@ -268,14 +263,6 @@
 			<version>1.10.0</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/LogBlock-1.10.0.jar</systemPath>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mcmonkey</groupId>
-			<artifactId>sentinel</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/sentinel-1.0.jar</systemPath>
 		</dependency>
 
 		<dependency>

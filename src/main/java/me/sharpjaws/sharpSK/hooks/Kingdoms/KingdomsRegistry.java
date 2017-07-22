@@ -92,6 +92,16 @@ public class KingdomsRegistry {
 						return k;
 					}
 				}, 0);
+		EventValues.registerEventValue( KingdomPlayerLostEvent.class, Player.class,
+				new Getter<Player,  KingdomPlayerLostEvent>() {
+					@Override
+					@Nullable
+					public Player get( KingdomPlayerLostEvent e) {
+						Player p = e.getChallenger().getPlayer();
+						return p;
+					}
+				}, 0);
+		
 		Skript.registerEvent("Kingdoms Player Win" , SimpleEvent.class, KingdomPlayerWonEvent.class, "[kingdoms] champion [player] (win|victory)");
 		EventValues.registerEventValue( KingdomPlayerWonEvent.class, String.class,
 				new Getter<String,  KingdomPlayerWonEvent>() {
@@ -100,6 +110,15 @@ public class KingdomsRegistry {
 					public String get( KingdomPlayerWonEvent e) {
 						String k = e.getLostKingdom().getKingdomName();
 						return k;
+					}
+				}, 0);
+		EventValues.registerEventValue( KingdomPlayerWonEvent.class, Player.class,
+				new Getter<Player,  KingdomPlayerWonEvent>() {
+					@Override
+					@Nullable
+					public Player get( KingdomPlayerWonEvent e) {
+						Player p = e.getChallenger().getPlayer();
+						return p;
 					}
 				}, 0);
 		
@@ -113,8 +132,10 @@ public class KingdomsRegistry {
 						return k;
 					}
 				}, 0);
+
 		
 		//Kingdoms Expressions
+		Skript.registerExpression(ExprKingdomsKingdomOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] [kingdom] of %offlineplayer%");
 		Skript.registerExpression(ExprKingdomsKingOfKingdom.class, OfflinePlayer.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] king of [kingdom] %string%");
 		Skript.registerExpression(ExprKingdomsMembersOfKingdom.class, OfflinePlayer.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] members (of|in) kingdom %string%");
 		Skript.registerExpression(ExprKingdomsEnemiesOfKingdom.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [kingdoms] enemies of kingdom %string%");
@@ -140,7 +161,7 @@ public class KingdomsRegistry {
 		
 		
 		//Kingdoms Conditions:
-		Skript.registerCondition(CondKingdomsKingdomIsOnline.class, "[sharpsk] [kingdoms] kingdom %string% (0¦is|1¦is (not)) online");
+		Skript.registerCondition(CondKingdomsKingdomIsOnline.class, "[sharpsk] [kingdoms] kingdom %string% (0¦is|1¦is not) online");
 		Skript.registerCondition(CondKingdomsKingdomHasShield.class, "[sharpsk] [kingdoms] kingdom %string% (0¦has|1¦doesn[']t (have|has)) [a] shield");
 	}
 	

@@ -13,7 +13,6 @@ import me.sharpjaws.sharpSK.hooks.LogBlock.LogBlockRegistry;
 import me.sharpjaws.sharpSK.hooks.Multiverse.MultiverseRegistry;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.MythicMobsRegistry;
 import me.sharpjaws.sharpSK.hooks.PermissionsEx.PermissionsExRegistry;
-import me.sharpjaws.sharpSK.hooks.Sentinal.SentinalRegistry;
 import me.sharpjaws.sharpSK.hooks.Towny.TownyRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldEdit.WorldEditRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldGuard.WorldGuardRegistry;
@@ -212,19 +211,6 @@ public class HookManager {
 						mainp.getLogger().warning("Could not hook into Towny."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
 						mainp.getLogger().warning("Could not hook into Towny."+ " Version not supported");
-					}
-				}					
-			}
-			if (Bukkit.getPluginManager().isPluginEnabled("Sentinal")) {
-				if (mainp.getConfig().getBoolean("sentinal") == true) {
-					try {
-					SentinalRegistry.RegisterSentinal();
-						mainp.getLogger().info("Hooked into Sentinal v" + Bukkit.getPluginManager()
-						.getPlugin("Sentinal").getDescription().getVersion());
-					} catch (Exception ex) {
-						mainp.getLogger().warning("Could not hook into Sentinal."+ " Version not supported");
-					} catch (NoClassDefFoundError e){
-						mainp.getLogger().warning("Could not hook into Sentinal."+ " Version not supported");
 					}
 				}					
 			}

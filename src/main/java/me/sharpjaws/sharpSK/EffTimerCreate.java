@@ -46,7 +46,6 @@ public class EffTimerCreate extends Effect {
 			
 		
 	        if (t instanceof CTimerThread && t.isAlive()) {
-	        	System.out.println(t.getName()+" THREADID: "+ t.getId());
 	        	CTimerThread ti = (CTimerThread)t;
 	        	if (ti.getName().equals(timer)){	
 	        		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
@@ -54,7 +53,6 @@ public class EffTimerCreate extends Effect {
 	        		return;
 	        	}
 	        }else if (t instanceof CTickTimerThread && t.isAlive()) {
-	        	System.out.println(t.getName()+" THREADID: "+ t.getId());
 	        	CTickTimerThread ti = (CTickTimerThread)t;
 	        	if (ti.getName().equals(timer)){	
 	        		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");

@@ -1,16 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
 
-import java.util.ArrayList;
-
 import javax.annotation.Nullable;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.palmergames.bukkit.towny.exceptions.EconomyException;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
-import com.palmergames.bukkit.towny.object.Town;
+import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 
 import ch.njol.skript.classes.Changer;
@@ -20,15 +18,15 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 
-public class ExprTownyTownBalance extends SimpleExpression<Number> {
+public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
 
-	
 	
 	private Expression<String> town;
+	
 
 	@Override
-	public Class<? extends Number> getReturnType() {
-		return Number.class;
+	public Class<? extends OfflinePlayer> getReturnType() {
+		return OfflinePlayer.class;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -40,20 +38,7 @@ public class ExprTownyTownBalance extends SimpleExpression<Number> {
 	}
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [towny] balance of town %string%";
-	}
-
-
-	@Override
-	@Nullable
-	protected Number[] get(Event e) {
-	try {
-		return new Number[] {TownyUniverse.getDataSource().getTown(town.getSingle(e)).getHoldingBalance()};
-	} catch (NotRegisteredException e1) {
-		return new Number[]{0};
-	} catch (EconomyException e1) {
-	return new Number[]{0};
-	}	
+		return "[sharpsk] [towny] mayor of town %string%";
 	}
 
 	@Override
@@ -62,19 +47,22 @@ public class ExprTownyTownBalance extends SimpleExpression<Number> {
 	}
 
 	@Override
+	@Nullable
+	protected OfflinePlayer[] get(Event e) {
+		try {
+			return new OfflinePlayer[]{Bukkit.getOfflinePlayer(TownyUniverse.getPlayer(TownyUniverse.getDataSource().getTown(town.getSingle(e)).getMayor()).getUniqueId())};
+		} catch (TownyException e1) {
+			return new OfflinePlayer[]{};
+		}
+
+			}
+
+	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
-				TownyUniverse.getDataSource().getTown(town.getSingle(e)).setBalance(((Number)delta[0]).doubleValue(), "Server");
-				
-			}catch (NullPointerException ex){
-				ex.printStackTrace();
-				return;
-			} catch (NotRegisteredException ex2) {	
-				ex2.printStackTrace();
-				return;
-			} catch (EconomyException ex3) {
-				ex3.printStackTrace();
+				TownyUniverse.getDataSource().getTown(town.getSingle(e)).setMayor(TownyUniverse.getDataSource().getResident(((OfflinePlayer)delta[0]).getName()));
+			} catch (TownyException e1) {
 			return;
 			}
 		}
@@ -82,11 +70,10 @@ public class ExprTownyTownBalance extends SimpleExpression<Number> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(new Class[] { OfflinePlayer.class });
 	}
 		return null;
 	}
-
 	
 
 }

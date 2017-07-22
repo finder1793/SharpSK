@@ -7,16 +7,20 @@ import javax.annotation.Nullable;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.kingdoms.constants.kingdom.Kingdom;
+import org.kingdoms.manager.game.GameManagement;
 
 import com.palmergames.bukkit.towny.exceptions.EconomyException;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.Town;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 
+import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import ch.njol.util.coll.CollectionUtils;
 
 public class ExprTownyNationBalance extends SimpleExpression<Number> {
 
@@ -33,6 +37,7 @@ public class ExprTownyNationBalance extends SimpleExpression<Number> {
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult Result) {
+		nation = (Expression<String>) expr[0];
 		return true;
 	}
 	@Override
@@ -56,6 +61,31 @@ public class ExprTownyNationBalance extends SimpleExpression<Number> {
 	@Override
 	public boolean isSingle() {
 		return true;
+	}
+	@Override
+	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+		if (mode == Changer.ChangeMode.SET) {
+			try {
+				TownyUniverse.getDataSource().getNation(nation.getSingle(e)).setBalance(((Number)delta[0]).doubleValue(), null);
+				
+			}catch (NullPointerException ex){
+				ex.printStackTrace();
+				return;
+			} catch (NotRegisteredException ex2) {		
+				ex2.printStackTrace();
+				return;
+			} catch (EconomyException ex3) {
+				ex3.printStackTrace();
+			return;
+			}
+		}
+	}
+	@Override
+	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+		if (mode == Changer.ChangeMode.SET) {
+			return CollectionUtils.array(new Class[] { Number.class });
+	}
+		return null;
 	}
 
 	
