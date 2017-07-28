@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.sharpjaws.SharpSK</groupId>
 	<artifactId>SharpSK</artifactId>
-	<version>1.6.2.1-SNAPSHOT</version>
+	<version>1.6.2.2-SNAPSHOT</version>
 	<name>SharpSK</name>
 	<description>A addon made for automating your favourite plugins.</description>
 	<url>https://github.com/Sharpjaws/SharpSK</url>
@@ -73,6 +73,12 @@
 			<id>epiceric-repo</id>
 			<url>https://epicericee.github.io/ShopChest/maven/</url>
 		</repository>
+		
+		
+   		 <repository>
+			<id>luck-repo</id>
+			<url>https://repo.lucko.me/</url>
+   		 </repository>
 
 	</repositories>
 
@@ -138,9 +144,6 @@
 			<version>1.23.2-SNAPSHOT</version>
 		</dependency>
 
-
-
-
 		<dependency>
 			<groupId>com.gmail.nossr50</groupId>
 			<artifactId>mcmmo</artifactId>
@@ -158,6 +161,12 @@
 			<artifactId>Towny</artifactId>
 			<version>0.91.1.0</version>
 		</dependency>
+
+ 		 <dependency>
+       		 <groupId>me.lucko.luckperms</groupId>
+       		 <artifactId>luckperms-api</artifactId>
+       		 <version>3.2</version>
+    	</dependency>
 
 
 		<dependency>

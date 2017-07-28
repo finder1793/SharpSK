@@ -1,7 +1,7 @@
 name: SharpSK
 author: Sharpjaws
 description: A addon made for automating your favourite plugins.
-version: 1.6.2.1
+version: 1.6.2.2
 main: me.sharpjaws.sharpSK.main
 depend: [Skript]
 softdepend: [LightAPI, Jobs, AuthMe, MythicMobs, PermissionsEx, ExertSK, SkRambled, Umbaska,PirateSK, mcMMO, uCars, Multiverse-Core, WorldEdit, WorldGuard, LogBlock, Towny, Kingdoms, Citizens, Sentinal]
