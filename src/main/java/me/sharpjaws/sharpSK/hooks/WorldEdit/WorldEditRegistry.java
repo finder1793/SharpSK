@@ -10,7 +10,7 @@ public class WorldEditRegistry {
 	        if (Bukkit.getServer().getPluginManager().getPlugin("WorldEdit") != null) {
 	        	//PirateSK merged features
 	        	if (Bukkit.getPluginManager().getPlugin("PirateSK") != null){
-	        	  Skript.registerEffect(EffPasteSchematic.class, new String[] { "sharpsk paste schematic %string% at %location% [exclude air %-boolean%] [facing [(-1¦north|1¦east|2¦south|3¦west)]]" }); 
+	        	  Skript.registerEffect(EffPasteSchematic.class, new String[] { "sharpsk paste schematic %string% at %location% [exclude air %-boolean%] [rotate [by] %-number% [degrees]]" }); 
 	        	}else{
 	        		  Skript.registerEffect(EffPasteSchematic.class, new String[] { "[sharpsk] paste schematic %string% at %location% [exclude air %-boolean%] [rotate [by] %-number% [degrees]]" }); 
 	        	}
