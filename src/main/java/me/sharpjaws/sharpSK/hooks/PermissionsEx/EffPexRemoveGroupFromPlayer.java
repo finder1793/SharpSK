@@ -11,7 +11,7 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-public class EffPexRemovegroup extends Effect {
+public class EffPexRemoveGroupFromPlayer extends Effect {
 	private Expression<String> s;
 	private Expression<Player> player;
 

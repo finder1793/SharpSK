@@ -9,17 +9,17 @@ public class PermissionsExRegistry {
 	
 	public static void registerPermissionsEx() {
 		Skript.registerEffect(EffRemovePexPerm.class,
-				"pex (remove|delete) permission %string% from %players%");
+				"pex (remove|delete) perm[ission] %string% from %offlineplayers%");
 		Skript.registerEffect(EffGiveTimedPexPerm.class,
-				"pex add timed permission %string% to %players% duration %timespan%");
-		Skript.registerEffect(EffAddPexPerm.class, "pex add permission %string% to %players%");
-		Skript.registerEffect(EffPexAddgroup.class, "pex add group %string% to %players%");
-		Skript.registerEffect(EffPexRemovegroup.class,
+				"pex add timed perm[ission] %string% to %offlineplayers% (duration|for) %timespan%");
+		Skript.registerEffect(EffAddPexPerm.class, "pex add perm[ission] %string% to %offlineplayers%");
+		Skript.registerEffect(EffPexAddgroup.class, "pex add group %string% to %offlineplayers%");
+		Skript.registerEffect(EffPexRemoveGroupFromPlayer.class,
 				"pex (remove|delete) group %string% from %players%");
 		Skript.registerEffect(EffPexAddPermGroup.class,
-				"pex add permission %string% to group %string%");
+				"pex add perm[ission] %string% to group %string%");
 		Skript.registerEffect(EffPexRemovePermGroup.class,
-				"pex (remove|delete) permission %string% from group %string%");
+				"pex (remove|delete) perm[ission] %string% from group %string%");
 		Skript.registerEffect(EffPexAddAGroup.class, "pex create group %string% default %boolean% [with prefix %-string% [and]] [with suffix %-string%]");
 		Skript.registerEffect(EffRemoveAGroup.class, "pex (remove|delete) group %string%");
 		Skript.registerEffect(EffPexRenameGroup.class, "pex rename group %string% to %string%");

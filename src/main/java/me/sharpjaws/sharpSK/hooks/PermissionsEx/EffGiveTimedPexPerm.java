@@ -2,7 +2,7 @@ package me.sharpjaws.sharpSK.hooks.PermissionsEx;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
 import ch.njol.skript.lang.Effect;
@@ -14,34 +14,36 @@ import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class EffGiveTimedPexPerm extends Effect {
-	private Expression<String> string;
-	private Expression<Player> player;
+	private Expression<String> perm;
+	private Expression<OfflinePlayer> offplayers;
 	private Expression<Timespan> time;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult paramParseResult) {
-		string = (Expression<String>) expr[0];
-		player = (Expression<Player>) expr[1];
+		perm = (Expression<String>) expr[0];
+		offplayers = (Expression<OfflinePlayer>) expr[1];
 		time = (Expression<Timespan>) expr[2];
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return " pex add timed permission %string% to %player% duration %timespan%";
+		return "pex add timed perm[ission] %string% to %offlineplayers% (duration|for) %timespan%";
 	}
 
 	@Override
 	protected void execute(Event e) {
-		@SuppressWarnings("deprecation")
-		Integer test = Integer.valueOf(time.getSingle(e).getTicks());
-		PermissionUser permUser = PermissionsEx.getUser(player.getSingle(e));
-		String world = player.getSingle(e).getWorld().getName().toString();
-		permUser.addTimedPermission(string.getSingle(e), world, test.intValue() / 20);
-		if (test.intValue() / 20 == 0) {
-			PermissionsEx.getUser(player.getSingle(e)).removePermission(string.getSingle(e));
-		}
+		
+	if (time.getSingle(e).getTicks_i()/20 > 0){
+	for (OfflinePlayer op : offplayers.getAll(e)){
+		PermissionUser permuser = PermissionsEx.getPermissionManager().getUser(op.getUniqueId());
+		System.out.println("TRIGGER");
+		permuser.addTimedPermission(perm.getSingle(e), permuser.getPlayer().getWorld().getName(), (int)time.getSingle(e).getTicks_i()/20);
+	}
+	}else{
+		return;
+	}
 	}
 }
