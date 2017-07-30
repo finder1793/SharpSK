@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 public class Updater {
-    public static String main() {
+    public static String ucheck() {
     	String result = null;
     	try {
             URL url = new URL("https://raw.githubusercontent.com/Sharpjaws/SharpSK/master/Version.txt");

@@ -37,6 +37,7 @@ import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.PrepareAnvilEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
+import org.bukkit.event.server.RemoteServerCommandEvent;
 import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -103,10 +104,10 @@ public static main instance;
 							}
 							if (update == true){
 								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"A new version has been found!");
-								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN + "Newest version is"+org.bukkit.ChatColor.YELLOW +" v"+Updater.main());
+								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN + "Newest version is"+org.bukkit.ChatColor.YELLOW +" v"+Updater.ucheck());
 								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] "+ org.bukkit.ChatColor.GREEN +"You are still running on"+org.bukkit.ChatColor.RED +" v"+this.getDescription().getVersion());				
 							}
-							Updater.main();
+							Updater.ucheck();
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}
@@ -411,6 +412,15 @@ public static main instance;
 							return s;
 						}
 					}, 0);
+			Skript.registerEvent("Remote Server Command", SimpleEvent.class, RemoteServerCommandEvent.class, "[on] (remote|rcon) (server|console) command");
+			EventValues.registerEventValue(RemoteServerCommandEvent.class, String.class,
+					new Getter<String, RemoteServerCommandEvent>() {
+						@Override
+						public String get(RemoteServerCommandEvent e) {
+							String s = e.getCommand();
+							return s;
+						}
+					}, 0);
 			new ExpChangeListener(this);
 			Skript.registerEvent("Experience Change", SimpleEvent.class, EvtExpChange.class, "[on] exp[erience] change");
 			EventValues.registerEventValue(EvtExpChange.class, Player.class,
@@ -427,6 +437,7 @@ public static main instance;
 							return e.getExp();
 						}
 					}, 0);
+			Skript.registerEffect(EffAttachItemFrameToBlock.class, "attach itemframe to block at %location% facing [the] (0¦north|1¦east|2¦west|3¦south) side of [the] block");
 			Skript.registerEffect(EffBrewerInv.class, "open brewer inventory to %player% [with name %-string%]");
 			Skript.registerEffect(EffHopperInv.class, "open hopper inventory to %player% [with name %-string%]");
 			Skript.registerCondition(CondPlayerIsStandingOn.class, "%entity% is standing on %block%");
@@ -461,10 +472,10 @@ public static main instance;
 				}
 				if (update == true){
 					 getLogger().info("A new version has been found!");
-					 getLogger().info("Newest version is v"+Updater.main());
+					 getLogger().info("Newest version is v"+Updater.ucheck());
 					 getLogger().info("You are still running on v"+this.getDescription().getVersion());				
 				}
-				Updater.main();
+				Updater.ucheck();
 			} catch (Exception e1) {
 				e1.printStackTrace();			
 			}
@@ -547,9 +558,9 @@ public static main instance;
 							}
 						}, 0);
 				Skript.registerExpression(ExprGlowingStateEntity.class, Boolean.class, ExpressionType.SIMPLE,
-						"glowing state of %entity%");
+						"[sharpsk] glowing state of %entity%");
 				Skript.registerExpression(ExprOffhandItem.class, ItemStack.class, ExpressionType.PROPERTY,
-						"%player%'s offhand");
+						"[sharpsk] [item in] %player%'s offhand");
 			}
 		
 			//PirateSK Syntaxes
@@ -713,13 +724,12 @@ public static main instance;
 
 	
 	public Boolean main2() throws Exception {
-		String up = Updater.main(
-				);
+		String up = Updater.ucheck();
 		Boolean check = false;
 		try {
 	    if (!up.equals(this.getDescription().getVersion())){
 	   check = true;
-	}else if (this.getDescription().getVersion().equals(Updater.main())){
+	}else if (this.getDescription().getVersion().equals(Updater.ucheck())){
 	    check = false;
 	}
 	} catch(NullPointerException ex) {

@@ -51,7 +51,6 @@ public class ExprOffhandItem extends SimpleExpression<ItemStack> {
 		if (mode == Changer.ChangeMode.SET) {
 			this.p.getSingle(e).getInventory().setItemInOffHand((ItemStack) delta[0]);
 			Integer a = Integer.valueOf(this.p.getSingle(e).getInventory().getItemInOffHand().getAmount());
-			System.out.println(a + " and " + limit);
 			if (limit.intValue() <= a.intValue()) {
 				this.p.getSingle(e).getInventory().getItemInOffHand().setAmount(64);
 			}
