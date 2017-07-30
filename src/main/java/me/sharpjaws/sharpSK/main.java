@@ -439,7 +439,6 @@ public static main instance;
 							return e.getExp();
 						}
 					}, 0);
-			Skript.registerEffect(EffAttachItemFrameToBlock.class, "attach itemframe to block at %location% facing [the] (0¦north|1¦east|2¦west|3¦south) side of [the] block");
 			Skript.registerEffect(EffBrewerInv.class, "open brewer inventory to %player% [with name %-string%]");
 			Skript.registerEffect(EffHopperInv.class, "open hopper inventory to %player% [with name %-string%]");
 			Skript.registerCondition(CondPlayerIsStandingOn.class, "%entity% is standing on %block%");
