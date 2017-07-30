@@ -15,7 +15,7 @@ public class PermissionsExRegistry {
 		Skript.registerEffect(EffAddPexPerm.class, "pex add perm[ission] %string% to %offlineplayers%");
 		Skript.registerEffect(EffPexAddgroup.class, "pex add group %string% to %offlineplayers%");
 		Skript.registerEffect(EffPexRemoveGroupFromPlayer.class,
-				"pex (remove|delete) group %string% from %players%");
+				"pex (remove|delete) group %string% from %offlineplayers%");
 		Skript.registerEffect(EffPexAddPermGroup.class,
 				"pex add perm[ission] %string% to group %string%");
 		Skript.registerEffect(EffPexRemovePermGroup.class,
