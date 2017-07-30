@@ -76,11 +76,11 @@ public class CTickTimerThread extends Thread{
 			}
 			if (interv > 0){
 				if (timetointv >= interv){
-				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1,2));
 				timetointv = 0;
 				}
 			}else{
-				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1));	
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1,2));	
 			}
 				CTickTimerThread.sleep(50);		
 		}
@@ -89,7 +89,7 @@ public class CTickTimerThread extends Thread{
 	
 
 		
-		scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 2));
+		scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 2,2));
 		if (active == true){
 			
 			timer.put(this.getName(), 0);

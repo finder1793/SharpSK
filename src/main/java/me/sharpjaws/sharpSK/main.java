@@ -61,8 +61,10 @@ import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import ch.njol.skript.util.Timespan;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
+
 
 public class main extends JavaPlugin implements Listener {
 
@@ -604,6 +606,19 @@ public static main instance;
 							@Nullable
 							public String get(EvtTimerTick e) {
 								return e.getTimer();
+							}
+						}, 0);
+				EventValues.registerEventValue(EvtTimerTick.class, Timespan.class,
+						new Getter<Timespan, EvtTimerTick>() {
+							@Override
+							@Nullable
+							public Timespan get(EvtTimerTick e) {
+								if (e.getTimerType() == 1){
+								return Timespan.fromTicks_i(e.getTimeLeft()*20);
+								}else if (e.getTimerType() == 2){
+								return Timespan.fromTicks_i(e.getTimeLeft());
+								}
+								return new Timespan(){};
 							}
 						}, 0);
 				
