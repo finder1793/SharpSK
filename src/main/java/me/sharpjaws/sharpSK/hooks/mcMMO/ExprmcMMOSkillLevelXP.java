@@ -59,13 +59,16 @@ public class ExprmcMMOSkillLevelXP extends SimpleExpression<Number> {
 	if (mode == Changer.ChangeMode.ADD) {
 			
 			Number level = (Number)delta[0];
-			ExperienceAPI.addXP(p.getSingle(e), s.getSingle(e).toString(),level.intValue(),"COMMAND");
+			ExperienceAPI.addRawXP(p.getSingle(e), s.getSingle(e).toString(),level.intValue(),"Command");
 		}
 	if (mode == Changer.ChangeMode.REMOVE) {
 		
 		Number level = (Number)delta[0];
-		
-		ExperienceAPI.removeXP(p.getSingle(e), s.getSingle(e).toString(), level.intValue());
+		if (!(ExperienceAPI.getXP(p.getSingle(e), s.getSingle(e).toString()) <= 0)){
+		ExperienceAPI.removeXP(p.getSingle(e), s.getSingle(e).toString(), +level.intValue());
+		}else{
+			ExperienceAPI.setXP(p.getSingle(e), s.getSingle(e).toString(), 0);	
+		}
 		
 		}
 	}

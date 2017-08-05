@@ -60,7 +60,11 @@
 			<url>https://repo.inventivetalent.org/content/groups/public/</url>
 		</repository>
 
-
+		 <repository>
+            <id>destroystokyo-repo</id>
+            <url>https://repo.destroystokyo.com/repository/maven-public/</url>
+        </repository>
+        
 		<repository>
 			<id>glowAPI-repo</id>
 			<url>http://repo.inventivetalent.org/content/repositories/snapshots/</url>
@@ -75,6 +79,10 @@
 			<url>https://epicericee.github.io/ShopChest/maven/</url>
 		</repository>
 		
+		 <repository>
+            <id>PreciousStones-repos</id>
+            <url>https://mvn.yawk.at/</url>
+        </repository>
 		
    		 <repository>
 			<id>luck-repo</id>
@@ -121,24 +129,21 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>org.spigotmc</groupId>
-			<artifactId>spigot-api</artifactId>
-			<version>1.11.2-R0.1-SNAPSHOT</version>
-		</dependency>
-
+	 <dependency>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.12.1-R0.1-20170805.234057-4</version>
+            <type>jar</type>
+        </dependency>
+		
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
 			<version>1.9.4-R0.1-SNAPSHOT</version>
 			<optional>true</optional>
 		</dependency>
+		
 
-		<dependency>
-			<groupId>ch.njol</groupId>
-			<artifactId>Skript</artifactId>
-			<version>2.2-dev22c</version>
-		</dependency>
 		<dependency>
 			<groupId>ru.tehkode</groupId>
 			<artifactId>PermissionsEx</artifactId>
@@ -168,6 +173,7 @@
        		 <artifactId>luckperms-api</artifactId>
        		 <version>3.2</version>
     	</dependency>
+
 
 
 		<dependency>
@@ -281,6 +287,12 @@
 			<version>13.2.0</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/Kingdoms+-13.2.0-ClassesOnly.jar</systemPath>
+		</dependency>
+
+	<dependency>
+			<groupId>ch.njol</groupId>
+			<artifactId>skript</artifactId>
+			<version>2.2-dev30</version>
 		</dependency>
 
 

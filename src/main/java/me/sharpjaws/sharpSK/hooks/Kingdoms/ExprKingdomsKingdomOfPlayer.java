@@ -35,16 +35,17 @@ public class ExprKingdomsKingdomOfPlayer extends SimpleExpression<String>{
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[kingdoms] king of [kingdom] %string%";
+		return "[sharpsk] [kingdoms] [kingdom] of %offlineplayer%";
 	}
 
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		String kingdom = GameManagement.getPlayerManager().getOfflineKingdomPlayer(p.getSingle(e)).getKingdomName();
+	String kingdom = null;
 		try {
+		kingdom = GameManagement.getPlayerManager().getOfflineKingdomPlayer(p.getSingle(e)).getKingdomName();
 		}catch(NullPointerException ex) {
-			return new String[] {};
+			return null;
 		}
 		
 		
