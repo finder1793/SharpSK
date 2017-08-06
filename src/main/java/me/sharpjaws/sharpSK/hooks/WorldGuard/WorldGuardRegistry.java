@@ -24,7 +24,7 @@ public class WorldGuardRegistry {
 			       Skript.registerEffect(EffRemoveOwner.class,  "[sharpsk] [worldguard] remove owner %players/offlineplayers/strings% [(-1在y name|1在y uuid)] from region %string% in [world] %world%" );
 			       Skript.registerEffect(EffAddMember.class,  "[sharpsk] [worldguard] add member[s] %players/offlineplayers/strings% [(-1在y name|1在y uuid)] to region %string% in [world] %world%" );
 			       Skript.registerEffect(EffRemoveMember.class, "[sharpsk] [worldguard] remove member[s] %players/offlineplayers/strings% [(-1在y name|1在y uuid)] from region %string% in [world] %world%" );
-			       Skript.registerExpression(ExprGetPoint1.class, Location.class, ExpressionType.SIMPLE, "[sharpsk] [(worldguard)] (point|pos[ition])[ ] 1 of region %string% in [world] %world%");
+			       Skript.registerExpression(ExprGetPoint1.class, Location.class, ExpressionType.SIMPLE, "[sharpsk] [worldguard] (point|pos[ition])[ ] 1 of region %string% in [world] %world%");
 			       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE,"[sharpsk] [worldguard] (point|pos[ition])[ ] 2 of region %string% in [world] %world%");
 			       Skript.registerExpression(ExprRegionAt.class, String.class, ExpressionType.SIMPLE, "sharpsk [worldguard] region at %location%" );
 			       Skript.registerExpression(ExprAllRegionsInWorld.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [all] [worldguard] regions in %world%" );
