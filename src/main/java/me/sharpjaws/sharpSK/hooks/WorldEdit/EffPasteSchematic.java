@@ -78,7 +78,11 @@ public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, Skript
     		 }
 
      } catch (Exception e) {
-       e.printStackTrace();
+    	 try {
+			paste(name, loc, exair,SchemFacingDirection.NORTH);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
      }
    }
    
