@@ -1,28 +1,32 @@
  package me.sharpjaws.sharpSK.hooks.WorldGuard;
  
- import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+ import java.util.Map.Entry;
 
 import javax.annotation.Nullable;
+
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.Event;
+import org.bukkit.plugin.java.JavaPlugin;
 
-
-import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.DefaultFlag;
+import com.sk89q.worldguard.protection.flags.DoubleFlag;
 import com.sk89q.worldguard.protection.flags.Flag;
+import com.sk89q.worldguard.protection.flags.IntegerFlag;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.StateFlag.State;
+import com.sk89q.worldguard.protection.flags.StringFlag;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
+import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import me.sharpjaws.sharpSK.main;
  
  
  public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
@@ -73,6 +77,7 @@ import ch.njol.util.Kleenean;
 		for ( Entry<Flag<?>,Object> b : pr.getFlags().entrySet()) {
 			
 		if (b.getKey().getName().equalsIgnoreCase(flag.getSingle(e))) {
+			if (b.getKey() instanceof StateFlag){
 			if (b.getValue() == StateFlag.State.ALLOW) {
 				finalv = "ALLOW";
 			}else if (b.getValue() == StateFlag.State.DENY){
@@ -80,15 +85,88 @@ import ch.njol.util.Kleenean;
 			}else {
 				return new String[] {};
 			}
+			}else if (b.getKey() instanceof StringFlag){
+				finalv = (String)b.getKey().getDefault();
+			}else if (b.getKey() instanceof IntegerFlag){
+				finalv = (String)b.getKey().getDefault();
+			}else if (b.getKey() instanceof DoubleFlag){
+				finalv = (String)b.getKey().getDefault();
 			}
+			break;
+		}
 		}
 		
-		}catch (NullPointerException ex) {
+			}catch (NullPointerException ex) {
 			return new String[] {};
 		}
 			
 	}
 		return new String[] {finalv};
+	}
+	
+	@Override
+	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+		JavaPlugin mainp = main.plugin;
+		Flag<?> fl = null;
+		
+		WorldGuardPlugin wg =  (WorldGuardPlugin)Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");	   
+		RegionManager set = wg.getRegionManager(world.getSingle(e));
+		
+		for	(Flag<?> f: DefaultFlag.getFlags()){
+			if (f.getName().equalsIgnoreCase(flag.getSingle(e))) {
+				fl = f;
+			break;
+			}
+		}
+		try{
+		try{
+	if(delta[0] instanceof Boolean){
+	if ((Boolean)delta[0]){
+		set.getRegion(region.getSingle(e)).setFlag ( (StateFlag)fl, State.ALLOW );
+		}else{
+		set.getRegion(region.getSingle(e)).setFlag ( (StateFlag)fl, State.DENY );	
+		}
+
+}else if(delta[0] instanceof String){
+	String deltaS = (String)delta[0];
+		set.getRegion(region.getSingle(e)).setFlag ( (StringFlag)fl, (String)delta[0] );
+
+		if (fl instanceof StateFlag){
+		if (deltaS.equalsIgnoreCase("allow")){
+			set.getRegion(region.getSingle(e)).setFlag ( (StateFlag)fl, State.ALLOW );	
+		}else if (deltaS.equalsIgnoreCase("deny")){
+			set.getRegion(region.getSingle(e)).setFlag ( (StateFlag)fl, State.ALLOW );	
+		}
+		}
+	
+}else if (delta[0] instanceof Integer){
+	set.getRegion(region.getSingle(e)).setFlag ( (IntegerFlag)fl, (int)delta[0] );			
+	}else if (delta[0] instanceof Double){
+		set.getRegion(region.getSingle(e)).setFlag ( (DoubleFlag)fl, (double)delta[0] );			
+		}else{
+			mainp.getLogger().warning("Region flag "+"\""+fl.getName()+"\""+" cannot be set to: "+delta[0]);		
+		}
+		
+	
+		
+	}catch (ClassCastException ex){
+		mainp.getLogger().warning("Region flag "+"\""+fl.getName()+"\""+" cannot be set to: "+delta[0]);	
+	}
+		}catch(NullPointerException ex){
+			mainp.getLogger().warning("Region flag "+"\""+flag.getSingle(e)+"\""+" does not exist");		
+		}
+
+	
+	
+	}
+	
+	
+
+	@Override
+	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+		if (mode == Changer.ChangeMode.SET)
+			return (new Class[] { Object.class });
+		return null;
 	}
 	
  }

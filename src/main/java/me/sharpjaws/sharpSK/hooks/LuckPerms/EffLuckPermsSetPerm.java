@@ -40,6 +40,8 @@ private Expression<Boolean> bool;
 		LuckPermsApi api = LuckPerms.getApi();
 		Node permission = LuckPerms.getApi().getNodeFactory().newBuilder(perm.getSingle(e)).setValue(bool.getSingle(e)).build();
 		api.getUser(offplayer.getSingle(e).getUniqueId()).setPermission(permission);
+	    api.getStorage().saveUser(api.getUser(offplayer.getSingle(e).getUniqueId()));
+
 	} catch (ObjectAlreadyHasException e1) {
 	return;
 	}

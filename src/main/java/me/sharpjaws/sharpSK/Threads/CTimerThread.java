@@ -21,24 +21,39 @@ public class CTimerThread extends Thread{
 	private int timetointv;
 	private int interv;
 	private boolean paused;
+	private boolean testmode;
 	
 	public CTimerThread(String name, int seconds, Boolean activeT,int interval){
 		this.active = activeT;
 		this.secs = seconds;
 		this.Tname = name;			
 		this.interv = interval;
+		this.testmode = false;
+		
 	
 	}
 	
-	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
-	YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
-	 BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+	public CTimerThread(String name, int seconds,int interval, Boolean testmode){
+		this.active =false;
+		this.secs = seconds;
+		this.Tname = name;			
+		this.interv = interval;
+		this.testmode = testmode;
+	
+	}
+	File cache = null;
+	YamlConfiguration Tcache = null;
+	 BukkitScheduler scheduler = null;
    
 	
 	
 	@Override
     public void run() {
 		
+		
+		if (!testmode){
+			scheduler = Bukkit.getServer().getScheduler();
+		}
 		this.instance().Countdown = secs +1;
 		this.setName(Tname);
 		if (this.instance().Countdown < interv){
@@ -49,6 +64,10 @@ public class CTimerThread extends Thread{
 		
 		try {
 		Map<String, Integer> timer = new HashMap<String,Integer>();
+		if (active && !testmode){
+			cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
+			 Tcache = YamlConfiguration.loadConfiguration(cache);
+		}
 		while (!(Countdown < 2)){
 			 synchronized(this) {
 	             while(paused) {
@@ -60,7 +79,7 @@ public class CTimerThread extends Thread{
 			timetointv++;
 				
 			}
-			if (active == true){
+			if (active && !testmode){
 				
 			
 				
@@ -75,17 +94,22 @@ public class CTimerThread extends Thread{
 			}
 			if (interv > 0){
 				if (timetointv >= interv){
+					if(!testmode){
 				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1,1));
+					}
 				timetointv = 0;
 				}
 			}else{
-				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1,1));	
+				if(!testmode){
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1,1));
+				}
 			}
 			
 				CTimerThread.sleep(1000);		
 		}
+		if(!testmode){
 		scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 2,1));
-		if (active == true){
+		if (active){
 			
 			timer.put(this.getName(), 0);
 			Tcache.createSection("timers", timer);
@@ -96,6 +120,7 @@ public class CTimerThread extends Thread{
 
 				}
 			}
+		}
 		this.instance().interrupt();
 		
 		} catch (InterruptedException e) {
@@ -163,6 +188,10 @@ public class CTimerThread extends Thread{
 	
 	public Boolean isActive(){
 		return this.active;
+	}
+	
+	public Boolean isPaused(){
+		return this.paused;
 	}
 			
 

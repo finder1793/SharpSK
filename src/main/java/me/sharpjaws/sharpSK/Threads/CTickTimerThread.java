@@ -166,6 +166,9 @@ public class CTickTimerThread extends Thread{
 	public Boolean isActive(){
 		return this.active;
 	}
+	public Boolean isPaused(){
+		return this.paused;
+	}
 			
 
 }
