@@ -1,7 +1,5 @@
 package com.codingforcookies.armorequip;
 
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -13,7 +11,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
 
 import com.codingforcookies.armorequip.ArmorunEquipEvent.EquipMethod;
 
@@ -25,14 +22,6 @@ import com.codingforcookies.armorequip.ArmorunEquipEvent.EquipMethod;
  */
 public class ArmorunEquipListener implements Listener{
 
-	private final List<String> blockedMaterials;
-	private ItemStack itemStack;
-
-	public ArmorunEquipListener(List<String> blockedMaterials, Plugin main){
-		this.blockedMaterials = blockedMaterials;
-		main.getServer().getPluginManager().registerEvents(this, main);
-	}
-	
 	@EventHandler
 	public final void onInventoryClick(final InventoryClickEvent e){
 		boolean shift = false, numberkey = false;

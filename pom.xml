@@ -22,6 +22,7 @@
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
+		
 
 		<repository>
 			<id>njol-repo</id>
@@ -64,11 +65,7 @@
             <id>destroystokyo-repo</id>
             <url>https://repo.destroystokyo.com/repository/maven-public/</url>
         </repository>
-        
-		<repository>
-			<id>glowAPI-repo</id>
-			<url>http://repo.inventivetalent.org/content/repositories/snapshots/</url>
-		</repository>
+
 		<repository>
 			<id>Citizens-repo</id>
 			<url>http://repo.citizensnpcs.co/</url>
@@ -100,7 +97,7 @@
 
 
 	<build>
-		<defaultGoal>clean install</defaultGoal>
+		<defaultGoal>clean compile package</defaultGoal>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -138,16 +135,8 @@
             <groupId>com.destroystokyo.paper</groupId>
             <artifactId>paper-api</artifactId>
             <version>1.12.1-R0.1-20170805.234057-4</version>
-            <scope>provided</scope>
+            <type>jar</type>
         </dependency>
-		
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.9.4-R0.1-SNAPSHOT</version>
-			<optional>true</optional>
-		</dependency>
-		
 
 		<dependency>
 			<groupId>ru.tehkode</groupId>
@@ -159,12 +148,6 @@
 			<groupId>com.gmail.nossr50</groupId>
 			<artifactId>mcmmo</artifactId>
 			<version>1.5.04-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.inventivetalent</groupId>
-			<artifactId>glowapi</artifactId>
-			<version>1.4.4</version>
 		</dependency>
 
 		<dependency>
@@ -283,7 +266,7 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/LightAPI-3.2.4.jar</systemPath>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>com.onarandombox</groupId>
 			<artifactId>MultiverseCore</artifactId>

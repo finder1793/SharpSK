@@ -47,7 +47,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.codingforcookies.armorequip.ArmorEquipEvent;
-import com.codingforcookies.armorequip.ArmorListener;
+import com.codingforcookies.armorequip.ArmorEquipListener;
 import com.codingforcookies.armorequip.ArmorunEquipEvent;
 import com.codingforcookies.armorequip.ArmorunEquipListener;
 
@@ -403,8 +403,8 @@ public static main instance;
 							return i;
 						}
 					}, 0);
-			new ArmorListener(null, this);
-			new ArmorunEquipListener(null, this);
+			Bukkit.getPluginManager().registerEvents(new ArmorEquipListener(),this);
+			Bukkit.getPluginManager().registerEvents(new ArmorunEquipListener(),this);
 			Skript.registerEvent("Server Command", SimpleEvent.class, ServerCommandEvent.class, "[on] (server|console) command");
 			EventValues.registerEventValue(ServerCommandEvent.class, String.class,
 					new Getter<String, ServerCommandEvent>() {

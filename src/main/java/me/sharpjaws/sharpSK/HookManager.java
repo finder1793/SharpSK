@@ -10,6 +10,7 @@ import me.sharpjaws.sharpSK.hooks.JobsReborn.JobsRegistry;
 import me.sharpjaws.sharpSK.hooks.Kingdoms.KingdomsRegistry;
 import me.sharpjaws.sharpSK.hooks.LightAPI.LightAPIRegistry;
 import me.sharpjaws.sharpSK.hooks.LogBlock.LogBlockRegistry;
+import me.sharpjaws.sharpSK.hooks.LuckPerms.LuckPermsRegistry;
 import me.sharpjaws.sharpSK.hooks.Multiverse.MultiverseRegistry;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.MythicMobsRegistry;
 import me.sharpjaws.sharpSK.hooks.PermissionsEx.PermissionsExRegistry;
@@ -224,6 +225,19 @@ public class HookManager {
 						mainp.getLogger().warning("Could not hook into Kingdoms."+ " Version not supported");
 					} catch (NoClassDefFoundError e){
 						mainp.getLogger().warning("Could not hook into Kingdoms."+ " Version not supported");
+					}
+				}					
+			}
+			if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
+				if (mainp.getConfig().getBoolean("luckperms") == true) {
+					try {
+						LuckPermsRegistry.registerLuckPerms();
+						mainp.getLogger().info("Hooked into LuckPerms v" + Bukkit.getPluginManager()
+						.getPlugin("LuckPerms").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().warning("Could not hook into LuckPerms."+ " Version not supported");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().warning("Could not hook into LuckPerms."+ " Version not supported");
 					}
 				}					
 			}
