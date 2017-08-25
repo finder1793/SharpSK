@@ -2,7 +2,6 @@ package me.sharpjaws.sharpSK.hooks.mcMMO;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.gmail.nossr50.api.ExperienceAPI;

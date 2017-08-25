@@ -482,8 +482,10 @@ public static main instance;
 			}
 			}
 			
-			if (Bukkit.getServer().getVersion().contains("MC: 1.9")||Bukkit.getServer().getVersion().contains("MC: 1.10")||Bukkit.getServer().getVersion().contains("MC: 1.11") ||Bukkit.getServer().getVersion().contains("MC: 1.12")) {
-			if  (Bukkit.getServer().getVersion().contains("MC: 1.12")) {
+			if (Bukkit.getServer().getVersion().contains("MC: 1.9")||Bukkit.getServer().getVersion().contains("MC: 1.10")||Bukkit.getServer().getVersion().contains("MC: 1.11") ||Bukkit.getServer().getVersion().contains("MC: 1.12") ||Bukkit.getServer().getVersion().contains("MC: 1.13")) {
+				if  (Bukkit.getServer().getVersion().contains("MC: 1.13")) {
+					getLogger().info("1.13+ Server detected! Registering some MC 1.9 related stuff..");
+					}else if  (Bukkit.getServer().getVersion().contains("MC: 1.12")) {
 				getLogger().info("1.12+ Server detected! Registering some MC 1.9 related stuff..");
 				}else if (Bukkit.getServer().getVersion().contains("MC: 1.11")) {
 					getLogger().info("1.11+ Server detected! Registering some MC 1.9 related stuff..");		
@@ -669,7 +671,7 @@ public static main instance;
 						
 					}
 			}
-				getLogger().warning("Loading Complete!");
+				getLogger().info("Loading Complete!");
 				
 			}catch (SkriptAPIException ex){
 				getLogger().warning("Error: Unable to register the addon and the features");

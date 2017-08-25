@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 import org.bukkit.event.Event;
 
 import com.gmail.nossr50.datatypes.skills.AbilityType;
-import com.gmail.nossr50.datatypes.skills.SkillType;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;

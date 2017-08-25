@@ -21,7 +21,7 @@ System.out.println("Testing SharpSK Timers...");
 		Boolean checkT = false;
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
 	        if (t instanceof CTimerThread) {
-	        	System.out.println("Thread: "+((CTimerThread)t).instance().getName() + " created. OK");
+	        	System.out.println("TimerThread: "+((CTimerThread)t).instance().getName() + " created. OK");
 	        	checkT = true;
 	        }
 		}
@@ -69,7 +69,7 @@ System.out.println("Testing SharpSK Timers...");
 					        	
 					        }
 						}
-						System.out.println("Thread: "+testtimer.getName() + " stopped. OK");
+						System.out.println("TimerThread: "+testtimer.getName() + " stopped. OK");
 						
 					}});
 					test2.run();

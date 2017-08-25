@@ -6,8 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.gmail.nossr50.api.PartyAPI;
-import com.gmail.nossr50.datatypes.party.PartyLeader;
-import com.gmail.nossr50.party.PartyManager;
 
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;

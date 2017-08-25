@@ -5,15 +5,14 @@ import javax.annotation.Nullable;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import com.sk89q.worldguard.protection.events.DisallowedPVPEvent;
+
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
 import me.sharpjaws.sharpSK.hooks.WorldEdit.EffSetBlocks;
-
-import com.gamingmesh.jobs.api.JobsLevelUpEvent;
-import com.sk89q.worldguard.protection.events.DisallowedPVPEvent;
 
 public class WorldGuardRegistry {
 	public static void registerWorldGuard(){

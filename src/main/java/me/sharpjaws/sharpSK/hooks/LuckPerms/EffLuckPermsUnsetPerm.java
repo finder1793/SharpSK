@@ -18,30 +18,28 @@ import me.lucko.luckperms.api.User;
 import me.lucko.luckperms.exceptions.ObjectLacksException;
 
 
-public class EffLuckPermsSetPerm extends Effect{
+public class EffLuckPermsUnsetPerm extends Effect{
 private Expression<OfflinePlayer> offplayer;
 private Expression<String> perm;
-private Expression<Boolean> bool;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
 		perm = (Expression<String>) expr[0];
-		bool = (Expression<Boolean>)expr[1];
-		offplayer = (Expression<OfflinePlayer>) expr[2];
+		offplayer = (Expression<OfflinePlayer>) expr[1];
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event e, boolean arg1) {
-		return "[sharpsk] luckperms set permission %string% to %boolean% for [player] %offlineplayer%";
+		return "[sharpsk] luckperms unset permission %string% for [player] %offlineplayer%";
 	}
 
 	@Override
 	protected void execute(Event e) {
 		if (offplayer == null){return;}
 		final LuckPermsApi api = LuckPerms.getApi();
-		Node node = api.getNodeFactory().newBuilder(perm.getSingle(e)).setValue(bool.getSingle(e)).build();
+		Node node = api.getNodeFactory().newBuilder(perm.getSingle(e)).build();
 		if (offplayer.getSingle(e).isOnline()){
 			User user = api.getUser(offplayer.getSingle(e).getPlayer().getUniqueId());
 		if (user == null) {
@@ -50,9 +48,8 @@ private Expression<Boolean> bool;
 			
 			try {
 				user.unsetPermission(node);
-				user.setPermissionUnchecked(node);
 			} catch (ObjectLacksException ex1) {
-				user.setPermissionUnchecked(node);
+				return;
 			}		
 			
 			//Workaround for getting changes to take immediate effect instead of having to relog on the server.
@@ -72,9 +69,8 @@ private Expression<Boolean> bool;
 			    }
 			    try {	
 					user.unsetPermission(node);
-					user.setPermissionUnchecked(node);
 					} catch (ObjectLacksException ex1) {
-						user.setPermissionUnchecked(node);
+						return CompletableFuture.completedFuture(false);
 					}
 			        
 			        // first save the user

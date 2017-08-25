@@ -3,18 +3,15 @@ package me.sharpjaws.sharpSK.hooks.mcMMO;
 import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 
-import com.gamingmesh.jobs.container.Job;
-import com.gmail.nossr50.datatypes.party.Party;
 import com.gmail.nossr50.datatypes.skills.AbilityType;
 import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.events.chat.McMMOPartyChatEvent;
 import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
+import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
 import com.gmail.nossr50.events.party.McMMOPartyLevelUpEvent;
 import com.gmail.nossr50.events.party.McMMOPartyXpGainEvent;
-import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
 import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityActivateEvent;
 import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityDeactivateEvent;
 
@@ -30,7 +27,6 @@ import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.Converters;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import me.sharpjaws.sharpSK.ExprEventWorld;
 
 
 public class mcMMORegistry {
