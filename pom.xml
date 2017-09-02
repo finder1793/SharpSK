@@ -46,10 +46,6 @@
 			<url>http://betonquest.betoncraft.pl/mvn/</url>
 		</repository>
 
-		<repository>
-			<id>uCars-repo</id>
-			<url>http://stormdev.org/jenkins/plugin/repository/project/uCars/LastSuccessful/repository/</url>
-		</repository>
 
 		<repository>
 			<id>dmulloy2-repo</id>
@@ -240,7 +236,7 @@
 			<artifactId>useful</artifactId>
 			<version>19</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/uCars-19.jar</systemPath>
+			<systemPath>${project.basedir}/lib/uCars.jar</systemPath>
 		</dependency>
 
 		<dependency>

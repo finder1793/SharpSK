@@ -40,6 +40,7 @@ private Expression<Boolean> bool;
 	@Override
 	protected void execute(Event e) {
 		if (offplayer == null){return;}
+		if  (offplayer.getSingle(e) == null) {return;}
 		final LuckPermsApi api = LuckPerms.getApi();
 		Node node = api.getNodeFactory().newBuilder(perm.getSingle(e)).setValue(bool.getSingle(e)).build();
 		if (offplayer.getSingle(e).isOnline()){

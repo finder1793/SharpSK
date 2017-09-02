@@ -128,17 +128,7 @@ import me.sharpjaws.sharpSK.main;
 		}
 
 }else if(delta[0] instanceof String){
-	String deltaS = (String)delta[0];
-		set.getRegion(region.getSingle(e)).setFlag ( (StringFlag)fl, (String)delta[0] );
-
-		if (fl instanceof StateFlag){
-		if (deltaS.equalsIgnoreCase("allow")){
-			set.getRegion(region.getSingle(e)).setFlag ( (StateFlag)fl, State.ALLOW );	
-		}else if (deltaS.equalsIgnoreCase("deny")){
-			set.getRegion(region.getSingle(e)).setFlag ( (StateFlag)fl, State.ALLOW );	
-		}
-		}
-	
+		set.getRegion(region.getSingle(e)).setFlag ( (StringFlag)fl, (String)delta[0] );		
 }else if (delta[0] instanceof Integer){
 	set.getRegion(region.getSingle(e)).setFlag ( (IntegerFlag)fl, (int)delta[0] );			
 	}else if (delta[0] instanceof Double){
