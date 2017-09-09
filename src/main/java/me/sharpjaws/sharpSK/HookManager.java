@@ -241,6 +241,19 @@ public class HookManager {
 					}
 				}					
 			}
+			if (Bukkit.getPluginManager().isPluginEnabled("GroupManager")) {
+				if (mainp.getConfig().getBoolean("groupmanager") == true) {
+					try {
+						LuckPermsRegistry.registerLuckPerms();
+						mainp.getLogger().info("Hooked into GroupManager v" + Bukkit.getPluginManager()
+						.getPlugin("GroupManager").getDescription().getVersion());
+					} catch (Exception ex) {
+						mainp.getLogger().warning("Could not hook into GroupManager."+ " Version not supported");
+					} catch (NoClassDefFoundError e){
+						mainp.getLogger().warning("Could not hook into GroupManager."+ " Version not supported");
+					}
+				}					
+			}
 	}
 	
 }
