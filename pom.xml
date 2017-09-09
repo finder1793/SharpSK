@@ -86,6 +86,11 @@
             <id>sk89q-repo</id>
             <url>http://maven.sk89q.com/artifactory/repo/</url>
         </repository>
+        
+          <repository>
+    	  <id>ess-repo</id>
+    	  <url>http://repo.ess3.net/content/groups/essentials</url>
+  		  </repository>
 
 	</repositories>
 
@@ -287,7 +292,11 @@
 			<systemPath>${project.basedir}/lib/Kingdoms+-13.2.0-ClassesOnly.jar</systemPath>
 		</dependency>
 
-	
+	 <dependency>
+    <groupId>net.ess3</groupId>
+    <artifactId>EssentialsGroupManager</artifactId>
+    <version>2.13-SNAPSHOT</version>
+  </dependency>
 
 
 	</dependencies>

@@ -2,6 +2,9 @@ package me.sharpjaws.sharpSK;
 
 import org.bukkit.Bukkit;
 
+import me.sharpjaws.sharpSK.Events.EvtTimerComplete;
+import me.sharpjaws.sharpSK.Events.EvtTimerTick;
+
 public class TimerHandler implements Runnable{
 	
 	//Class implemented as a workaround for avoiding async problems in timers that are running synchronously.
