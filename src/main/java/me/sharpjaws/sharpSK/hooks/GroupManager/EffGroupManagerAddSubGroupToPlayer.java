@@ -3,6 +3,7 @@ package me.sharpjaws.sharpSK.hooks.GroupManager;
 import javax.annotation.Nullable;
 
 import org.anjocaido.groupmanager.GroupManager;
+import org.anjocaido.groupmanager.data.Group;
 import org.anjocaido.groupmanager.data.User;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.bukkit.Bukkit;
@@ -16,27 +17,29 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
-public class EffGroupManagerAddPermission extends Effect{
+public class EffGroupManagerAddSubGroupToPlayer extends Effect{
 	private Expression<OfflinePlayer> player;
-	private Expression<String> perm;
+	private Expression<String> group;
 	private Expression<World> world;
+	GroupManager groupManager;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
-		perm = (Expression<String>) expr[0];
-		player = (Expression<OfflinePlayer>) expr[1];
+		player = (Expression<OfflinePlayer>) expr[0];
+		group = (Expression<String>) expr[1];
 		world = (Expression<World>) expr[2];
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[sharpsk] (gm|group[ ]manager add perm[ission] %string% to [player] %offlineplayer%";
+		return "[sharpsk] (gm|group[ ]manager add [sub] group %string% to %offlineplayer%";
 	}
 
 	@Override
 	protected void execute(Event e) {
+		
 		final Plugin GMplugin = Bukkit.getPluginManager().getPlugin("GroupManager");
 		GroupManager groupManager = (GroupManager)GMplugin;	
 		OverloadedWorldHolder handler = groupManager.getWorldsHolder().getDefaultWorld();
@@ -46,14 +49,12 @@ public class EffGroupManagerAddPermission extends Effect{
 		}
 		for (User u : handler.getUserList()){
 		if (u.getUUID().equals(player.getSingle(e).getUniqueId().toString())){
-			System.out.println("MATCH");		
-			u.addPermission(perm.getSingle(e));
+			System.out.println("MATCH");	
+			u.addSubGroup(new Group(group.getSingle(e)));
 		}
-		System.out.println(u.getLastName());		
+		System.out.println(u.getLastName());	
 		}
 		handler.reloadUsers();
-		
-		
 		
 	}
 

@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import me.sharpjaws.sharpSK.hooks.AuthmeReloaded.AuthmeRegistry;
 import me.sharpjaws.sharpSK.hooks.CoreProtect.CorePRegistry;
 import me.sharpjaws.sharpSK.hooks.GlowAPI.GlowAPIRegistry;
+import me.sharpjaws.sharpSK.hooks.GroupManager.GroupManagerRegistry;
 import me.sharpjaws.sharpSK.hooks.JobsReborn.JobsRegistry;
 import me.sharpjaws.sharpSK.hooks.Kingdoms.KingdomsRegistry;
 import me.sharpjaws.sharpSK.hooks.LightAPI.LightAPIRegistry;
@@ -244,7 +245,7 @@ public class HookManager {
 			if (Bukkit.getPluginManager().isPluginEnabled("GroupManager")) {
 				if (mainp.getConfig().getBoolean("groupmanager") == true) {
 					try {
-						LuckPermsRegistry.registerLuckPerms();
+						GroupManagerRegistry.registerGroupManager();;
 						mainp.getLogger().info("Hooked into GroupManager v" + Bukkit.getPluginManager()
 						.getPlugin("GroupManager").getDescription().getVersion());
 					} catch (Exception ex) {
