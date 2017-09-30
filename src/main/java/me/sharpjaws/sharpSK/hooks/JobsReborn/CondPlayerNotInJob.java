@@ -3,8 +3,7 @@ package me.sharpjaws.sharpSK.hooks.JobsReborn;
 import javax.annotation.Nullable;
 
  import org.bukkit.Location;
- import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
+ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.gamingmesh.jobs.Jobs;

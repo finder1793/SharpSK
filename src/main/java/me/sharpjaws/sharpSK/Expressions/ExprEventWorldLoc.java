@@ -2,10 +2,7 @@ package me.sharpjaws.sharpSK.Expressions;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 

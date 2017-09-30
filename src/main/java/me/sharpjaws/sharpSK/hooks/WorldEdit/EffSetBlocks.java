@@ -1,18 +1,17 @@
  package me.sharpjaws.sharpSK.hooks.WorldEdit;
  
- import org.bukkit.World;
+
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.LocalWorld;
+
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.blocks.BaseBlock;
-import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.regions.Region;
+import com.sk89q.worldedit.world.World;
 import com.sk89q.worldguard.bukkit.WGBukkit;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 
@@ -41,11 +40,11 @@ import ch.njol.util.Kleenean;
    
    protected void execute(Event event) {
      String name = (String)this.name.getSingle(event);
-     World world = (World)this.world.getSingle(event);
+     World world = (World) this.world.getSingle(event);
      ItemStack block = (ItemStack)this.block.getSingle(event);
      
  
-     RegionManager regionManager = WGBukkit.getRegionManager(world);
+     RegionManager regionManager = WGBukkit.getRegionManager((org.bukkit.World) world);
      if (!regionManager.hasRegion(name)) {
        Skript.error("Region \"" + name + "\" in world \"" + world.getName() + "\" does not exists.");
        return;
@@ -55,9 +54,9 @@ import ch.njol.util.Kleenean;
      Vector v2 = regionManager.getRegion(name).getMinimumPoint();
      Region region = new CuboidRegion(v1, v2);
      BaseBlock b = new BaseBlock(block.getTypeId(), block.getData().getData());
-     BukkitWorld bworld = new BukkitWorld(world);
+
      
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(bworld , -1);
+     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(world, -1);
      try {
        es.setBlocks(region, b);
      } catch (Exception e) {

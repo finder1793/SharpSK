@@ -3,7 +3,6 @@ package me.sharpjaws.sharpSK.Expressions;
 import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
-import org.bukkit.event.inventory.PrepareAnvilEvent;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;

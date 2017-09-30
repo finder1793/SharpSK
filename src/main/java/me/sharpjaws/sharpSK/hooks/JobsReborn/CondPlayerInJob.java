@@ -2,7 +2,7 @@ package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.entity.Entity;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
@@ -18,10 +18,9 @@ import ch.njol.util.Kleenean;
 
  public class CondPlayerInJob extends Condition
  {
- private Expression<Entity> mythicmob;
-@SuppressWarnings("unused")
-	private Expression<Player> p;
-	private Expression<Job> j;
+
+private Expression<Player> p;
+private Expression<Job> j;
 
 
  @SuppressWarnings("unchecked")

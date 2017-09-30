@@ -63,7 +63,6 @@ public class ExprPhaseOf extends SimpleExpression<Phase> {
 		World w1 = w.getSingle(e);
 		List<Entity> entities = w1.getEntities();
 		EnderDragon enderDragon = null;
-		Phase p = null;
 		for (int i = 0; i < entities.size(); i++) {
 			Entity entity = entities.get(i);
 			if (entity instanceof EnderDragon) {

@@ -12,7 +12,11 @@ import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
+import com.sk89q.worldedit.extent.clipboard.BlockArrayClipboard;
+import com.sk89q.worldedit.extent.clipboard.Clipboard;
+import com.sk89q.worldedit.schematic.MCEditSchematicFormat;
 import com.sk89q.worldedit.schematic.SchematicFormat;
+import com.sk89q.worldedit.world.World;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -86,7 +90,8 @@ public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, Skript
      }
    }
    
-   private static boolean paste(String f, Location loc, Boolean exair, SchemFacingDirection facing) throws Exception {
+   @SuppressWarnings("deprecation")
+private static boolean paste(String f, Location loc, Boolean exair, SchemFacingDirection facing) throws Exception {
      File file;
 
      if (f.startsWith("/")) {
@@ -100,18 +105,15 @@ public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, Skript
          Matcher.quoteReplacement(File.separator)));
      }
      Vector v = new Vector(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
-     SchematicFormat format = SchematicFormat.getFormat(file);
-    
      if ((!file.exists()) && (file.isDirectory())) {
        return false;
      }
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(new BukkitWorld(loc.getWorld()), 400000);
+     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession((new BukkitWorld(loc.getWorld())), 400000);
      
-     CuboidClipboard cc = null;
+     CuboidClipboard cc = SchematicFormat.getFormat(file).load(file);
      try {
     	 
-       cc = format.load(file);
-       if (facing != null) {
+    	 if (facing != null) {
 
     	   if (SchemFacingDirection.getDegree(facing) != -1){
       	cc.rotate2D(SchemFacingDirection.getDegree(facing));

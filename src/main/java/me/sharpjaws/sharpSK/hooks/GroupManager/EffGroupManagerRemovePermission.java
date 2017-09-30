@@ -52,7 +52,8 @@ public class EffGroupManagerRemovePermission extends Effect{
 		}		
 		System.out.println(u.getLastName());		
 		}
-		handler.reloadUsers();
+	handler.loadUsers(handler.getUsersFile());
+
 			
 		
 	}

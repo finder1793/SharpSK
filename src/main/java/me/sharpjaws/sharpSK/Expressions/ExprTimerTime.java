@@ -69,7 +69,7 @@ public class ExprTimerTime extends SimpleExpression<Integer>{
 			for (Thread t : Thread.getAllStackTraces().keySet()) {
 		        if (t instanceof CTimerThread) {
 		        	if (t.getName().contains(timer.getSingle(e))){
-		        	((CTimerThread) t).setTime(((Timespan)delta[0]).getTicks()/20);
+		        	((CTimerThread) t).setTime((int) (((Timespan)delta[0]).getTicks_i()/20));
 		        		
 		        	}
 		
@@ -86,7 +86,7 @@ public class ExprTimerTime extends SimpleExpression<Integer>{
 			for (Thread t : Thread.getAllStackTraces().keySet()) {
 		        if (t instanceof CTimerThread) {
 		        	if (t.getName().contains(timer.getSingle(e))){
-		        	((CTimerThread) t).addTime(((Timespan)delta[0]).getTicks()/20);
+		        	((CTimerThread) t).addTime((int) (((Timespan)delta[0]).getTicks_i()/20));
 		        	}
 		        	
 		        }else if (t instanceof CTickTimerThread) {
@@ -104,7 +104,7 @@ public class ExprTimerTime extends SimpleExpression<Integer>{
 			for (Thread t : Thread.getAllStackTraces().keySet()) {
 		        if (t instanceof CTimerThread) {
 		        	if (t.getName().contains(timer.getSingle(e))){
-		        	((CTimerThread) t).removeTime(((Timespan)delta[0]).getTicks()/20);
+		        	((CTimerThread) t).removeTime((int) (((Timespan)delta[0]).getTicks_i()/20));
 		        		
 		        	}
 		        }else if (t instanceof CTickTimerThread) {

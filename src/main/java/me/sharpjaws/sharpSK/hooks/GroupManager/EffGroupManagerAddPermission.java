@@ -48,10 +48,13 @@ public class EffGroupManagerAddPermission extends Effect{
 		if (u.getUUID().equals(player.getSingle(e).getUniqueId().toString())){
 			System.out.println("MATCH");		
 			u.addPermission(perm.getSingle(e));
+			
 		}
 		System.out.println(u.getLastName());		
 		}
-		handler.reloadUsers();
+		handler.loadUsers(handler.getUsersFile());
+
+
 		
 		
 		

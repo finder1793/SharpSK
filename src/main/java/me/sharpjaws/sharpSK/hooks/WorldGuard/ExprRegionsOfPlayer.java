@@ -1,9 +1,19 @@
 package me.sharpjaws.sharpSK.hooks.WorldGuard;
 
+import java.util.ArrayList;
+import java.util.Map.Entry;
+
 import javax.annotation.Nullable;
 
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.event.Event;
 
+import com.sk89q.worldguard.LocalPlayer;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
@@ -11,7 +21,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
 public class ExprRegionsOfPlayer extends SimpleExpression<String> {
-
+private Expression<OfflinePlayer> player;
+private Expression<World> wo;
+	
 	@Override
 	public Class<? extends String> getReturnType() {
 		return String.class;
@@ -22,20 +34,46 @@ public class ExprRegionsOfPlayer extends SimpleExpression<String> {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, ParseResult arg3) {
-		return false;
+	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
+		player = (Expression<OfflinePlayer>) expr[0];
+		wo = (Expression<World>) expr[1];		
+		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "";
+		return "[sharpsk] [all] regions of [player] %offlineplayer% [in %-world%]";
 	}
 
 	@Override
 	@Nullable
-	protected String[] get(Event arg0) {
-		return null;
+	protected String[] get(Event e) {
+		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+		RegionManager regionManager = null;
+		if (wo != null){ 
+		regionManager = wg.getRegionManager(wo.getSingle(e));
+	    }else{
+	    regionManager = wg.getRegionManager(Bukkit.getServer().getWorlds().get(0));	
+	    }
+		if (player.getSingle(e) == null) {
+			return new String[] {};
+		}
+		LocalPlayer wpl = null;
+				if (player.getSingle(e).isOnline()) {
+					wpl = wg.wrapPlayer(player.getSingle(e).getPlayer());
+				}else {
+					wpl = wg.wrapOfflinePlayer(player.getSingle(e));
+				}
+		ArrayList<String> pregions = new ArrayList<String>();
+		for (Entry<String,ProtectedRegion> reg : regionManager.getRegions().entrySet()){
+			if (reg.getValue().isMember(wpl)){
+				pregions.add(reg.getValue().getId());
+			}
+		}
+		return  pregions.toArray(new String[pregions.size()]);
+		
 	}
 
 }

@@ -49,7 +49,7 @@ import ch.njol.util.Kleenean;
    }
    
    public String toString(Event event, boolean b) {
-     return "all wg regions in world";
+     return "[sharpsk] [all] [worldguard] regions in %world%";
    }
    
    public Class<?>[] acceptChange(Changer.ChangeMode mode) {

@@ -27,6 +27,7 @@ public class WorldGuardRegistry {
 			       Skript.registerExpression(ExprGetPoint2.class, Location.class, ExpressionType.SIMPLE,"[sharpsk] [worldguard] (point|pos[ition])[ ] 2 of region %string% in [world] %world%");
 			       Skript.registerExpression(ExprRegionAt.class, String.class, ExpressionType.SIMPLE, "sharpsk [worldguard] region at %location%" );
 			       Skript.registerExpression(ExprAllRegionsInWorld.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [all] [worldguard] regions in %world%" );
+			       Skript.registerExpression(ExprRegionsOfPlayer.class, String.class, ExpressionType.SIMPLE, "[sharpsk] [all] regions of [player] %offlineplayer% [in %-world%]" );
 			       Skript.registerEffect(EffSetBlocks.class, "[sharpsk] [worldguard] (set [all] blocks in|fill) region %string% in [world] %world% (to|with) %itemstack%" );	
 		   //---------------------
 		

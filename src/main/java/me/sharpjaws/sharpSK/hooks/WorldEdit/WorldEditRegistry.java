@@ -10,11 +10,14 @@ public class WorldEditRegistry {
 	        if (Bukkit.getServer().getPluginManager().getPlugin("WorldEdit") != null) {
 	        	//PirateSK merged features
 	        	if (Bukkit.getPluginManager().getPlugin("PirateSK") != null){
-	        	  Skript.registerEffect(EffPasteSchematic.class, new String[] { "sharpsk paste schematic %string% at %location% [exclude air %-boolean%] [rotate [by] %-number% [degrees]]" }); 
+	        	  Skript.registerEffect(EffPasteSchematic.class, new String[] { "sharpsk [worldedit] paste schematic %string% at %location% [exclude air %-boolean%] [rotate [by] %-number% [degrees]]" }); 
 	        	}else{
-	        		  Skript.registerEffect(EffPasteSchematic.class, new String[] { "[sharpsk] paste schematic %string% at %location% [exclude air %-boolean%] [rotate [by] %-number% [degrees]]" }); 
+	        		  Skript.registerEffect(EffPasteSchematic.class, new String[] { "[sharpsk] [worldedit] paste schematic %string% at %location% [exclude air %-boolean%] [rotate [by] %-number% [degrees]]" }); 
 	        	}
 	        	  //-------------------------
+	        	Skript.registerEffect(EffSaveClipToSchematic.class, new String[] { "[sharpsk] [worldedit] save clipboard of %player% to [schem[atic]] %string%" }); 
+	        	Skript.registerEffect(EffSaveSelectionToClipboard.class, new String[] { "[sharpsk] [worldedit] save [selection] p[oint]1 %location% p[oint]2 %location% in [world] %world% to [schem[atic]] %string%" }); 
+	        	
 	        }
 		
 	}
