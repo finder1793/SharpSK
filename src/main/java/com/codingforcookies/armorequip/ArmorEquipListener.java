@@ -131,12 +131,11 @@ public class ArmorEquipListener implements Listener{
 	public void playerInteractEvent(PlayerInteractEvent e){
 		if(e.getAction() == Action.PHYSICAL) return;
 		if(e.getAction() == Action.RIGHT_CLICK_AIR || e.getAction() == Action.RIGHT_CLICK_BLOCK){
-			final Player player = e.getPlayer();
+
 			if (ArmorType.matchType(e.getItem()) == null) return;
 			ArmorType newArmorType = ArmorType.matchType(e.getItem());
 			if(newArmorType != null){
 				if(newArmorType.equals(ArmorType.HELMET) && e.getPlayer().getInventory().getHelmet() == null || newArmorType.equals(ArmorType.CHESTPLATE) && e.getPlayer().getInventory().getChestplate() == null || newArmorType.equals(ArmorType.LEGGINGS) && e.getPlayer().getInventory().getLeggings() == null || newArmorType.equals(ArmorType.BOOTS) && e.getPlayer().getInventory().getBoots() == null){
-					if(newArmorType.equals(null)) return;
 					if(e.getClickedBlock() == null||e.getClickedBlock() != null && !newArmorType.equals(null)) {
 						if(e.getClickedBlock() != null){
 						if(e.getClickedBlock().getType().equals(Material.CHEST)||e.getClickedBlock().getType().equals(Material.DISPENSER)||e.getClickedBlock().getType().equals(Material.HOPPER)||e.getClickedBlock().getType().equals(Material.STORAGE_MINECART)||e.getClickedBlock().getType().equals(Material.HOPPER_MINECART)||e.getClickedBlock().getType().equals(Material.ENCHANTMENT_TABLE)||e.getClickedBlock().getType().equals(Material.FURNACE)) return;
@@ -145,6 +144,7 @@ public class ArmorEquipListener implements Listener{
 					Bukkit.getServer().getPluginManager().callEvent(armorEquipEvent);
 					if(armorEquipEvent.isCancelled()){
 						e.setCancelled(true);
+						final Player player = e.getPlayer();
 						player.updateInventory();
 					}else{
 						return;

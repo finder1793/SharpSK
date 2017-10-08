@@ -12,11 +12,8 @@ import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
-import com.sk89q.worldedit.extent.clipboard.BlockArrayClipboard;
-import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.schematic.MCEditSchematicFormat;
 import com.sk89q.worldedit.schematic.SchematicFormat;
-import com.sk89q.worldedit.world.World;
+
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;

@@ -22,7 +22,7 @@
 			<id>spigot-repo</id>
 			<url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
 		</repository>
-		
+
 
 		<repository>
 			<id>njol-repo</id>
@@ -35,10 +35,10 @@
 		</repository>
 
 
-		 <repository>
-	        <id>vault-repo</id>
-	        <url>http://nexus.hc.to/content/repositories/pub_releases</url>
-        </repository>
+		<repository>
+			<id>vault-repo</id>
+			<url>http://nexus.hc.to/content/repositories/pub_releases</url>
+		</repository>
 
 
 		<repository>
@@ -46,6 +46,10 @@
 			<url>http://betonquest.betoncraft.pl/mvn/</url>
 		</repository>
 
+		<repository>
+			<id>FAWE-repo</id>
+			<url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
+		</repository>
 
 		<repository>
 			<id>dmulloy2-repo</id>
@@ -57,10 +61,10 @@
 			<url>https://repo.inventivetalent.org/content/groups/public/</url>
 		</repository>
 
-		 <repository>
-            <id>destroystokyo-repo</id>
-            <url>https://repo.destroystokyo.com/repository/maven-public/</url>
-        </repository>
+		<repository>
+			<id>destroystokyo-repo</id>
+			<url>https://repo.destroystokyo.com/repository/maven-public/</url>
+		</repository>
 
 		<repository>
 			<id>Citizens-repo</id>
@@ -71,26 +75,26 @@
 			<id>epiceric-repo</id>
 			<url>https://epicericee.github.io/ShopChest/maven/</url>
 		</repository>
-		
-		 <repository>
-            <id>PreciousStones-repos</id>
-            <url>https://mvn.yawk.at/</url>
-        </repository>
-		
-   		 <repository>
+
+		<repository>
+			<id>PreciousStones-repos</id>
+			<url>https://mvn.yawk.at/</url>
+		</repository>
+
+		<repository>
 			<id>luck-repo</id>
 			<url>https://repo.lucko.me/</url>
-   		 </repository>
+		</repository>
 
-        <repository>
-            <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/artifactory/repo/</url>
-        </repository>
-        
-          <repository>
-    	  <id>ess-repo</id>
-    	  <url>http://repo.ess3.net/content/groups/essentials</url>
-  		  </repository>
+		<repository>
+			<id>sk89q-repo</id>
+			<url>http://maven.sk89q.com/artifactory/repo/</url>
+		</repository>
+
+		<repository>
+			<id>ess-repo</id>
+			<url>http://repo.ess3.net/content/groups/essentials</url>
+		</repository>
 
 	</repositories>
 
@@ -132,12 +136,12 @@
 		</dependency>
 
 
-	 <dependency>
-            <groupId>com.destroystokyo.paper</groupId>
-            <artifactId>paper-api</artifactId>
-            <version>1.12.1-R0.1-20170805.234057-4</version>
-            <type>jar</type>
-        </dependency>
+		<dependency>
+			<groupId>com.destroystokyo.paper</groupId>
+			<artifactId>paper-api</artifactId>
+			<version>1.12.1-R0.1-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
 
 		<dependency>
 			<groupId>ru.tehkode</groupId>
@@ -157,18 +161,23 @@
 			<version>0.91.1.0</version>
 		</dependency>
 
- 		 <dependency>
-       		 <groupId>me.lucko.luckperms</groupId>
-       		 <artifactId>luckperms-api</artifactId>
-       		 <version>3.2</version>
-    	</dependency>
+		<dependency>
+			<groupId>me.lucko.luckperms</groupId>
+			<artifactId>luckperms-api</artifactId>
+			<version>3.2</version>
+		</dependency>
 
-	<dependency>
+		<dependency>
 			<groupId>ch.njol</groupId>
 			<artifactId>skript</artifactId>
 			<version>2.2-dev30</version>
 		</dependency>
 
+<dependency>
+			<groupId>com.boydti</groupId>
+			<artifactId>fawe-api</artifactId>
+			<version>latest</version>
+		</dependency>
 		<dependency>
 			<groupId>fr.xephi</groupId>
 			<artifactId>authme</artifactId>
@@ -177,17 +186,17 @@
 			<systemPath>${project.basedir}/lib/AuthMe-5.2-spigot.jar</systemPath>
 		</dependency>
 
-		 <dependency>
-            <groupId>com.sk89q</groupId>
-            <artifactId>worldedit</artifactId>
-            <version>6.0.0-SNAPSHOT</version>
-        </dependency>
-        
-        <dependency>
-            <groupId>com.sk89q</groupId>
-            <artifactId>worldguard</artifactId>
-            <version>6.1</version>
-        </dependency>
+		<dependency>
+			<groupId>com.sk89q</groupId>
+			<artifactId>worldedit</artifactId>
+			<version>6.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sk89q</groupId>
+			<artifactId>worldguard</artifactId>
+			<version>6.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org</groupId>
@@ -267,7 +276,7 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/LightAPI-3.2.4.jar</systemPath>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.onarandombox</groupId>
 			<artifactId>MultiverseCore</artifactId>
@@ -291,12 +300,19 @@
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/Kingdoms+-13.2.0-ClassesOnly.jar</systemPath>
 		</dependency>
+		<dependency>
+			<groupId>de.tr7zw</groupId>
+			<artifactId>itemnbtapi</artifactId>
+			<version>1.5.1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/Item-NBT-API.jar</systemPath>
+		</dependency>
 
-	 <dependency>
-    <groupId>net.ess3</groupId>
-    <artifactId>EssentialsGroupManager</artifactId>
-    <version>2.13-SNAPSHOT</version>
-  </dependency>
+		<dependency>
+			<groupId>net.ess3</groupId>
+			<artifactId>EssentialsGroupManager</artifactId>
+			<version>2.13-SNAPSHOT</version>
+		</dependency>
 
 
 	</dependencies>

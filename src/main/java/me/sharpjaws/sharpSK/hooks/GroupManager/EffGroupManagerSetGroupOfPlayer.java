@@ -41,21 +41,22 @@ public class EffGroupManagerSetGroupOfPlayer extends Effect{
 		final Plugin GMplugin = Bukkit.getPluginManager().getPlugin("GroupManager");
 		GroupManager groupManager = (GroupManager)GMplugin;	
 		OverloadedWorldHolder handler = groupManager.getWorldsHolder().getDefaultWorld();
-		
+
 		if (world != null){
 			handler = groupManager.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
 		for (User u : handler.getUserList()){
-		if (u.getUUID().equals(player.getSingle(e).getUniqueId().toString())){
-			System.out.println("MATCH");	
-			u.setGroup(new Group(group.getSingle(e)));
+			if (u.getUUID().equals(player.getSingle(e).getUniqueId().toString())){
+				System.out.println("MATCH");	
+				u.setGroup(new Group(group.getSingle(e)));
+			}
 		}
-		}
+
 		handler.reloadUsers();
-		
-		
-		
-		
+
+
+
+
 	}
 
 }
