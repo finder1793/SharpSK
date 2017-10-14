@@ -34,7 +34,7 @@ public class ExprmcMMOPartyAllyName extends SimpleExpression<String> {
 
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[mcmmo] %player%'s power[]level";
+		return "[mcmmo] [party] ally of party %string%";
 	}
 
 	@Override

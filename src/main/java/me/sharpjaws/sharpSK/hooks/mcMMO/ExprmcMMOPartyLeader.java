@@ -50,15 +50,15 @@ public class ExprmcMMOPartyLeader extends SimpleExpression<String> {
 	@Override	
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		try{
-		if (mode == Changer.ChangeMode.SET) {
-			Player p = (Player)delta[0];
-			PartyLeader p2 = new PartyLeader(p.getUniqueId(), p.getName());
-			
-			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLeader(p2);
+			if (mode == Changer.ChangeMode.SET) {
+				Player p = (Player)delta[0];
+				PartyLeader p2 = new PartyLeader(p.getUniqueId(), p.getName());
+
+				com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLeader(p2);
+			}
+		}catch(NullPointerException ex) {
+			return;
 		}
-	}catch(NullPointerException ex) {
-		
-	}
 	}
 
 	@Override

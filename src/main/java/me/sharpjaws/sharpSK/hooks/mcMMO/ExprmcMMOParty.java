@@ -37,7 +37,7 @@ public class ExprmcMMOParty extends SimpleExpression<String> {
 
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "party leader of [party] %string%";
+		return "%player%'s [mcmmo] party";
 	}
 
 	@Override

@@ -12,34 +12,34 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 
 
- public class CondmcMMOPartyHasAlly extends Condition
- {
- private Expression<String> s;
+public class CondmcMMOPartyHasAlly extends Condition
+{
+	private Expression<String> s;
 
 
 
 
- @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3)
-{
-s = (Expression<String>) expr[0];
+	{
+		s = (Expression<String>) expr[0];
 
- return true;
- }
+		return true;
+	}
 
 
-@Override
+	@Override
 	public String toString(@Nullable Event e, boolean debug)
- {
- return "%player% is [in] same party as %player%";
-}
+	{
+		return "[mcmmo] party %string% has [a] ally";
+	}
 
 
-@Override
+	@Override
 	public boolean check(Event e)
- {
+	{
 
- return PartyAPI.hasAlly(s.getSingle(e));
-}
+		return PartyAPI.hasAlly(s.getSingle(e));
+	}
 }

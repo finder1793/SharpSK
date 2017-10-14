@@ -33,6 +33,6 @@ public class EffmcMMOResetAbilityCooldown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-	 UserManager.getPlayer(player.getSingle(e)).setAbilityDATS(ab.getSingle(e), 0);
+		UserManager.getPlayer(player.getSingle(e)).setAbilityDATS(ab.getSingle(e), 0);
 	}
 }

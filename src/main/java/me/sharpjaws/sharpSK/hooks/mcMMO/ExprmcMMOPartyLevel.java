@@ -52,23 +52,23 @@ public class ExprmcMMOPartyLevel extends SimpleExpression<Number> {
 			Integer n2 = n.intValue();
 			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(n2.intValue());
 		}
-	if (mode == Changer.ChangeMode.ADD) {
-		Number n = (Number)delta[0];
-		Integer n2 = n.intValue();
-		com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(PartyManager.getParty(s.getSingle(e)).getLevel() + n2.intValue());
+		if (mode == Changer.ChangeMode.ADD) {
+			Number n = (Number)delta[0];
+			Integer n2 = n.intValue();
+			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(PartyManager.getParty(s.getSingle(e)).getLevel() + n2.intValue());
 		}
-	if (mode == Changer.ChangeMode.REMOVE) {
-		
-		Number n = (Number)delta[0];
-		Integer n2 = n.intValue();
-		if (n2.intValue() < PartyManager.getParty(s.getSingle(e)).getLevel()){
-			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(PartyManager.getParty(s.getSingle(e)).getLevel() - n2.intValue());
-		}else{
-			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(0);	
+		if (mode == Changer.ChangeMode.REMOVE) {
+
+			Number n = (Number)delta[0];
+			Integer n2 = n.intValue();
+			if (n2.intValue() < PartyManager.getParty(s.getSingle(e)).getLevel()){
+				com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(PartyManager.getParty(s.getSingle(e)).getLevel() - n2.intValue());
+			}else{
+				com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(0);	
+			}
 		}
-	}
-	if (mode == Changer.ChangeMode.RESET) {
-		com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(0);
+		if (mode == Changer.ChangeMode.RESET) {
+			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(0);
 		}		
 	}
 

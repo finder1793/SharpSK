@@ -2,7 +2,7 @@ package me.sharpjaws.sharpSK.hooks.mcMMO;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.entity.Player;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
 import com.gmail.nossr50.datatypes.skills.AbilityType;
@@ -14,33 +14,38 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 
 
- public class CondmcMMOAbilityEnabled extends Condition
- {
- private Expression<Player> p;
- private Expression<AbilityType> ability;
+public class CondmcMMOAbilityEnabled extends Condition
+{
+	private Expression<OfflinePlayer> p;
+	private Expression<AbilityType> ability;
 
 
 
- @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3)
-{
- p = (Expression<Player>) expr[0];	 
- ability = (Expression<AbilityType>) expr[1];
- return true;
- }
+	{	
+		p = (Expression<OfflinePlayer>) expr[0];	 
+		ability = (Expression<AbilityType>) expr[1];
+		return true;
+	}
 
 
-@Override
+	@Override
 	public String toString(@Nullable Event e, boolean debug)
- {
- return "%abilitytype% is enabled";
-}
+	{
+		return "%abilitytype% is enabled";
+	}
 
 
-@Override
+	@Override
 	public boolean check(Event e)
- {
-return UserManager.getPlayer(p.getSingle(e)).getAbilityMode(ability.getSingle(e));
+	{
+		if (p == null) {return false;};
+		if (p.getSingle(e).isOnline()) {
+			return UserManager.getPlayer(p.getSingle(e).getPlayer()).getAbilityMode(ability.getSingle(e));
+		}else {
+			return UserManager.getOfflinePlayer(p.getSingle(e)).getAbilityMode(ability.getSingle(e));	
+		}
+	}
 }
- }

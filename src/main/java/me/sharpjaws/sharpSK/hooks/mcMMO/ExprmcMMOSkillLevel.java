@@ -2,6 +2,7 @@ package me.sharpjaws.sharpSK.hooks.mcMMO;
 
 import javax.annotation.Nullable;
 
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
@@ -16,7 +17,7 @@ import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 
 public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
-	private Expression<Player> p;
+	private Expression<OfflinePlayer> p;
 	private Expression<SkillType> s;
 
 	@Override
@@ -34,13 +35,13 @@ public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult paramParseResult) {
 		s = (Expression<SkillType>) expr[0];
-		p = (Expression<Player>) expr[1];
+		p = (Expression<OfflinePlayer>) expr[1];
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[mcmmo] %skilltype% level of %player%";
+		return "[mcmmo] %skilltype% level of %offlineplayer%";
 	}
 
 	@Override
@@ -51,26 +52,43 @@ public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+		if (p == null) {return;}
+
 		if (mode == Changer.ChangeMode.SET) {
-			
-			Number level = (Number)delta[0];
-			ExperienceAPI.setLevel(p.getSingle(e), s.getSingle(e).toString(), level.intValue());
-		}
-	if (mode == Changer.ChangeMode.ADD) {
-			
-			Number level = (Number)delta[0];
-			ExperienceAPI.addLevel(p.getSingle(e), s.getSingle(e).toString(), level.intValue());
-		}
-	if (mode == Changer.ChangeMode.REMOVE) {
-		
-		Number level = (Number)delta[0];
-		if (ExperienceAPI.getLevel(p.getSingle(e),s.getSingle(e).toString())>0){
-			if (ExperienceAPI.getLevel(p.getSingle(e), s.getSingle(e).toString()) < level.intValue() ) {
-				ExperienceAPI.setLevel(p.getSingle(e), s.getSingle(e).toString(),0);
-			}else{
-				ExperienceAPI.setLevel(p.getSingle(e), s.getSingle(e).toString(), ExperienceAPI.getLevel(p.getSingle(e), s.getSingle(e).toString()) - level.intValue());
+			if (p.getSingle(e).isOnline()){
+
+				Number level = (Number)delta[0];
+				ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), level.intValue());
 			}
 		}
+		if (mode == Changer.ChangeMode.ADD) {
+			if (p.getSingle(e).isOnline()){
+				Number level = (Number)delta[0];
+				ExperienceAPI.addLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), level.intValue());
+			}
+		}
+		if (mode == Changer.ChangeMode.REMOVE) {
+			if (p.getSingle(e).isOnline()){
+				Number level = (Number)delta[0];
+				if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(),s.getSingle(e).toString())>0){
+					if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) < level.intValue() ) {
+						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(),0);
+					}else{
+						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) - level.intValue());
+					}
+				}
+			}else {
+				Number level = (Number)delta[0];
+				if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(),s.getSingle(e).toString())>0){
+					if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) < level.intValue() ) {
+						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(),0);
+					}else{
+						ExperienceAPI.setLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(), ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString()) - level.intValue());
+					}
+				}
+
+
+			}
 		}
 	}
 
