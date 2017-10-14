@@ -1,7 +1,6 @@
 package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.annotation.Nullable;
 

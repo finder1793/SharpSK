@@ -9,7 +9,6 @@ import com.onarandombox.MultiverseCore.MultiverseCore;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
 public class EffMVLoadWorld extends Effect{

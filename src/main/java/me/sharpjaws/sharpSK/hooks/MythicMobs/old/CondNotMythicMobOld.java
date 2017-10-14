@@ -2,17 +2,15 @@ package me.sharpjaws.sharpSK.hooks.MythicMobs.old;
 
 import javax.annotation.Nullable;
 
- import org.bukkit.Location;
- import org.bukkit.entity.Entity;
-import org.bukkit.entity.Item;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
-
- import ch.njol.skript.lang.Condition;
- import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.Condition;
+import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
- import ch.njol.util.Kleenean;
- import net.elseland.xikage.MythicMobs.MythicMobs;
+import ch.njol.util.Kleenean;
+import net.elseland.xikage.MythicMobs.MythicMobs;
 
 
  public class CondNotMythicMobOld extends Condition

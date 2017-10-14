@@ -5,8 +5,6 @@ import javax.annotation.Nullable;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 
-import com.palmergames.bukkit.towny.exceptions.EconomyException;
-import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.TownBlockType;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 

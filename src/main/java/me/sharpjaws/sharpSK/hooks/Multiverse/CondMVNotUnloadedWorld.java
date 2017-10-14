@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import org.bukkit.event.Event;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;
-import com.onarandombox.MultiverseCore.api.MVWorldManager;
 
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;

@@ -9,7 +9,6 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import fr.xephi.authme.api.NewAPI;
 import fr.xephi.authme.events.AuthMeTeleportEvent;
 import fr.xephi.authme.events.CustomEvent;
 import fr.xephi.authme.events.LoginEvent;

@@ -1,7 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.PermissionsEx;
 
-import org.bukkit.Bukkit;
-
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.ExpressionType;
 

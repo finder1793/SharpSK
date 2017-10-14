@@ -67,13 +67,6 @@ public class EffAddAttribute extends Effect	{
 		if (exist == false) {
 			main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger().warning("Attribute: "+"\"" +attri.getSingle(e)+"\"" + " does not exist.");
-			for (Attribute a : Attribute.values()) {
-
-				if (AttributeType.getActualAttribute(a) != null) {
-					System.out.println(AttributeType.getActualAttribute(a));	
-				}
-			}
-
 			return;
 		}
 

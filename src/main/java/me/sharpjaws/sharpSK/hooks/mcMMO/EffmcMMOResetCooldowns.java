@@ -5,9 +5,6 @@ import javax.annotation.Nullable;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
-import com.gamingmesh.jobs.Jobs;
-import com.gamingmesh.jobs.container.Job;
-import com.gamingmesh.jobs.container.JobsPlayer;
 import com.gmail.nossr50.api.AbilityAPI;
 
 import ch.njol.skript.lang.Effect;

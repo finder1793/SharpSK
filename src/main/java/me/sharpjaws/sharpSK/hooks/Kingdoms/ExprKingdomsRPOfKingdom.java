@@ -4,8 +4,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
 import org.kingdoms.constants.kingdom.Kingdom;
-import org.kingdoms.constants.kingdom.PowerUp;
-import org.kingdoms.json.serialize.PowerUpSerializer;
 import org.kingdoms.manager.game.GameManagement;
 
 import ch.njol.skript.classes.Changer;

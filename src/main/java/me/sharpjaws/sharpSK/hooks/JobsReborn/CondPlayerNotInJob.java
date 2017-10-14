@@ -2,17 +2,17 @@ package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
 import javax.annotation.Nullable;
 
- import org.bukkit.Location;
- import org.bukkit.entity.Player;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.Job;
 
 import ch.njol.skript.lang.Condition;
- import ch.njol.skript.lang.Expression;
- import ch.njol.skript.lang.SkriptParser;
- import ch.njol.util.Kleenean;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.util.Kleenean;
 
 
 

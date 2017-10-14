@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.event.Listener;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.ExpressionType;

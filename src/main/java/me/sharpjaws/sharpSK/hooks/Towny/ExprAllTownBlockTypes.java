@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
 
-import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.palmergames.bukkit.towny.object.TownBlockType;
 
 import ch.njol.skript.lang.Expression;

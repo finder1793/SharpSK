@@ -6,8 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.gmail.nossr50.api.ChatAPI;
-import com.gmail.nossr50.datatypes.skills.AbilityType;
-import com.gmail.nossr50.util.player.UserManager;
 
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;

@@ -11,7 +11,6 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;
 
 public class EffmcMMOAdminMsg extends Effect {
 	private Expression<String> s;

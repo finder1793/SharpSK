@@ -12,17 +12,12 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import me.sharpjaws.sharpSK.hooks.MythicMobs.old.CondIsMythicMobOld;
-import me.sharpjaws.sharpSK.hooks.MythicMobs.old.CondNotMythicMobOld;
-import me.sharpjaws.sharpSK.hooks.MythicMobs.old.EffSpawnMMOld;
-import me.sharpjaws.sharpSK.hooks.MythicMobs.old.ExprEvtMMDropsOld;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.old.MythicMobsRegistryOld;
 
 public class MythicMobsRegistry {
 
 	public static void RegisterMythicMobs(){
 		if (!Bukkit.getPluginManager().getPlugin("MythicMobs").getDescription().getVersion().matches("4.\\d.\\d.*")) {
-			System.out.println("Seems like the version matched");
 		MythicMobsRegistryOld.RegisterMythicMobsOld();
 		}else{
 		Skript.registerEvent("Mythicmob death", SimpleEvent.class, io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent.class,"([mythicmob|mm]) death");

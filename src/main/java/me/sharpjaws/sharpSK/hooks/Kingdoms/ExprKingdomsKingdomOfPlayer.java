@@ -2,10 +2,8 @@ package me.sharpjaws.sharpSK.hooks.Kingdoms;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
-import org.kingdoms.constants.kingdom.Kingdom;
 import org.kingdoms.manager.game.GameManagement;
 
 import ch.njol.skript.lang.Expression;

@@ -4,10 +4,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
 
-import com.gmail.nossr50.mcMMO;
-import com.gmail.nossr50.datatypes.party.Party;
-import com.gmail.nossr50.party.PartyManager;
-
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;

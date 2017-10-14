@@ -2,7 +2,6 @@ package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
 import javax.annotation.Nullable;
 
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 

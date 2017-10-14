@@ -16,7 +16,7 @@ public class WorldEditRegistry {
 	        	}
 	        	  //-------------------------
 	        	Skript.registerEffect(EffSaveClipToSchematic.class, new String[] { "[sharpsk] [worldedit] save clipboard of %player% to [schem[atic]] %string%" }); 
-	        	Skript.registerEffect(EffSaveSelectionToClipboard.class, new String[] { "[sharpsk] [worldedit] save [selection] p[oint]1 %location% p[oint]2 %location% in [world] %world% to [schem[atic]] %string%" }); 
+	        	Skript.registerEffect(EffSaveSelectionToClipboard.class, new String[] { "[sharpsk] [worldedit] save [selection] p[oint][ ]1 %location% p[oint][ ]2 %location% to clip[board] of [player] %player%" }); 
 	        	
 	        }
 		

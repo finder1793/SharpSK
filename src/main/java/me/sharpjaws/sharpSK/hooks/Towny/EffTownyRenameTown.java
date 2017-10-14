@@ -3,7 +3,6 @@ package me.sharpjaws.sharpSK.hooks.Towny;
 import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
 import com.palmergames.bukkit.towny.exceptions.AlreadyRegisteredException;

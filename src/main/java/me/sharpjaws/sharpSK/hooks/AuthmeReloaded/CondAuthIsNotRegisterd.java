@@ -2,8 +2,6 @@ package me.sharpjaws.sharpSK.hooks.AuthmeReloaded;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 

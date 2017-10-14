@@ -3,7 +3,6 @@ package me.sharpjaws.sharpSK.hooks.PermissionsEx;
 import javax.annotation.Nullable;
 
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import ch.njol.skript.lang.Effect;

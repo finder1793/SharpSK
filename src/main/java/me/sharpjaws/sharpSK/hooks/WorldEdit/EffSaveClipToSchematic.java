@@ -30,6 +30,7 @@ public class EffSaveClipToSchematic extends Effect{
 	private Expression<Player> pl;
 	private Expression<String> schem;
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		// TODO Auto-generated method stub
@@ -66,13 +67,13 @@ public class EffSaveClipToSchematic extends Effect{
 
 
 		} catch (DataException | IOException e1) {
-			 main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
- 			core.getLogger().warning("Failed to save schematic: "+"\""+schem.getSingle(e)+"\""+" An error occurred");
+			main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
+			core.getLogger().warning("Failed to save schematic: "+"\""+schem.getSingle(e)+"\""+" An error occurred");
 			return;
 		} catch (EmptyClipboardException e1) {
-			 main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-	 			core.getLogger().warning("Failed to save schematic: "+"\""+schem.getSingle(e)+"\""+" Clipboard was empty");
-				return;
+			main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
+			core.getLogger().warning("Failed to save schematic: "+"\""+schem.getSingle(e)+"\""+" Clipboard was empty");
+			return;
 		}
 
 	}

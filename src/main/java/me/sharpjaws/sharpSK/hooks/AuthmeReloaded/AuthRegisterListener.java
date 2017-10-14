@@ -2,10 +2,8 @@ package me.sharpjaws.sharpSK.hooks.AuthmeReloaded;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.plugin.Plugin;
 
-import fr.xephi.authme.AuthMe;
 import fr.xephi.authme.events.CustomEvent;
 
 public class AuthRegisterListener implements Listener {

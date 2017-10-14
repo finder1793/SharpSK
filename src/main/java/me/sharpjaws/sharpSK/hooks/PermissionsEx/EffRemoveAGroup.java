@@ -1,9 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.PermissionsEx;
 
-import java.lang.reflect.Array;
-import java.util.LinkedList;
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;

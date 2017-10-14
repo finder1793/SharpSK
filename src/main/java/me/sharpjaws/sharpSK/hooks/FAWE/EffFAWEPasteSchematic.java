@@ -57,7 +57,6 @@ public class EffFAWEPasteSchematic extends Effect{
 
 		
 		Vector v = new Vector(loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ());
-		// Extent ext= FaweAPI.getEditSessionBuilder(new BukkitWorld(loc.getSingle(e).getWorld())).build().getExtent();
 		Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit"), new Runnable() {
 
 			@Override

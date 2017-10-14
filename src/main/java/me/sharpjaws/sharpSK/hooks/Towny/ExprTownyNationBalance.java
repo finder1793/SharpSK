@@ -1,18 +1,11 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
 
-import java.util.ArrayList;
-
 import javax.annotation.Nullable;
 
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.kingdoms.constants.kingdom.Kingdom;
-import org.kingdoms.manager.game.GameManagement;
 
 import com.palmergames.bukkit.towny.exceptions.EconomyException;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
-import com.palmergames.bukkit.towny.object.Town;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 
 import ch.njol.skript.classes.Changer;

@@ -9,7 +9,6 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import ru.beykerykt.lightapi.events.DeleteLightEvent;
 import ru.beykerykt.lightapi.events.SetLightEvent;
 
 public class ExprEvtLightLevel extends SimpleExpression<Number> {

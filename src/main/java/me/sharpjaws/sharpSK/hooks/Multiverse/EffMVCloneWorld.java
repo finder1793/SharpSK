@@ -2,8 +2,6 @@ package me.sharpjaws.sharpSK.hooks.Multiverse;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.event.Event;
 
 import com.onarandombox.MultiverseCore.MultiverseCore;

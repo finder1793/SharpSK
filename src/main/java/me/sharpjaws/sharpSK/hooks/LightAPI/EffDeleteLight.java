@@ -1,7 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.LightAPI;
 
-import java.util.List;
-
 import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;

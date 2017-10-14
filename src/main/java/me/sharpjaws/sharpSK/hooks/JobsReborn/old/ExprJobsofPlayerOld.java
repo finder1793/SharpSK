@@ -11,7 +11,6 @@ import org.bukkit.event.Event;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.Job;
-import com.gamingmesh.jobs.container.PlayerInfo;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;

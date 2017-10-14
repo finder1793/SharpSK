@@ -3,7 +3,6 @@ package me.sharpjaws.sharpSK.hooks.Kingdoms;
 import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
-
 import org.kingdoms.manager.game.GameManagement;
 
 import ch.njol.skript.lang.Condition;
