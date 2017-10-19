@@ -104,7 +104,7 @@ private static boolean paste(String f, Location loc, Boolean exair, SchemFacingD
      if ((!file.exists()) && (file.isDirectory())) {
        return false;
      }
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession((new BukkitWorld(loc.getWorld())), 400000);
+     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession((new BukkitWorld(loc.getWorld())), 800000);
      
      CuboidClipboard cc = SchematicFormat.getFormat(file).load(file);
      try {

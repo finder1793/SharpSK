@@ -28,19 +28,21 @@ import me.sharpjaws.sharpSK.main;
 public class EffSaveSelectionToClipboard extends Effect{
 	private Expression<Location> point1;
 	private Expression<Location> point2;
+	private Expression<Location> origin;
 	private Expression<Player> pl;
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		point1 = (Expression<Location>) expr[0];
 		point2 = (Expression<Location>) expr[1];
-		pl = (Expression<Player>) expr[2];
+		origin = (Expression<Location>) expr[2];
+		pl = (Expression<Player>) expr[3];
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event e, boolean debug) {
-		return "[sharpsk] [worldedit] save [selection] p[oint]1 %location% p[oint]2 %location% to clip[board] of [player] %player%";
+		return "[sharpsk] [worldedit] save [selection] p[oint][ ]1 %location% p[oint][ ]2 %location% [with origin %-location%] to clip[board] of [player] %player%";
 	}
 
 	@Override
@@ -57,7 +59,13 @@ public class EffSaveSelectionToClipboard extends Effect{
 		BlockArrayClipboard bc = new BlockArrayClipboard(cr);
 		EditSession es = wep.createEditSession(pl.getSingle(e));
 		try {
+			if (origin == null) {
 			bc.setOrigin(session.getPlacementPosition(wep.wrapPlayer(pl.getSingle(e))));
+			}else {
+				Location originloc = origin.getSingle(e);
+				Vector originvec = new Vector(originloc .getBlockX(),originloc.getBlockY(),originloc.getBlockZ());
+				bc.setOrigin(originvec);	
+			}
 			session.setClipboard(new ClipboardHolder(bc,es.getWorld().getWorldData()));
 			ForwardExtentCopy copy = new ForwardExtentCopy(es,cr, bc, cr.getMinimumPoint());
 			Operations.complete(copy);

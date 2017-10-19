@@ -12,7 +12,7 @@ import me.sharpjaws.sharpSK.Threads.CTimerThread;
 public class SharpSKTest {
 	@Test
 	public void Timertest(){
-System.out.println("Testing SharpSK Timers...");
+		System.out.println("Testing SharpSK Timers...");
 
 
 
@@ -20,66 +20,72 @@ System.out.println("Testing SharpSK Timers...");
 		testtimer.instance().start();
 		Boolean checkT = false;
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
-	        if (t instanceof CTimerThread) {
-	        	System.out.println("TimerThread: "+((CTimerThread)t).instance().getName() + " created. OK");
-	        	checkT = true;
-	        }
+			if (t instanceof CTimerThread) {
+				System.out.println("TimerThread: "+((CTimerThread)t).instance().getName() + " created. OK");
+				checkT = true;
+			}
 		}
 		if (!checkT){
 			fail("Timer Thread failed to create.");	
 		}
 
-			
-				Thread test2 = new Thread(new Runnable() {
 
-					@Override
-					public void run() {
-						assert testtimer != null;
-						
-						while (testtimer.getTime() > 9){
-							try {
-								 Thread.sleep(30);
-							} catch (InterruptedException e) {}
-						}
-						assert testtimer != null;
-						testtimer.pauseTimer(testtimer.getName());
-						try {
-							 Thread.sleep(50);
-						} catch (InterruptedException e) {}
-					
-						if (testtimer.isPaused()){
-						System.out.println("TimerThread: "+testtimer.getName() + " paused. OK");
-						}else{
-						System.out.println("TimerThread: "+testtimer.getName() + " was not paused successfully. FAILURE");
-						 fail("Timer Thread failed to pause.");	
-						}
+		Thread test2 = new Thread(new Runnable() {
 
-						assert testtimer != null;
-						testtimer.stopTimer(testtimer.getName());
-						try {
-							 Thread.sleep(200);
-							} catch (InterruptedException e) {}
-						
-						
-						for (Thread t : Thread.getAllStackTraces().keySet()) {
-					        if (t instanceof CTimerThread) {
-					        	System.out.println("TimerThread: "+((CTimerThread)t).instance().getName() + " was not terminated successfully. FAILURE");		        	
-					        	fail("Timer Thread failed to stop.");	
-					        	break;
-					        	
-					        }
-						}
-						System.out.println("TimerThread: "+testtimer.getName() + " stopped. OK");
-						
-					}});
-					test2.run();
-					
-				
-				
-				
-				
-				
-		
+			@Override
+			public void run() {
+				assert testtimer != null;
+
+				while (testtimer.getTime() > 9){
+					try {
+						Thread.sleep(30);
+					} catch (InterruptedException e) {}
+				}
+				assert testtimer != null;
+				for (Thread t : Thread.getAllStackTraces().keySet()) {
+					if (t instanceof CTimerThread) {
+						((CTimerThread) t).pauseTimer(testtimer.getName());
+						break;
+
+					}
+				}
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {}
+
+				if (testtimer.isPaused()){
+					System.out.println("TimerThread: "+testtimer.getName() + " paused. OK");
+				}else{
+					System.out.println("TimerThread: "+testtimer.getName() + " was not paused successfully. FAILURE");
+					fail("Timer Thread failed to pause.");	
+				}
+
+				assert testtimer != null;
+				testtimer.stopTimer(testtimer.getName());
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {}
+
+
+				for (Thread t : Thread.getAllStackTraces().keySet()) {
+					if (t instanceof CTimerThread) {
+						System.out.println("TimerThread: "+((CTimerThread)t).instance().getName() + " was not terminated successfully. FAILURE");		        	
+						fail("Timer Thread failed to stop.");	
+						break;
+
+					}
+				}
+				System.out.println("TimerThread: "+testtimer.getName() + " stopped. OK");
+
+			}});
+		test2.run();
+
+
+
+
+
+
+
 	}
 
 }

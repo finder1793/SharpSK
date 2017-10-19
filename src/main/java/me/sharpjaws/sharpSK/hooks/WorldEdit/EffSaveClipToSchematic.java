@@ -41,7 +41,7 @@ public class EffSaveClipToSchematic extends Effect{
 
 	@Override
 	public String toString(@Nullable Event e, boolean debug) {
-		return "[sharpsk] save clipboard of %player% to [schem[atic]] %string%";
+		return "[sharpsk] [worldedit] save clipboard of %player% (to|as) [schem[atic]] %string%";
 	}
 
 	@Override

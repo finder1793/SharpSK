@@ -47,7 +47,12 @@ public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
 	@Override
 	@Nullable
 	protected Integer[] get(Event e) {
-		return new Integer[] {ExperienceAPI.getLevel((Player)p.getSingle(e), (String)s.getSingle(e).toString()) };
+		if (p == null) {return new Integer[] {0};}
+		if (p.getSingle(e).isOnline()) {
+		return new Integer[] {ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), (String)s.getSingle(e).toString()) };
+		}else {
+		return new Integer[] {ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), (String)s.getSingle(e).toString()) };
+		}
 	}
 
 	@Override
