@@ -3,7 +3,7 @@ package me.sharpjaws.sharpSK;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.sharpjaws.sharpSK.NBTApi.ItemNBTAPIRegistry;
+import me.sharpjaws.sharpSK.Slimefun.SlimefunRegistry;
 import me.sharpjaws.sharpSK.hooks.AuthmeReloaded.AuthmeRegistry;
 import me.sharpjaws.sharpSK.hooks.CoreProtect.CorePRegistry;
 import me.sharpjaws.sharpSK.hooks.FAWE.FAWERegisry;
@@ -257,16 +257,16 @@ public class HookManager {
 				}
 			}					
 		}
-		if (Bukkit.getPluginManager().isPluginEnabled("ItemNBTAPI")) {
-			if (mainp.getConfig().getBoolean("itemnbtapi") == true) {
+		if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) {
+			if (mainp.getConfig().getBoolean("slimefun") == true) {
 				try {
-				ItemNBTAPIRegistry.registerItemNBTAPI();
-					mainp.getLogger().info("Hooked into ItemNBTAPI v" + Bukkit.getPluginManager()
-					.getPlugin("ItemNBTAPI").getDescription().getVersion());
+				SlimefunRegistry.registerSlimefun();
+					mainp.getLogger().info("Hooked into Slimefun v" + Bukkit.getPluginManager()
+					.getPlugin("Slimefun").getDescription().getVersion());
 				} catch (Exception ex) {
-					mainp.getLogger().warning("Could not hook into ItemNBTAPI."+ " Version not supported");
+					mainp.getLogger().warning("Could not hook into Slimefun."+ " Version not supported");
 				} catch (NoClassDefFoundError e){
-					mainp.getLogger().warning("Could not hook into ItemNBTAPI."+ " Version not supported");
+					mainp.getLogger().warning("Could not hook into Slimefun."+ " Version not supported");
 				}
 			}					
 		}

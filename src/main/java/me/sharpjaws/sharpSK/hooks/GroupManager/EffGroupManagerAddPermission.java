@@ -32,27 +32,28 @@ public class EffGroupManagerAddPermission extends Effect{
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[sharpsk] (gm|group[ ]manager add perm[ission] %string% to [player] %offlineplayer%";
+		return "[sharpsk] (gman|group[ ]manager) add perm[ission] %string% to [player] %offlineplayer% [in [world] %-world%]";
 	}
 
 	@Override
 	protected void execute(Event e) {
 		final Plugin GMplugin = Bukkit.getPluginManager().getPlugin("GroupManager");
 		GroupManager groupManager = (GroupManager)GMplugin;	
-		OverloadedWorldHolder handler = groupManager.getWorldsHolder().getDefaultWorld();
+		OverloadedWorldHolder handler = null;
+		
+		if (player == null) {return;};
+		
+		if (player.getSingle(e).isOnline()) {
+			handler = groupManager.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
+		}else {
+			handler = groupManager.getWorldsHolder().getDefaultWorld();
+		}
 		
 		if (world != null){
 			handler = groupManager.getWorldsHolder().getWorldData(world.getSingle(e).getName());
-		}
-		for (User u : handler.getUserList()){
-		if (u.getUUID().equals(player.getSingle(e).getUniqueId().toString())){
-			System.out.println("MATCH");		
-			u.addPermission(perm.getSingle(e));
-			
-		}
-		System.out.println(u.getLastName());		
-		}
-		handler.loadUsers(handler.getUsersFile());
+		}	
+		
+	handler.getUser(player.getSingle(e).getName()).addPermission(perm.getSingle(e));
 
 
 		

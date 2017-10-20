@@ -1,6 +1,7 @@
 package me.sharpjaws.sharpSK.hooks.LuckPerms;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 import javax.annotation.Nullable;
 
@@ -12,78 +13,99 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import me.lucko.luckperms.LuckPerms;
+import me.lucko.luckperms.api.DataMutateResult;
 import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.Node;
 import me.lucko.luckperms.api.User;
-import me.lucko.luckperms.exceptions.ObjectLacksException;
 
 
 public class EffLuckPermsUnsetPerm extends Effect{
-private Expression<OfflinePlayer> offplayer;
-private Expression<String> perm;
-
+	private Expression<OfflinePlayer> offplayer;
+	private Expression<String> perm;
+	int mark;
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
+	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult parse) {
 		perm = (Expression<String>) expr[0];
 		offplayer = (Expression<OfflinePlayer>) expr[1];
+		mark = parse.mark;
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event e, boolean arg1) {
-		return "[sharpsk] luckperms unset permission %string% for [player] %offlineplayer%";
+		return "[sharpsk] luckperms unset (-1¦transient perm[ission]|1¦perm[ission]) %string% for [player] %offlineplayer%";
 	}
 
 	@Override
 	protected void execute(Event e) {
-		if (offplayer == null){return;}
-		if  (offplayer.getSingle(e) == null) {return;}
-		final LuckPermsApi api = LuckPerms.getApi();
-		Node node = api.getNodeFactory().newBuilder(perm.getSingle(e)).build();
-		if (offplayer.getSingle(e).isOnline()){
-			User user = api.getUser(offplayer.getSingle(e).getPlayer().getUniqueId());
-		if (user == null) {
-		   return;
-		}
-			
-			try {
-				user.unsetPermission(node);
-			} catch (ObjectLacksException ex1) {
-				return;
-			}		
-			
-			//Workaround for getting changes to take immediate effect instead of having to relog on the server.
-			 api.getStorage().saveUser(user);
-			 api.getStorage().loadUser(user.getUuid(),user.getName());
-			 api.getStorage().saveUser(user);
-			 api.getStorage().loadUser(user.getUuid(),user.getName());
+		if (offplayer.getSingle(e) == null) {return;}
+		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
+		Consumer<User> action = new Consumer<User>(){
 
-		
-		}else{
-			User user = api.getUser(offplayer.getSingle(e).getUniqueId());
-			
-			
-			api.getStorage().loadUser(user.getUuid(), "null").thenComposeAsync(success -> {
-			    if (!success) {
-			        return CompletableFuture.completedFuture(false);
-			    }
-			    try {	
-					user.unsetPermission(node);
-					} catch (ObjectLacksException ex1) {
-						return CompletableFuture.completedFuture(false);
+
+			@Override
+			public void accept(User t) {
+				if (mark == -1) {
+					for (Node nperm : t.getTransientPermissions()) {
+						if (nperm.getKey().equals(perm.getSingle(e))) {
+							DataMutateResult result = t.unsetTransientPermissionUnchecked(nperm);
+							if (result != DataMutateResult.SUCCESS) {
+								return;
+							}
+							break;
+						}
 					}
-			        
-			        // first save the user
-			        return api.getStorage().saveUser(user)
-			                .thenCompose(b -> {          
-			                    api.cleanupUser(user);
-			                    return CompletableFuture.completedFuture(b);
-			                });
-			        
-			    
-			}, api.getStorage().getAsyncExecutor());	
-			
+				}else {
+					for (Node nperm : t.getPermanentPermissionNodes()) {
+						if (nperm.getKey().equals(perm.getSingle(e))) {
+							DataMutateResult result = t.unsetPermissionUnchecked(nperm);
+							if (result != DataMutateResult.SUCCESS) {
+
+								return;
+							}
+							break;
+						}
+					}
+				}
+
+				api.get().getStorage().saveUser(t)
+				.thenAcceptAsync(wasSuccessful -> {
+					if (!wasSuccessful) {
+						return;
+					}
+
+
+					t.refreshPermissions();
+
+				}, api.get().getStorage().getAsyncExecutor());
+			};
+
+		};
+
+		if (offplayer.getSingle(e).isOnline()){
+			User user = api.get().getUser(offplayer.getSingle(e).getUniqueId());
+			if (user != null) {
+				action.accept(user);
+			}
+
+		}else {
+			api.get().getStorage().loadUser(offplayer.getSingle(e).getUniqueId())
+			.thenAcceptAsync(wasSuccessful -> {
+				if (!wasSuccessful) {
+					return;
+				}
+
+				User loadedUser = api.get().getUser(offplayer.getSingle(e).getUniqueId());
+				if (loadedUser == null) {
+					return;
+				}
+
+				action.accept(loadedUser);
+				api.get().cleanupUser(loadedUser);
+			}, api.get().getStorage().getSyncExecutor());
+
+
 		}
 	}
 

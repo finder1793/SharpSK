@@ -1,5 +1,7 @@
 package me.sharpjaws.sharpSK.hooks.LuckPerms;
 
+import java.util.Optional;
+
 import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
@@ -35,13 +37,13 @@ private Expression<String> perms;
 	@Override
 	protected void execute(Event e) {
 		
-	LuckPermsApi api = LuckPerms.getApi();
-		api.getStorage().createAndLoadGroup(group.getSingle(e)).thenAcceptAsync(success -> {
+		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
+		api.get().getStorage().createAndLoadGroup(group.getSingle(e)).thenAcceptAsync(success -> {
 		    if (!success) {
 		        return;
 		    }
 
-		    Group Lgroup = api.getGroup(group.getSingle(e));
+		    Group Lgroup = api.get().getGroup(group.getSingle(e));
 		    if (Lgroup == null) {
 		        return;
 		    }
@@ -49,16 +51,14 @@ private Expression<String> perms;
 		    if (perms != null){
 		   for (String s: perms.getAll(e)){
 			     try {
-			    	Node permission = api.buildNode(s).build();
+			    	Node permission = api.get().buildNode(s).setValue(true).build();
 					Lgroup.setPermission(permission);
 				} catch (ObjectAlreadyHasException | IllegalArgumentException ex) {
 					return;
 				}	
 		    }
 		    }
-
-		    // Now save the group back to storage
-		    api.getStorage().saveGroup(Lgroup);
-		}, api.getStorage().getAsyncExecutor());
+		    api.get().getStorage().saveGroup(Lgroup);
+		}, api.get().getStorage().getAsyncExecutor());
 	}
 }

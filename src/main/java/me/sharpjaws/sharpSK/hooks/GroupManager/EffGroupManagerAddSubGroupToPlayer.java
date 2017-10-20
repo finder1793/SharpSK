@@ -34,7 +34,7 @@ public class EffGroupManagerAddSubGroupToPlayer extends Effect{
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[sharpsk] (gm|group[ ]manager add [sub] group %string% to %offlineplayer%";
+		return "[sharpsk] (gman|group[ ]manager) add [sub] group %string% to %offlineplayer% [in [world] %-world%]";
 	}
 
 	@Override
@@ -42,19 +42,20 @@ public class EffGroupManagerAddSubGroupToPlayer extends Effect{
 		
 		final Plugin GMplugin = Bukkit.getPluginManager().getPlugin("GroupManager");
 		GroupManager groupManager = (GroupManager)GMplugin;	
-		OverloadedWorldHolder handler = groupManager.getWorldsHolder().getDefaultWorld();
+		OverloadedWorldHolder handler = null;
+		
+		if (player == null) {return;};
+		
+				if (player.getSingle(e).isOnline()) {
+					handler = groupManager.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
+				}else {
+					handler = groupManager.getWorldsHolder().getDefaultWorld();
+				}
 		
 		if (world != null){
 			handler = groupManager.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
-		for (User u : handler.getUserList()){
-		if (u.getUUID().equals(player.getSingle(e).getUniqueId().toString())){
-			System.out.println("MATCH");	
-			u.addSubGroup(new Group(group.getSingle(e)));
-		}
-		System.out.println(u.getLastName());	
-		}
-		handler.reloadUsers();
+		handler.getUser(player.getSingle(e).getName()).addSubGroup(new Group(group.getSingle(e)));
 		
 	}
 

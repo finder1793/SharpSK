@@ -33,26 +33,29 @@ public class EffGroupManagerSetGroupOfPlayer extends Effect{
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[sharpsk] (gm|group[ ]manager set group of [player] %offlineplayer% to %string%";
+		return "sharpsk] (gman|group[ ]manager) set [main] group of [player] %offlineplayer% to %string% [in [world] %-world%]";
 	}
 
 	@Override
 	protected void execute(Event e) {
 		final Plugin GMplugin = Bukkit.getPluginManager().getPlugin("GroupManager");
 		GroupManager groupManager = (GroupManager)GMplugin;	
-		OverloadedWorldHolder handler = groupManager.getWorldsHolder().getDefaultWorld();
+		OverloadedWorldHolder handler =null;
 
+		
+		if (player == null) {return;};
+		
+		if (player.getSingle(e).isOnline()) {
+			handler = groupManager.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
+		}else {
+			handler = groupManager.getWorldsHolder().getDefaultWorld();
+		}
+		
 		if (world != null){
 			handler = groupManager.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
-		for (User u : handler.getUserList()){
-			if (u.getUUID().equals(player.getSingle(e).getUniqueId().toString())){
-				System.out.println("MATCH");	
-				u.setGroup(new Group(group.getSingle(e)));
-			}
-		}
+		handler.getUser(player.getSingle(e).getName()).setGroup(new Group(group.getSingle(e)));
 
-		handler.reloadUsers();
 
 
 

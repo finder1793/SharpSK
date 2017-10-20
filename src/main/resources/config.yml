@@ -25,5 +25,5 @@ kingdoms: true
 luckperms: true
 factionsuuid: true
 groupmanager: true
-itemnbtapi: true
+slimefun: true
 fastasyncworldedit: true
