@@ -46,50 +46,59 @@ public class ExprmcMMOSkillLevelXP extends SimpleExpression<Number> {
 	@Override
 	@Nullable
 	protected Integer[] get(Event e) {
-		if (p == null) {return new Integer[]{0};};
+		if (p == null) {
+			return new Integer[] { 0 };
+		}
+		;
 		if (p.getSingle(e).isOnline()) {
-			return new Integer[] {ExperienceAPI.getXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString())};
-		}else {
-			return new Integer[] {ExperienceAPI.getOfflineXP(p.getSingle(e).getUniqueId(), s.getSingle(e).toString())};
+			return new Integer[] { ExperienceAPI.getXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) };
+		} else {
+			return new Integer[] {
+					ExperienceAPI.getOfflineXP(p.getSingle(e).getUniqueId(), s.getSingle(e).toString()) };
 		}
 	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (p == null) {return;}
+		if (p == null) {
+			return;
+		}
 		if (mode == Changer.ChangeMode.SET) {
 			if (p.getSingle(e).isOnline()) {
-				Number level = (Number)delta[0];
-				ExperienceAPI.setXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString(),level.intValue());
-			}else {
-				Number level = (Number)delta[0];
-				ExperienceAPI.setXPOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(),level.intValue());
+				Number level = (Number) delta[0];
+				ExperienceAPI.setXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), level.intValue());
+			} else {
+				Number level = (Number) delta[0];
+				ExperienceAPI.setXPOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(), level.intValue());
 			}
 		}
 		if (mode == Changer.ChangeMode.ADD) {
 			if (p.getSingle(e).isOnline()) {
-				Number level = (Number)delta[0];
-				ExperienceAPI.addRawXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString(),level.intValue(),"Command");
-			}else {
-				Number level = (Number)delta[0];
-				ExperienceAPI.addRawXPOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(),level.floatValue());
+				Number level = (Number) delta[0];
+				ExperienceAPI.addRawXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), level.intValue(),
+						"Command");
+			} else {
+				Number level = (Number) delta[0];
+				ExperienceAPI.addRawXPOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(),
+						level.floatValue());
 			}
 		}
 		if (mode == Changer.ChangeMode.REMOVE) {
 			if (p.getSingle(e).isOnline()) {
-				Number level = (Number)delta[0];
-				if (!(ExperienceAPI.getXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) <= 0)){
+				Number level = (Number) delta[0];
+				if (!(ExperienceAPI.getXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) <= 0)) {
 					ExperienceAPI.removeXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), +level.intValue());
-				}else{
-					ExperienceAPI.setXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), 0);	
+				} else {
+					ExperienceAPI.setXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), 0);
 				}
 
-			}else {
-				Number level = (Number)delta[0];
-				if (!(ExperienceAPI.getXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) <= 0)){
-					ExperienceAPI.removeXPOffline((p.getSingle(e).getUniqueId()), s.getSingle(e).toString(), +level.intValue());
-				}else{
-					ExperienceAPI.setXPOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(), 0);	
+			} else {
+				Number level = (Number) delta[0];
+				if (!(ExperienceAPI.getXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) <= 0)) {
+					ExperienceAPI.removeXPOffline((p.getSingle(e).getUniqueId()), s.getSingle(e).toString(),
+							+level.intValue());
+				} else {
+					ExperienceAPI.setXPOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(), 0);
 				}
 			}
 		}

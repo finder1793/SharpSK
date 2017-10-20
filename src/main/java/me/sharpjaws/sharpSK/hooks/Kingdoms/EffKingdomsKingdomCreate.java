@@ -14,6 +14,7 @@ import ch.njol.util.Kleenean;
 public class EffKingdomsKingdomCreate extends Effect {
 	private Expression<String> k;
 	private Expression<Player> p;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -31,11 +32,12 @@ public class EffKingdomsKingdomCreate extends Effect {
 	@Override
 	protected void execute(Event e) {
 
-		try{
-	GameManagement.getKingdomManager().createNewKingdom(k.getSingle(e), GameManagement.getPlayerManager().getOfflineKingdomPlayer(p.getSingle(e)).getKingdomPlayer());
-		}catch(NullPointerException ex){
+		try {
+			GameManagement.getKingdomManager().createNewKingdom(k.getSingle(e),
+					GameManagement.getPlayerManager().getOfflineKingdomPlayer(p.getSingle(e)).getKingdomPlayer());
+		} catch (NullPointerException ex) {
 			return;
-			
+
 		}
 	}
 }

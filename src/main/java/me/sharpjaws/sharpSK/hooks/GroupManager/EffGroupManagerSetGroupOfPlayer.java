@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.data.Group;
-import org.anjocaido.groupmanager.data.User;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -17,7 +16,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
-public class EffGroupManagerSetGroupOfPlayer extends Effect{
+public class EffGroupManagerSetGroupOfPlayer extends Effect {
 	private Expression<OfflinePlayer> player;
 	private Expression<String> group;
 	private Expression<World> world;
@@ -39,26 +38,24 @@ public class EffGroupManagerSetGroupOfPlayer extends Effect{
 	@Override
 	protected void execute(Event e) {
 		final Plugin GMplugin = Bukkit.getPluginManager().getPlugin("GroupManager");
-		GroupManager groupManager = (GroupManager)GMplugin;	
-		OverloadedWorldHolder handler =null;
+		GroupManager GM = (GroupManager) GMplugin;
+		OverloadedWorldHolder handler = null;
 
-		
-		if (player == null) {return;};
-		
-		if (player.getSingle(e).isOnline()) {
-			handler = groupManager.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
-		}else {
-			handler = groupManager.getWorldsHolder().getDefaultWorld();
+		if (player == null) {
+			return;
 		}
-		
-		if (world != null){
-			handler = groupManager.getWorldsHolder().getWorldData(world.getSingle(e).getName());
+		;
+
+		if (player.getSingle(e).isOnline()) {
+			handler = GM.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
+		} else {
+			handler = GM.getWorldsHolder().getDefaultWorld();
+		}
+
+		if (world != null) {
+			handler = GM.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
 		handler.getUser(player.getSingle(e).getName()).setGroup(new Group(group.getSingle(e)));
-
-
-
-
 
 	}
 

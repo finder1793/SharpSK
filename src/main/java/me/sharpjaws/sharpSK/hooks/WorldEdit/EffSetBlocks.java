@@ -1,5 +1,4 @@
- package me.sharpjaws.sharpSK.hooks.WorldEdit;
- 
+package me.sharpjaws.sharpSK.hooks.WorldEdit;
 
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -19,54 +18,45 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
- 
- public class EffSetBlocks extends Effect
- {
-   private Expression<?> name;
-   private Expression<?> world;
-   private Expression<?> block;
 
-   
-   
-   public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
-   {
-     this.name = expressions[0];
-     this.world = expressions[1];
-     this.block = expressions[2];
-     
-     return true;
-   }
-   
-   protected void execute(Event event) {
-     String name = (String)this.name.getSingle(event);
-     World world = (World) this.world.getSingle(event);
-     ItemStack block = (ItemStack)this.block.getSingle(event);
-     
- 
-     RegionManager regionManager = WGBukkit.getRegionManager((org.bukkit.World) world);
-     if (!regionManager.hasRegion(name)) {
-       Skript.error("Region \"" + name + "\" in world \"" + world.getName() + "\" does not exists.");
-       return;
-     }
-     
-     Vector v1 = regionManager.getRegion(name).getMaximumPoint();
-     Vector v2 = regionManager.getRegion(name).getMinimumPoint();
-     Region region = new CuboidRegion(v1, v2);
-     BaseBlock b = new BaseBlock(block.getTypeId(), block.getData().getData());
+public class EffSetBlocks extends Effect {
+	private Expression<?> name;
+	private Expression<?> world;
+	private Expression<?> block;
 
-     
-     EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(world, -1);
-     try {
-       es.setBlocks(region, b);
-     } catch (Exception e) {
-       e.printStackTrace();
-     }
-   }
-   
-   public String toString(Event e, boolean debug)
-   {
-     return getClass().getName();
-   }
- }
+	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+		this.name = expressions[0];
+		this.world = expressions[1];
+		this.block = expressions[2];
 
+		return true;
+	}
 
+	protected void execute(Event event) {
+		String name = (String) this.name.getSingle(event);
+		World world = (World) this.world.getSingle(event);
+		ItemStack block = (ItemStack) this.block.getSingle(event);
+
+		RegionManager regionManager = WGBukkit.getRegionManager((org.bukkit.World) world);
+		if (!regionManager.hasRegion(name)) {
+			Skript.error("Region \"" + name + "\" in world \"" + world.getName() + "\" does not exists.");
+			return;
+		}
+
+		Vector v1 = regionManager.getRegion(name).getMaximumPoint();
+		Vector v2 = regionManager.getRegion(name).getMinimumPoint();
+		Region region = new CuboidRegion(v1, v2);
+		BaseBlock b = new BaseBlock(block.getTypeId(), block.getData().getData());
+
+		EditSession es = WorldEdit.getInstance().getEditSessionFactory().getEditSession(world, -1);
+		try {
+			es.setBlocks(region, b);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public String toString(Event e, boolean debug) {
+		return getClass().getName();
+	}
+}

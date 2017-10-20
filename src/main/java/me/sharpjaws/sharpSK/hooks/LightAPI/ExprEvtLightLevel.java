@@ -28,11 +28,10 @@ public class ExprEvtLightLevel extends SimpleExpression<Number> {
 		return "event-lightlevel";
 	}
 
-
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
 		if (!ScriptLoader.isCurrentEvent(SetLightEvent.class)) {
-			return false ;		
+			return false;
 		}
 		return true;
 	}
@@ -41,10 +40,10 @@ public class ExprEvtLightLevel extends SimpleExpression<Number> {
 	@Nullable
 	protected Number[] get(Event e) {
 		if (e.getEventName().equals("SetLightEvent")) {
-			return new Number[]{((SetLightEvent) e).getLightLevel()} ;
+			return new Number[] { ((SetLightEvent) e).getLightLevel() };
 		}
-		
-		return null; 
+
+		return null;
 	}
 
 }

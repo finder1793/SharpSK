@@ -11,9 +11,10 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import me.mrCookieSlime.Slimefun.Objects.Research;
 
-public class EffSlimefunUnlockResearch extends Effect{
+public class EffSlimefunUnlockResearch extends Effect {
 	private Expression<String> rs;
 	private Expression<Player> pl;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {

@@ -30,7 +30,7 @@ public class EffTownyCreateTown extends Effect {
 	private Expression<Location> homespawn;
 	private Expression<OfflinePlayer> owner;
 	private Expression<OfflinePlayer> members;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -51,75 +51,64 @@ public class EffTownyCreateTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-		
-		
-		//Town Generator
-		
+		main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+
+		// Town Generator
+
 		try {
-		
-			
+
 			TownyWorld world = TownyUniverse.getDataSource().getWorld(homespawn.getSingle(e).getWorld().getName());
 			Coord loc = Coord.parseCoord(homespawn.getSingle(e));
-		
-			
+
 			world.newTownBlock(loc);
 			TownyUniverse.getDataSource().newTown(s.getSingle(e));
 			Town town = TownyUniverse.getDataSource().getTown(s.getSingle(e));
-			if (owner != null){
+			if (owner != null) {
 				Resident resident = TownyUniverse.getDataSource().getResident(owner.getSingle(e).getName());
 				town.addResident(resident);
 				town.setMayor(resident);
 				TownyUniverse.getDataSource().saveResident(resident);
-				}
-			if (members != null){
-				
-				for (OfflinePlayer member : members.getAll(e)){
+			}
+			if (members != null) {
+
+				for (OfflinePlayer member : members.getAll(e)) {
 					Resident loopresident = TownyUniverse.getDataSource().getResident(member.getName());
 					town.addResident(loopresident);
 					TownyUniverse.getDataSource().saveResident(loopresident);
 				}
-				
-				}
-			
+
+			}
+
 			TownBlock TB = world.getTownBlock(loc);
 			TB.setTown(town);
 			town.setHomeBlock(TB);
 
-			
 			TB.setType(TB.getType());
 			town.setSpawn(homespawn.getSingle(e));
-			if (sb != null){
-			town.setBalance(sb.getSingle(e).doubleValue(), "Town Creation");
-			}else{
-			town.setBalance(0, "Town Creation");
+			if (sb != null) {
+				town.setBalance(sb.getSingle(e).doubleValue(), "Town Creation");
+			} else {
+				town.setBalance(0, "Town Creation");
 			}
 
-		
-		
 			TownyUniverse.getDataSource().saveTownBlock(TB);
 			TownyUniverse.getDataSource().saveTown(town);
 			TownyUniverse.getDataSource().saveWorld(world);
 
 			TownyUniverse.getDataSource().saveTownList();
 			TownyUniverse.getDataSource().saveTownBlockList();
-		
-		
-		} catch (NotRegisteredException ex1) {
-	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\"");
-		} catch (AlreadyRegisteredException ex2) {
-	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\""+ ". Town already exists");
-		} catch (TownyException ex3) {
-	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\"");
-		} catch (EconomyException ex4) {
-	core.getLogger().warning("Could not register town: " + "\""+s.getSingle(e)+"\"");
-		}
-		
-		
-		
-		
-		}
-		
-	}
-	
 
+		} catch (NotRegisteredException ex1) {
+			core.getLogger().warning("Could not register town: " + "\"" + s.getSingle(e) + "\"");
+		} catch (AlreadyRegisteredException ex2) {
+			core.getLogger()
+					.warning("Could not register town: " + "\"" + s.getSingle(e) + "\"" + ". Town already exists");
+		} catch (TownyException ex3) {
+			core.getLogger().warning("Could not register town: " + "\"" + s.getSingle(e) + "\"");
+		} catch (EconomyException ex4) {
+			core.getLogger().warning("Could not register town: " + "\"" + s.getSingle(e) + "\"");
+		}
+
+	}
+
+}

@@ -45,28 +45,28 @@ public class ExprstandHead extends SimpleExpression<Location> {
 	@Nullable
 	protected Location[] get(Event e) {
 		ArmorStand arstand1 = null;
-		
-		if (en.getSingle(e) instanceof ArmorStand){
-			arstand1 = (ArmorStand)en.getSingle(e);
+
+		if (en.getSingle(e) instanceof ArmorStand) {
+			arstand1 = (ArmorStand) en.getSingle(e);
 		}
-		
-		return new Location[] {(Location)arstand1.getEyeLocation()};
+
+		return new Location[] { (Location) arstand1.getEyeLocation() };
 	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
-				if (en.getSingle(e) instanceof ArmorStand){
-					 ArmorStand arstand = (ArmorStand)en.getSingle(e);
-					double x=0,y=0,z=0;
-					Location loc2 = (Location)delta[0];
-					
-		                x = Math.toRadians(loc2.getPitch());
-		                y = Math.toRadians(loc2.getYaw());
-		                EulerAngle a = new EulerAngle(x,y,z);
-		                arstand.setHeadPose(a);
-		                
+				if (en.getSingle(e) instanceof ArmorStand) {
+					ArmorStand arstand = (ArmorStand) en.getSingle(e);
+					double x = 0, y = 0, z = 0;
+					Location loc2 = (Location) delta[0];
+
+					x = Math.toRadians(loc2.getPitch());
+					y = Math.toRadians(loc2.getYaw());
+					EulerAngle a = new EulerAngle(x, y, z);
+					arstand.setHeadPose(a);
+
 				}
 			} catch (NullPointerException ex) {
 

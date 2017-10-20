@@ -10,7 +10,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
-public class CondTimerActive extends Condition{
+public class CondTimerActive extends Condition {
 	private Expression<String> timer;
 
 	@SuppressWarnings("unchecked")
@@ -28,15 +28,15 @@ public class CondTimerActive extends Condition{
 	@Override
 	public boolean check(Event e) {
 		Boolean active = false;
-		
+
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
-	        if (t instanceof CTimerThread) {
-	        	if (t.getName().contains(timer.getSingle(e))){
-	        		active = t.isAlive();
-	        		
-	        	}
-	        }
-	    }
+			if (t instanceof CTimerThread) {
+				if (t.getName().contains(timer.getSingle(e))) {
+					active = t.isAlive();
+
+				}
+			}
+		}
 		return active;
 	}
 

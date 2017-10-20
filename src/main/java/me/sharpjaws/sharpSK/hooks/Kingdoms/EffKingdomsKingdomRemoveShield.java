@@ -12,6 +12,7 @@ import ch.njol.util.Kleenean;
 
 public class EffKingdomsKingdomRemoveShield extends Effect {
 	private Expression<String> k;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -28,11 +29,11 @@ public class EffKingdomsKingdomRemoveShield extends Effect {
 	@Override
 	protected void execute(Event e) {
 
-		try{
-	GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).giveShield();
-		}catch(NullPointerException ex){
+		try {
+			GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).giveShield();
+		} catch (NullPointerException ex) {
 			return;
-			
+
 		}
 	}
 }

@@ -15,8 +15,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
 public class ExprAllJobs extends SimpleExpression<Job> {
-	
+
 	boolean job;
+
 	@Override
 	public boolean isSingle() {
 		return false;
@@ -49,14 +50,11 @@ public class ExprAllJobs extends SimpleExpression<Job> {
 				jobs.add(p);
 			}
 		}
-return jobs.toArray(new Job[jobs.size()]);
+		return jobs.toArray(new Job[jobs.size()]);
 	}
-
 
 	@Override
 	public boolean isLoopOf(final String s) {
 		return job && (s.equalsIgnoreCase("job"));
-}
 	}
-
-
+}

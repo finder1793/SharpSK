@@ -12,13 +12,12 @@ import ch.njol.util.Kleenean;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 import io.lumine.xikage.mythicmobs.api.exceptions.InvalidMobTypeException;
 
-
-public class EffSpawnMM extends Effect{
+public class EffSpawnMM extends Effect {
 
 	private Expression<String> mn;
 	private Expression<Location> loc;
 	private Expression<Integer> level;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
@@ -36,10 +35,10 @@ public class EffSpawnMM extends Effect{
 	@Override
 	protected void execute(Event e) {
 		try {
-			try{
-			MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), level.getSingle(e));
-			}catch(NullPointerException ex){
-				
+			try {
+				MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), level.getSingle(e));
+			} catch (NullPointerException ex) {
+
 				return;
 			}
 		} catch (InvalidMobTypeException e1) {

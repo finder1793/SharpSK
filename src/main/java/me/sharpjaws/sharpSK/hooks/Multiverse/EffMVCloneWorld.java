@@ -11,12 +11,11 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 
-public class EffMVCloneWorld extends Effect{
+public class EffMVCloneWorld extends Effect {
 
 	private Expression<String> wn;
 	private Expression<String> wn2;
 
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -33,13 +32,11 @@ public class EffMVCloneWorld extends Effect{
 
 	@Override
 	protected void execute(Event e) {
-		
-		MultiverseCore mv = null;		
+
+		MultiverseCore mv = null;
 		mv = MultiverseCore.getPlugin(MultiverseCore.class);
-	
-		
+
 		mv.getMVWorldManager().cloneWorld(wn.getSingle(e), wn2.getSingle(e));
 	}
 
 }
-

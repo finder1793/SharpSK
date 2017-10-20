@@ -34,73 +34,65 @@ public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 		return "event-mmdrops";
 	}
 
-
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
 		if (!ScriptLoader.isCurrentEvent(MythicMobDeathEvent.class)) {
-			return false ;		
+			return false;
 		}
 		return true;
 	}
 
 	@Override
 	@Nullable
-	protected ItemStack[] get(Event e) {	
+	protected ItemStack[] get(Event e) {
 		if (e.getEventName().equals("MythicMobDeathEvent")) {
-			List<ItemStack> a = ((MythicMobDeathEvent)e).getDrops();
-		    ItemStack[] b = a.toArray(new ItemStack[a.size()]);
-			return  b;
+			List<ItemStack> a = ((MythicMobDeathEvent) e).getDrops();
+			ItemStack[] b = a.toArray(new ItemStack[a.size()]);
+			return b;
 		}
-		return null; 
+		return null;
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void change(Event e, Object[] deltas, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.REMOVE_ALL) {			
-				final List<ItemStack> drops = ((MythicMobDeathEvent)e).getDrops();
-				drops.clear();
-				((MythicMobDeathEvent)e).setDrops(drops);
-		
-			}
-		if (mode == Changer.ChangeMode.DELETE) {	
-				final List<ItemStack> drops = ((MythicMobDeathEvent)e).getDrops();
-				drops.clear();
-				((MythicMobDeathEvent)e).setDrops(drops);
-		}
-		if (mode == Changer.ChangeMode.SET) {	
-			
-			List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
-		    
+		if (mode == Changer.ChangeMode.REMOVE_ALL) {
+			final List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
 			drops.clear();
-			((MythicMobDeathEvent)e).setDrops(drops);
-		
-			List<ItemStack> list = new ArrayList<ItemStack>(); 
-		    
-		   ItemStack[] items = (ItemStack[])deltas;
-		  
-		   for (ItemStack delta: items){
-			   list.add(delta);
-		   }
-((MythicMobDeathEvent)e).setDrops(list);
+			((MythicMobDeathEvent) e).setDrops(drops);
+
+		}
+		if (mode == Changer.ChangeMode.DELETE) {
+			final List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
+			drops.clear();
+			((MythicMobDeathEvent) e).setDrops(drops);
+		}
+		if (mode == Changer.ChangeMode.SET) {
+
+			List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
+
+			drops.clear();
+			((MythicMobDeathEvent) e).setDrops(drops);
+
+			List<ItemStack> list = new ArrayList<ItemStack>();
+
+			ItemStack[] items = (ItemStack[]) deltas;
+
+			for (ItemStack delta : items) {
+				list.add(delta);
+			}
+			((MythicMobDeathEvent) e).setDrops(list);
 		}
 	}
-
-	
-
-	
-		
-	
 
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.REMOVE_ALL)
 			return CollectionUtils.array(new Class[] { ItemStack.class });
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] {ItemStack[].class, ItemStack.class});
-		if (mode == Changer.ChangeMode.DELETE )
+			return CollectionUtils.array(new Class[] { ItemStack[].class, ItemStack.class });
+		if (mode == Changer.ChangeMode.DELETE)
 			return CollectionUtils.array(new Class[] { ItemStack.class });
 		return null;
 	}
 }
-
-

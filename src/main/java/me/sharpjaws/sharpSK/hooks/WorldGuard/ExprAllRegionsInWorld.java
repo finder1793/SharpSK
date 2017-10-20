@@ -1,6 +1,6 @@
- package me.sharpjaws.sharpSK.hooks.WorldGuard;
- 
- import java.util.ArrayList;
+package me.sharpjaws.sharpSK.hooks.WorldGuard;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,45 +16,39 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
- 
- 
- public class ExprAllRegionsInWorld
-   extends SimpleExpression<String>
- {
-   private Expression<?> world;
-   
-   public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult)
-   {
-     this.world = expressions[0];
-     return true;
-   }
-   
-   protected String[] get(Event event) {
-     World world = (World)this.world.getSingle(event);
-     
-     RegionManager set = WGBukkit.getRegionManager(world);
-     Map<String, ProtectedRegion> regions = set.getRegions();
-     List<String> list = new ArrayList<String>(regions.keySet());
-     
-     String[] s = new String[list.size()];
-     return (String[])list.toArray(s);
-   }
-   
-   public boolean isSingle() {
-     return false;
-   }
-   
-   public Class<? extends String> getReturnType() {
-     return String.class;
-   }
-   
-   public String toString(Event event, boolean b) {
-     return "[sharpsk] [all] [worldguard] regions in %world%";
-   }
-   
-   public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-     return null;
-   }
- }
 
+public class ExprAllRegionsInWorld extends SimpleExpression<String> {
+	private Expression<?> world;
 
+	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+		this.world = expressions[0];
+		return true;
+	}
+
+	protected String[] get(Event event) {
+		World world = (World) this.world.getSingle(event);
+
+		RegionManager set = WGBukkit.getRegionManager(world);
+		Map<String, ProtectedRegion> regions = set.getRegions();
+		List<String> list = new ArrayList<String>(regions.keySet());
+
+		String[] s = new String[list.size()];
+		return (String[]) list.toArray(s);
+	}
+
+	public boolean isSingle() {
+		return false;
+	}
+
+	public Class<? extends String> getReturnType() {
+		return String.class;
+	}
+
+	public String toString(Event event, boolean b) {
+		return "[sharpsk] [all] [worldguard] regions in %world%";
+	}
+
+	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+		return null;
+	}
+}

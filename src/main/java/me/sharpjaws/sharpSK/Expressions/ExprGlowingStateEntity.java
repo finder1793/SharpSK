@@ -48,9 +48,9 @@ public class ExprGlowingStateEntity extends SimpleExpression<Boolean> {
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
-			this.en.getSingle(e).setGlowing(((Boolean) delta[0]).booleanValue());
-			}catch (NullPointerException ex){
-				
+				this.en.getSingle(e).setGlowing(((Boolean) delta[0]).booleanValue());
+			} catch (NullPointerException ex) {
+
 			}
 		}
 	}

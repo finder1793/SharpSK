@@ -13,10 +13,10 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 
-public class ExprKingdomsLoreOfKingdom extends SimpleExpression<String>{
+public class ExprKingdomsLoreOfKingdom extends SimpleExpression<String> {
 
 	private Expression<String> kingdom;
-	
+
 	@Override
 	public Class<? extends String> getReturnType() {
 		return String.class;
@@ -41,28 +41,29 @@ public class ExprKingdomsLoreOfKingdom extends SimpleExpression<String>{
 
 	@Override
 	@Nullable
-	protected String[] get(Event e) {	
-		return new String[] {GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).getKingdomLore()};
+	protected String[] get(Event e) {
+		return new String[] {
+				GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).getKingdomLore() };
 	}
-	
-	
+
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
 				Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
-				kdm.setKingdomLore((String)delta[0]);
-				
-			}catch (NullPointerException ex){
+				kdm.setKingdomLore((String) delta[0]);
+
+			} catch (NullPointerException ex) {
 				return;
 			}
 		}
 	}
+
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			return CollectionUtils.array(new Class[] { String.class });
-	}
+		}
 		return null;
 	}
 }

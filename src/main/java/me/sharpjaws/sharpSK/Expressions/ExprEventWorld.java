@@ -35,9 +35,9 @@ public class ExprEventWorld extends SimpleExpression<World> {
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
 		if (!ScriptLoader.isCurrentEvent(PlayerChangedWorldEvent.class)) {
 			return false;
-		}else{
-		mark = result.mark;
-		return true;
+		} else {
+			mark = result.mark;
+			return true;
 		}
 	}
 
@@ -45,15 +45,15 @@ public class ExprEventWorld extends SimpleExpression<World> {
 	@Nullable
 	protected World[] get(Event e) {
 		if (e.getEventName().equals("PlayerChangedWorldEvent")) {
-		if (mark == 0) {
-			return new World[] { ((PlayerChangedWorldEvent) e).getPlayer().getWorld() };
-		} else if (mark == 1) { 
-			return new World[] { ((PlayerChangedWorldEvent) e).getPlayer().getWorld() };
-		} else if (mark == -1) {
-			return new World[] { ((PlayerChangedWorldEvent) e).getFrom() };
+			if (mark == 0) {
+				return new World[] { ((PlayerChangedWorldEvent) e).getPlayer().getWorld() };
+			} else if (mark == 1) {
+				return new World[] { ((PlayerChangedWorldEvent) e).getPlayer().getWorld() };
+			} else if (mark == -1) {
+				return new World[] { ((PlayerChangedWorldEvent) e).getFrom() };
+			}
 		}
-		}
-		return null; 
+		return null;
 	}
 
 }

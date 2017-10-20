@@ -42,33 +42,32 @@ public class ExprmcMMOPartyEXP extends SimpleExpression<Number> {
 	@Override
 	@Nullable
 	protected Number[] get(Event e) {
-		return new Number[] {PartyManager.getParty(s.getSingle(e)).getXp()};
+		return new Number[] { PartyManager.getParty(s.getSingle(e)).getXp() };
 	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			
-			Number n = (Number)delta[0];
+
+			Number n = (Number) delta[0];
 			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(n.floatValue());
 		}
-	if (mode == Changer.ChangeMode.ADD) {
-		Number n = (Number)delta[0];
-		com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).applyXpGain(n.floatValue());
+		if (mode == Changer.ChangeMode.ADD) {
+			Number n = (Number) delta[0];
+			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).applyXpGain(n.floatValue());
 		}
-	if (mode == Changer.ChangeMode.REMOVE) {
-		
-		Number n = (Number)delta[0];
-		
-		float exp = PartyManager.getParty(s.getSingle(e)).getXp() -  n.floatValue();
-		com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(exp);
-		
-		
+		if (mode == Changer.ChangeMode.REMOVE) {
+
+			Number n = (Number) delta[0];
+
+			float exp = PartyManager.getParty(s.getSingle(e)).getXp() - n.floatValue();
+			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(exp);
+
 		}
-	if (mode == Changer.ChangeMode.RESET) {
-		com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(0);
-		}		
-	
+		if (mode == Changer.ChangeMode.RESET) {
+			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(0);
+		}
+
 	}
 
 	@Override

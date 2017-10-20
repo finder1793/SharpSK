@@ -14,10 +14,8 @@ import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.Group;
 import me.lucko.luckperms.api.LuckPermsApi;
 
-
-public class EffLuckPermsDeleteGroup extends Effect{
+public class EffLuckPermsDeleteGroup extends Effect {
 	private Expression<String> group;
-
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -36,15 +34,14 @@ public class EffLuckPermsDeleteGroup extends Effect{
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
 		for (Group g : api.get().getGroups()) {
 			if (g.getName().equals(group.getSingle(e))) {
-				api.get().getStorage().deleteGroup(g) .thenAcceptAsync(wasSuccessful -> {
-	                if (!wasSuccessful) {
-	                    return;
-	                }
+				api.get().getStorage().deleteGroup(g).thenAcceptAsync(wasSuccessful -> {
+					if (!wasSuccessful) {
+						return;
+					}
 
+					api.get().getStorage().loadAllGroups();
 
-	               api.get().getStorage().loadAllGroups();
-
-	            }, api.get().getStorage().getAsyncExecutor());	
+				}, api.get().getStorage().getAsyncExecutor());
 				break;
 			}
 		}

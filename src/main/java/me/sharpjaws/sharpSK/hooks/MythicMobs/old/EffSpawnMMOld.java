@@ -12,12 +12,12 @@ import ch.njol.util.Kleenean;
 import net.elseland.xikage.MythicMobs.MythicMobs;
 import net.elseland.xikage.MythicMobs.API.Exceptions.InvalidMobTypeException;
 
-public class EffSpawnMMOld extends Effect{
+public class EffSpawnMMOld extends Effect {
 
 	private Expression<String> mn;
 	private Expression<Location> loc;
 	private Expression<Integer> level;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
@@ -35,7 +35,8 @@ public class EffSpawnMMOld extends Effect{
 	@Override
 	protected void execute(Event e) {
 		try {
-			MythicMobs.inst().getAPI().getMobAPI().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), level.getSingle(e));
+			MythicMobs.inst().getAPI().getMobAPI().spawnMythicMob(mn.getSingle(e), loc.getSingle(e),
+					level.getSingle(e));
 		} catch (InvalidMobTypeException e1) {
 
 		}

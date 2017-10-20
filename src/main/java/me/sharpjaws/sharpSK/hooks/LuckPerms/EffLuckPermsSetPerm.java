@@ -18,8 +18,7 @@ import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.Node;
 import me.lucko.luckperms.api.User;
 
-
-public class EffLuckPermsSetPerm extends Effect{
+public class EffLuckPermsSetPerm extends Effect {
 	private Expression<OfflinePlayer> offplayer;
 	private Expression<String> perm;
 	private Expression<Boolean> bool;
@@ -29,13 +28,12 @@ public class EffLuckPermsSetPerm extends Effect{
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult parse) {
 		perm = (Expression<String>) expr[0];
-		bool = (Expression<Boolean>)expr[1];
+		bool = (Expression<Boolean>) expr[1];
 		offplayer = (Expression<OfflinePlayer>) expr[2];
 		mark = parse.mark;
 		return true;
 
 	}
-
 
 	@Override
 	public String toString(@Nullable Event e, boolean arg1) {
@@ -44,9 +42,11 @@ public class EffLuckPermsSetPerm extends Effect{
 
 	@Override
 	protected void execute(Event e) {
-		if (offplayer.getSingle(e) == null) {return;}
+		if (offplayer.getSingle(e) == null) {
+			return;
+		}
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
-		Consumer<User> action = new Consumer<User>(){
+		Consumer<User> action = new Consumer<User>() {
 			Node pn = api.get().getNodeFactory().newBuilder(perm.getSingle(e)).setValue(bool.getSingle(e)).build();
 
 			@Override
@@ -54,14 +54,13 @@ public class EffLuckPermsSetPerm extends Effect{
 				DataMutateResult result = null;
 				if (mark == -1) {
 					result = t.setTransientPermissionUnchecked(pn);
-				}else {
-					result = t.setPermissionUnchecked(pn);	
+				} else {
+					result = t.setPermissionUnchecked(pn);
 				}
 				if (result != DataMutateResult.SUCCESS) {
 					return;
 				}
-				api.get().getStorage().saveUser(t)
-				.thenAcceptAsync(wasSuccessful -> {
+				api.get().getStorage().saveUser(t).thenAcceptAsync(wasSuccessful -> {
 					if (!wasSuccessful) {
 						return;
 					}
@@ -71,15 +70,14 @@ public class EffLuckPermsSetPerm extends Effect{
 			};
 
 		};
-		if (offplayer.getSingle(e).isOnline()){
+		if (offplayer.getSingle(e).isOnline()) {
 			User user = api.get().getUser(offplayer.getSingle(e).getUniqueId());
 			if (user != null) {
 				action.accept(user);
 			}
 
-		}else {
-			api.get().getStorage().loadUser(offplayer.getSingle(e).getUniqueId())
-			.thenAcceptAsync(wasSuccessful -> {
+		} else {
+			api.get().getStorage().loadUser(offplayer.getSingle(e).getUniqueId()).thenAcceptAsync(wasSuccessful -> {
 				if (!wasSuccessful) {
 					return;
 				}
@@ -92,7 +90,6 @@ public class EffLuckPermsSetPerm extends Effect{
 				action.accept(loadedUser);
 				api.get().cleanupUser(loadedUser);
 			}, api.get().getStorage().getSyncExecutor());
-
 
 		}
 	}

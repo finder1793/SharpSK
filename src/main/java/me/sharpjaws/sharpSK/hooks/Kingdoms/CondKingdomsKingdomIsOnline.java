@@ -11,8 +11,9 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
 public class CondKingdomsKingdomIsOnline extends Condition {
-	
-private Expression<String> kingdom;
+
+	private Expression<String> kingdom;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult result) {
@@ -29,10 +30,10 @@ private Expression<String> kingdom;
 	@Override
 	public boolean check(Event e) {
 		Boolean a = isNegated();
-		if (!a){
-		return GameManagement.getKingdomManager().isOnline(kingdom.getSingle(e));
-		}else{
-			return !GameManagement.getKingdomManager().isOnline(kingdom.getSingle(e));	
+		if (!a) {
+			return GameManagement.getKingdomManager().isOnline(kingdom.getSingle(e));
+		} else {
+			return !GameManagement.getKingdomManager().isOnline(kingdom.getSingle(e));
 		}
 	}
 

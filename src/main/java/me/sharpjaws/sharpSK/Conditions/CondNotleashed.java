@@ -26,19 +26,17 @@ public class CondNotleashed extends Condition {
 		return "%entity% is not leashed";
 	}
 
-	
-	
 	@Override
 	public boolean check(Event e) {
 		Boolean check = false;
 		try {
-		LivingEntity en2 = (LivingEntity) en.getSingle(e);
-		if (en2.isLeashed() == true) {
-			check = false;
-		} else {
-			check = true;
-		}
-		}catch(NullPointerException ex){
+			LivingEntity en2 = (LivingEntity) en.getSingle(e);
+			if (en2.isLeashed() == true) {
+				check = false;
+			} else {
+				check = true;
+			}
+		} catch (NullPointerException ex) {
 		}
 		return check;
 	}

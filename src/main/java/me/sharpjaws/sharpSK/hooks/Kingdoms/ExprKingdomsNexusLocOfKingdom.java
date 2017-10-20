@@ -14,9 +14,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 
-public class ExprKingdomsNexusLocOfKingdom extends SimpleExpression<Location>{
+public class ExprKingdomsNexusLocOfKingdom extends SimpleExpression<Location> {
 	private Expression<String> kingdom;
-	
+
 	@Override
 	public Class<? extends Location> getReturnType() {
 		return Location.class;
@@ -44,32 +44,32 @@ public class ExprKingdomsNexusLocOfKingdom extends SimpleExpression<Location>{
 	protected Location[] get(Event e) {
 		Kingdom kdm = null;
 		try {
-			
+
 			kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
-		}catch(NullPointerException ex) {
-			return new Location[]{};
-		}	
-		return new Location[] {kdm.getNexus_loc()};
+		} catch (NullPointerException ex) {
+			return new Location[] {};
+		}
+		return new Location[] { kdm.getNexus_loc() };
 	}
 
-	
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
 				Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
-				kdm.setNexus_loc((Location)delta[0]);
-				
-			}catch (NullPointerException ex){
+				kdm.setNexus_loc((Location) delta[0]);
+
+			} catch (NullPointerException ex) {
 				return;
 			}
 		}
 	}
+
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			return CollectionUtils.array(new Class[] { Location.class });
-	}
+		}
 		return null;
 	}
 }

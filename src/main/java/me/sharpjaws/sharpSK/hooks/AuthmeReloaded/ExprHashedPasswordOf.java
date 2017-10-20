@@ -11,7 +11,6 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import fr.xephi.authme.datasource.DataSource;
 
-
 public class ExprHashedPasswordOf extends SimpleExpression<String> {
 	private Expression<Player> a;
 	private DataSource dataSource;
@@ -42,8 +41,9 @@ public class ExprHashedPasswordOf extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		String pass = fr.xephi.authme.data.auth.PlayerCache.getInstance().getAuth(a.getSingle(e).getName()).getPassword().getHash();
-		return new String[]{pass};
+		String pass = fr.xephi.authme.data.auth.PlayerCache.getInstance().getAuth(a.getSingle(e).getName())
+				.getPassword().getHash();
+		return new String[] { pass };
 
 	}
 

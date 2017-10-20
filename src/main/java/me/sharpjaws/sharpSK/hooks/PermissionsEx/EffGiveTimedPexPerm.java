@@ -35,14 +35,15 @@ public class EffGiveTimedPexPerm extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		
-	if (time.getSingle(e).getTicks_i()/20 > 0){
-	for (OfflinePlayer op : offplayers.getAll(e)){
-		PermissionUser permuser = PermissionsEx.getPermissionManager().getUser(op.getUniqueId());
-		permuser.addTimedPermission(perm.getSingle(e), permuser.getPlayer().getWorld().getName(), (int)time.getSingle(e).getTicks_i()/20);
-	}
-	}else{
-		return;
-	}
+
+		if (time.getSingle(e).getTicks_i() / 20 > 0) {
+			for (OfflinePlayer op : offplayers.getAll(e)) {
+				PermissionUser permuser = PermissionsEx.getPermissionManager().getUser(op.getUniqueId());
+				permuser.addTimedPermission(perm.getSingle(e), permuser.getPlayer().getWorld().getName(),
+						(int) time.getSingle(e).getTicks_i() / 20);
+			}
+		} else {
+			return;
+		}
 	}
 }

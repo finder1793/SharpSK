@@ -17,7 +17,7 @@ public class EffCreateLight extends Effect {
 	private Expression<Location> loc;
 	private Expression<Integer> int1;
 	private Expression<Boolean> async;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -32,22 +32,25 @@ public class EffCreateLight extends Effect {
 	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
 		return "create light at %location%";
 	}
+
 	@Override
 	protected void execute(Event e) {
-		if (Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion().matches("3.\\d.\\d")){
-			LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
-			for(ChunkInfo info: LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())){
+		if (Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion().matches("3.\\d.\\d")) {
+			LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),
+					loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
+			for (ChunkInfo info : LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),
+					loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())) {
 				LightAPI.updateChunk(info);
 			}
-	
-	
-	}else{
-		LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
-		for(ChunkInfo info: LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())){
-			LightAPI.updateChunks(info);
+
+		} else {
+			LightAPI.createLight(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),
+					loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ(), int1.getSingle(e), async.getSingle(e));
+			for (ChunkInfo info : LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),
+					loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())) {
+				LightAPI.updateChunks(info);
+			}
+
 		}
-	
-	
-}
-}
+	}
 }

@@ -16,7 +16,6 @@ import me.sharpjaws.sharpSK.Threads.CTimerThread;
 public class EffTimerStop extends Effect {
 	private Expression<String> timer;
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -35,45 +34,45 @@ public class EffTimerStop extends Effect {
 		CTimerThread a = null;
 		CTickTimerThread b = null;
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
-	        if (t instanceof CTimerThread) {
-	        	if (((CTimerThread) t).instance().getName().equals(timer.getSingle(e))){
-	        		a = ((CTimerThread) t).instance();
-	        		break;
-	        		
-	        	}
-	        }
-	        	 if (t instanceof CTickTimerThread) {
-	 	        	if (((CTickTimerThread) t).instance().getName().equals(timer.getSingle(e))){
-	 	        		b = ((CTickTimerThread) t).instance();
-	 	        		break;
-	 	        		
-	 	        	}
-	        	 }
-	        
+			if (t instanceof CTimerThread) {
+				if (((CTimerThread) t).instance().getName().equals(timer.getSingle(e))) {
+					a = ((CTimerThread) t).instance();
+					break;
+
+				}
+			}
+			if (t instanceof CTickTimerThread) {
+				if (((CTickTimerThread) t).instance().getName().equals(timer.getSingle(e))) {
+					b = ((CTickTimerThread) t).instance();
+					break;
+
+				}
+			}
+
 		}
 		try {
-		try {
-		if (!a.isActive())	{
-		a.stopTimer(a.getName());
-		}else{
-			
+			try {
+				if (!a.isActive()) {
+					a.stopTimer(a.getName());
+				} else {
+
+				}
+
+			} catch (NullPointerException ex) {
+
+				if (!b.isActive()) {
+					b.stopTimer(b.getName());
+				} else {
+					b.stopTimer(b.getName());
+				}
+			}
+
+		} catch (NullPointerException ex2) {
+			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			core.getLogger().warning(
+					"Timer " + "\"" + timer.getSingle(e) + "\"" + " could not be stopped because it does not exist.");
 		}
-		
-		}catch(NullPointerException ex){
-		
-			if (!b.isActive())	{
-		b.stopTimer(b.getName());	
-			}else{
-			b.stopTimer(b.getName());		
-		}
-		}
-		
-	
-	}catch(NullPointerException ex2){
-		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-		core.getLogger().warning("Timer "+ "\"" +timer.getSingle(e)+"\"" + " could not be stopped because it does not exist.");
+
 	}
-		
-	}
-	
+
 }

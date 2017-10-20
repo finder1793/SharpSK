@@ -11,9 +11,8 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
+public class CondMVUnloadedWorld extends Condition {
 
-public class CondMVUnloadedWorld extends Condition{
-	
 	private Expression<String> w;
 
 	@SuppressWarnings("unchecked")
@@ -30,12 +29,12 @@ public class CondMVUnloadedWorld extends Condition{
 
 	@Override
 	public boolean check(Event e) {
-		MultiverseCore mv = null;		
+		MultiverseCore mv = null;
 		mv = MultiverseCore.getPlugin(MultiverseCore.class);
-	
-		if (mv.getMVWorldManager().hasUnloadedWorld(w.getSingle(e), false)){
-		return true;
-		}else{
+
+		if (mv.getMVWorldManager().hasUnloadedWorld(w.getSingle(e), false)) {
+			return true;
+		} else {
 			return false;
 		}
 	}

@@ -16,7 +16,7 @@ import ru.beykerykt.lightapi.chunks.ChunkInfo;
 public class EffDeleteLight extends Effect {
 	private Expression<Location> loc;
 	private Expression<Boolean> async;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -33,17 +33,18 @@ public class EffDeleteLight extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		if (Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion().matches("3.\\d.\\d")){
+		if (Bukkit.getPluginManager().getPlugin("LightAPI").getDescription().getVersion().matches("3.\\d.\\d")) {
 			LightAPI.deleteLight(loc.getSingle(e), async.getSingle(e));
-			for(ChunkInfo info: LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())){
+			for (ChunkInfo info : LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),
+					loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())) {
 				LightAPI.updateChunk(info);
 			}
-		}else{	
+		} else {
 			LightAPI.deleteLight(loc.getSingle(e), async.getSingle(e));
-			for(ChunkInfo info: LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())){
+			for (ChunkInfo info : LightAPI.collectChunks(loc.getSingle(e).getWorld(), loc.getSingle(e).getBlockX(),
+					loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ())) {
 				LightAPI.updateChunk(info);
+			}
 		}
-		 }
-	  }
+	}
 }
-

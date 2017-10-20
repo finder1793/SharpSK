@@ -43,8 +43,6 @@ public class ExprGlowingColorOf extends SimpleExpression<GlowAPI.Color> {
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "Glowing color of %entity%";
 	}
-	
-	
 
 	@Override
 	@Nullable
@@ -52,35 +50,35 @@ public class ExprGlowingColorOf extends SimpleExpression<GlowAPI.Color> {
 		Player p = null;
 		GlowAPI.Color c = null;
 		try {
-		en.getSingle(e).getType();
-		if (en.getSingle(e).getType() == EntityType.PLAYER){
-	    p = (Player)en.getSingle(e);
-	    c = GlowAPI.getGlowColor(en.getSingle(e), p );
-		}else if (en.getSingle(e).getType() != EntityType.PLAYER){
-			
-			Random rand = new Random();
-			int random = rand.nextInt(Bukkit.getServer().getOnlinePlayers().size());
-			Player p2 = (Player) Bukkit.getServer().getOnlinePlayers().toArray()[random];
-			try {
-			c = GlowAPI.getGlowColor(en.getSingle(e), p2);
-			}catch(NullPointerException ex){
-				
+			en.getSingle(e).getType();
+			if (en.getSingle(e).getType() == EntityType.PLAYER) {
+				p = (Player) en.getSingle(e);
+				c = GlowAPI.getGlowColor(en.getSingle(e), p);
+			} else if (en.getSingle(e).getType() != EntityType.PLAYER) {
+
+				Random rand = new Random();
+				int random = rand.nextInt(Bukkit.getServer().getOnlinePlayers().size());
+				Player p2 = (Player) Bukkit.getServer().getOnlinePlayers().toArray()[random];
+				try {
+					c = GlowAPI.getGlowColor(en.getSingle(e), p2);
+				} catch (NullPointerException ex) {
+
+				}
+			} else if (en.getSingle(e).getType() == null) {
 			}
-		}else if (en.getSingle(e).getType() == null){
-		}
-		}catch(NullPointerException ex){
+		} catch (NullPointerException ex) {
 			c = GlowAPI.Color.NONE;
 		}
-		
-		return new GlowAPI.Color[]{c};
-		
+
+		return new GlowAPI.Color[] { c };
+
 	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			GlowAPI.Color c = GlowAPI.Color.valueOf(delta[0].toString());
-			GlowAPI.setGlowing(this.en.getSingle(e),c, Bukkit.getOnlinePlayers());
+			GlowAPI.setGlowing(this.en.getSingle(e), c, Bukkit.getOnlinePlayers());
 		}
 	}
 

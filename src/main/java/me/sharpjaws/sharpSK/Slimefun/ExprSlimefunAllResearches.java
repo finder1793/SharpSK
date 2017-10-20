@@ -6,7 +6,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
 
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;

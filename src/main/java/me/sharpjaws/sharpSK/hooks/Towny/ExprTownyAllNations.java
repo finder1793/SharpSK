@@ -1,4 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
+
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
@@ -15,10 +16,6 @@ import ch.njol.util.Kleenean;
 
 public class ExprTownyAllNations extends SimpleExpression<String> {
 
-	
-	
-	
-
 	@Override
 	public Class<? extends String> getReturnType() {
 		return String.class;
@@ -30,36 +27,29 @@ public class ExprTownyAllNations extends SimpleExpression<String> {
 			SkriptParser.ParseResult Result) {
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "[towny] (all|the) nations";
 	}
 
-
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		
-		
-		
-		ArrayList<String> narr = new ArrayList<String>(); 
+
+		ArrayList<String> narr = new ArrayList<String>();
 		for (Nation a1 : TownyUniverse.getDataSource().getNations()) {
-		
-			 narr.add(a1.getName());
-		 }
-		
-		 
-		 return narr.toArray(new String[narr.size()]);
-		
-			}
+
+			narr.add(a1.getName());
+		}
+
+		return narr.toArray(new String[narr.size()]);
+
+	}
 
 	@Override
 	public boolean isSingle() {
 		return false;
 	}
 
-	
-
 }
-
-

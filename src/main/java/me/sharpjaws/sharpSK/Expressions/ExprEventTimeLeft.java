@@ -11,7 +11,7 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.Events.EvtTimerTick;
 
-public class ExprEventTimeLeft extends SimpleExpression<Number>{
+public class ExprEventTimeLeft extends SimpleExpression<Number> {
 
 	@Override
 	public Class<? extends Number> getReturnType() {
@@ -27,8 +27,8 @@ public class ExprEventTimeLeft extends SimpleExpression<Number>{
 	public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
 		if (!ScriptLoader.isCurrentEvent(EvtTimerTick.class)) {
 			return false;
-		}else{
-		return true;
+		} else {
+			return true;
 		}
 	}
 
@@ -41,10 +41,10 @@ public class ExprEventTimeLeft extends SimpleExpression<Number>{
 	@Nullable
 	protected Number[] get(Event e) {
 		try {
-	EvtTimerTick a = ((EvtTimerTick)e);
-    return new Number[]{a.getTimeLeft()};
-		}catch (NullPointerException ex){
-			return new Number[]{0};
+			EvtTimerTick a = ((EvtTimerTick) e);
+			return new Number[] { a.getTimeLeft() };
+		} catch (NullPointerException ex) {
+			return new Number[] { 0 };
 		}
 	}
 

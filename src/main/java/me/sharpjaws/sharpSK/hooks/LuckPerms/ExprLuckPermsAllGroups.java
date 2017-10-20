@@ -7,7 +7,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.event.Event;
 
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
@@ -15,7 +14,6 @@ import ch.njol.util.Kleenean;
 import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.Group;
 import me.lucko.luckperms.api.LuckPermsApi;
-
 
 public class ExprLuckPermsAllGroups extends SimpleExpression<String> {
 
@@ -45,13 +43,12 @@ public class ExprLuckPermsAllGroups extends SimpleExpression<String> {
 	protected String[] get(Event e) {
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
 		ArrayList<String> groups = new ArrayList<>();
-		
-		for (Group g: api.get().getGroups()) {
+
+		for (Group g : api.get().getGroups()) {
 			groups.add(g.getName());
 		}
 		return groups.toArray(new String[groups.size()]);
 
 	}
-	
 
 }

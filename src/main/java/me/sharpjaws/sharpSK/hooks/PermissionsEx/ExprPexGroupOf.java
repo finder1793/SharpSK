@@ -18,11 +18,8 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class ExprPexGroupOf extends SimpleExpression<String> {
 	private Expression<OfflinePlayer> p;
-	
-	
-	private int mark = 0;
 
-	
+	private int mark = 0;
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -33,49 +30,44 @@ public class ExprPexGroupOf extends SimpleExpression<String> {
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult Result) {
-		p = (Expression<OfflinePlayer>) expr[0];	
+		p = (Expression<OfflinePlayer>) expr[0];
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "groups of %player%/%offlineplayer%";
 	}
 
-
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		
+
 		Object o = p.getSingle(e);
 		PermissionUser a = null;
-		
+
 		if (o instanceof Player) {
-			a = PermissionsEx.getUser((Player)o);
+			a = PermissionsEx.getUser((Player) o);
 		}
-		if(o instanceof OfflinePlayer) {
-			a = PermissionsEx.getUser(((OfflinePlayer)o).getName());
-		}else {
+		if (o instanceof OfflinePlayer) {
+			a = PermissionsEx.getUser(((OfflinePlayer) o).getName());
+		} else {
 			a = PermissionsEx.getUser(o.toString());
 		}
-		
-		ArrayList<String> farr = new ArrayList<String>(); 
-		 for (PermissionGroup a1 : a.getParents()) {
-		
-			 farr.add(a1.getName());
-		 }
-		
-		 
-		 return farr.toArray(new String[farr.size()]);
-		
-			}
+
+		ArrayList<String> farr = new ArrayList<String>();
+		for (PermissionGroup a1 : a.getParents()) {
+
+			farr.add(a1.getName());
+		}
+
+		return farr.toArray(new String[farr.size()]);
+
+	}
 
 	@Override
 	public boolean isSingle() {
 		return false;
 	}
 
-	
-
 }
-
-

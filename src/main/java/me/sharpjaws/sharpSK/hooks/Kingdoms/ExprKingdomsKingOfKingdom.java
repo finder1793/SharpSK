@@ -13,11 +13,11 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprKingdomsKingOfKingdom extends SimpleExpression<OfflinePlayer>{
+public class ExprKingdomsKingOfKingdom extends SimpleExpression<OfflinePlayer> {
 
 	private GameManagement kman;
 	private Expression<String> kingdom;
-	
+
 	@Override
 	public Class<? extends OfflinePlayer> getReturnType() {
 		return OfflinePlayer.class;
@@ -45,15 +45,13 @@ public class ExprKingdomsKingOfKingdom extends SimpleExpression<OfflinePlayer>{
 	protected OfflinePlayer[] get(Event e) {
 		OfflinePlayer king = null;
 		try {
-		Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
-		king = Bukkit.getOfflinePlayer(kdm.getKing());
-		}catch(NullPointerException ex) {
+			Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
+			king = Bukkit.getOfflinePlayer(kdm.getKing());
+		} catch (NullPointerException ex) {
 			return new OfflinePlayer[] {};
 		}
-		
-		
-		
-		return new OfflinePlayer[] {king};
+
+		return new OfflinePlayer[] { king };
 	}
 
 }

@@ -16,10 +16,6 @@ import ch.njol.util.Kleenean;
 
 public class ExprTownyAllTowns extends SimpleExpression<String> {
 
-	
-	
-	
-
 	@Override
 	public Class<? extends String> getReturnType() {
 		return String.class;
@@ -31,36 +27,29 @@ public class ExprTownyAllTowns extends SimpleExpression<String> {
 			SkriptParser.ParseResult Result) {
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "[towny] (all|the) towns";
 	}
 
-
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		
-		
-		
-		ArrayList<String> narr = new ArrayList<String>(); 
+
+		ArrayList<String> narr = new ArrayList<String>();
 		for (Town a1 : TownyUniverse.getDataSource().getTowns()) {
-		
-			 narr.add(a1.getName());
-		 }
-		
-		 
-		 return narr.toArray(new String[narr.size()]);
-		
-			}
+
+			narr.add(a1.getName());
+		}
+
+		return narr.toArray(new String[narr.size()]);
+
+	}
 
 	@Override
 	public boolean isSingle() {
 		return false;
 	}
 
-	
-
 }
-
-

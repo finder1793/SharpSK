@@ -15,7 +15,6 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-
 public class ExprJobsofPlayer extends SimpleExpression<Job> {
 	private Expression<OfflinePlayer> p;
 
@@ -42,41 +41,36 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 		return "jobs of %offlineplayer%";
 	}
 
-	
-	
 	@Override
 	@Nullable
 	protected Job[] get(Event e) {
 		ArrayList<Job> a = new ArrayList<Job>();
-		if (!a.isEmpty()){
+		if (!a.isEmpty()) {
 			a.clear();
 		}
-		
+
 		try {
-		if (p.getSingle(e).isOnline()){		
-		for (Job j : Jobs.getJobs()){		
-		if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer().getName()).isInJob(j)) {
-		a.add(j);
-	
+			if (p.getSingle(e).isOnline()) {
+				for (Job j : Jobs.getJobs()) {
+					if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer().getName()).isInJob(j)) {
+						a.add(j);
+
+					}
+				}
+			} else {
+				for (Job j : Jobs.getJobs()) {
+					if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getName()).isInJob(j)) {
+						a.add(j);
+					}
+
 				}
 			}
-		}else{
-			for (Job j : Jobs.getJobs()){
-				if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getName()).isInJob(j)){
-					a.add(j);
-				}
-			
-			}
-		}
-		
-		} catch (NullPointerException ex){
-			return new Job[]{};
+
+		} catch (NullPointerException ex) {
+			return new Job[] {};
 		}
 		return a.toArray(new Job[a.size()]);
 
 	}
 
-
 }
-
-

@@ -13,11 +13,8 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-
-
 public class ExprJobLevelOld extends SimpleExpression<Integer> {
-	
-	
+
 	private Expression<OfflinePlayer> p;
 	private Expression<Job> j;
 
@@ -41,27 +38,28 @@ public class ExprJobLevelOld extends SimpleExpression<Integer> {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-	return "job level of job %job% of player %offlineplayer%";
+		return "job level of job %job% of player %offlineplayer%";
 	}
 
 	@Override
 	@Nullable
 	protected Integer[] get(Event e) {
-		
+
 		int level = 0;
-		try{
-			if (!p.getSingle(e).isOnline()){
-        level = Jobs.getPlayerManager().getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId())).getJobProgression(j.getSingle(e)).getLevel();			
-			}else{
-		 level = Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).getJobProgression(j.getSingle(e)).getLevel();					
+		try {
+			if (!p.getSingle(e).isOnline()) {
+				level = Jobs.getPlayerManager()
+						.getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId()))
+						.getJobProgression(j.getSingle(e)).getLevel();
+			} else {
+				level = Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer())
+						.getJobProgression(j.getSingle(e)).getLevel();
 			}
-					
-		}catch(NullPointerException ex){
+
+		} catch (NullPointerException ex) {
 			level = 0;
 		}
-		return new Integer[]{level};
+		return new Integer[] { level };
 	}
 
-
-	
 }

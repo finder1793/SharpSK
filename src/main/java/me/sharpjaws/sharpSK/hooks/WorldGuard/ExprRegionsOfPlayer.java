@@ -21,9 +21,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
 public class ExprRegionsOfPlayer extends SimpleExpression<String> {
-private Expression<OfflinePlayer> player;
-private Expression<World> wo;
-	
+	private Expression<OfflinePlayer> player;
+	private Expression<World> wo;
+
 	@Override
 	public Class<? extends String> getReturnType() {
 		return String.class;
@@ -38,7 +38,7 @@ private Expression<World> wo;
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
 		player = (Expression<OfflinePlayer>) expr[0];
-		wo = (Expression<World>) expr[1];		
+		wo = (Expression<World>) expr[1];
 		return true;
 	}
 
@@ -52,28 +52,28 @@ private Expression<World> wo;
 	protected String[] get(Event e) {
 		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
 		RegionManager regionManager = null;
-		if (wo != null){ 
-		regionManager = wg.getRegionManager(wo.getSingle(e));
-	    }else{
-	    regionManager = wg.getRegionManager(Bukkit.getServer().getWorlds().get(0));	
-	    }
+		if (wo != null) {
+			regionManager = wg.getRegionManager(wo.getSingle(e));
+		} else {
+			regionManager = wg.getRegionManager(Bukkit.getServer().getWorlds().get(0));
+		}
 		if (player.getSingle(e) == null) {
 			return new String[] {};
 		}
 		LocalPlayer wpl = null;
-				if (player.getSingle(e).isOnline()) {
-					wpl = wg.wrapPlayer(player.getSingle(e).getPlayer());
-				}else {
-					wpl = wg.wrapOfflinePlayer(player.getSingle(e));
-				}
+		if (player.getSingle(e).isOnline()) {
+			wpl = wg.wrapPlayer(player.getSingle(e).getPlayer());
+		} else {
+			wpl = wg.wrapOfflinePlayer(player.getSingle(e));
+		}
 		ArrayList<String> pregions = new ArrayList<String>();
-		for (Entry<String,ProtectedRegion> reg : regionManager.getRegions().entrySet()){
-			if (reg.getValue().isMember(wpl)){
+		for (Entry<String, ProtectedRegion> reg : regionManager.getRegions().entrySet()) {
+			if (reg.getValue().isMember(wpl)) {
 				pregions.add(reg.getValue().getId());
 			}
 		}
-		return  pregions.toArray(new String[pregions.size()]);
-		
+		return pregions.toArray(new String[pregions.size()]);
+
 	}
 
 }

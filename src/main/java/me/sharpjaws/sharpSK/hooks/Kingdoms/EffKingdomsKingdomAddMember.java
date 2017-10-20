@@ -31,11 +31,11 @@ public class EffKingdomsKingdomAddMember extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		try{
-	GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).addMember(p.getSingle(e).getUniqueId());
-		}catch(NullPointerException ex){
+		try {
+			GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).addMember(p.getSingle(e).getUniqueId());
+		} catch (NullPointerException ex) {
 			return;
-			
+
 		}
 	}
 }

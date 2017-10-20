@@ -11,10 +11,10 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 
-public class EffMVUnloadWorld extends Effect{
+public class EffMVUnloadWorld extends Effect {
 
-	private Expression<String>w;
-	
+	private Expression<String> w;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -30,12 +30,11 @@ public class EffMVUnloadWorld extends Effect{
 
 	@Override
 	protected void execute(Event e) {
-		MultiverseCore mv = null;		
+		MultiverseCore mv = null;
 		mv = MultiverseCore.getPlugin(MultiverseCore.class).getCore();
-		
+
 		mv.getMVWorldManager().unloadWorld(w.getSingle(e));
-		
+
 	}
 
 }
-

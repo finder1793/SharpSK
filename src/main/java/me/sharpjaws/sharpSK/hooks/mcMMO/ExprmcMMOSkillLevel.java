@@ -3,7 +3,6 @@ package me.sharpjaws.sharpSK.hooks.mcMMO;
 import javax.annotation.Nullable;
 
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.gmail.nossr50.api.ExperienceAPI;
@@ -47,51 +46,62 @@ public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
 	@Override
 	@Nullable
 	protected Integer[] get(Event e) {
-		if (p == null) {return new Integer[] {0};}
+		if (p == null) {
+			return new Integer[] { 0 };
+		}
 		if (p.getSingle(e).isOnline()) {
-		return new Integer[] {ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), (String)s.getSingle(e).toString()) };
-		}else {
-		return new Integer[] {ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), (String)s.getSingle(e).toString()) };
+			return new Integer[] {
+					ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), (String) s.getSingle(e).toString()) };
+		} else {
+			return new Integer[] {
+					ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), (String) s.getSingle(e).toString()) };
 		}
 	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (p == null) {return;}
+		if (p == null) {
+			return;
+		}
 
 		if (mode == Changer.ChangeMode.SET) {
-			if (p.getSingle(e).isOnline()){
+			if (p.getSingle(e).isOnline()) {
 
-				Number level = (Number)delta[0];
+				Number level = (Number) delta[0];
 				ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), level.intValue());
 			}
 		}
 		if (mode == Changer.ChangeMode.ADD) {
-			if (p.getSingle(e).isOnline()){
-				Number level = (Number)delta[0];
+			if (p.getSingle(e).isOnline()) {
+				Number level = (Number) delta[0];
 				ExperienceAPI.addLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), level.intValue());
 			}
 		}
 		if (mode == Changer.ChangeMode.REMOVE) {
-			if (p.getSingle(e).isOnline()){
-				Number level = (Number)delta[0];
-				if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(),s.getSingle(e).toString())>0){
-					if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) < level.intValue() ) {
-						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(),0);
-					}else{
-						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) - level.intValue());
+			if (p.getSingle(e).isOnline()) {
+				Number level = (Number) delta[0];
+				if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) > 0) {
+					if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) < level
+							.intValue()) {
+						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), 0);
+					} else {
+						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(),
+								ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString())
+										- level.intValue());
 					}
 				}
-			}else {
-				Number level = (Number)delta[0];
-				if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(),s.getSingle(e).toString())>0){
-					if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) < level.intValue() ) {
-						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(),0);
-					}else{
-						ExperienceAPI.setLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(), ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString()) - level.intValue());
+			} else {
+				Number level = (Number) delta[0];
+				if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) > 0) {
+					if (ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) < level
+							.intValue()) {
+						ExperienceAPI.setLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString(), 0);
+					} else {
+						ExperienceAPI.setLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString(),
+								ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString())
+										- level.intValue());
 					}
 				}
-
 
 			}
 		}

@@ -22,7 +22,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.main;
 
-public class EffFAWEPasteSchematic extends Effect{
+public class EffFAWEPasteSchematic extends Effect {
 	private Expression<String> name;
 	private Expression<Location> loc;
 	private Expression<Boolean> exair;
@@ -40,43 +40,46 @@ public class EffFAWEPasteSchematic extends Effect{
 	public String toString(@Nullable Event e, boolean debug) {
 		return "[sharpsk] (fawe|fastasyncworldedit) paste schematic %string% at %location% [exclude air %-boolean%]";
 	}
+
 	@Override
 	protected void execute(Event e) {
 		File file;
 
 		if (name.getSingle(e).startsWith("/")) {
 			file = new File(
-					(name.getSingle(e) + ".schematic").replaceAll("/", 
-							Matcher.quoteReplacement(File.separator)));
+					(name.getSingle(e) + ".schematic").replaceAll("/", Matcher.quoteReplacement(File.separator)));
 		} else {
 			file = new File(
 
-					("plugins/WorldEdit/schematics/" + (name.getSingle(e).contains(".") ? name.getSingle(e) : new StringBuilder(String.valueOf(name.getSingle(e))).append(".schematic").toString())).replaceAll("/", 
-							Matcher.quoteReplacement(File.separator)));
+					("plugins/WorldEdit/schematics/" + (name.getSingle(e).contains(".") ? name.getSingle(e)
+							: new StringBuilder(String.valueOf(name.getSingle(e))).append(".schematic").toString()))
+									.replaceAll("/", Matcher.quoteReplacement(File.separator)));
 		}
 
-		
-		Vector v = new Vector(loc.getSingle(e).getBlockX(),loc.getSingle(e).getBlockY(),loc.getSingle(e).getBlockZ());
-		Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit"), new Runnable() {
+		Vector v = new Vector(loc.getSingle(e).getBlockX(), loc.getSingle(e).getBlockY(), loc.getSingle(e).getBlockZ());
+		Bukkit.getScheduler().runTaskAsynchronously(Bukkit.getPluginManager().getPlugin("FastAsyncWorldEdit"),
+				new Runnable() {
 
-			@Override
-			public void run() {	
-				try {
-					Boolean excludeair = false;
-					if (exair != null) {
-						excludeair = exair.getSingle(e);
+					@Override
+					public void run() {
+						try {
+							Boolean excludeair = false;
+							if (exair != null) {
+								excludeair = exair.getSingle(e);
+							}
+							Schematic schem = FaweAPI.load(file);
+							EditSession ext = schem.paste(new BukkitWorld(loc.getSingle(e).getWorld()), v, false,
+									excludeair, null);
+
+						} catch (IOException e1) {
+							main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+							core.getLogger().warning("Failed to paste schematic: " + "\"" + name.getSingle(e) + "\""
+									+ " An error occurred");
+							return;
+						}
 					}
-					Schematic schem= FaweAPI.load(file);	
-					EditSession ext = schem.paste(new BukkitWorld(loc.getSingle(e).getWorld()), v,false,excludeair,null);	
 
-				} catch (IOException e1) {
-					main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-					core.getLogger().warning("Failed to paste schematic: "+"\""+name.getSingle(e)+"\""+" An error occurred");
-					return;
-				}
-			}
-
-			});
-		}
-
+				});
 	}
+
+}

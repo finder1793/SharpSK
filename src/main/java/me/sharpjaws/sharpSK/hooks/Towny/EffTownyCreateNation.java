@@ -23,7 +23,6 @@ public class EffTownyCreateNation extends Effect {
 	private Expression<String> tow;
 	private Expression<Number> bal;
 
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -42,41 +41,35 @@ public class EffTownyCreateNation extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-		
-		
-		//Nation Generator
-		
+		main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+
+		// Nation Generator
+
 		try {
-		
+
 			TownyUniverse.getDataSource().newNation(nat.getSingle(e));
 			Nation nation = TownyUniverse.getDataSource().getNation(nat.getSingle(e));
 			Town town = TownyUniverse.getDataSource().getTown(tow.getSingle(e));
 			nation.addTown(town);
 			nation.setCapital(town);
 			if (bal != null) {
-					nation.setBalance(bal.getSingle(e).doubleValue(), "Nation Creation");	
-			}else{
-				nation.setBalance(0, "Nation Creation");	
+				nation.setBalance(bal.getSingle(e).doubleValue(), "Nation Creation");
+			} else {
+				nation.setBalance(0, "Nation Creation");
 			}
 			TownyUniverse.getDataSource().saveTown(town);
 			TownyUniverse.getDataSource().saveNation(nation);
 			TownyUniverse.getDataSource().saveNationList();
 
-		
 		} catch (NotRegisteredException ex1) {
-	core.getLogger().warning("Could not register nation: " + "\""+nat.getSingle(e)+"\"");
+			core.getLogger().warning("Could not register nation: " + "\"" + nat.getSingle(e) + "\"");
 		} catch (AlreadyRegisteredException ex2) {
-	core.getLogger().warning("Could not register nation: " + "\""+nat.getSingle(e)+"\""+ ". Nation already exists in town");
+			core.getLogger().warning(
+					"Could not register nation: " + "\"" + nat.getSingle(e) + "\"" + ". Nation already exists in town");
 		} catch (EconomyException ex3) {
-	core.getLogger().warning("Could not register nation: " + "\""+nat.getSingle(e)+"\"");
+			core.getLogger().warning("Could not register nation: " + "\"" + nat.getSingle(e) + "\"");
 		}
-		
-		
-		
-		
-		}
-		
-	}
-	
 
+	}
+
+}

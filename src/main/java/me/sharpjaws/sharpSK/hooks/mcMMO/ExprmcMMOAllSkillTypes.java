@@ -14,8 +14,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
 public class ExprmcMMOAllSkillTypes extends SimpleExpression<SkillType> {
-	
+
 	boolean skilltype;
+
 	@Override
 	public boolean isSingle() {
 		return false;
@@ -48,14 +49,11 @@ public class ExprmcMMOAllSkillTypes extends SimpleExpression<SkillType> {
 				skilltypes.add(p);
 			}
 		}
-return skilltypes.toArray(new SkillType[skilltypes.size()]);
+		return skilltypes.toArray(new SkillType[skilltypes.size()]);
 	}
-
 
 	@Override
 	public boolean isLoopOf(final String s) {
 		return skilltype && (s.equalsIgnoreCase("skilltype"));
-}
 	}
-
-
+}

@@ -1,6 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.WorldEdit;
 
-
 import javax.annotation.Nullable;
 
 import org.bukkit.Bukkit;
@@ -25,11 +24,12 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.main;
 
-public class EffSaveSelectionToClipboard extends Effect{
+public class EffSaveSelectionToClipboard extends Effect {
 	private Expression<Location> point1;
 	private Expression<Location> point2;
 	private Expression<Location> origin;
 	private Expression<Player> pl;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
@@ -53,30 +53,28 @@ public class EffSaveSelectionToClipboard extends Effect{
 		Location point1loc = point1.getSingle(e);
 		Location point2loc = point2.getSingle(e);
 
-		Vector min = new Vector(point1loc.getBlockX(),point1loc.getBlockY(),point1loc.getZ());
-		Vector max = new Vector(point2loc.getBlockX(),point2loc.getBlockY(),point2loc.getZ());
-		CuboidRegion cr =  new CuboidRegion(min, max);
+		Vector min = new Vector(point1loc.getBlockX(), point1loc.getBlockY(), point1loc.getZ());
+		Vector max = new Vector(point2loc.getBlockX(), point2loc.getBlockY(), point2loc.getZ());
+		CuboidRegion cr = new CuboidRegion(min, max);
 		BlockArrayClipboard bc = new BlockArrayClipboard(cr);
 		EditSession es = wep.createEditSession(pl.getSingle(e));
 		try {
 			if (origin == null) {
-			bc.setOrigin(session.getPlacementPosition(wep.wrapPlayer(pl.getSingle(e))));
-			}else {
+				bc.setOrigin(session.getPlacementPosition(wep.wrapPlayer(pl.getSingle(e))));
+			} else {
 				Location originloc = origin.getSingle(e);
-				Vector originvec = new Vector(originloc .getBlockX(),originloc.getBlockY(),originloc.getBlockZ());
-				bc.setOrigin(originvec);	
+				Vector originvec = new Vector(originloc.getBlockX(), originloc.getBlockY(), originloc.getBlockZ());
+				bc.setOrigin(originvec);
 			}
-			session.setClipboard(new ClipboardHolder(bc,es.getWorld().getWorldData()));
-			ForwardExtentCopy copy = new ForwardExtentCopy(es,cr, bc, cr.getMinimumPoint());
+			session.setClipboard(new ClipboardHolder(bc, es.getWorld().getWorldData()));
+			ForwardExtentCopy copy = new ForwardExtentCopy(es, cr, bc, cr.getMinimumPoint());
 			Operations.complete(copy);
 
 		} catch (WorldEditException e1) {
-			main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
+			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger().warning("Failed to save selection. Something went wrong");
 			return;
 		}
-
-
 
 	}
 }

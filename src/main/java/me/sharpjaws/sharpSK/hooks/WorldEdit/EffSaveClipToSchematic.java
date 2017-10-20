@@ -26,7 +26,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.main;
 
-public class EffSaveClipToSchematic extends Effect{
+public class EffSaveClipToSchematic extends Effect {
 	private Expression<Player> pl;
 	private Expression<String> schem;
 
@@ -47,9 +47,9 @@ public class EffSaveClipToSchematic extends Effect{
 	@Override
 	protected void execute(Event e) {
 		WorldEditPlugin wep = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
-		File file = new File(       
-				("plugins/WorldEdit/schematics/" + (schem.getSingle(e).contains(".") ? schem.getSingle(e) : new StringBuilder(String.valueOf(schem.getSingle(e))).append(".schematic").toString())).replaceAll("/", 
-						Matcher.quoteReplacement(File.separator)));
+		File file = new File(("plugins/WorldEdit/schematics/" + (schem.getSingle(e).contains(".") ? schem.getSingle(e)
+				: new StringBuilder(String.valueOf(schem.getSingle(e))).append(".schematic").toString()))
+						.replaceAll("/", Matcher.quoteReplacement(File.separator)));
 		try {
 			LocalSession session = wep.getSession(pl.getSingle(e));
 			ClipboardHolder selection = wep.getSession(pl.getSingle(e)).getClipboard();
@@ -58,21 +58,21 @@ public class EffSaveClipToSchematic extends Effect{
 			Vector max = selection.getClipboard().getMaximumPoint();
 			EditSession editSession = session.createEditSession(wep.wrapPlayer(pl.getSingle(e)));
 
-
 			editSession.enableQueue();
 			CuboidClipboard clipboard = new CuboidClipboard(max.subtract(min).add(new Vector(1, 1, 1)), min);
 			clipboard.copy(editSession);
 			SchematicFormat.MCEDIT.save(clipboard, file);
 			editSession.flushQueue();
 
-
 		} catch (DataException | IOException e1) {
-			main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-			core.getLogger().warning("Failed to save schematic: "+"\""+schem.getSingle(e)+"\""+" An error occurred");
+			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			core.getLogger()
+					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
 			return;
 		} catch (EmptyClipboardException e1) {
-			main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-			core.getLogger().warning("Failed to save schematic: "+"\""+schem.getSingle(e)+"\""+" Clipboard was empty");
+			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			core.getLogger()
+					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
 			return;
 		}
 

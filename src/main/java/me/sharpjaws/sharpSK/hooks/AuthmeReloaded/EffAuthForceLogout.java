@@ -13,7 +13,7 @@ import fr.xephi.authme.api.NewAPI;;
 
 public class EffAuthForceLogout extends Effect {
 	private Expression<Player> player;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -30,7 +30,6 @@ public class EffAuthForceLogout extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		NewAPI.getInstance().forceLogout(player.getSingle(e));		
-		}
+		NewAPI.getInstance().forceLogout(player.getSingle(e));
 	}
-
+}

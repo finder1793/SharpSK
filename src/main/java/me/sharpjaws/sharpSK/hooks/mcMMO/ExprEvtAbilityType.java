@@ -31,11 +31,11 @@ public class ExprEvtAbilityType extends SimpleExpression<AbilityType> {
 		return "event-abilitytype";
 	}
 
-
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(McMMOPlayerAbilityActivateEvent.class) && !ScriptLoader.isCurrentEvent(McMMOPlayerAbilityDeactivateEvent.class)) {
-			return false ;		
+		if (!ScriptLoader.isCurrentEvent(McMMOPlayerAbilityActivateEvent.class)
+				&& !ScriptLoader.isCurrentEvent(McMMOPlayerAbilityDeactivateEvent.class)) {
+			return false;
 		}
 		return true;
 	}
@@ -44,11 +44,11 @@ public class ExprEvtAbilityType extends SimpleExpression<AbilityType> {
 	@Nullable
 	protected AbilityType[] get(Event e) {
 		if (e.getEventName().equals("McMMOPlayerAbilityActivateEvent")) {
-			return new AbilityType[]{((McMMOPlayerAbilityActivateEvent) e).getAbility()} ;
-		}else if (e.getEventName().equals("McMMOPlayerAbilityDeactivateEvent")){
-			return new AbilityType[]{((McMMOPlayerAbilityDeactivateEvent) e).getAbility()};
+			return new AbilityType[] { ((McMMOPlayerAbilityActivateEvent) e).getAbility() };
+		} else if (e.getEventName().equals("McMMOPlayerAbilityDeactivateEvent")) {
+			return new AbilityType[] { ((McMMOPlayerAbilityDeactivateEvent) e).getAbility() };
 		}
-		return null; 
+		return null;
 	}
 
 }

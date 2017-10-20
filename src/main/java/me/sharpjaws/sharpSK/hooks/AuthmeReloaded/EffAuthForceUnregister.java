@@ -13,7 +13,7 @@ import fr.xephi.authme.api.NewAPI;;
 
 public class EffAuthForceUnregister extends Effect {
 	private Expression<Player> player;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -31,6 +31,5 @@ public class EffAuthForceUnregister extends Effect {
 	@Override
 	protected void execute(Event e) {
 		NewAPI.getInstance().forceUnregister(player.getSingle(e));
-		}
 	}
-
+}

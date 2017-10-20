@@ -18,9 +18,7 @@ import ch.njol.util.coll.CollectionUtils;
 
 public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
 
-	
 	private Expression<String> town;
-	
 
 	@Override
 	public Class<? extends OfflinePlayer> getReturnType() {
@@ -34,6 +32,7 @@ public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
 		town = (Expression<String>) expr[0];
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "[sharpsk] [towny] mayor of town %string%";
@@ -48,32 +47,32 @@ public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
 	@Nullable
 	protected OfflinePlayer[] get(Event e) {
 		try {
-			return new OfflinePlayer[]{Bukkit.getOfflinePlayer(TownyUniverse.getPlayer(TownyUniverse.getDataSource().getTown(town.getSingle(e)).getMayor()).getUniqueId())};
+			return new OfflinePlayer[] { Bukkit.getOfflinePlayer(TownyUniverse
+					.getPlayer(TownyUniverse.getDataSource().getTown(town.getSingle(e)).getMayor()).getUniqueId()) };
 		} catch (TownyException e1) {
-			return new OfflinePlayer[]{};
+			return new OfflinePlayer[] {};
 		}
 
-			}
+	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
-				TownyUniverse.getDataSource().getTown(town.getSingle(e)).setMayor(TownyUniverse.getDataSource().getResident(((OfflinePlayer)delta[0]).getName()));
+				TownyUniverse.getDataSource().getTown(town.getSingle(e))
+						.setMayor(TownyUniverse.getDataSource().getResident(((OfflinePlayer) delta[0]).getName()));
 			} catch (TownyException e1) {
-			return;
+				return;
 			}
 		}
 	}
+
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			return CollectionUtils.array(new Class[] { OfflinePlayer.class });
-	}
+		}
 		return null;
 	}
-	
 
 }
-
-

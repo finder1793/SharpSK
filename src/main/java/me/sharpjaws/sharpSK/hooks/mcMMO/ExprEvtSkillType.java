@@ -31,11 +31,11 @@ public class ExprEvtSkillType extends SimpleExpression<SkillType> {
 		return "event-skilltype";
 	}
 
-
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(McMMOPlayerLevelUpEvent.class) && !ScriptLoader.isCurrentEvent(McMMOPlayerXpGainEvent.class)) {
-			return false ;		
+		if (!ScriptLoader.isCurrentEvent(McMMOPlayerLevelUpEvent.class)
+				&& !ScriptLoader.isCurrentEvent(McMMOPlayerXpGainEvent.class)) {
+			return false;
 		}
 		return true;
 	}
@@ -44,11 +44,11 @@ public class ExprEvtSkillType extends SimpleExpression<SkillType> {
 	@Nullable
 	protected SkillType[] get(Event e) {
 		if (e.getEventName().equals("McMMOPlayerLevelUpEvent")) {
-			return new SkillType[]{((McMMOPlayerLevelUpEvent) e).getSkill()} ;
-		}else if (e.getEventName().equals("McMMOPlayerXpGainEvent")){
-			return new SkillType[]{((McMMOPlayerXpGainEvent) e).getSkill()};
+			return new SkillType[] { ((McMMOPlayerLevelUpEvent) e).getSkill() };
+		} else if (e.getEventName().equals("McMMOPlayerXpGainEvent")) {
+			return new SkillType[] { ((McMMOPlayerXpGainEvent) e).getSkill() };
 		}
-		return null; 
+		return null;
 	}
 
 }

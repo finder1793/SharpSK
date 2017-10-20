@@ -1,4 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.Kingdoms;
+
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -17,9 +18,6 @@ import ch.njol.util.Kleenean;
 public class ExprKingdomsMembersOfKingdom extends SimpleExpression<OfflinePlayer> {
 	private Expression<String> kingdom;
 	private GameManagement kman;
-	
-	
-	
 
 	@Override
 	public Class<? extends OfflinePlayer> getReturnType() {
@@ -33,36 +31,29 @@ public class ExprKingdomsMembersOfKingdom extends SimpleExpression<OfflinePlayer
 		kingdom = (Expression<String>) expr[0];
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "[sharpsk] [kingdoms] members (of|in) kingdom %string%";
 	}
 
-
 	@Override
 	@Nullable
 	protected OfflinePlayer[] get(Event e) {
-		
-		
-		
-		ArrayList<OfflinePlayer> narr = new ArrayList<OfflinePlayer>(); 
-		for (UUID u : GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getMembersList() ) {
-		
-			 narr.add(Bukkit.getOfflinePlayer(u));
-		 }
-		
-		 
-		 return narr.toArray(new OfflinePlayer[narr.size()]);
-		
-			}
+
+		ArrayList<OfflinePlayer> narr = new ArrayList<OfflinePlayer>();
+		for (UUID u : GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getMembersList()) {
+
+			narr.add(Bukkit.getOfflinePlayer(u));
+		}
+
+		return narr.toArray(new OfflinePlayer[narr.size()]);
+
+	}
 
 	@Override
 	public boolean isSingle() {
 		return false;
 	}
 
-	
-
 }
-
-

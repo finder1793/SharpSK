@@ -34,9 +34,10 @@ public class EffmcMMOPartyMsg extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		try{
-			ChatAPI.sendPartyChat(Bukkit.getPluginManager().getPlugin("SharpSK") , s3.getSingle(e), s2.getSingle(e), s.getSingle(e));
-		}catch (NullPointerException ex){
+		try {
+			ChatAPI.sendPartyChat(Bukkit.getPluginManager().getPlugin("SharpSK"), s3.getSingle(e), s2.getSingle(e),
+					s.getSingle(e));
+		} catch (NullPointerException ex) {
 			return;
 		}
 	}

@@ -19,14 +19,13 @@ import me.sharpjaws.sharpSK.main;;
 public class EffTownyKickPlayerFromTown extends Effect {
 	private Expression<String> s;
 	private Expression<OfflinePlayer> p;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult paramParseResult) {
 		p = (Expression<OfflinePlayer>) expr[0];
 		s = (Expression<String>) expr[1];
-		
 
 		return true;
 	}
@@ -38,21 +37,20 @@ public class EffTownyKickPlayerFromTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-		
-		
-			try {
-				TownyUniverse.getDataSource().getTown(s.getSingle(e)).removeResident(TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()));
-			} catch ( EmptyTownException e1) {
-				return;
-			
-			} catch (NotRegisteredException e1) {
-				core.getLogger().warning("Could not kick resident: "+"\""+ p.getSingle(e).getName()+"\""+" from town " +"\"" + s.getSingle(e) +"\"");
-				core.getLogger().warning("Resident is not in town: "+ "\"" + s.getSingle(e) +"\"");
-				return;
-			}
+		main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
 
-	
+		try {
+			TownyUniverse.getDataSource().getTown(s.getSingle(e))
+					.removeResident(TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()));
+		} catch (EmptyTownException e1) {
+			return;
+
+		} catch (NotRegisteredException e1) {
+			core.getLogger().warning("Could not kick resident: " + "\"" + p.getSingle(e).getName() + "\""
+					+ " from town " + "\"" + s.getSingle(e) + "\"");
+			core.getLogger().warning("Resident is not in town: " + "\"" + s.getSingle(e) + "\"");
+			return;
+		}
+
 	}
-}	
-
+}

@@ -16,16 +16,15 @@ import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.Node;
 import me.lucko.luckperms.exceptions.ObjectAlreadyHasException;
 
-
-public class EffLuckPermsCreateGroup extends Effect{
-private Expression<String> group;
-private Expression<String> perms;
+public class EffLuckPermsCreateGroup extends Effect {
+	private Expression<String> group;
+	private Expression<String> perms;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
 		group = (Expression<String>) expr[0];
-		perms = (Expression<String>)expr[1];
+		perms = (Expression<String>) expr[1];
 		return true;
 	}
 
@@ -36,29 +35,29 @@ private Expression<String> perms;
 
 	@Override
 	protected void execute(Event e) {
-		
+
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
 		api.get().getStorage().createAndLoadGroup(group.getSingle(e)).thenAcceptAsync(success -> {
-		    if (!success) {
-		        return;
-		    }
+			if (!success) {
+				return;
+			}
 
-		    Group Lgroup = api.get().getGroup(group.getSingle(e));
-		    if (Lgroup == null) {
-		        return;
-		    }
+			Group Lgroup = api.get().getGroup(group.getSingle(e));
+			if (Lgroup == null) {
+				return;
+			}
 
-		    if (perms != null){
-		   for (String s: perms.getAll(e)){
-			     try {
-			    	Node permission = api.get().buildNode(s).setValue(true).build();
-					Lgroup.setPermission(permission);
-				} catch (ObjectAlreadyHasException | IllegalArgumentException ex) {
-					return;
-				}	
-		    }
-		    }
-		    api.get().getStorage().saveGroup(Lgroup);
+			if (perms != null) {
+				for (String s : perms.getAll(e)) {
+					try {
+						Node permission = api.get().buildNode(s).setValue(true).build();
+						Lgroup.setPermission(permission);
+					} catch (ObjectAlreadyHasException | IllegalArgumentException ex) {
+						return;
+					}
+				}
+			}
+			api.get().getStorage().saveGroup(Lgroup);
 		}, api.get().getStorage().getAsyncExecutor());
 	}
 }

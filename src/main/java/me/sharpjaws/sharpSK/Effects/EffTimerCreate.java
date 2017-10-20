@@ -33,7 +33,6 @@ public class EffTimerCreate extends Effect {
 		this.mark = result.mark;
 		return true;
 	}
-	
 
 	@Override
 	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
@@ -44,91 +43,103 @@ public class EffTimerCreate extends Effect {
 	protected void execute(final Event e) {
 		String timer = s.getSingle(e).toLowerCase();
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
-			
-		
-	        if (t instanceof CTimerThread && t.isAlive()) {
-	        	CTimerThread ti = (CTimerThread)t;
-	        	if (ti.getName().equals(timer)){	
-	        		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-	        		core.getLogger().warning("Timer "+"\"" +s.getSingle(e)+"\"" + " could not be created because a timer already exists with that name.");
-	        		return;
-	        	}
-	        }else if (t instanceof CTickTimerThread && t.isAlive()) {
-	        	CTickTimerThread ti = (CTickTimerThread)t;
-	        	if (ti.getName().equals(timer)){	
-	        		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-	        		core.getLogger().warning("Timer "+"\"" +s.getSingle(e)+"\"" + " could not be created because a timer already exists with that name.");
-	        		return;  
-	        	}
-	        }
-		}
-	        
 
-	if (mark == -1){		
-	if (active == null)	{
-		
-		if (interval != null){
-			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,(int)interval.getSingle(e).getTicks_i()/20);
-			th.instance().start();
-				}else{
-			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,0);	
-			th.instance().start();
+			if (t instanceof CTimerThread && t.isAlive()) {
+				CTimerThread ti = (CTimerThread) t;
+				if (ti.getName().equals(timer)) {
+					main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					core.getLogger().warning("Timer " + "\"" + s.getSingle(e) + "\""
+							+ " could not be created because a timer already exists with that name.");
+					return;
 				}
-	}else {
-	if (active.getSingle(e) == false){
-		
-		if (interval != null){
-	CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,(int)interval.getSingle(e).getTicks_i()/20);
-	th.instance().start();
-		}else{
-	CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, false,0);	
-	th.instance().start();
-		}
-	
-	}else if (active.getSingle(e) == true){
-		if (interval != null){
-			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, true,(int)interval.getSingle(e).getTicks_i()/20);
-			th.instance().start();
-				}else{
-			CTimerThread th = new CTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i()/20, true,0);	
-			th.instance().start();
+			} else if (t instanceof CTickTimerThread && t.isAlive()) {
+				CTickTimerThread ti = (CTickTimerThread) t;
+				if (ti.getName().equals(timer)) {
+					main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					core.getLogger().warning("Timer " + "\"" + s.getSingle(e) + "\""
+							+ " could not be created because a timer already exists with that name.");
+					return;
 				}
-	}
-}
-		
-	}else if(mark == 1){
-		if (active == null)	{
-			if (interval != null){
-			CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,(int)interval.getSingle(e).getTicks_i());
-			th.instance().start();
-			}else{
-				CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,0);
-				th.instance().start();	
 			}
-		}else {
-		if (active.getSingle(e) == false){
-			if (interval != null){
-				CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,(int)interval.getSingle(e).getTicks_i());
-				th.instance().start();
-				}else{
-					CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), false,0);
-					th.instance().start();	
-				}
-		}else if (active.getSingle(e) == true){
-			if (interval != null){
-				CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), true,(int)interval.getSingle(e).getTicks_i());
-				th.instance().start();
-				}else{
-					CTickTimerThread th = new CTickTimerThread(s.getSingle(e),(int)duration.getSingle(e).getTicks_i(), true,0);
-					th.instance().start();	
-				}
 		}
-	}
-	}
-	
 
+		if (mark == -1) {
+			if (active == null) {
 
-		
-		
-	}	
+				if (interval != null) {
+					CTimerThread th = new CTimerThread(s.getSingle(e), (int) duration.getSingle(e).getTicks_i() / 20,
+							false, (int) interval.getSingle(e).getTicks_i() / 20);
+					th.instance().start();
+				} else {
+					CTimerThread th = new CTimerThread(s.getSingle(e), (int) duration.getSingle(e).getTicks_i() / 20,
+							false, 0);
+					th.instance().start();
+				}
+			} else {
+				if (active.getSingle(e) == false) {
+
+					if (interval != null) {
+						CTimerThread th = new CTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i() / 20, false,
+								(int) interval.getSingle(e).getTicks_i() / 20);
+						th.instance().start();
+					} else {
+						CTimerThread th = new CTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i() / 20, false, 0);
+						th.instance().start();
+					}
+
+				} else if (active.getSingle(e) == true) {
+					if (interval != null) {
+						CTimerThread th = new CTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i() / 20, true,
+								(int) interval.getSingle(e).getTicks_i() / 20);
+						th.instance().start();
+					} else {
+						CTimerThread th = new CTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i() / 20, true, 0);
+						th.instance().start();
+					}
+				}
+			}
+
+		} else if (mark == 1) {
+			if (active == null) {
+				if (interval != null) {
+					CTickTimerThread th = new CTickTimerThread(s.getSingle(e), (int) duration.getSingle(e).getTicks_i(),
+							false, (int) interval.getSingle(e).getTicks_i());
+					th.instance().start();
+				} else {
+					CTickTimerThread th = new CTickTimerThread(s.getSingle(e), (int) duration.getSingle(e).getTicks_i(),
+							false, 0);
+					th.instance().start();
+				}
+			} else {
+				if (active.getSingle(e) == false) {
+					if (interval != null) {
+						CTickTimerThread th = new CTickTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i(), false,
+								(int) interval.getSingle(e).getTicks_i());
+						th.instance().start();
+					} else {
+						CTickTimerThread th = new CTickTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i(), false, 0);
+						th.instance().start();
+					}
+				} else if (active.getSingle(e) == true) {
+					if (interval != null) {
+						CTickTimerThread th = new CTickTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i(), true,
+								(int) interval.getSingle(e).getTicks_i());
+						th.instance().start();
+					} else {
+						CTickTimerThread th = new CTickTimerThread(s.getSingle(e),
+								(int) duration.getSingle(e).getTicks_i(), true, 0);
+						th.instance().start();
+					}
+				}
+			}
+		}
+
+	}
 }

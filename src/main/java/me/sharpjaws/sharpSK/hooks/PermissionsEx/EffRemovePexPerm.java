@@ -33,9 +33,9 @@ public class EffRemovePexPerm extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		for (OfflinePlayer op : offplayers.getAll(e)){
+		for (OfflinePlayer op : offplayers.getAll(e)) {
 			PermissionUser permuser = PermissionsEx.getPermissionManager().getUser(op.getUniqueId());
 			permuser.removePermission(s.getSingle(e));
-			}
+		}
 	}
 }

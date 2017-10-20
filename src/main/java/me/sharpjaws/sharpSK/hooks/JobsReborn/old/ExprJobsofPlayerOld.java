@@ -19,7 +19,7 @@ import ch.njol.util.Kleenean;
 
 public class ExprJobsofPlayerOld extends SimpleExpression<Job> {
 	private Expression<OfflinePlayer> p;
-	
+
 	@Override
 	public boolean isSingle() {
 		return true;
@@ -49,29 +49,28 @@ public class ExprJobsofPlayerOld extends SimpleExpression<Job> {
 
 		List<Job> a = new ArrayList<Job>();
 		try {
-		if (!p.getSingle(e).isOnline()){
-		for (Job j : Jobs.getJobs()){
-		
-			if (Jobs.getPlayerManager().getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId())).isInJob(j) == true){
-				a.add(j);
-			}
-		
-		}
-		}else{
-			for (Job j : Jobs.getJobs()){
-				if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).isInJob(j) == true){
-					a.add(j);
+			if (!p.getSingle(e).isOnline()) {
+				for (Job j : Jobs.getJobs()) {
+
+					if (Jobs.getPlayerManager()
+							.getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId()))
+							.isInJob(j) == true) {
+						a.add(j);
+					}
+
 				}
-			
+			} else {
+				for (Job j : Jobs.getJobs()) {
+					if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).isInJob(j) == true) {
+						a.add(j);
+					}
+
+				}
 			}
-		}
-		}catch(NullPointerException ex){
+		} catch (NullPointerException ex) {
 			a.clear();
 		}
-		return  Arrays.copyOf(a.toArray(), a.toArray().length, Job[].class);
+		return Arrays.copyOf(a.toArray(), a.toArray().length, Job[].class);
 	}
 
-
 }
-
-

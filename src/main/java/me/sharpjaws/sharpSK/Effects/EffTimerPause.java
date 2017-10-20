@@ -14,7 +14,6 @@ import me.sharpjaws.sharpSK.Threads.CTimerThread;
 public class EffTimerPause extends Effect {
 	private Expression<String> timer;
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -33,37 +32,37 @@ public class EffTimerPause extends Effect {
 		CTimerThread a = null;
 		CTickTimerThread b = null;
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
-	        if (t instanceof CTimerThread) {
-	        	if (((CTimerThread) t).instance().getName().equals(timer.getSingle(e))){
-	        		a = ((CTimerThread) t).instance();
-	        		break;
-	        		
-	        	}
-	        }
-	        	 if (t instanceof CTickTimerThread) {
-	 	        	if (((CTickTimerThread) t).instance().getName().equals(timer.getSingle(e))){
-	 	        		b = ((CTickTimerThread) t).instance();
-	 	        		break;
-	 	        		
-	 	        	}
-	        	 }
-	        
+			if (t instanceof CTimerThread) {
+				if (((CTimerThread) t).instance().getName().equals(timer.getSingle(e))) {
+					a = ((CTimerThread) t).instance();
+					break;
+
+				}
+			}
+			if (t instanceof CTickTimerThread) {
+				if (((CTickTimerThread) t).instance().getName().equals(timer.getSingle(e))) {
+					b = ((CTickTimerThread) t).instance();
+					break;
+
+				}
+			}
+
 		}
 		try {
-		if (!a.isActive())	{
-		a.pauseTimer(a.getName());
-		}else{
-			
-		}
-		
-		}catch(NullPointerException ex){
-		
-			if (!b.isActive())	{			
-			b.pauseTimer(b.getName());
-			}else{
-			b.pauseTimer(b.getName());
+			if (!a.isActive()) {
+				a.pauseTimer(a.getName());
+			} else {
+
 			}
-		
-				}
+
+		} catch (NullPointerException ex) {
+
+			if (!b.isActive()) {
+				b.pauseTimer(b.getName());
+			} else {
+				b.pauseTimer(b.getName());
+			}
+
 		}
-	}	
+	}
+}

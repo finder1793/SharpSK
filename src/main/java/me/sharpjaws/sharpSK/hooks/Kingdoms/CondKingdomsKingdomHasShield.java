@@ -11,8 +11,9 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
 public class CondKingdomsKingdomHasShield extends Condition {
-	
-private Expression<String> kingdom;
+
+	private Expression<String> kingdom;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult result) {
@@ -30,15 +31,15 @@ private Expression<String> kingdom;
 	public boolean check(Event e) {
 		Boolean a = isNegated();
 		try {
-		if (!a){
-			return GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
-		}else{
-			return !GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
+			if (!a) {
+				return GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
+			} else {
+				return !GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
+			}
+
+		} catch (NullPointerException ex) {
+			return false;
+
 		}
-		
-	}catch (NullPointerException ex){
-		return false;
-	
-	}
 	}
 }

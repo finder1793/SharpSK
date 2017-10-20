@@ -14,8 +14,9 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
 public class ExprAllTownBlockTypes extends SimpleExpression<TownBlockType> {
-	
+
 	boolean townblocktype;
+
 	@Override
 	public boolean isSingle() {
 		return false;
@@ -25,7 +26,6 @@ public class ExprAllTownBlockTypes extends SimpleExpression<TownBlockType> {
 	public Class<? extends TownBlockType> getReturnType() {
 		return TownBlockType.class;
 	}
-	
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -49,14 +49,11 @@ public class ExprAllTownBlockTypes extends SimpleExpression<TownBlockType> {
 				townblocktypes.add(t);
 			}
 		}
-return townblocktypes.toArray(new TownBlockType[townblocktypes.size()]);
+		return townblocktypes.toArray(new TownBlockType[townblocktypes.size()]);
 	}
-
 
 	@Override
 	public boolean isLoopOf(final String s) {
 		return townblocktype && (s.equalsIgnoreCase("townblocktype"));
-}
 	}
-
-
+}

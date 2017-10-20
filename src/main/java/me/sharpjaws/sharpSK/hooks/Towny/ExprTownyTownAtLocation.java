@@ -14,9 +14,7 @@ import ch.njol.util.Kleenean;
 
 public class ExprTownyTownAtLocation extends SimpleExpression<String> {
 
-	
 	private Expression<Location> loc;
-	
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -27,27 +25,24 @@ public class ExprTownyTownAtLocation extends SimpleExpression<String> {
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
 			SkriptParser.ParseResult Result) {
-		loc  = (Expression<Location>) expr[0];
+		loc = (Expression<Location>) expr[0];
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "[sharpsk] [towny] town at %location%";
 	}
 
-
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		return new String[]{TownyUniverse.getTownName(loc.getSingle(e))};
+		return new String[] { TownyUniverse.getTownName(loc.getSingle(e)) };
 	}
+
 	@Override
 	public boolean isSingle() {
 		return true;
 	}
 
-	
-
 }
-
-

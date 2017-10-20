@@ -23,7 +23,6 @@ public class EffTownyDeleteTown extends Effect {
 			SkriptParser.ParseResult paramParseResult) {
 		s = (Expression<String>) expr[0];
 
-
 		return true;
 	}
 
@@ -34,17 +33,14 @@ public class EffTownyDeleteTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-		
-		
-			try {
-				TownyUniverse.getDataSource().removeTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)));
-			} catch (NotRegisteredException e1) {
-				core.getLogger().warning("Could not delete town: "+"\""+ s.getSingle(e)+"\""+" Town does not exist");
-				return;
-			}
+		main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
 
-	
+		try {
+			TownyUniverse.getDataSource().removeTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)));
+		} catch (NotRegisteredException e1) {
+			core.getLogger().warning("Could not delete town: " + "\"" + s.getSingle(e) + "\"" + " Town does not exist");
+			return;
+		}
+
 	}
-}	
-
+}

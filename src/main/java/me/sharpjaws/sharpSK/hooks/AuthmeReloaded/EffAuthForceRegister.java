@@ -14,7 +14,7 @@ import fr.xephi.authme.api.NewAPI;;
 public class EffAuthForceRegister extends Effect {
 	private Expression<Player> player;
 	private Expression<String> pass;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
@@ -32,7 +32,6 @@ public class EffAuthForceRegister extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		NewAPI.getInstance().forceRegister(player.getSingle(e), pass.getSingle(e));		
-		}
+		NewAPI.getInstance().forceRegister(player.getSingle(e), pass.getSingle(e));
 	}
-
+}

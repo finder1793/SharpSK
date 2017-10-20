@@ -43,18 +43,18 @@ public class ExprmcMMOParty extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		return new String[] {PartyAPI.getPartyName(p.getSingle(e))};
+		return new String[] { PartyAPI.getPartyName(p.getSingle(e)) };
 	}
 
-	@Override	
+	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		try{
-		if (mode == Changer.ChangeMode.SET) {
-			PartyAPI.addToParty(p.getSingle(e), (String)delta[0]);
+		try {
+			if (mode == Changer.ChangeMode.SET) {
+				PartyAPI.addToParty(p.getSingle(e), (String) delta[0]);
+			}
+		} catch (NullPointerException ex) {
+
 		}
-	}catch(NullPointerException ex) {
-		
-	}
 	}
 
 	@Override
@@ -64,4 +64,3 @@ public class ExprmcMMOParty extends SimpleExpression<String> {
 		return null;
 	}
 }
-

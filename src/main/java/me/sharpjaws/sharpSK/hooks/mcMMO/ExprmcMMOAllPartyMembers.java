@@ -15,6 +15,7 @@ import ch.njol.util.Kleenean;
 
 public class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
 	private Expression<String> s;
+
 	@Override
 	public boolean isSingle() {
 		return false;
@@ -40,22 +41,21 @@ public class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
 
 	@Override
 	@Nullable
-	protected String[] get(Event e) {	
+	protected String[] get(Event e) {
 		ArrayList<String> members = new ArrayList<>();
-		for ( OfflinePlayer p : Bukkit.getOfflinePlayers()) {
+		for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
 			try {
-			if (p != null) {
-				if (com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).getMembers().containsKey(p.getUniqueId())){
-				members.add(p.getName());
+				if (p != null) {
+					if (com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).getMembers()
+							.containsKey(p.getUniqueId())) {
+						members.add(p.getName());
+					}
 				}
+			} catch (NullPointerException ex) {
+
 			}
-		}catch (NullPointerException ex){
-			
 		}
-		}
-return members.toArray(new String[members.size()]);
+		return members.toArray(new String[members.size()]);
 	}
 
-	}
-
-
+}

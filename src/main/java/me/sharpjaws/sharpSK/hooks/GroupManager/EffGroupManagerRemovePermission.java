@@ -15,11 +15,10 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 
-public class EffGroupManagerRemovePermission extends Effect{
+public class EffGroupManagerRemovePermission extends Effect {
 	private Expression<OfflinePlayer> player;
 	private Expression<String> perm;
 	private Expression<World> world;
-
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -38,24 +37,24 @@ public class EffGroupManagerRemovePermission extends Effect{
 	@Override
 	protected void execute(Event e) {
 		final Plugin GMplugin = Bukkit.getPluginManager().getPlugin("GroupManager");
-		GroupManager groupManager = (GroupManager)GMplugin;	
+		final GroupManager GM = (GroupManager) GMplugin;
 		OverloadedWorldHolder handler = null;
-		
-		
-		if (player == null) {return;};
-		
+
+		if (player == null) {
+			return;
+		}
+		;
+
 		if (player.getSingle(e).isOnline()) {
-			handler = groupManager.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
-		}else {
-			handler = groupManager.getWorldsHolder().getDefaultWorld();
+			handler = GM.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
+		} else {
+			handler = GM.getWorldsHolder().getDefaultWorld();
 		}
 
-		if (world != null){
-			handler = groupManager.getWorldsHolder().getWorldData(world.getSingle(e).getName());
+		if (world != null) {
+			handler = GM.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
 		handler.getUser(player.getSingle(e).getName()).removePermission(perm.getSingle(e));
-
-
 
 	}
 

@@ -20,6 +20,7 @@ import me.lucko.luckperms.api.User;
 
 public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
 	private Expression<Player> pl;
+
 	@Override
 	public boolean isSingle() {
 		return false;
@@ -45,11 +46,13 @@ public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-	
+
 		ArrayList<String> groups = new ArrayList<>();
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
-		if(pl.getSingle(e) == null) {return new String[groups.size()];}
-		Consumer<User> action = new Consumer<User>(){
+		if (pl.getSingle(e) == null) {
+			return new String[groups.size()];
+		}
+		Consumer<User> action = new Consumer<User>() {
 			@Override
 			public void accept(User t) {
 
@@ -62,7 +65,6 @@ public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
 
 		};
 
-
 		User user = api.get().getUser(pl.getSingle(e).getUniqueId());
 		if (user != null) {
 			action.accept(user);
@@ -70,6 +72,5 @@ public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
 		}
 		return groups.toArray(new String[groups.size()]);
 	}
-
 
 }

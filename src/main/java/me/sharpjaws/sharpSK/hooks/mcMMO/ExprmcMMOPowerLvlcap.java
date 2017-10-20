@@ -38,9 +38,7 @@ public class ExprmcMMOPowerLvlcap extends SimpleExpression<Integer> {
 	@Override
 	@Nullable
 	protected Integer[] get(Event e) {
-		return new Integer[] {ExperienceAPI.getPowerLevelCap()};
+		return new Integer[] { ExperienceAPI.getPowerLevelCap() };
 	}
 
 }
-
-

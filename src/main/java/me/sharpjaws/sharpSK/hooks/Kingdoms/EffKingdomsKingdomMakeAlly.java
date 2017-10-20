@@ -30,11 +30,12 @@ public class EffKingdomsKingdomMakeAlly extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		try{
-	GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).addAlly(GameManagement.getKingdomManager().getOrLoadKingdom(k2.getSingle(e)).getKingdomName());
-		}catch(NullPointerException ex){
+		try {
+			GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e))
+					.addAlly(GameManagement.getKingdomManager().getOrLoadKingdom(k2.getSingle(e)).getKingdomName());
+		} catch (NullPointerException ex) {
 			return;
-			
+
 		}
 	}
 }

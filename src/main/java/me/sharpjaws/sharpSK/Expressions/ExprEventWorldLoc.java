@@ -49,12 +49,12 @@ public class ExprEventWorldLoc extends SimpleExpression<Location> {
 	protected Location[] get(Event e) {
 		if (mark == 0) {
 			return new Location[] { ((PlayerChangedWorldEvent) e).getPlayer().getLocation() };
-		} else if (mark == 1) { 
+		} else if (mark == 1) {
 			return new Location[] { ((PlayerChangedWorldEvent) e).getPlayer().getLocation() };
-		} else if (mark == -1) {	
-			return new Location[] {((PlayerChangedWorldEvent) e).getFrom().getSpawnLocation()};
+		} else if (mark == -1) {
+			return new Location[] { ((PlayerChangedWorldEvent) e).getFrom().getSpawnLocation() };
 		}
-		return null; 
+		return null;
 	}
 
 }

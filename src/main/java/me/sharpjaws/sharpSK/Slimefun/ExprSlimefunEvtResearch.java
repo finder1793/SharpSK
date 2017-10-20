@@ -28,11 +28,10 @@ public class ExprSlimefunEvtResearch extends SimpleExpression<String> {
 		return "event-research";
 	}
 
-
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
 		if (!ScriptLoader.isCurrentEvent(ResearchUnlockEvent.class)) {
-			return false ;		
+			return false;
 		}
 		return true;
 	}
@@ -41,9 +40,10 @@ public class ExprSlimefunEvtResearch extends SimpleExpression<String> {
 	@Nullable
 	protected String[] get(Event e) {
 		if (e.getEventName().equals("ResearchUnlockEvent")) {
-			return new String[]{((ResearchUnlockEvent) e).getResearch().getName().replaceAll(" ", "_").toLowerCase()} ;
-		}else {
-			return null; 
+			return new String[] {
+					((ResearchUnlockEvent) e).getResearch().getName().replaceAll(" ", "_").toLowerCase() };
+		} else {
+			return null;
 		}
 	}
 }

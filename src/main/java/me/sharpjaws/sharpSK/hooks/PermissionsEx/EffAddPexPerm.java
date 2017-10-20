@@ -32,9 +32,9 @@ public class EffAddPexPerm extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		for (OfflinePlayer op : p.getAll(e)){
-		PermissionUser permuser = PermissionsEx.getPermissionManager().getUser(op.getUniqueId());
-		permuser.addPermission(s.getSingle(e));
+		for (OfflinePlayer op : p.getAll(e)) {
+			PermissionUser permuser = PermissionsEx.getPermissionManager().getUser(op.getUniqueId());
+			permuser.addPermission(s.getSingle(e));
 		}
 	}
 }

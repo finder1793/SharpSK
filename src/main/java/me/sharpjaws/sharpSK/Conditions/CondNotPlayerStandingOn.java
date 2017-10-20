@@ -40,5 +40,5 @@ public class CondNotPlayerStandingOn extends Condition {
 		}
 		return false;
 	}
-	
+
 }

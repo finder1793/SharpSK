@@ -34,4 +34,3 @@ public class EffRemoveAGroup extends Effect {
 		g.remove();
 	}
 }
-

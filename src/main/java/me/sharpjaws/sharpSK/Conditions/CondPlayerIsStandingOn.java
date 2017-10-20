@@ -33,12 +33,12 @@ public class CondPlayerIsStandingOn extends Condition {
 	public boolean check(Event e) {
 		Block mb = entity.getSingle(e).getLocation().getBlock().getRelative(BlockFace.DOWN);
 		Boolean check;
-		if (mb == block.getSingle(e)){
+		if (mb == block.getSingle(e)) {
 			check = true;
-		}else{
+		} else {
 			check = false;
 		}
-		
+
 		return true;
 	}
 }

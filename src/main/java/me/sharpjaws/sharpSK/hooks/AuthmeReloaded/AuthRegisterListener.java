@@ -8,12 +8,11 @@ import fr.xephi.authme.events.CustomEvent;
 
 public class AuthRegisterListener implements Listener {
 
-	public  AuthRegisterListener(Plugin main){
+	public AuthRegisterListener(Plugin main) {
 		main.getServer().getPluginManager().registerEvents(this, main);
 	}
-	
+
 	@EventHandler
-	public final void onAuthRegister(CustomEvent e){
+	public final void onAuthRegister(CustomEvent e) {
 	}
 }
-

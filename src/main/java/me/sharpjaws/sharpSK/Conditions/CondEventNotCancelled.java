@@ -22,26 +22,25 @@ public class CondEventNotCancelled extends Condition {
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "event is not cancelled";
 	}
-	
 
-	public boolean checkEvent(Event e) throws EventException  {
-		
-		return false; 
-		
-		
+	public boolean checkEvent(Event e) throws EventException {
+
+		return false;
+
 	}
-	@Override	
-	public boolean check(Event e){  
+
+	@Override
+	public boolean check(Event e) {
 		Boolean cancel = false;
-	
-		if (e instanceof Cancellable){
-		cancel = ((Cancellable) e).isCancelled();
-	}
-	
-		if (cancel == true){
-	return false;
-		}else{
+
+		if (e instanceof Cancellable) {
+			cancel = ((Cancellable) e).isCancelled();
+		}
+
+		if (cancel == true) {
+			return false;
+		} else {
 			return true;
 		}
-	}	
+	}
 }

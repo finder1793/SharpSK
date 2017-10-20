@@ -1,4 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.Kingdoms;
+
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
@@ -14,9 +15,6 @@ import ch.njol.util.Kleenean;
 
 public class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
 	private GameManagement kman;
-	
-	
-	
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -29,36 +27,29 @@ public class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
 			SkriptParser.ParseResult Result) {
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "groups of %player%/%offlineplayer%";
 	}
 
-
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		
-		
-		
-		ArrayList<String> narr = new ArrayList<String>(); 
-		for (OfflineKingdom k : GameManagement.getKingdomManager().getKingdomList().values() ) {
-		
-			 narr.add(k.getKingdomName());
-		 }
-		
-		 
-		 return narr.toArray(new String[narr.size()]);
-		
-			}
+
+		ArrayList<String> narr = new ArrayList<String>();
+		for (OfflineKingdom k : GameManagement.getKingdomManager().getKingdomList().values()) {
+
+			narr.add(k.getKingdomName());
+		}
+
+		return narr.toArray(new String[narr.size()]);
+
+	}
 
 	@Override
 	public boolean isSingle() {
 		return false;
 	}
 
-	
-
 }
-
-

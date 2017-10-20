@@ -18,11 +18,11 @@ import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.Node;
 import me.lucko.luckperms.api.User;
 
-
-public class EffLuckPermsUnsetPerm extends Effect{
+public class EffLuckPermsUnsetPerm extends Effect {
 	private Expression<OfflinePlayer> offplayer;
 	private Expression<String> perm;
 	int mark;
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult parse) {
@@ -39,10 +39,11 @@ public class EffLuckPermsUnsetPerm extends Effect{
 
 	@Override
 	protected void execute(Event e) {
-		if (offplayer.getSingle(e) == null) {return;}
+		if (offplayer.getSingle(e) == null) {
+			return;
+		}
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
-		Consumer<User> action = new Consumer<User>(){
-
+		Consumer<User> action = new Consumer<User>() {
 
 			@Override
 			public void accept(User t) {
@@ -56,7 +57,7 @@ public class EffLuckPermsUnsetPerm extends Effect{
 							break;
 						}
 					}
-				}else {
+				} else {
 					for (Node nperm : t.getPermanentPermissionNodes()) {
 						if (nperm.getKey().equals(perm.getSingle(e))) {
 							DataMutateResult result = t.unsetPermissionUnchecked(nperm);
@@ -69,12 +70,10 @@ public class EffLuckPermsUnsetPerm extends Effect{
 					}
 				}
 
-				api.get().getStorage().saveUser(t)
-				.thenAcceptAsync(wasSuccessful -> {
+				api.get().getStorage().saveUser(t).thenAcceptAsync(wasSuccessful -> {
 					if (!wasSuccessful) {
 						return;
 					}
-
 
 					t.refreshPermissions();
 
@@ -83,15 +82,14 @@ public class EffLuckPermsUnsetPerm extends Effect{
 
 		};
 
-		if (offplayer.getSingle(e).isOnline()){
+		if (offplayer.getSingle(e).isOnline()) {
 			User user = api.get().getUser(offplayer.getSingle(e).getUniqueId());
 			if (user != null) {
 				action.accept(user);
 			}
 
-		}else {
-			api.get().getStorage().loadUser(offplayer.getSingle(e).getUniqueId())
-			.thenAcceptAsync(wasSuccessful -> {
+		} else {
+			api.get().getStorage().loadUser(offplayer.getSingle(e).getUniqueId()).thenAcceptAsync(wasSuccessful -> {
 				if (!wasSuccessful) {
 					return;
 				}
@@ -104,7 +102,6 @@ public class EffLuckPermsUnsetPerm extends Effect{
 				action.accept(loadedUser);
 				api.get().cleanupUser(loadedUser);
 			}, api.get().getStorage().getSyncExecutor());
-
 
 		}
 	}

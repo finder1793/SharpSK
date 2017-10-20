@@ -12,7 +12,7 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprEventAnvilCost extends SimpleExpression<Number>{
+public class ExprEventAnvilCost extends SimpleExpression<Number> {
 
 	@Override
 	public Class<? extends Number> getReturnType() {
@@ -28,8 +28,8 @@ public class ExprEventAnvilCost extends SimpleExpression<Number>{
 	public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
 		if (!ScriptLoader.isCurrentEvent(PrepareAnvilEvent.class)) {
 			return false;
-		}else{
-		return true;
+		} else {
+			return true;
 		}
 	}
 
@@ -42,10 +42,10 @@ public class ExprEventAnvilCost extends SimpleExpression<Number>{
 	@Nullable
 	protected Number[] get(Event e) {
 		try {
-	AnvilInventory a = ((PrepareAnvilEvent)e).getInventory();
-    return new Number[]{a.getRepairCost()};
-		}catch (NullPointerException ex){
-			return new Number[]{0};
+			AnvilInventory a = ((PrepareAnvilEvent) e).getInventory();
+			return new Number[] { a.getRepairCost() };
+		} catch (NullPointerException ex) {
+			return new Number[] { 0 };
 		}
 	}
 

@@ -36,21 +36,20 @@ public class EffTownyRenameTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-	
-		
-			try {
-				try {
-					TownyUniverse.getDataSource().renameTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)), s2.getSingle(e));
-				} catch (AlreadyRegisteredException e1) {
-					core.getLogger().warning("Could not rename town: "+"\""+ s.getSingle(e)+"\""+" Town name already in use.");
-				}
-			} catch (NotRegisteredException ex) {
-				core.getLogger().warning("Could not rename town: "+"\""+ s.getSingle(e)+"\""+" Town does not exist");
-				return;
-			}
-	
-	
-	}
-}	
+		main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
 
+		try {
+			try {
+				TownyUniverse.getDataSource().renameTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)),
+						s2.getSingle(e));
+			} catch (AlreadyRegisteredException e1) {
+				core.getLogger().warning(
+						"Could not rename town: " + "\"" + s.getSingle(e) + "\"" + " Town name already in use.");
+			}
+		} catch (NotRegisteredException ex) {
+			core.getLogger().warning("Could not rename town: " + "\"" + s.getSingle(e) + "\"" + " Town does not exist");
+			return;
+		}
+
+	}
+}

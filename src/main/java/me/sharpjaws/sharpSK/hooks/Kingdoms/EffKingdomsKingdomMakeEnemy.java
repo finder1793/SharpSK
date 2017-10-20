@@ -30,11 +30,12 @@ public class EffKingdomsKingdomMakeEnemy extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		try{
-	GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).enemyKingdom(GameManagement.getKingdomManager().getOrLoadKingdom(k2.getSingle(e)));
-		}catch(NullPointerException ex){
+		try {
+			GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e))
+					.enemyKingdom(GameManagement.getKingdomManager().getOrLoadKingdom(k2.getSingle(e)));
+		} catch (NullPointerException ex) {
 			return;
-			
+
 		}
 	}
 }

@@ -16,9 +16,7 @@ import ch.njol.util.Kleenean;
 
 public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 
-	
 	private Expression<OfflinePlayer> resident;
-	
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -32,36 +30,31 @@ public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 		resident = (Expression<OfflinePlayer>) expr[0];
 		return true;
 	}
+
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
 		return "[sharpsk] [towny] nation of %player%";
 	}
 
-
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		
+
 		String natname = null;
 		Resident pl = new Resident(resident.getSingle(e).getName());
-		 for (Nation a : TownyUniverse.getDataSource().getNations()){
-			if (a.getResidents().contains(pl)){
+		for (Nation a : TownyUniverse.getDataSource().getNations()) {
+			if (a.getResidents().contains(pl)) {
 				natname = a.getName();
 				break;
 			}
-		 }
+		}
 
-			return new String[]{natname};
+		return new String[] { natname };
 	}
-
 
 	@Override
 	public boolean isSingle() {
 		return true;
 	}
 
-	
-
 }
-
-

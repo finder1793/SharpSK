@@ -31,7 +31,8 @@ public class EffPexRenameGroup extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-PermissionsEx.getPermissionManager().getGroup(s.getSingle(e)).getName().replaceAll("\\^([0-9]+",s2.getSingle(e));
+		PermissionsEx.getPermissionManager().getGroup(s.getSingle(e)).getName().replaceAll("\\^([0-9]+",
+				s2.getSingle(e));
 
 	}
 }

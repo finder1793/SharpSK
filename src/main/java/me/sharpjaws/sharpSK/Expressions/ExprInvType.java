@@ -39,9 +39,7 @@ public class ExprInvType extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		return new String[] {p.getSingle(e).getOpenInventory().getType().toString()};
+		return new String[] { p.getSingle(e).getOpenInventory().getType().toString() };
 	}
 
-	}
-
-
+}

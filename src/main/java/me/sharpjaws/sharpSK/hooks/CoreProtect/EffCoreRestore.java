@@ -22,7 +22,7 @@ import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
 import net.coreprotect.CoreProtectAPI.ParseResult;
 
-public class EffCoreRestore extends Effect{
+public class EffCoreRestore extends Effect {
 	private Expression<Location> l;
 	private Expression<Number> n;
 	private Expression<Timespan> times;
@@ -47,54 +47,48 @@ public class EffCoreRestore extends Effect{
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "[(coreprotect|cp)] (rollback|restore|revert) changes at [the] %location% in radius %integer% [back] to %timespan% [ago] [exclude %-blocks%]";
 	}
-	
-	
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
-	protected void execute(final Event e) {	
-		 final List<String> users = new ArrayList<String>();
-	 		if (users != null && players != null){
-	 		for (OfflinePlayer b : players.getAll(e)){
-	 			
-	 			users.add(b.getName());
-	 		}
-	 		}
-		  final List<Object> exclude = new ArrayList<Object>();
-	 		if (exblocks != null){
-	 		for (ItemStack b : exblocks.getAll(e)){
-	 			
-	 			exclude.add(b.getType());
-	 		}
-	 		}
-	 		
-		
-		Runnable RestoreRun = new Runnable(){
-		     public void run(){
-		    	 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("CoreProtect");
-		 		CoreProtectAPI api = ((CoreProtect)plugin).getAPI();
-		 		
-		 		
-		 		 List<String[]> lookup = null;	
-		 		
-		 				lookup = api.performRestore((int)times.getSingle(e).getTicks()/20, users, null, null,exclude,Arrays.asList(mark), n.getSingle(e).intValue(),l.getSingle(e));	
-		 				if (lookup!=null){
-		 				    for (String[] value : lookup){
-		 		      ParseResult result = api.parseResult(value);
-		 		      int x = result.getX();
-		 		      int y = result.getY();
-		 		      int z = result.getZ();
-		 				    }			
-		 			}	 			
-		     }
-		     
-		   };   
-		  
-		   Thread RestoreThread = new Thread(RestoreRun);
-		   	RestoreThread.start();
-		   
-		   
+	protected void execute(final Event e) {
+		final List<String> users = new ArrayList<String>();
+		if (users != null && players != null) {
+			for (OfflinePlayer b : players.getAll(e)) {
+
+				users.add(b.getName());
+			}
+		}
+		final List<Object> exclude = new ArrayList<Object>();
+		if (exblocks != null) {
+			for (ItemStack b : exblocks.getAll(e)) {
+
+				exclude.add(b.getType());
+			}
+		}
+
+		Runnable RestoreRun = new Runnable() {
+			public void run() {
+				Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("CoreProtect");
+				CoreProtectAPI api = ((CoreProtect) plugin).getAPI();
+
+				List<String[]> lookup = null;
+
+				lookup = api.performRestore((int) times.getSingle(e).getTicks() / 20, users, null, null, exclude,
+						Arrays.asList(mark), n.getSingle(e).intValue(), l.getSingle(e));
+				if (lookup != null) {
+					for (String[] value : lookup) {
+						ParseResult result = api.parseResult(value);
+						int x = result.getX();
+						int y = result.getY();
+						int z = result.getZ();
+					}
+				}
+			}
+
+		};
+
+		Thread RestoreThread = new Thread(RestoreRun);
+		RestoreThread.start();
+
 	}
 }
-
-

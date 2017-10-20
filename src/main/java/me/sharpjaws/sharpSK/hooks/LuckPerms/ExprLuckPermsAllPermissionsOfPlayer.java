@@ -21,6 +21,7 @@ import me.lucko.luckperms.api.User;
 public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String> {
 	private Expression<Player> pl;
 	int mark;
+
 	@Override
 	public boolean isSingle() {
 		return false;
@@ -48,8 +49,10 @@ public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String
 	@Nullable
 	protected String[] get(Event e) {
 		ArrayList<String> perms = new ArrayList<>();
-		if(pl.getSingle(e) == null) {return new String[perms.size()];}
-		Consumer<User> action = new Consumer<User>(){
+		if (pl.getSingle(e) == null) {
+			return new String[perms.size()];
+		}
+		Consumer<User> action = new Consumer<User>() {
 
 			@Override
 			public void accept(User t) {
@@ -58,9 +61,9 @@ public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String
 					for (Node n : t.getTransientPermissions()) {
 						perms.add(n.getPermission());
 					}
-				}else{
+				} else {
 					for (Node n : t.getPermanentPermissionNodes()) {
-						perms.add(n.getPermission());	
+						perms.add(n.getPermission());
 					}
 				}
 			}
@@ -72,9 +75,7 @@ public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String
 			action.accept(user);
 		}
 
-
 		return perms.toArray(new String[perms.size()]);
 	}
-
 
 }

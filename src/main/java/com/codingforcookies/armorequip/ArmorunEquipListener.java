@@ -20,58 +20,57 @@ import com.codingforcookies.armorequip.ArmorunEquipEvent.EquipMethod;
  * @Website http://codingforcookies.com/
  * @since June 6, 2016 8:43:34 PM
  */
-public class ArmorunEquipListener implements Listener{
+public class ArmorunEquipListener implements Listener {
 
 	@EventHandler
-	public final void onInventoryClick(final InventoryClickEvent e){
+	public final void onInventoryClick(final InventoryClickEvent e) {
 		boolean shift = false, numberkey = false;
-		if(e.isCancelled()) return;
-		if (!e.getInventory().equals(InventoryType.CREATIVE)){
-		if(e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)){
-			shift = true;
-		}
-		if(e.getClick().equals(ClickType.NUMBER_KEY)){
-			numberkey = true;
-		}
-			EquipMethod method = EquipMethod.DRAG;
-			if(ArmorType.matchType(e.getCurrentItem()) == null) return;
-			ArmorType newArmorType = ArmorType.matchType(e.getCurrentItem());
-			ArmorunEquipEvent armorunEquipEvent = new ArmorunEquipEvent((Player) e.getWhoClicked(), method, newArmorType, e.getCurrentItem());
-			if (e.getRawSlot() != newArmorType.getSlot())return;
-			Bukkit.getServer().getPluginManager().callEvent(armorunEquipEvent);
-			if(armorunEquipEvent.isCancelled()){
-				e.setCancelled(true);
-				
+		if (e.isCancelled())
+			return;
+		if (!e.getInventory().equals(InventoryType.CREATIVE)) {
+			if (e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) {
+				shift = true;
 			}
-			
-		}else{
+			if (e.getClick().equals(ClickType.NUMBER_KEY)) {
+				numberkey = true;
+			}
+			EquipMethod method = EquipMethod.DRAG;
+			if (ArmorType.matchType(e.getCurrentItem()) == null)
+				return;
+			ArmorType newArmorType = ArmorType.matchType(e.getCurrentItem());
+			ArmorunEquipEvent armorunEquipEvent = new ArmorunEquipEvent((Player) e.getWhoClicked(), method,
+					newArmorType, e.getCurrentItem());
+			if (e.getRawSlot() != newArmorType.getSlot())
+				return;
+			Bukkit.getServer().getPluginManager().callEvent(armorunEquipEvent);
+			if (armorunEquipEvent.isCancelled()) {
+				e.setCancelled(true);
+
+			}
+
+		} else {
 		}
-			
+
 	}
 
-	
-		
-		
-
-
 	@EventHandler
-	public void itemBreakEvent(PlayerItemBreakEvent e){
+	public void itemBreakEvent(PlayerItemBreakEvent e) {
 		ArmorType type = ArmorType.matchType(e.getBrokenItem());
-		if(type != null){
+		if (type != null) {
 			Player p = e.getPlayer();
 			ArmorunEquipEvent ArmorunEquipEvent = new ArmorunEquipEvent(p, EquipMethod.BROKE, type, e.getBrokenItem());
 			Bukkit.getServer().getPluginManager().callEvent(ArmorunEquipEvent);
-			if(ArmorunEquipEvent.isCancelled()){
+			if (ArmorunEquipEvent.isCancelled()) {
 				ItemStack i = e.getBrokenItem().clone();
 				i.setAmount(1);
 				i.setDurability((short) (i.getDurability() - 1));
-				if(type.equals(ArmorType.HELMET)){
+				if (type.equals(ArmorType.HELMET)) {
 					p.getInventory().setHelmet(i);
-				}else if(type.equals(ArmorType.CHESTPLATE)){
+				} else if (type.equals(ArmorType.CHESTPLATE)) {
 					p.getInventory().setChestplate(i);
-				}else if(type.equals(ArmorType.LEGGINGS)){
+				} else if (type.equals(ArmorType.LEGGINGS)) {
 					p.getInventory().setLeggings(i);
-				}else if(type.equals(ArmorType.BOOTS)){
+				} else if (type.equals(ArmorType.BOOTS)) {
 					p.getInventory().setBoots(i);
 				}
 			}
@@ -79,11 +78,12 @@ public class ArmorunEquipListener implements Listener{
 	}
 
 	@EventHandler
-	public void playerDeathEvent(PlayerDeathEvent e){
+	public void playerDeathEvent(PlayerDeathEvent e) {
 		Player p = e.getEntity();
-		for(ItemStack i : p.getInventory().getArmorContents()){
-			if(i != null && !i.getType().equals(Material.AIR)){
-				Bukkit.getServer().getPluginManager().callEvent(new ArmorunEquipEvent(p, EquipMethod.DEATH, ArmorType.matchType(i), i));
+		for (ItemStack i : p.getInventory().getArmorContents()) {
+			if (i != null && !i.getType().equals(Material.AIR)) {
+				Bukkit.getServer().getPluginManager()
+						.callEvent(new ArmorunEquipEvent(p, EquipMethod.DEATH, ArmorType.matchType(i), i));
 				// No way to cancel a death event.
 			}
 		}

@@ -21,14 +21,14 @@ import ch.njol.util.Kleenean;
 import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
 
-public class ExprCoreLookupData extends SimpleExpression<ItemStack>{
+public class ExprCoreLookupData extends SimpleExpression<ItemStack> {
 	private int mark;
 	private Expression<Location> l;
 	private Expression<Number> n;
 	private Expression<Timespan> times;
 	private Expression<ItemStack> exblocks;
 	private Expression<OfflinePlayer> players;
-	
+
 	@Override
 	public Class<? extends ItemStack> getReturnType() {
 		return ItemStack.class;
@@ -49,7 +49,7 @@ public class ExprCoreLookupData extends SimpleExpression<ItemStack>{
 		exblocks = (Expression<ItemStack>) expr[4];
 		mark = result.mark;
 		return true;
-		
+
 	}
 
 	@Override
@@ -60,51 +60,39 @@ public class ExprCoreLookupData extends SimpleExpression<ItemStack>{
 	@Override
 	@Nullable
 	protected ItemStack[] get(final Event e) {
-		
-		 final List<String> users = new ArrayList<String>();
-	 		if (users != null && players != null){
-	 		for (OfflinePlayer b : players.getAll(e)){
-	 			
-	 			users.add(b.getName());
-	 		}
-	 		}
-		  final List<Object> exclude = new ArrayList<Object>();
-	 		if (exblocks != null){
-	 		for (ItemStack b : exblocks.getAll(e)){
-	 			
-	 			exclude.add(b.getType());
-	 		}
-	 		}
-	 		
-		
-		    	 Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("CoreProtect");
-		 		CoreProtectAPI api = ((CoreProtect)plugin).getAPI();
-		 		
-		 		
-		 		 List<String[]> lookup = null;	
-		 		 List<ItemStack> parsedlookup = new ArrayList<ItemStack>();
-		 				lookup = api.performLookup((int)times.getSingle(e).getTicks_i()/20, users, null, null,exclude,Arrays.asList(mark), n.getSingle(e).intValue(),l.getSingle(e));	
-		 				
-		 
-		 				
-		 				 for (String[] value : lookup){
-		 					 
 
-		 					if (lookup!=null){
-		 						parsedlookup.add(new ItemStack(api.parseResult(value).getType()));
-		 					}
-		 				 }
-		 				 
-		 				
-		 				return parsedlookup.toArray(new ItemStack[parsedlookup.size()]);
-		 					
- 
-		
-		
-	
+		final List<String> users = new ArrayList<String>();
+		if (users != null && players != null) {
+			for (OfflinePlayer b : players.getAll(e)) {
 
-		
-	
+				users.add(b.getName());
+			}
+		}
+		final List<Object> exclude = new ArrayList<Object>();
+		if (exblocks != null) {
+			for (ItemStack b : exblocks.getAll(e)) {
+
+				exclude.add(b.getType());
+			}
+		}
+
+		Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("CoreProtect");
+		CoreProtectAPI api = ((CoreProtect) plugin).getAPI();
+
+		List<String[]> lookup = null;
+		List<ItemStack> parsedlookup = new ArrayList<ItemStack>();
+		lookup = api.performLookup((int) times.getSingle(e).getTicks_i() / 20, users, null, null, exclude,
+				Arrays.asList(mark), n.getSingle(e).intValue(), l.getSingle(e));
+
+		for (String[] value : lookup) {
+
+			if (lookup != null) {
+				parsedlookup.add(new ItemStack(api.parseResult(value).getType()));
+			}
+		}
+
+		return parsedlookup.toArray(new ItemStack[parsedlookup.size()]);
+
 	}
 
 }

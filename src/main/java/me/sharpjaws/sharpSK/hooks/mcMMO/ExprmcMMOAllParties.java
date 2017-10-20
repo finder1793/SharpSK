@@ -47,9 +47,7 @@ public class ExprmcMMOAllParties extends SimpleExpression<String> {
 				parties.add(p.getName());
 			}
 		}
-return parties.toArray(new String[parties.size()]);
+		return parties.toArray(new String[parties.size()]);
 	}
 
-	}
-
-
+}

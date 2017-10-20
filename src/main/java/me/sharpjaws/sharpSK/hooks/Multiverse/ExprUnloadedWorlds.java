@@ -11,11 +11,10 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprUnloadedWorlds extends SimpleExpression<String>{
+public class ExprUnloadedWorlds extends SimpleExpression<String> {
 
-	
 	@Override
-	public Class<? extends String> getReturnType() {	
+	public Class<? extends String> getReturnType() {
 		return String.class;
 	}
 
@@ -37,10 +36,11 @@ public class ExprUnloadedWorlds extends SimpleExpression<String>{
 	@Override
 	@Nullable
 	protected String[] get(Event arg0) {
-		MultiverseCore mv = null;		
+		MultiverseCore mv = null;
 		mv = MultiverseCore.getPlugin(MultiverseCore.class).getCore();
-		
-		return mv.getMVWorldManager().getUnloadedWorlds().toArray(new String[mv.getMVWorldManager().getUnloadedWorlds().size()]);
+
+		return mv.getMVWorldManager().getUnloadedWorlds()
+				.toArray(new String[mv.getMVWorldManager().getUnloadedWorlds().size()]);
 	}
 
 }

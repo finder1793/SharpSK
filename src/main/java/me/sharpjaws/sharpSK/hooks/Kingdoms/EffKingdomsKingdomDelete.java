@@ -28,11 +28,11 @@ public class EffKingdomsKingdomDelete extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		try{
-	GameManagement.getKingdomManager().deleteKingdom(k.getSingle(e));
-		}catch(NullPointerException ex){
+		try {
+			GameManagement.getKingdomManager().deleteKingdom(k.getSingle(e));
+		} catch (NullPointerException ex) {
 			return;
-			
+
 		}
 	}
 }

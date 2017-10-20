@@ -19,11 +19,11 @@ import me.sharpjaws.sharpSK.main;;
 public class EffTownyAddPlayerToTown extends Effect {
 	private Expression<String> s;
 	private Expression<OfflinePlayer> p;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {	
+			SkriptParser.ParseResult paramParseResult) {
 		p = (Expression<OfflinePlayer>) expr[0];
 
 		return true;
@@ -36,24 +36,24 @@ public class EffTownyAddPlayerToTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		main core = (main)Bukkit.getPluginManager().getPlugin("SharpSK");
-		
-		
+		main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+
+		try {
 			try {
-				try{
-				TownyUniverse.getDataSource().getTown(s.getSingle(e)).addResident(TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()));
-			
+				TownyUniverse.getDataSource().getTown(s.getSingle(e))
+						.addResident(TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()));
+
 			} catch (NotRegisteredException ex2) {
-				core.getLogger().warning("Could not add resident: "+"\""+ p.getSingle(e).getName()+"\""+" to town " +"\"" + s.getSingle(e) +"\"");
+				core.getLogger().warning("Could not add resident: " + "\"" + p.getSingle(e).getName() + "\""
+						+ " to town " + "\"" + s.getSingle(e) + "\"");
 				return;
 			}
-			} catch (AlreadyRegisteredException ex3) {
-				core.getLogger().warning("Could not add resident: "+"\""+ p.getSingle(e).getName()+"\""+" to town " +"\"" + s.getSingle(e) +"\"");
-				core.getLogger().warning("Resident is already in town: "+ "\"" + s.getSingle(e) +"\"");
-				return;
-			}
+		} catch (AlreadyRegisteredException ex3) {
+			core.getLogger().warning("Could not add resident: " + "\"" + p.getSingle(e).getName() + "\"" + " to town "
+					+ "\"" + s.getSingle(e) + "\"");
+			core.getLogger().warning("Resident is already in town: " + "\"" + s.getSingle(e) + "\"");
+			return;
+		}
 
-	
 	}
-}	
-
+}

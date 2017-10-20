@@ -33,7 +33,7 @@ public class EffPexAddgroup extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		for (OfflinePlayer op : p.getAll(e)){
+		for (OfflinePlayer op : p.getAll(e)) {
 			PermissionUser permuser = PermissionsEx.getPermissionManager().getUser(op.getUniqueId());
 			permuser.addGroup(s.getSingle(e));
 		}

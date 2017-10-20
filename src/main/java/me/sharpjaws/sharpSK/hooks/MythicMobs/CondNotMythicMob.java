@@ -12,46 +12,37 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import io.lumine.xikage.mythicmobs.MythicMobs;
 
-
-
- public class CondNotMythicMob extends Condition
- {
- private Expression<Entity> mythicmob;
-@SuppressWarnings("unused")
+public class CondNotMythicMob extends Condition {
+	private Expression<Entity> mythicmob;
+	@SuppressWarnings("unused")
 	private Expression<Location> loc;
 
-
- @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3)
-{
-mythicmob = (Expression<Entity>) expr[0];
- return true;
- }
+	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
+		mythicmob = (Expression<Entity>) expr[0];
+		return true;
+	}
 
+	@Override
+	public String toString(@Nullable Event e, boolean debug) {
+		return "%entity% is a mythicmob";
+	}
 
-@Override
-	public String toString(@Nullable Event e, boolean debug)
- {
- return "%entity% is a mythicmob";
-}
+	@Override
+	public boolean check(Event e) {
+		Boolean result = Boolean.valueOf(false);
+		Boolean result2 = false;
+		try {
+			result = Boolean
+					.valueOf(MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
+			if (result.equals(false)) {
+				result2 = true;
+			}
+		} catch (NullPointerException ex) {
 
-
-@Override
-	public boolean check(Event e)
- {
- Boolean result = Boolean.valueOf(false);
- Boolean result2 = false;
- try
-{
- result = Boolean.valueOf(MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
- if (result.equals(false)){
-	 result2 = true;
- }
-} catch (NullPointerException ex) {
-
-	return false;
-}
- return result2;
-}
+			return false;
+		}
+		return result2;
+	}
 }

@@ -11,9 +11,9 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 
-public class ExprKingdomsKingdomOfPlayer extends SimpleExpression<String>{
+public class ExprKingdomsKingdomOfPlayer extends SimpleExpression<String> {
 	private Expression<OfflinePlayer> p;
-	
+
 	@Override
 	public Class<? extends String> getReturnType() {
 		return String.class;
@@ -39,16 +39,14 @@ public class ExprKingdomsKingdomOfPlayer extends SimpleExpression<String>{
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-	String kingdom = null;
+		String kingdom = null;
 		try {
-		kingdom = GameManagement.getPlayerManager().getOfflineKingdomPlayer(p.getSingle(e)).getKingdomName();
-		}catch(NullPointerException ex) {
+			kingdom = GameManagement.getPlayerManager().getOfflineKingdomPlayer(p.getSingle(e)).getKingdomName();
+		} catch (NullPointerException ex) {
 			return null;
 		}
-		
-		
-		
-		return new String[] {kingdom};
+
+		return new String[] { kingdom };
 	}
 
 }

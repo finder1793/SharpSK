@@ -11,9 +11,8 @@ import org.bukkit.scheduler.BukkitScheduler;
 
 import me.sharpjaws.sharpSK.TimerHandler;
 
-public class CTimerThread extends Thread{
-	
-	
+public class CTimerThread extends Thread {
+
 	private int secs;
 	private String Tname;
 	private boolean active;
@@ -22,177 +21,164 @@ public class CTimerThread extends Thread{
 	private int interv;
 	private boolean paused;
 	private boolean testmode;
-	
-	public CTimerThread(String name, int seconds, Boolean activeT,int interval){
+
+	public CTimerThread(String name, int seconds, Boolean activeT, int interval) {
 		this.active = activeT;
 		this.secs = seconds;
-		this.Tname = name;			
+		this.Tname = name;
 		this.interv = interval;
 		this.testmode = false;
-		
-	
+
 	}
-	
-	public CTimerThread(String name, int seconds,int interval, Boolean testmode){
-		this.active =false;
+
+	public CTimerThread(String name, int seconds, int interval, Boolean testmode) {
+		this.active = false;
 		this.secs = seconds;
-		this.Tname = name;			
+		this.Tname = name;
 		this.interv = interval;
 		this.testmode = testmode;
-	
+
 	}
+
 	File cache = null;
 	YamlConfiguration Tcache = null;
-	 BukkitScheduler scheduler = null;
-   
-	
-	
+	BukkitScheduler scheduler = null;
+
 	@Override
-    public void run() {
-		
-		
-		if (!testmode){
+	public void run() {
+
+		if (!testmode) {
 			scheduler = Bukkit.getServer().getScheduler();
 		}
-		this.instance().Countdown = secs +1;
+		this.instance().Countdown = secs + 1;
 		this.setName(Tname);
-		if (this.instance().Countdown < interv){
+		if (this.instance().Countdown < interv) {
 			this.interv = 0;
-		}else{
+		} else {
 			timetointv = -1;
 		}
-		
+
 		try {
-		Map<String, Integer> timer = new HashMap<String,Integer>();
-		if (active && !testmode){
-			cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
-			 Tcache = YamlConfiguration.loadConfiguration(cache);
-		}
-		while (!(Countdown < 2)){
-			 synchronized(this) {
-	             while(paused) {
-	                wait();
-	             }
-			 }
-			Countdown--;
-			if (interv > 0){
-			timetointv++;
-				
+			Map<String, Integer> timer = new HashMap<String, Integer>();
+			if (active && !testmode) {
+				cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "Tcache.yml");
+				Tcache = YamlConfiguration.loadConfiguration(cache);
 			}
-			if (active && !testmode){
-				
-			
-				
-			timer.put(this.getName(), this.getTime());
-			Tcache.createSection("timers", timer);
-			Tcache.getMapList("timers").add(timer);
-			try {
-				Tcache.save(cache);
-			} catch (IOException e) {
-
-				}
-			}
-			if (interv > 0){
-				if (timetointv >= interv){
-					if(!testmode){
-				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1,1));
+			while (!(Countdown < 2)) {
+				synchronized (this) {
+					while (paused) {
+						wait();
 					}
-				timetointv = 0;
 				}
-			}else{
-				if(!testmode){
-				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 1,1));
-				}
-			}
-			
-				CTimerThread.sleep(1000);		
-		}
-		if(!testmode){
-		scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 2,1));
-		if (active){
-			
-			timer.put(this.getName(), 0);
-			Tcache.createSection("timers", timer);
-			Tcache.getMapList("timers").add(timer);
-			try {
-				Tcache.save(cache);
-			} catch (IOException e) {
+				Countdown--;
+				if (interv > 0) {
+					timetointv++;
 
 				}
+				if (active && !testmode) {
+
+					timer.put(this.getName(), this.getTime());
+					Tcache.createSection("timers", timer);
+					Tcache.getMapList("timers").add(timer);
+					try {
+						Tcache.save(cache);
+					} catch (IOException e) {
+
+					}
+				}
+				if (interv > 0) {
+					if (timetointv >= interv) {
+						if (!testmode) {
+							scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"),
+									new TimerHandler(Tname, Countdown, 1, 1));
+						}
+						timetointv = 0;
+					}
+				} else {
+					if (!testmode) {
+						scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"),
+								new TimerHandler(Tname, Countdown, 1, 1));
+					}
+				}
+
+				CTimerThread.sleep(1000);
 			}
-		}
-		this.instance().interrupt();
-		
+			if (!testmode) {
+				scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"),
+						new TimerHandler(Tname, Countdown, 2, 1));
+				if (active) {
+
+					timer.put(this.getName(), 0);
+					Tcache.createSection("timers", timer);
+					Tcache.getMapList("timers").add(timer);
+					try {
+						Tcache.save(cache);
+					} catch (IOException e) {
+
+					}
+				}
+			}
+			this.instance().interrupt();
+
 		} catch (InterruptedException e) {
-		
+
 			this.instance().interrupt();
 		}
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//Method Calls:
-	
-	
-	
-	public void addTime(int time){
+
+	// Method Calls:
+
+	public void addTime(int time) {
 		this.instance().Countdown = this.instance().Countdown + time;
 	}
-	
-	public void setTime(int time){
+
+	public void setTime(int time) {
 		this.instance().Countdown = time;
 	}
-	public int getTime(){
+
+	public int getTime() {
 		return this.instance().Countdown;
 	}
-	public void stopTimer(String name){
-		if (name.contains(Tname)){
-		if (paused){
-			resumeTimer(this.getName());
-		}
-		this.instance().Countdown = 0;
-		this.instance().interrupt();
-		}
-		}
-	public void pauseTimer(String name) {
-		if (name.contains(Tname)){
-		paused = true;
+
+	public void stopTimer(String name) {
+		if (name.contains(Tname)) {
+			if (paused) {
+				resumeTimer(this.getName());
+			}
+			this.instance().Countdown = 0;
+			this.instance().interrupt();
 		}
 	}
-	public synchronized void resumeTimer(String name){
-		if (name.contains(Tname)){
+
+	public void pauseTimer(String name) {
+		if (name.contains(Tname)) {
+			paused = true;
+		}
+	}
+
+	public synchronized void resumeTimer(String name) {
+		if (name.contains(Tname)) {
 			paused = false;
 			notify();
 		}
 	}
-	
-	public void removeTime(int time){
+
+	public void removeTime(int time) {
 		this.instance().Countdown = this.instance().Countdown - time;
-		
+
 	}
-	public CTimerThread instance(){
-	return this;
+
+	public CTimerThread instance() {
+		return this;
 	}
-	
-	public Boolean isActive(){
+
+	public Boolean isActive() {
 		return this.active;
 	}
-	
-	public Boolean isPaused(){
+
+	public Boolean isPaused() {
 		return this.paused;
 	}
-			
 
 }
