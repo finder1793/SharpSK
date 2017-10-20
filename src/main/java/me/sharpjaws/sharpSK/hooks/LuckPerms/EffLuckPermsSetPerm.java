@@ -37,7 +37,7 @@ public class EffLuckPermsSetPerm extends Effect {
 
 	@Override
 	public String toString(@Nullable Event e, boolean arg1) {
-		return "[sharpsk] luckperms set (-1¦transient perm[ission]|1¦perm[ission]) %string% to %boolean% for [player] %offlineplayer% [transient %-boolean%]";
+		return "[sharpsk] luckperms set (-1¦transient perm[ission]|1¦perm[ission]) %string% to %boolean% for [player] %offlineplayer%";
 	}
 
 	@Override

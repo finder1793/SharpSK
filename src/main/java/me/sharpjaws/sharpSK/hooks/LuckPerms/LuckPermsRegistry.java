@@ -9,7 +9,7 @@ public class LuckPermsRegistry {
 
 		// Effects
 		Skript.registerEffect(EffLuckPermsSetPerm.class,
-				"[sharpsk] (luckperms|lp) set (-1¦transient perm[ission]|1¦perm[ission]) %string% to %boolean% for [player] %offlineplayer% [transient %-boolean%]");
+				"[sharpsk] (luckperms|lp) set (-1¦transient perm[ission]|1¦perm[ission]) %string% to %boolean% for [player] %offlineplayer%");
 		Skript.registerEffect(EffLuckPermsUnsetPerm.class,
 				"[sharpsk] (luckperms|lp) unset (-1¦transient perm[ission]|1¦perm[ission]) %string% for [player] %offlineplayer%");
 		Skript.registerEffect(EffLuckPermsCreateGroup.class,
