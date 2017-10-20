@@ -1,8 +1,11 @@
 package me.sharpjaws.sharpSK.hooks.GroupManager;
 
+import java.util.Map.Entry;
+
 import javax.annotation.Nullable;
 
 import org.anjocaido.groupmanager.GroupManager;
+import org.anjocaido.groupmanager.data.User;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -54,7 +57,20 @@ public class EffGroupManagerRemovePermission extends Effect {
 		if (world != null) {
 			handler = GM.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
-		handler.getUser(player.getSingle(e).getName()).removePermission(perm.getSingle(e));
+		for(Entry<String,User> a : handler.getUsers().entrySet()) {
+			if (player.getSingle(e).getUniqueId().toString().equals(a.getValue().getUUID().toString())) {
+				try {
+				a.getValue().removePermission(perm.getSingle(e));
+				a.getValue().setLastName(player.getSingle(e).getName());
+				}catch(NullPointerException ex) {
+					return;
+				}
+				break;
+				
+			}
+		}
+		GM.getWorldsHolder().saveChanges();
+		GM.getWorldsHolder().reloadAll();
 
 	}
 
