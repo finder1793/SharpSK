@@ -23,7 +23,6 @@ logblock: true
 towny: true
 kingdoms: true
 luckperms: true
-factionsuuid: true
 groupmanager: true
 slimefun: true
 fastasyncworldedit: true
