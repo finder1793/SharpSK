@@ -1,4 +1,4 @@
-package me.sharpjaws.sharpSK.Slimefun;
+package me.sharpjaws.sharpSK.hooks.Slimefun;
 
 import javax.annotation.Nullable;
 

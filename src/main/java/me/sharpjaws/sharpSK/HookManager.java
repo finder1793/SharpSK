@@ -3,7 +3,6 @@ package me.sharpjaws.sharpSK;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.sharpjaws.sharpSK.Slimefun.SlimefunRegistry;
 import me.sharpjaws.sharpSK.hooks.AuthmeReloaded.AuthmeRegistry;
 import me.sharpjaws.sharpSK.hooks.CoreProtect.CorePRegistry;
 import me.sharpjaws.sharpSK.hooks.FAWE.FAWERegisry;
@@ -17,6 +16,7 @@ import me.sharpjaws.sharpSK.hooks.LuckPerms.LuckPermsRegistry;
 import me.sharpjaws.sharpSK.hooks.Multiverse.MultiverseRegistry;
 import me.sharpjaws.sharpSK.hooks.MythicMobs.MythicMobsRegistry;
 import me.sharpjaws.sharpSK.hooks.PermissionsEx.PermissionsExRegistry;
+import me.sharpjaws.sharpSK.hooks.Slimefun.SlimefunRegistry;
 import me.sharpjaws.sharpSK.hooks.Towny.TownyRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldEdit.WorldEditRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldGuard.WorldGuardRegistry;
