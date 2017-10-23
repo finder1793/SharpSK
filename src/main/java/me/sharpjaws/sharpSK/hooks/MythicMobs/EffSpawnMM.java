@@ -16,29 +16,32 @@ public class EffSpawnMM extends Effect {
 
 	private Expression<String> mn;
 	private Expression<Location> loc;
-	private Expression<Integer> level;
+	private Expression<Number> level;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
 		mn = (Expression<String>) expr[0];
 		loc = (Expression<Location>) expr[1];
-		level = (Expression<Integer>) expr[2];
+		level = (Expression<Number>) expr[2];
 		return true;
 	}
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "spawn [a] mythicmob %string% at %location% with level %integer%";
+		return "spawn [a] mythicmob %string% at %location% [with level %-number%]";
 	}
 
 	@Override
 	protected void execute(Event e) {
 		try {
 			try {
-				MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), level.getSingle(e));
+				if (level != null) {
+				MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), Math.round(level.getSingle(e).intValue()));
+				}else {
+				MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e),1);
+				}
 			} catch (NullPointerException ex) {
-
 				return;
 			}
 		} catch (InvalidMobTypeException e1) {

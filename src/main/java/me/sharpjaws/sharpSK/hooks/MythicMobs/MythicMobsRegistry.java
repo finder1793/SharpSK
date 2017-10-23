@@ -69,7 +69,7 @@ public class MythicMobsRegistry {
 			Skript.registerCondition(CondIsMythicMob.class, "%entity% is a mythicmob");
 			Skript.registerCondition(CondNotMythicMob.class, "%entity% is not a mythicmob");
 			Skript.registerEffect(EffSpawnMM.class,
-					"[sharpsk] spawn [a] mythicmob %string% at [the] %location% with level %integer%");
+					"[sharpsk] spawn [a] mythicmob %string% at [the] %location% [with level %-number%]");
 
 		}
 	}
