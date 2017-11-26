@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 import com.gmail.nossr50.api.PartyAPI;
+import com.gmail.nossr50.datatypes.party.Party;
 import com.gmail.nossr50.datatypes.party.PartyLeader;
 
 import ch.njol.skript.classes.Changer;
@@ -44,20 +45,23 @@ public class ExprmcMMOPartyLeader extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		return new String[] { PartyAPI.getPartyLeader(s.getSingle(e)) };
+		for (Party a : PartyAPI.getParties()) {
+			if (a.getName().equalsIgnoreCase(s.getSingle(e))) {
+				return new String[] { a.getLeader().getPlayerName() };
+			}
+		}
+		;
+
+		return new String[] { null };
 	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		try {
-			if (mode == Changer.ChangeMode.SET) {
-				Player p = (Player) delta[0];
-				PartyLeader p2 = new PartyLeader(p.getUniqueId(), p.getName());
+		if (mode == Changer.ChangeMode.SET) {
+			Player p = (Player) delta[0];
+			PartyLeader p2 = new PartyLeader(p.getUniqueId(), p.getName());
 
-				com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLeader(p2);
-			}
-		} catch (NullPointerException ex) {
-			return;
+			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLeader(p2);
 		}
 	}
 

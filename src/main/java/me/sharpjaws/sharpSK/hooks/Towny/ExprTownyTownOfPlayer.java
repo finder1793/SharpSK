@@ -7,6 +7,7 @@ import org.bukkit.event.Event;
 
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.Resident;
+import com.palmergames.bukkit.towny.object.TownyUniverse;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -39,12 +40,13 @@ public class ExprTownyTownOfPlayer extends SimpleExpression<String> {
 	@Nullable
 	protected String[] get(Event e) {
 
-		Resident a = new Resident(resident.getSingle(e).getName());
 		try {
+			Resident a = TownyUniverse.getDataSource().getResident(resident.getSingle(e).getName());
 			return new String[] { a.getTown().getName() };
-		} catch (NotRegisteredException e1) {
-			return new String[] {};
+		} catch (NotRegisteredException ex) {
+			ex.printStackTrace();
 		}
+		return new String[] {};
 
 	}
 

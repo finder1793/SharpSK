@@ -57,16 +57,16 @@ public class EffGroupManagerRemovePermission extends Effect {
 		if (world != null) {
 			handler = GM.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
-		for(Entry<String,User> a : handler.getUsers().entrySet()) {
+		for (Entry<String, User> a : handler.getUsers().entrySet()) {
 			if (player.getSingle(e).getUniqueId().toString().equals(a.getValue().getUUID().toString())) {
 				try {
-				a.getValue().removePermission(perm.getSingle(e));
-				a.getValue().setLastName(player.getSingle(e).getName());
-				}catch(NullPointerException ex) {
+					a.getValue().removePermission(perm.getSingle(e));
+					a.getValue().setLastName(player.getSingle(e).getName());
+				} catch (NullPointerException ex) {
 					return;
 				}
 				break;
-				
+
 			}
 		}
 		GM.getWorldsHolder().saveChanges();

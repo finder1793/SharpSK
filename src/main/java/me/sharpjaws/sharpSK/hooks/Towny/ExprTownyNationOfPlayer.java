@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.Nation;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
@@ -41,12 +42,13 @@ public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 	protected String[] get(Event e) {
 
 		String natname = null;
-		Resident pl = new Resident(resident.getSingle(e).getName());
-		for (Nation a : TownyUniverse.getDataSource().getNations()) {
-			if (a.getResidents().contains(pl)) {
-				natname = a.getName();
-				break;
-			}
+		Resident res;
+		try {
+			res = TownyUniverse.getDataSource().getResident(resident.getSingle(e).getName());
+			natname = res.getTown().getNation().getName();
+
+		} catch (NotRegisteredException ex) {
+			ex.printStackTrace();
 		}
 
 		return new String[] { natname };

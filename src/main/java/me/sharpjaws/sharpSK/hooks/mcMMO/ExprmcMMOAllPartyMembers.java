@@ -1,12 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
+
+import com.gmail.nossr50.party.PartyManager;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -43,19 +45,11 @@ public class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
 	@Nullable
 	protected String[] get(Event e) {
 		ArrayList<String> members = new ArrayList<>();
-		for (OfflinePlayer p : Bukkit.getOfflinePlayers()) {
-			try {
-				if (p != null) {
-					if (com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).getMembers()
-							.containsKey(p.getUniqueId())) {
-						members.add(p.getName());
-					}
-				}
-			} catch (NullPointerException ex) {
-
-			}
+		for (Entry<UUID, String> user : PartyManager.getParty(s.getSingle(e)).getMembers().entrySet()) {
+			members.add(user.getValue());
 		}
 		return members.toArray(new String[members.size()]);
+
 	}
 
 }

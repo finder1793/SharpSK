@@ -95,6 +95,18 @@
 			<id>ess-repo</id>
 			<url>http://repo.ess3.net/content/groups/essentials</url>
 		</repository>
+
+		<repository>
+			<id>stormdev-repo</id>
+			<url>https://stormdev.org/jenkins/job/uCars/47/maven-repository/repository/</url>
+		</repository>
+
+		<repository>
+			<id>comphenix-rep</id>
+			<name>Comphenix Repository</name>
+			<url>http://repo.comphenix.net/content/groups/public</url>
+		</repository>
+
 	</repositories>
 
 	<build>
@@ -132,6 +144,7 @@
 		</dependency>
 
 
+
 		<dependency>
 			<groupId>com.destroystokyo.paper</groupId>
 			<artifactId>paper-api</artifactId>
@@ -156,13 +169,13 @@
 			<artifactId>Towny</artifactId>
 			<version>0.91.1.0</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>me.lucko.luckperms</groupId>
 			<artifactId>luckperms-api</artifactId>
 			<version>3.2</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>ch.njol</groupId>
 			<artifactId>skript</artifactId>
@@ -173,14 +186,6 @@
 			<groupId>com.boydti</groupId>
 			<artifactId>fawe-api</artifactId>
 			<version>latest</version>
-		</dependency>
-
-		<dependency>
-			<groupId>fr.xephi</groupId>
-			<artifactId>authme</artifactId>
-			<version>5.2</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/AuthMe-5.2-spigot.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -195,7 +200,38 @@
 			<version>6.1</version>
 		</dependency>
 
+		<dependency>
+			<groupId>net.ess3</groupId>
+			<artifactId>EssentialsGroupManager</artifactId>
+			<version>2.14-SNAPSHOT</version>
+		</dependency>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<dependency>
+			<groupId>fr.xephi</groupId>
+			<artifactId>authme</artifactId>
+			<version>5.2</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/AuthMe-5.2-spigot.jar</systemPath>
+		</dependency>
 
 		<dependency>
 			<groupId>org</groupId>
@@ -243,13 +279,6 @@
 			<version>4.1.0</version>
 			<scope>system</scope>
 			<systemPath>${project.basedir}/lib/MythicMobs-4.1.0.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com</groupId>
-			<artifactId>useful</artifactId>
-			<version>19</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/uCars.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -308,12 +337,14 @@
 			<systemPath>${project.basedir}/lib/Kingdoms+-13.2.0-ClassesOnly.jar</systemPath>
 		</dependency>
 
-
 		<dependency>
-			<groupId>net.ess3</groupId>
-			<artifactId>EssentialsGroupManager</artifactId>
-			<version>2.14-SNAPSHOT</version>
+			<groupId>com.useful</groupId>
+			<artifactId>uCars</artifactId>
+			<version>20</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/uCars.jar</systemPath>
 		</dependency>
+
 
 
 	</dependencies>

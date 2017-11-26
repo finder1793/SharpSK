@@ -4,11 +4,19 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 
+@Name("Disable Plugoin")
+@Description("Disables a plugin")
+@Examples({ "command /disable:", "trigger:", "\topen brewer inventory to the player", " ", })
+@Since("1.6, 1.6.4")
 public class EffDisablePlugin extends Effect {
 	private Expression<?> plugin;
 

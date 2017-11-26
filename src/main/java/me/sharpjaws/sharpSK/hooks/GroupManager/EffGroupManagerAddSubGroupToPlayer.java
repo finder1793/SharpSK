@@ -60,7 +60,7 @@ public class EffGroupManagerAddSubGroupToPlayer extends Effect {
 		if (world != null) {
 			handler = GM.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
-		for(Entry<String,User> a : handler.getUsers().entrySet()) {
+		for (Entry<String, User> a : handler.getUsers().entrySet()) {
 			if (player.getSingle(e).getUniqueId().toString().equals(a.getValue().getUUID().toString())) {
 				a.getValue().addSubGroup(new Group(group.getSingle(e)));
 				a.getValue().setLastName(player.getSingle(e).getName());
@@ -69,7 +69,6 @@ public class EffGroupManagerAddSubGroupToPlayer extends Effect {
 		}
 		GM.getWorldsHolder().saveChanges();
 		GM.getWorldsHolder().reloadAll();
-
 
 	}
 

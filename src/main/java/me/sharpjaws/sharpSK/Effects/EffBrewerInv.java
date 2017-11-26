@@ -8,11 +8,19 @@ import org.bukkit.event.Event;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 
+@Name("Open Brewing Inventory")
+@Description("Opens a brewing inventory for the player.")
+@Examples({ "command /inv:", "trigger:", "\topen brewer inventory to the player", " ", })
+@Since("1.4, 1.6.4")
 public class EffBrewerInv extends Effect {
 	private Expression<Player> p;
 	private Expression<String> s;

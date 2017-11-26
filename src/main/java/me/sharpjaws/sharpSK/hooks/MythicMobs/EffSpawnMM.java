@@ -37,9 +37,10 @@ public class EffSpawnMM extends Effect {
 		try {
 			try {
 				if (level != null) {
-				MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), Math.round(level.getSingle(e).intValue()));
-				}else {
-				MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e),1);
+					MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e),
+							Math.round(level.getSingle(e).intValue()));
+				} else {
+					MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), 1);
 				}
 			} catch (NullPointerException ex) {
 				return;
