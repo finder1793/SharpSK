@@ -5,6 +5,10 @@ import javax.annotation.Nullable;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +17,10 @@ import me.sharpjaws.sharpSK.main;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
+@Name("Timer Pause")
+@Description("Resumes a timer")
+@Examples({ "command /resumetimer:", "trigger:", "\tresume timer \"test\" ", " ", })
+@Since("1.5, 1.6.4")
 public class EffTimerResume extends Effect {
 	private Expression<String> timer;
 
@@ -26,7 +34,7 @@ public class EffTimerResume extends Effect {
 
 	@Override
 	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "stop timer %string%";
+		return "resume timer %string%";
 	}
 
 	@Override
@@ -52,19 +60,9 @@ public class EffTimerResume extends Effect {
 		}
 		try {
 			try {
-				if (!a.isActive()) {
 					a.resumeTimer(a.getName());
-				} else {
-
-				}
-
 			} catch (NullPointerException ex) {
-
-				if (!b.isActive()) {
 					b.resumeTimer(b.getName());
-				} else {
-					b.resumeTimer(b.getName());
-				}
 			}
 		} catch (NullPointerException ex) {
 			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");

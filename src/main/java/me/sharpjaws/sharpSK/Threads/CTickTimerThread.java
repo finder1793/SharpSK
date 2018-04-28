@@ -16,16 +16,18 @@ public class CTickTimerThread extends Thread {
 	private int ticks;
 	private String Tname;
 	private boolean active;
-	private int Countdown;
+	private int countdown;
 	private int timetointv;
 	private int interv;
 	private boolean paused;
+	Map<String, Integer> timer;
 
 	public CTickTimerThread(String name, int ticks, Boolean activeT, int interval) {
 		this.active = activeT;
 		this.ticks = ticks;
 		this.Tname = name;
 		this.interv = interval;
+		timer = new HashMap<String, Integer>();
 	}
 
 	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "TTickcache.yml");
@@ -34,68 +36,64 @@ public class CTickTimerThread extends Thread {
 
 	@Override
 	public void run() {
-
-		this.instance().Countdown = ticks + 1;
+		this.instance().countdown = ticks + 1;
 		this.setName(Tname);
-		if (this.instance().Countdown < interv) {
+		if (this.instance().countdown < interv) {
 			this.interv = 0;
 		} else {
 			timetointv = -1;
 		}
 
 		try {
-			Map<String, Integer> timer = new HashMap<String, Integer>();
-			while (!(Countdown < 2)) {
+			while (!(countdown < 2)) {
 				synchronized (this) {
 					while (paused) {
 						wait();
 					}
 				}
-				Countdown--;
+				countdown--;
 				if (interv > 0) {
 					timetointv++;
 
 				}
 				if (active == true) {
-
 					timer.put(this.getName(), this.getTime());
 					Tcache.createSection("timers", timer);
 					Tcache.getMapList("timers").add(timer);
 					try {
 						Tcache.save(cache);
 					} catch (IOException e) {
-
+						e.printStackTrace();
+						this.interrupt();
 					}
 				}
 				if (interv > 0) {
 					if (timetointv >= interv) {
 						scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"),
-								new TimerHandler(Tname, Countdown, 1, 2));
+								new TimerHandler(Tname, countdown, 1, 2));
 						timetointv = 0;
 					}
 				} else {
 					scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"),
-							new TimerHandler(Tname, Countdown, 1, 2));
+							new TimerHandler(Tname, countdown, 1, 2));
 				}
 				CTickTimerThread.sleep(50);
 			}
 
-			scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, Countdown, 2, 2));
+			scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, countdown, 2, 2));
 			if (active == true) {
-
 				timer.put(this.getName(), 0);
 				Tcache.createSection("timers", timer);
 				Tcache.getMapList("timers").add(timer);
 				try {
 					Tcache.save(cache);
 				} catch (IOException e) {
-
+					this.instance().interrupt();
 				}
 			}
 			this.instance().interrupt();
 
 		} catch (InterruptedException e) {
-
 			this.instance().interrupt();
 		}
 	}
@@ -103,11 +101,11 @@ public class CTickTimerThread extends Thread {
 	// Method Calls:
 
 	public void addTime(int time) {
-		this.instance().Countdown = this.instance().Countdown + time;
+		this.instance().countdown = this.instance().countdown + time;
 	}
 
 	public void setTime(int time) {
-		this.instance().Countdown = time;
+		this.instance().countdown = time;
 	}
 
 	public void pauseTimer(String name) {
@@ -124,19 +122,21 @@ public class CTickTimerThread extends Thread {
 	}
 
 	public int getTime() {
-		return this.instance().Countdown;
+		return this.instance().countdown;
 	}
 
 	public void stopTimer(String name) {
 		if (name.contains(Tname)) {
-			this.instance().Countdown = 0;
-
+			this.instance().countdown = 0;
+			if (this.instance().active) {
+				this.instance().active = false;
+			}
 			this.instance().interrupt();
 		}
 	}
 
 	public void removeTime(int time) {
-		this.instance().Countdown = this.instance().Countdown - time;
+		this.instance().countdown = this.instance().countdown - time;
 
 	}
 

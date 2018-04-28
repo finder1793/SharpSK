@@ -5,6 +5,10 @@ import javax.annotation.Nullable;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -14,6 +18,10 @@ import me.sharpjaws.sharpSK.main;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
+@Name("Timer Create")
+@Description("Creates a timer")
+@Examples({ "command /createtimer:", "trigger:", "\tcreate timer \"Test\" for 15 minutes ", " ", })
+@Since("1.5, 1.6.4")
 public class EffTimerCreate extends Effect {
 	private Expression<String> s;
 	private Expression<Timespan> duration;
@@ -36,7 +44,7 @@ public class EffTimerCreate extends Effect {
 
 	@Override
 	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "timer create %string% duration %timespan%";
+		return "create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]";
 	}
 
 	@Override
@@ -65,7 +73,6 @@ public class EffTimerCreate extends Effect {
 
 		if (mark == -1) {
 			if (active == null) {
-
 				if (interval != null) {
 					CTimerThread th = new CTimerThread(s.getSingle(e), (int) duration.getSingle(e).getTicks_i() / 20,
 							false, (int) interval.getSingle(e).getTicks_i() / 20);

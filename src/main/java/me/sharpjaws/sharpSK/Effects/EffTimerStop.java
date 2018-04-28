@@ -5,6 +5,10 @@ import javax.annotation.Nullable;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -13,6 +17,10 @@ import me.sharpjaws.sharpSK.main;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 
+@Name("Timer Stop")
+@Description("Stops a timer")
+@Examples({ "command /stoptimer:", "trigger:", "\tstop timer \"test\" ", " ", })
+@Since("1.5, 1.6.4")
 public class EffTimerStop extends Effect {
 	private Expression<String> timer;
 
@@ -52,21 +60,11 @@ public class EffTimerStop extends Effect {
 		}
 		try {
 			try {
-				if (!a.isActive()) {
-					a.stopTimer(a.getName());
-				} else {
-
-				}
-
+				a.stopTimer(a.getName());
 			} catch (NullPointerException ex) {
+				b.stopTimer(b.getName());
 
-				if (!b.isActive()) {
-					b.stopTimer(b.getName());
-				} else {
-					b.stopTimer(b.getName());
-				}
 			}
-
 		} catch (NullPointerException ex2) {
 			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger().warning(
