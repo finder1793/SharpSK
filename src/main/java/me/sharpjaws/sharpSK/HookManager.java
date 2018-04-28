@@ -41,8 +41,6 @@ public class HookManager {
 			}
 		}
 
-		if (Bukkit.getServer().getVersion().contains("MC: 1.9") || Bukkit.getServer().getVersion().contains("MC: 1.10")
-				|| Bukkit.getServer().getVersion().contains("MC: 1.11")) {
 			if (mainp.getConfig().getBoolean("glowapi") == true) {
 				if (Bukkit.getPluginManager().getPlugin("GlowAPI") != null) {
 					try {
@@ -50,11 +48,11 @@ public class HookManager {
 								+ Bukkit.getPluginManager().getPlugin("GlowAPI").getDescription().getVersion());
 						GlowAPIRegistry.registerGlowAPI();
 					} catch (NoClassDefFoundError ex) {
-
+						mainp.getLogger().warning("Could not hook into GlowAPI." + " Version not supported");
 					}
 				}
 			}
-		}
+		
 
 		if (Bukkit.getPluginManager().getPlugin("mcMMO") != null) {
 			if (mainp.getConfig().getBoolean("mcmmo") == true) {
