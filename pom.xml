@@ -40,12 +40,6 @@
 			<url>http://nexus.hc.to/content/repositories/pub_releases</url>
 		</repository>
 
-
-		<repository>
-			<id>mcMMO-repo</id>
-			<url>http://betonquest.betoncraft.pl/mvn/</url>
-		</repository>
-
 		<repository>
 			<id>FAWE-repo</id>
 			<url>http://ci.athion.net/job/FastAsyncWorldEdit/ws/mvn/</url>
@@ -156,12 +150,6 @@
 			<groupId>ru.tehkode</groupId>
 			<artifactId>PermissionsEx</artifactId>
 			<version>1.23.2-SNAPSHOT</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.gmail.nossr50</groupId>
-			<artifactId>mcmmo</artifactId>
-			<version>1.5.04-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>
