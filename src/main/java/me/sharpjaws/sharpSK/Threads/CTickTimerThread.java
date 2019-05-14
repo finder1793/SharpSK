@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.Threads;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
+import me.sharpjaws.sharpSK.TimerHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import me.sharpjaws.sharpSK.TimerHandler;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CTickTimerThread extends Thread {
 
@@ -56,7 +55,7 @@ public class CTickTimerThread extends Thread {
 					timetointv++;
 
 				}
-				if (active == true) {
+				if (active) {
 					timer.put(this.getName(), this.getTime());
 					Tcache.createSection("timers", timer);
 					Tcache.getMapList("timers").add(timer);
@@ -81,7 +80,7 @@ public class CTickTimerThread extends Thread {
 			}
 
 			scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, countdown, 2, 2));
-			if (active == true) {
+			if (active) {
 				timer.put(this.getName(), 0);
 				Tcache.createSection("timers", timer);
 				Tcache.getMapList("timers").add(timer);

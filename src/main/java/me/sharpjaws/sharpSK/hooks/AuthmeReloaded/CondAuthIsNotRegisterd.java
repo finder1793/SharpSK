@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.AuthmeReloaded;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import fr.xephi.authme.api.NewAPI;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondAuthIsNotRegisterd extends Condition {
 	private Expression<Player> p;
@@ -28,10 +27,6 @@ public class CondAuthIsNotRegisterd extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		if (NewAPI.getInstance().isRegistered(p.getSingle(e).getName()) == false) {
-			return true;
-		} else {
-			return false;
-		}
+		return !NewAPI.getInstance().isRegistered(p.getSingle(e).getName());
 	}
 }

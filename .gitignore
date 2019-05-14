@@ -1,8 +1,4 @@
-/bin/
-
-/.settings/
-.classpath
-.project
-/target/
-
-/.pmd
+out/
+bin/
+target/
+.idea/workspace.xml

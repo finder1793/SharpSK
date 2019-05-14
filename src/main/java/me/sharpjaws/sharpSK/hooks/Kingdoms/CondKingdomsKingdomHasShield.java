@@ -1,14 +1,13 @@
 package me.sharpjaws.sharpSK.hooks.Kingdoms;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-import org.kingdoms.manager.game.GameManagement;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import org.bukkit.event.Event;
+import org.kingdoms.manager.game.GameManagement;
+
+import javax.annotation.Nullable;
 
 public class CondKingdomsKingdomHasShield extends Condition {
 
@@ -24,12 +23,12 @@ public class CondKingdomsKingdomHasShield extends Condition {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[sharpsk] [kingdoms] kingdom %string% (0¦has|1¦doesn[']t (have|has)) [a] shield";
+		return "[sharpsk] [kingdoms] kingdom %string% (0Â¦has|1Â¦doesn[']t (have|has)) [a] shield";
 	}
 
 	@Override
 	public boolean check(Event e) {
-		Boolean a = isNegated();
+		boolean a = isNegated();
 		try {
 			if (!a) {
 				return GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();

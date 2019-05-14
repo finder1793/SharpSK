@@ -1,16 +1,15 @@
 package me.sharpjaws.sharpSK.Expressions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-import org.bukkit.event.inventory.PrepareAnvilEvent;
-import org.bukkit.inventory.AnvilInventory;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import org.bukkit.event.Event;
+import org.bukkit.event.inventory.PrepareAnvilEvent;
+import org.bukkit.inventory.AnvilInventory;
+
+import javax.annotation.Nullable;
 
 public class ExprEventAnvilCost extends SimpleExpression<Number> {
 
@@ -26,11 +25,7 @@ public class ExprEventAnvilCost extends SimpleExpression<Number> {
 
 	@Override
 	public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
-		if (!ScriptLoader.isCurrentEvent(PrepareAnvilEvent.class)) {
-			return false;
-		} else {
-			return true;
-		}
+        return ScriptLoader.isCurrentEvent(PrepareAnvilEvent.class);
 	}
 
 	@Override

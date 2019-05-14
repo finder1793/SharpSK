@@ -1,17 +1,16 @@
 package me.sharpjaws.sharpSK.Expressions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.inventory.ItemStack;
-
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class ExprOffhandItem extends SimpleExpression<ItemStack> {
 	private Expression<Player> p;
@@ -47,11 +46,11 @@ public class ExprOffhandItem extends SimpleExpression<ItemStack> {
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		Integer limit = Integer.valueOf(64);
+		Integer limit = 64;
 		if (mode == Changer.ChangeMode.SET) {
 			this.p.getSingle(e).getInventory().setItemInOffHand((ItemStack) delta[0]);
-			Integer a = Integer.valueOf(this.p.getSingle(e).getInventory().getItemInOffHand().getAmount());
-			if (limit.intValue() <= a.intValue()) {
+			Integer a = this.p.getSingle(e).getInventory().getItemInOffHand().getAmount();
+			if (limit <= a) {
 				this.p.getSingle(e).getInventory().getItemInOffHand().setAmount(64);
 			}
 		}

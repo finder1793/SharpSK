@@ -1,15 +1,13 @@
 package me.sharpjaws.sharpSK.hooks.Multiverse;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
-import com.onarandombox.MultiverseCore.MultiverseCore;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import com.onarandombox.MultiverseCore.MultiverseCore;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondMVUnloadedWorld extends Condition {
 
@@ -32,11 +30,7 @@ public class CondMVUnloadedWorld extends Condition {
 		MultiverseCore mv = null;
 		mv = MultiverseCore.getPlugin(MultiverseCore.class);
 
-		if (mv.getMVWorldManager().hasUnloadedWorld(w.getSingle(e), false)) {
-			return true;
-		} else {
-			return false;
-		}
+        return mv.getMVWorldManager().hasUnloadedWorld(w.getSingle(e), false);
 	}
 
 }

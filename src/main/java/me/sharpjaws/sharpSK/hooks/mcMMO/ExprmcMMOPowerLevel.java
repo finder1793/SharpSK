@@ -1,16 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-
-import com.gmail.nossr50.api.ExperienceAPI;
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.gmail.nossr50.api.ExperienceAPI;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
 	private Expression<OfflinePlayer> p;
@@ -44,8 +42,7 @@ public class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
 		if (p == null) {
 			return new Integer[] { 0 };
 		}
-		;
-		if (p.getSingle(e).isOnline()) {
+        if (p.getSingle(e).isOnline()) {
 			return new Integer[] { ExperienceAPI.getPowerLevel(p.getSingle(e).getPlayer()) };
 		} else {
 			return new Integer[] { ExperienceAPI.getPowerLevelOffline(p.getSingle(e).getUniqueId()) };

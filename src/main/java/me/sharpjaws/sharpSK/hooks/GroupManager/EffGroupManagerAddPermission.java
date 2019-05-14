@@ -1,9 +1,9 @@
 package me.sharpjaws.sharpSK.hooks.GroupManager;
 
-import java.util.Map.Entry;
-
-import javax.annotation.Nullable;
-
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
 import org.anjocaido.groupmanager.GroupManager;
 import org.anjocaido.groupmanager.data.User;
 import org.anjocaido.groupmanager.dataholder.OverloadedWorldHolder;
@@ -13,10 +13,8 @@ import org.bukkit.World;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
 
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
+import javax.annotation.Nullable;
+import java.util.Map.Entry;
 
 public class EffGroupManagerAddPermission extends Effect {
 	private Expression<OfflinePlayer> player;
@@ -45,9 +43,8 @@ public class EffGroupManagerAddPermission extends Effect {
 		if (player == null) {
 			return;
 		}
-		;
 
-		if (player.getSingle(e).isOnline()) {
+        if (player.getSingle(e).isOnline()) {
 			handler = GM.getWorldsHolder().getWorldDataByPlayerName(player.getSingle(e).getName());
 		} else {
 			handler = GM.getWorldsHolder().getDefaultWorld();

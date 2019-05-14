@@ -1,8 +1,5 @@
 package me.sharpjaws.sharpSK;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-
 import me.sharpjaws.sharpSK.hooks.AuthmeReloaded.AuthmeRegistry;
 import me.sharpjaws.sharpSK.hooks.CoreProtect.CorePRegistry;
 import me.sharpjaws.sharpSK.hooks.FAWE.FAWERegisry;
@@ -22,14 +19,16 @@ import me.sharpjaws.sharpSK.hooks.WorldEdit.WorldEditRegistry;
 import me.sharpjaws.sharpSK.hooks.WorldGuard.WorldGuardRegistry;
 import me.sharpjaws.sharpSK.hooks.mcMMO.mcMMORegistry;
 import me.sharpjaws.sharpSK.hooks.uCars.uCarsRegistry;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class HookManager {
 
 	public void RegisterHooks() {
-		JavaPlugin mainp = main.plugin;
+		JavaPlugin mainp = Main.plugin;
 		mainp.getLogger().info("Registering available hooks...");
 		if (Bukkit.getPluginManager().getPlugin("Jobs") != null) {
-			if (mainp.getConfig().getBoolean("jobsreborn") == true) {
+			if (mainp.getConfig().getBoolean("jobsreborn")) {
 				try {
 					JobsRegistry.registerJobs();
 					mainp.getLogger().info("Hooked into JobsReborn v"
@@ -41,7 +40,7 @@ public class HookManager {
 			}
 		}
 
-			if (mainp.getConfig().getBoolean("glowapi") == true) {
+			if (mainp.getConfig().getBoolean("glowapi")) {
 				if (Bukkit.getPluginManager().getPlugin("GlowAPI") != null) {
 					try {
 						mainp.getLogger().info("Hooked into GlowAPI v"
@@ -55,7 +54,7 @@ public class HookManager {
 		
 
 		if (Bukkit.getPluginManager().getPlugin("mcMMO") != null) {
-			if (mainp.getConfig().getBoolean("mcmmo") == true) {
+			if (mainp.getConfig().getBoolean("mcmmo")) {
 				try {
 					mcMMORegistry.registermcMMO();
 					mainp.getLogger().info("Hooked into mcMMO v"
@@ -67,7 +66,7 @@ public class HookManager {
 		}
 
 		if (Bukkit.getPluginManager().getPlugin("AuthMe") != null) {
-			if (mainp.getConfig().getBoolean("authmereloaded") == true) {
+			if (mainp.getConfig().getBoolean("authmereloaded")) {
 				try {
 					AuthmeRegistry.registerAuthMe();
 					mainp.getLogger().info("Hooked into AuthmeReloaded v"
@@ -78,7 +77,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().getPlugin("MythicMobs") != null) {
-			if (mainp.getConfig().getBoolean("mythicmobs") == true) {
+			if (mainp.getConfig().getBoolean("mythicmobs")) {
 				try {
 					MythicMobsRegistry.RegisterMythicMobs();
 					mainp.getLogger().info("Hooked into MythicMobs v"
@@ -90,7 +89,7 @@ public class HookManager {
 		}
 
 		if (Bukkit.getPluginManager().getPlugin("LightAPI") != null) {
-			if (mainp.getConfig().getBoolean("lightapi") == true) {
+			if (mainp.getConfig().getBoolean("lightapi")) {
 				try {
 					LightAPIRegistry.registerLightAPI();
 					mainp.getLogger().info("Hooked into LightAPI v"
@@ -107,7 +106,7 @@ public class HookManager {
 
 		}
 		if (Bukkit.getPluginManager().getPlugin("CoreProtect") != null) {
-			if (mainp.getConfig().getBoolean("coreprotect") == true) {
+			if (mainp.getConfig().getBoolean("coreprotect")) {
 				try {
 					CorePRegistry.registerCoreP();
 					mainp.getLogger().info("Hooked into CoreProtect v"
@@ -125,7 +124,7 @@ public class HookManager {
 		}
 
 		if (Bukkit.getPluginManager().isPluginEnabled("uCars")) {
-			if (mainp.getConfig().getBoolean("ucars") == true) {
+			if (mainp.getConfig().getBoolean("ucars")) {
 				try {
 					uCarsRegistry.registeruCars();
 
@@ -139,7 +138,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("PermissionsEx")) {
-			if (mainp.getConfig().getBoolean("permissionsex") == true) {
+			if (mainp.getConfig().getBoolean("permissionsex")) {
 				try {
 					PermissionsExRegistry.registerPermissionsEx();
 					mainp.getLogger().info("Hooked into PermissionsEx v"
@@ -153,7 +152,7 @@ public class HookManager {
 		}
 
 		if (Bukkit.getPluginManager().isPluginEnabled("Multiverse-Core")) {
-			if (mainp.getConfig().getBoolean("multiverse") == true) {
+			if (mainp.getConfig().getBoolean("multiverse")) {
 				try {
 					MultiverseRegistry.registerMultiverse();
 					mainp.getLogger().info("Hooked into Multiverse v"
@@ -166,7 +165,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("WorldEdit")) {
-			if (mainp.getConfig().getBoolean("worldedit") == true) {
+			if (mainp.getConfig().getBoolean("worldedit")) {
 				try {
 					WorldEditRegistry.registerWorldEdit();
 					mainp.getLogger().info("Hooked into WorldEdit v"
@@ -179,7 +178,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("WorldGuard")) {
-			if (mainp.getConfig().getBoolean("worldguard") == true) {
+			if (mainp.getConfig().getBoolean("worldguard")) {
 				try {
 					WorldGuardRegistry.registerWorldGuard();
 					mainp.getLogger().info("Hooked into WorldGuard v"
@@ -192,7 +191,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("LogBlock")) {
-			if (mainp.getConfig().getBoolean("logblock") == true) {
+			if (mainp.getConfig().getBoolean("logblock")) {
 				try {
 					LogBlockRegistry.registerLogBlock();
 					mainp.getLogger().info("Hooked into LogBlock v"
@@ -205,7 +204,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("Towny")) {
-			if (mainp.getConfig().getBoolean("towny") == true) {
+			if (mainp.getConfig().getBoolean("towny")) {
 				try {
 					TownyRegistry.RegisterTowny();
 					mainp.getLogger().info("Hooked into Towny v"
@@ -218,7 +217,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("Kingdoms")) {
-			if (mainp.getConfig().getBoolean("kingdoms") == true) {
+			if (mainp.getConfig().getBoolean("kingdoms")) {
 				try {
 					KingdomsRegistry.RegisterKingdoms();
 					mainp.getLogger().info("Hooked into Kingdoms v"
@@ -231,7 +230,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("LuckPerms")) {
-			if (mainp.getConfig().getBoolean("luckperms") == true) {
+			if (mainp.getConfig().getBoolean("luckperms")) {
 				try {
 					LuckPermsRegistry.registerLuckPerms();
 					mainp.getLogger().info("Hooked into LuckPerms v"
@@ -244,11 +243,10 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("GroupManager")) {
-			if (mainp.getConfig().getBoolean("groupmanager") == true) {
+			if (mainp.getConfig().getBoolean("groupmanager")) {
 				try {
 					GroupManagerRegistry.registerGroupManager();
-					;
-					mainp.getLogger().info("Hooked into GroupManager v"
+                    mainp.getLogger().info("Hooked into GroupManager v"
 							+ Bukkit.getPluginManager().getPlugin("GroupManager").getDescription().getVersion());
 				} catch (Exception ex) {
 					mainp.getLogger().warning("Could not hook into GroupManager." + " Version not supported");
@@ -258,7 +256,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("Slimefun")) {
-			if (mainp.getConfig().getBoolean("slimefun") == true) {
+			if (mainp.getConfig().getBoolean("slimefun")) {
 				try {
 					SlimefunRegistry.registerSlimefun();
 					mainp.getLogger().info("Hooked into Slimefun v"
@@ -271,7 +269,7 @@ public class HookManager {
 			}
 		}
 		if (Bukkit.getPluginManager().isPluginEnabled("FastAsyncWorldEdit")) {
-			if (mainp.getConfig().getBoolean("fastasyncworldedit") == true) {
+			if (mainp.getConfig().getBoolean("fastasyncworldedit")) {
 				try {
 					FAWERegisry.registerFAWE();
 					mainp.getLogger().info("Hooked into FastAsyncWorldEdit v"

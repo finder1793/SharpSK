@@ -1,26 +1,23 @@
 package me.sharpjaws.sharpSK.hooks.FAWE;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.regex.Matcher;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.event.Event;
-
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
 import com.boydti.fawe.FaweAPI;
 import com.boydti.fawe.object.schematic.Schematic;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
+import me.sharpjaws.sharpSK.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.event.Event;
 
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;
+import javax.annotation.Nullable;
+import java.io.File;
+import java.io.IOException;
+import java.util.regex.Matcher;
 
 public class EffFAWEPasteSchematic extends Effect {
 	private Expression<String> name;
@@ -72,7 +69,7 @@ public class EffFAWEPasteSchematic extends Effect {
 									excludeair, null);
 
 						} catch (IOException e1) {
-							main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+							Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 							core.getLogger().warning("Failed to paste schematic: " + "\"" + name.getSingle(e) + "\""
 									+ " An error occurred");
 							return;

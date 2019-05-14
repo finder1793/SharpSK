@@ -1,17 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-
-import com.gmail.nossr50.datatypes.skills.AbilityType;
-import com.gmail.nossr50.util.player.UserManager;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import com.gmail.nossr50.datatypes.skills.AbilityType;
+import com.gmail.nossr50.util.player.UserManager;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondmcMMOAbilityEnabled extends Condition {
 	private Expression<OfflinePlayer> p;
@@ -35,7 +33,6 @@ public class CondmcMMOAbilityEnabled extends Condition {
 		if (p == null) {
 			return false;
 		}
-		;
 		if (p.getSingle(e).isOnline()) {
 			return UserManager.getPlayer(p.getSingle(e).getPlayer()).getAbilityMode(ability.getSingle(e));
 		} else {

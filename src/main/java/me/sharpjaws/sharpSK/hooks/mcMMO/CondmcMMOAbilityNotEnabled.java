@@ -1,17 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-
-import com.gmail.nossr50.datatypes.skills.AbilityType;
-import com.gmail.nossr50.util.player.UserManager;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import com.gmail.nossr50.datatypes.skills.AbilityType;
+import com.gmail.nossr50.util.player.UserManager;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondmcMMOAbilityNotEnabled extends Condition {
 	private Expression<OfflinePlayer> p;
@@ -32,24 +30,15 @@ public class CondmcMMOAbilityNotEnabled extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean bool = false;
+		boolean bool = false;
 		if (p == null) {
 			return true;
 		}
-		;
 
-		if (p.getSingle(e).isOnline()) {
-			if (UserManager.getPlayer(p.getSingle(e).getPlayer()).getAbilityMode(ability.getSingle(e)) == true) {
-				bool = false;
-			} else {
-				bool = true;
-			}
+        if (p.getSingle(e).isOnline()) {
+			bool = !UserManager.getPlayer(p.getSingle(e).getPlayer()).getAbilityMode(ability.getSingle(e));
 		} else {
-			if (UserManager.getOfflinePlayer(p.getSingle(e)).getAbilityMode(ability.getSingle(e)) == true) {
-				bool = false;
-			} else {
-				bool = true;
-			}
+			bool = !UserManager.getOfflinePlayer(p.getSingle(e)).getAbilityMode(ability.getSingle(e));
 		}
 		return bool;
 	}

@@ -1,17 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
-import com.gamingmesh.jobs.Jobs;
-import com.gamingmesh.jobs.container.Job;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import com.gamingmesh.jobs.Jobs;
+import com.gamingmesh.jobs.container.Job;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondPlayerInJob extends Condition {
 
@@ -33,11 +31,8 @@ public class CondPlayerInJob extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean bool = Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e)).isInJob(j.getSingle(e));
+		boolean bool = Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e)).isInJob(j.getSingle(e));
 
-		if (bool == true) {
-			return true;
-		}
-		return false;
+		return bool;
 	}
 }

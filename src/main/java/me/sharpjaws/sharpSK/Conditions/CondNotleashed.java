@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.Conditions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondNotleashed extends Condition {
 	private Expression<Entity> en;
@@ -28,14 +27,10 @@ public class CondNotleashed extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean check = false;
+		boolean check = false;
 		try {
 			LivingEntity en2 = (LivingEntity) en.getSingle(e);
-			if (en2.isLeashed() == true) {
-				check = false;
-			} else {
-				check = true;
-			}
+			check = !en2.isLeashed();
 		} catch (NullPointerException ex) {
 		}
 		return check;

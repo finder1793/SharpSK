@@ -1,25 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
-import com.palmergames.bukkit.towny.event.DeleteTownEvent;
-import com.palmergames.bukkit.towny.event.NationAddTownEvent;
-import com.palmergames.bukkit.towny.event.NationRemoveTownEvent;
-import com.palmergames.bukkit.towny.event.NewTownEvent;
-import com.palmergames.bukkit.towny.event.RenameTownEvent;
-import com.palmergames.bukkit.towny.event.TownAddResidentEvent;
-import com.palmergames.bukkit.towny.event.TownClaimEvent;
-import com.palmergames.bukkit.towny.event.TownRemoveResidentEvent;
-import com.palmergames.bukkit.towny.event.TownUnclaimEvent;
-import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.palmergames.bukkit.towny.event.*;
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprTownyEventTown extends SimpleExpression<String> {
 
@@ -40,21 +30,18 @@ public class ExprTownyEventTown extends SimpleExpression<String> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(TownAddResidentEvent.class)
-				&& !ScriptLoader.isCurrentEvent(TownRemoveResidentEvent.class)
-				&& !ScriptLoader.isCurrentEvent(RenameTownEvent.class)
-				&& !ScriptLoader.isCurrentEvent(DeleteTownEvent.class)
-				&& !ScriptLoader.isCurrentEvent(NewTownEvent.class)
-				&& !ScriptLoader.isCurrentEvent(TownClaimEvent.class)
-				&& !ScriptLoader.isCurrentEvent(TownUnclaimEvent.class)
-				&& !ScriptLoader.isCurrentEvent(TownAddResidentEvent.class)
-				&& !ScriptLoader.isCurrentEvent(TownRemoveResidentEvent.class)
-				&& !ScriptLoader.isCurrentEvent(NationAddTownEvent.class)
-				&& !ScriptLoader.isCurrentEvent(NationRemoveTownEvent.class)) {
-			return false;
-		}
-		return true;
-	}
+        return ScriptLoader.isCurrentEvent(TownAddResidentEvent.class)
+                || ScriptLoader.isCurrentEvent(TownRemoveResidentEvent.class)
+                || ScriptLoader.isCurrentEvent(RenameTownEvent.class)
+                || ScriptLoader.isCurrentEvent(DeleteTownEvent.class)
+                || ScriptLoader.isCurrentEvent(NewTownEvent.class)
+                || ScriptLoader.isCurrentEvent(TownClaimEvent.class)
+                || ScriptLoader.isCurrentEvent(TownUnclaimEvent.class)
+                || ScriptLoader.isCurrentEvent(TownAddResidentEvent.class)
+                || ScriptLoader.isCurrentEvent(TownRemoveResidentEvent.class)
+                || ScriptLoader.isCurrentEvent(NationAddTownEvent.class)
+                || ScriptLoader.isCurrentEvent(NationRemoveTownEvent.class);
+    }
 
 	@Override
 	@Nullable

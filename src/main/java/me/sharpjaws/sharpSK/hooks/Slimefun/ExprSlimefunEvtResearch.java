@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.Slimefun;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import me.mrCookieSlime.Slimefun.Events.ResearchUnlockEvent;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprSlimefunEvtResearch extends SimpleExpression<String> {
 
@@ -30,11 +29,8 @@ public class ExprSlimefunEvtResearch extends SimpleExpression<String> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(ResearchUnlockEvent.class)) {
-			return false;
-		}
-		return true;
-	}
+        return ScriptLoader.isCurrentEvent(ResearchUnlockEvent.class);
+    }
 
 	@Override
 	@Nullable

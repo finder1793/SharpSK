@@ -1,20 +1,18 @@
 package me.sharpjaws.sharpSK.Expressions;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import ch.njol.skript.classes.Changer;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.util.SimpleExpression;
+import ch.njol.util.Kleenean;
 import org.bukkit.World;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EnderDragon.Phase;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
-import ch.njol.skript.classes.Changer;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser;
-import ch.njol.skript.lang.util.SimpleExpression;
-import ch.njol.util.Kleenean;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ExprPhaseOf extends SimpleExpression<Phase> {
 	private Expression<World> w;
@@ -47,10 +45,9 @@ public class ExprPhaseOf extends SimpleExpression<Phase> {
 		List<Entity> entities = w1.getEntities();
 		EnderDragon enderDragon = null;
 		Phase p = null;
-		for (int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
+		for (Entity entity : entities) {
 			if (entity instanceof EnderDragon) {
-				enderDragon = (EnderDragon) entities.get(i);
+				enderDragon = (EnderDragon) entity;
 				p = enderDragon.getPhase();
 			}
 		}
@@ -61,10 +58,9 @@ public class ExprPhaseOf extends SimpleExpression<Phase> {
 		World w1 = w.getSingle(e);
 		List<Entity> entities = w1.getEntities();
 		EnderDragon enderDragon = null;
-		for (int i = 0; i < entities.size(); i++) {
-			Entity entity = entities.get(i);
+		for (Entity entity : entities) {
 			if (entity instanceof EnderDragon) {
-				enderDragon = (EnderDragon) entities.get(i);
+				enderDragon = (EnderDragon) entity;
 			}
 		}
 		return enderDragon;

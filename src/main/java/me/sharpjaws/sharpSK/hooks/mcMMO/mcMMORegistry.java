@@ -1,20 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
-import com.gmail.nossr50.datatypes.skills.AbilityType;
-import com.gmail.nossr50.datatypes.skills.SkillType;
-import com.gmail.nossr50.events.chat.McMMOPartyChatEvent;
-import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
-import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
-import com.gmail.nossr50.events.party.McMMOPartyLevelUpEvent;
-import com.gmail.nossr50.events.party.McMMOPartyXpGainEvent;
-import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityActivateEvent;
-import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityDeactivateEvent;
-
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Converter;
@@ -27,6 +12,19 @@ import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.Converters;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import com.gmail.nossr50.datatypes.skills.AbilityType;
+import com.gmail.nossr50.datatypes.skills.SkillType;
+import com.gmail.nossr50.events.chat.McMMOPartyChatEvent;
+import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
+import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
+import com.gmail.nossr50.events.party.McMMOPartyLevelUpEvent;
+import com.gmail.nossr50.events.party.McMMOPartyXpGainEvent;
+import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityActivateEvent;
+import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityDeactivateEvent;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import javax.annotation.Nullable;
 
 public class mcMMORegistry {
 
@@ -330,7 +328,7 @@ public class mcMMORegistry {
 
 		// SkillAPI Stuff
 		Skript.registerExpression(ExprmcMMOAllSkillTypes.class, SkillType.class, ExpressionType.COMBINED,
-				"[(all|the)] (skilltypes|1¦mcmmoskills)");
+				"[(all|the)] (skilltypes|1Â¦mcmmoskills)");
 
 		// AbilityAPI Stuff
 		Skript.registerEffect(EffmcMMOResetCooldowns.class, "[mcmmo] reset all [ability] cooldowns of %player%");
@@ -340,7 +338,7 @@ public class mcMMORegistry {
 		Skript.registerCondition(CondmcMMOAbilityNotEnabled.class,
 				"[mcmmo] %offlineplayer%['s] %abilitytype% is not enabled");
 		Skript.registerExpression(ExprmcMMOAllAbilityTypes.class, AbilityType.class, ExpressionType.COMBINED,
-				"[(all|the)] (ability[]types|1¦mcmmo[]abilities)");
+				"[(all|the)] (ability[]types|1Â¦mcmmo[]abilities)");
 
 		// ChatAPI Stuff
 		Skript.registerEffect(EffmcMMOPartyMsg.class, "[mcmmo] send %string% to party %string% as [sender] %string%");

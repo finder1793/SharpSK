@@ -1,16 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.MythicMobs;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.Location;
-import org.bukkit.entity.Entity;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import io.lumine.xikage.mythicmobs.MythicMobs;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondNotMythicMob extends Condition {
 	private Expression<Entity> mythicmob;
@@ -31,11 +30,10 @@ public class CondNotMythicMob extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean result = Boolean.valueOf(false);
-		Boolean result2 = false;
+		Boolean result = Boolean.FALSE;
+		boolean result2 = false;
 		try {
-			result = Boolean
-					.valueOf(MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
+			result = MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId());
 			if (result.equals(false)) {
 				result2 = true;
 			}

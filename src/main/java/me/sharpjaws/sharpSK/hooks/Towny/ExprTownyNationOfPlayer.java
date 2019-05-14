@@ -1,19 +1,16 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-
-import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
-import com.palmergames.bukkit.towny.object.Nation;
-import com.palmergames.bukkit.towny.object.Resident;
-import com.palmergames.bukkit.towny.object.TownyUniverse;
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.object.Resident;
+import com.palmergames.bukkit.towny.object.TownyUniverse;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 

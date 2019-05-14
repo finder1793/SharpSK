@@ -1,13 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.LuckPerms;
 
-import java.util.Optional;
-import java.util.function.Consumer;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
@@ -17,6 +9,12 @@ import me.lucko.luckperms.api.DataMutateResult;
 import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.Node;
 import me.lucko.luckperms.api.User;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 public class EffLuckPermsSetPerm extends Effect {
 	private Expression<OfflinePlayer> offplayer;
@@ -37,7 +35,7 @@ public class EffLuckPermsSetPerm extends Effect {
 
 	@Override
 	public String toString(@Nullable Event e, boolean arg1) {
-		return "[sharpsk] luckperms set (-1¦transient perm[ission]|1¦perm[ission]) %string% to %boolean% for [player] %offlineplayer%";
+		return "[sharpsk] luckperms set (-1Â¦transient perm[ission]|1Â¦perm[ission]) %string% to %boolean% for [player] %offlineplayer%";
 	}
 
 	@Override
@@ -67,9 +65,9 @@ public class EffLuckPermsSetPerm extends Effect {
 					t.refreshPermissions();
 
 				}, api.get().getStorage().getAsyncExecutor());
-			};
+			}
 
-		};
+        };
 		if (offplayer.getSingle(e).isOnline()) {
 			User user = api.get().getUser(offplayer.getSingle(e).getUniqueId());
 			if (user != null) {

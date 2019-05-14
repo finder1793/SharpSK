@@ -1,14 +1,13 @@
 package me.sharpjaws.sharpSK.hooks.Kingdoms;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-import org.kingdoms.manager.game.GameManagement;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import org.bukkit.event.Event;
+import org.kingdoms.manager.game.GameManagement;
+
+import javax.annotation.Nullable;
 
 public class CondKingdomsKingdomIsOnline extends Condition {
 
@@ -29,7 +28,7 @@ public class CondKingdomsKingdomIsOnline extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean a = isNegated();
+		boolean a = isNegated();
 		if (!a) {
 			return GameManagement.getKingdomManager().isOnline(kingdom.getSingle(e));
 		} else {

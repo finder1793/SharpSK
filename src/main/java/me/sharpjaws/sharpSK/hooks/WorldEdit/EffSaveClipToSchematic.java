@@ -1,30 +1,23 @@
 package me.sharpjaws.sharpSK.hooks.WorldEdit;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.regex.Matcher;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
-import com.sk89q.worldedit.CuboidClipboard;
-import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.EmptyClipboardException;
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.data.DataException;
-import com.sk89q.worldedit.schematic.SchematicFormat;
-import com.sk89q.worldedit.session.ClipboardHolder;
-
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;
+import com.sk89q.worldedit.*;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.data.DataException;
+import com.sk89q.worldedit.schematic.SchematicFormat;
+import com.sk89q.worldedit.session.ClipboardHolder;
+import me.sharpjaws.sharpSK.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
+import java.io.File;
+import java.io.IOException;
+import java.util.regex.Matcher;
 
 public class EffSaveClipToSchematic extends Effect {
 	private Expression<Player> pl;
@@ -65,12 +58,12 @@ public class EffSaveClipToSchematic extends Effect {
 			editSession.flushQueue();
 
 		} catch (DataException | IOException e1) {
-			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
 			return;
 		} catch (EmptyClipboardException e1) {
-			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
 			return;

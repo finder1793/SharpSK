@@ -1,16 +1,15 @@
 package me.sharpjaws.sharpSK.Expressions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.World;
-import org.bukkit.event.Event;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import org.bukkit.World;
+import org.bukkit.event.Event;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
+
+import javax.annotation.Nullable;
 
 public class ExprEventWorld extends SimpleExpression<World> {
 
@@ -26,7 +25,7 @@ public class ExprEventWorld extends SimpleExpression<World> {
 
 	@Override
 	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[the] [(-1¦past|1¦future) state of] [event-]world";
+		return "[the] [(-1Â¦past|1Â¦future) state of] [event-]world";
 	}
 
 	private int mark;

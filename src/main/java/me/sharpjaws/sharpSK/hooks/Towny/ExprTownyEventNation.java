@@ -1,20 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
-import com.palmergames.bukkit.towny.event.DeleteNationEvent;
-import com.palmergames.bukkit.towny.event.NationAddTownEvent;
-import com.palmergames.bukkit.towny.event.NationRemoveTownEvent;
-import com.palmergames.bukkit.towny.event.NewNationEvent;
-import com.palmergames.bukkit.towny.event.RenameNationEvent;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.palmergames.bukkit.towny.event.*;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprTownyEventNation extends SimpleExpression<String> {
 
@@ -35,15 +29,12 @@ public class ExprTownyEventNation extends SimpleExpression<String> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(RenameNationEvent.class)
-				&& !ScriptLoader.isCurrentEvent(DeleteNationEvent.class)
-				&& !ScriptLoader.isCurrentEvent(NewNationEvent.class)
-				&& !ScriptLoader.isCurrentEvent(NationAddTownEvent.class)
-				&& !ScriptLoader.isCurrentEvent(NationRemoveTownEvent.class)) {
-			return false;
-		}
-		return true;
-	}
+        return ScriptLoader.isCurrentEvent(RenameNationEvent.class)
+                || ScriptLoader.isCurrentEvent(DeleteNationEvent.class)
+                || ScriptLoader.isCurrentEvent(NewNationEvent.class)
+                || ScriptLoader.isCurrentEvent(NationAddTownEvent.class)
+                || ScriptLoader.isCurrentEvent(NationRemoveTownEvent.class);
+    }
 
 	@Override
 	@Nullable

@@ -1,10 +1,9 @@
 package me.sharpjaws.sharpSK;
 
-import static org.junit.Assert.fail;
-
+import me.sharpjaws.sharpSK.Threads.CTimerThread;
 import org.junit.Test;
 
-import me.sharpjaws.sharpSK.Threads.CTimerThread;
+import static org.junit.Assert.fail;
 
 public class SharpSKTest {
 	@Test
@@ -13,7 +12,7 @@ public class SharpSKTest {
 
 		CTimerThread testtimer = new CTimerThread("test", 10, 0, true);
 		testtimer.instance().start();
-		Boolean checkT = false;
+		boolean checkT = false;
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
 			if (t instanceof CTimerThread) {
 				System.out.println("TimerThread: " + ((CTimerThread) t).instance().getName() + " created. OK");

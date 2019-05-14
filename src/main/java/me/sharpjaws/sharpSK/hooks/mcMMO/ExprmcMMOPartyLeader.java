@@ -1,20 +1,18 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
-import com.gmail.nossr50.api.PartyAPI;
-import com.gmail.nossr50.datatypes.party.Party;
-import com.gmail.nossr50.datatypes.party.PartyLeader;
-
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import com.gmail.nossr50.api.PartyAPI;
+import com.gmail.nossr50.datatypes.party.Party;
+import com.gmail.nossr50.datatypes.party.PartyLeader;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprmcMMOPartyLeader extends SimpleExpression<String> {
 	private Expression<String> s;
@@ -50,9 +48,8 @@ public class ExprmcMMOPartyLeader extends SimpleExpression<String> {
 				return new String[] { a.getLeader().getPlayerName() };
 			}
 		}
-		;
 
-		return new String[] { null };
+        return new String[] { null };
 	}
 
 	@Override

@@ -1,16 +1,15 @@
 package me.sharpjaws.sharpSK.Expressions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Entity;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprGlowingStateEntity extends SimpleExpression<Boolean> {
 	private Expression<Entity> en;
@@ -41,14 +40,14 @@ public class ExprGlowingStateEntity extends SimpleExpression<Boolean> {
 	@Override
 	@Nullable
 	protected Boolean[] get(Event e) {
-		return new Boolean[] { Boolean.valueOf(this.en.getSingle(e).isGlowing()) };
+		return new Boolean[] {this.en.getSingle(e).isGlowing()};
 	}
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
-				this.en.getSingle(e).setGlowing(((Boolean) delta[0]).booleanValue());
+				this.en.getSingle(e).setGlowing((Boolean) delta[0]);
 			} catch (NullPointerException ex) {
 
 			}

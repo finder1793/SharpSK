@@ -1,18 +1,16 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
-import com.gmail.nossr50.datatypes.skills.AbilityType;
-import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityActivateEvent;
-import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityDeactivateEvent;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.gmail.nossr50.datatypes.skills.AbilityType;
+import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityActivateEvent;
+import com.gmail.nossr50.events.skills.abilities.McMMOPlayerAbilityDeactivateEvent;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprEvtAbilityType extends SimpleExpression<AbilityType> {
 
@@ -33,12 +31,9 @@ public class ExprEvtAbilityType extends SimpleExpression<AbilityType> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(McMMOPlayerAbilityActivateEvent.class)
-				&& !ScriptLoader.isCurrentEvent(McMMOPlayerAbilityDeactivateEvent.class)) {
-			return false;
-		}
-		return true;
-	}
+        return ScriptLoader.isCurrentEvent(McMMOPlayerAbilityActivateEvent.class)
+                || ScriptLoader.isCurrentEvent(McMMOPlayerAbilityDeactivateEvent.class);
+    }
 
 	@Override
 	@Nullable

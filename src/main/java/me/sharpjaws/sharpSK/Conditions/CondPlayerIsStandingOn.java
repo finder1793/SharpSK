@@ -1,16 +1,15 @@
 package me.sharpjaws.sharpSK.Conditions;
 
-import javax.annotation.Nullable;
-
+import ch.njol.skript.lang.Condition;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.util.Kleenean;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 
-import ch.njol.skript.lang.Condition;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser;
-import ch.njol.util.Kleenean;
+import javax.annotation.Nullable;
 
 public class CondPlayerIsStandingOn extends Condition {
 	private Expression<Entity> entity;
@@ -32,12 +31,8 @@ public class CondPlayerIsStandingOn extends Condition {
 	@Override
 	public boolean check(Event e) {
 		Block mb = entity.getSingle(e).getLocation().getBlock().getRelative(BlockFace.DOWN);
-		Boolean check;
-		if (mb == block.getSingle(e)) {
-			check = true;
-		} else {
-			check = false;
-		}
+		boolean check;
+        check = mb == block.getSingle(e);
 
 		return true;
 	}

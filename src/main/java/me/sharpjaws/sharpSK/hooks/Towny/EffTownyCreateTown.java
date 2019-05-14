@@ -1,28 +1,21 @@
 package me.sharpjaws.sharpSK.hooks.Towny;
 
-import javax.annotation.Nullable;
-
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.util.Kleenean;
+import com.palmergames.bukkit.towny.exceptions.AlreadyRegisteredException;
+import com.palmergames.bukkit.towny.exceptions.EconomyException;
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.bukkit.towny.exceptions.TownyException;
+import com.palmergames.bukkit.towny.object.*;
+import me.sharpjaws.sharpSK.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
-import com.palmergames.bukkit.towny.exceptions.AlreadyRegisteredException;
-import com.palmergames.bukkit.towny.exceptions.EconomyException;
-import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
-import com.palmergames.bukkit.towny.exceptions.TownyException;
-import com.palmergames.bukkit.towny.object.Coord;
-import com.palmergames.bukkit.towny.object.Resident;
-import com.palmergames.bukkit.towny.object.Town;
-import com.palmergames.bukkit.towny.object.TownBlock;
-import com.palmergames.bukkit.towny.object.TownyUniverse;
-import com.palmergames.bukkit.towny.object.TownyWorld;
-
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser;
-import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;;
+import javax.annotation.Nullable;
 
 public class EffTownyCreateTown extends Effect {
 	private Expression<String> s;
@@ -51,7 +44,7 @@ public class EffTownyCreateTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+		Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 
 		// Town Generator
 

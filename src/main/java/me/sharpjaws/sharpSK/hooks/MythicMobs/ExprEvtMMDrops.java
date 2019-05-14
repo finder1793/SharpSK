@@ -1,13 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.MythicMobs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-import org.bukkit.inventory.ItemStack;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
@@ -16,6 +8,12 @@ import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
 import io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent;
+import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 
@@ -36,10 +34,7 @@ public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(MythicMobDeathEvent.class)) {
-			return false;
-		}
-		return true;
+		return ScriptLoader.isCurrentEvent(MythicMobDeathEvent.class);
 	}
 
 	@Override

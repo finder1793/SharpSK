@@ -9,16 +9,16 @@ public class LuckPermsRegistry {
 
 		// Effects
 		Skript.registerEffect(EffLuckPermsSetPerm.class,
-				"[sharpsk] (luckperms|lp) set (-1¦transient perm[ission]|1¦perm[ission]) %string% to %boolean% for [player] %offlineplayer%");
+				"[sharpsk] (luckperms|lp) set (-1Â¦transient perm[ission]|1Â¦perm[ission]) %string% to %boolean% for [player] %offlineplayer%");
 		Skript.registerEffect(EffLuckPermsUnsetPerm.class,
-				"[sharpsk] (luckperms|lp) unset (-1¦transient perm[ission]|1¦perm[ission]) %string% for [player] %offlineplayer%");
+				"[sharpsk] (luckperms|lp) unset (-1Â¦transient perm[ission]|1Â¦perm[ission]) %string% for [player] %offlineplayer%");
 		Skript.registerEffect(EffLuckPermsCreateGroup.class,
 				"[sharpsk] (luckperms|lp) create group %string% [with permissions %-strings%]");
 		Skript.registerEffect(EffLuckPermsDeleteGroup.class, "[sharpsk] (luckperms|lp) (delete|remove) group %string%");
 
 		// Expressions
 		Skript.registerExpression(ExprLuckPermsAllPermissionsOfPlayer.class, String.class, ExpressionType.SIMPLE,
-				"[sharpsk] (luckperms|lp) [(all|the)] (-1¦transient perm[ission]s|1¦perm[ission]s) of %player%");
+				"[sharpsk] (luckperms|lp) [(all|the)] (-1Â¦transient perm[ission]s|1Â¦perm[ission]s) of %player%");
 		Skript.registerExpression(ExprLuckPermsAllGroups.class, String.class, ExpressionType.SIMPLE,
 				"[sharpsk] (luckperms|lp) [(all|the)] groups");
 		Skript.registerExpression(ExprLuckPermsAllGroupsOfPlayer.class, String.class, ExpressionType.SIMPLE,

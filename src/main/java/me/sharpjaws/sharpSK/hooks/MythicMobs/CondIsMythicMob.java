@@ -1,16 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.MythicMobs;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.Location;
-import org.bukkit.entity.Entity;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import io.lumine.xikage.mythicmobs.MythicMobs;
+import org.bukkit.Location;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondIsMythicMob extends Condition {
 	private Expression<Entity> mythicmob;
@@ -31,13 +30,12 @@ public class CondIsMythicMob extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean result = Boolean.valueOf(false);
+		Boolean result = Boolean.FALSE;
 		try {
-			result = Boolean
-					.valueOf(MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId()));
+			result = MythicMobs.inst().getAPIHelper().isMythicMob(mythicmob.getSingle(e).getUniqueId());
 		} catch (NullPointerException ex) {
-			return result.booleanValue();
+			return result;
 		}
-		return result.booleanValue();
+		return result;
 	}
 }

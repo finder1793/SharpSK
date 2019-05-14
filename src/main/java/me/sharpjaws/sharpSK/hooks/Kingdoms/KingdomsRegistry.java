@@ -1,23 +1,16 @@
 package me.sharpjaws.sharpSK.hooks.Kingdoms;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
-import org.kingdoms.events.KingdomCreateEvent;
-import org.kingdoms.events.KingdomDeleteEvent;
-import org.kingdoms.events.KingdomMemberJoinEvent;
-import org.kingdoms.events.KingdomMemberLeaveEvent;
-import org.kingdoms.events.KingdomPlayerLostEvent;
-import org.kingdoms.events.KingdomPlayerWonEvent;
-import org.kingdoms.events.KingdomResourcePointChangeEvent;
-
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
+import org.kingdoms.events.*;
+
+import javax.annotation.Nullable;
 
 public class KingdomsRegistry {
 
@@ -183,9 +176,9 @@ public class KingdomsRegistry {
 
 		// Kingdoms Conditions:
 		Skript.registerCondition(CondKingdomsKingdomIsOnline.class,
-				"[sharpsk] [kingdoms] kingdom %string% (0¦is|1¦is not) online");
+				"[sharpsk] [kingdoms] kingdom %string% (0Â¦is|1Â¦is not) online");
 		Skript.registerCondition(CondKingdomsKingdomHasShield.class,
-				"[sharpsk] [kingdoms] kingdom %string% (0¦has|1¦doesn[']t (have|has)) [a] shield");
+				"[sharpsk] [kingdoms] kingdom %string% (0Â¦has|1Â¦doesn[']t (have|has)) [a] shield");
 	}
 
 }

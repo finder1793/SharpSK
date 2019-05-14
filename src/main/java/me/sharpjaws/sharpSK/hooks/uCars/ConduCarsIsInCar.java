@@ -1,17 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.uCars;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.inventory.ItemStack;
-
-import com.useful.uCarsAPI.uCarsAPI;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import com.useful.uCarsAPI.uCarsAPI;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class ConduCarsIsInCar extends Condition {
 	private Expression<Player> player;
@@ -32,6 +30,6 @@ public class ConduCarsIsInCar extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		return uCarsAPI.getAPI().checkInCar(player.getSingle(e)).booleanValue();
+		return uCarsAPI.getAPI().checkInCar(player.getSingle(e));
 	}
 }

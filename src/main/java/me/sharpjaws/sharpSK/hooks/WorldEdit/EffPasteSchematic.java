@@ -1,25 +1,23 @@
 package me.sharpjaws.sharpSK.hooks.WorldEdit;
 
-import java.io.File;
-import java.util.regex.Matcher;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.event.Event;
-
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.util.Kleenean;
 import com.sk89q.worldedit.CuboidClipboard;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.schematic.SchematicFormat;
-
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser;
-import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;
+import me.sharpjaws.sharpSK.Main;
 import me.sharpjaws.sharpSK.hooks.WorldEdit.enums.SchemFacingDirection;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.event.Event;
+
+import java.io.File;
+import java.util.regex.Matcher;
 
 public class EffPasteSchematic extends Effect {
 	private Expression<?> name;
@@ -91,7 +89,7 @@ public class EffPasteSchematic extends Effect {
 			file = new File(
 
 					("plugins/WorldEdit/schematics/" + (f.contains(".") ? f
-							: new StringBuilder(String.valueOf(f)).append(".schematic").toString())).replaceAll("/",
+							: new StringBuilder(f).append(".schematic").toString())).replaceAll("/",
 									Matcher.quoteReplacement(File.separator)));
 		}
 		Vector v = new Vector(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
@@ -109,7 +107,7 @@ public class EffPasteSchematic extends Effect {
 				if (SchemFacingDirection.getDegree(facing) != -1) {
 					cc.rotate2D(SchemFacingDirection.getDegree(facing));
 				} else {
-					main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 					core.getLogger().warning("Invalid rotation angle for schematic: " + "\"" + f + "\"");
 					core.getLogger().warning("Valid angles are: 0, 90, 180, 270, 360");
 
@@ -120,7 +118,7 @@ public class EffPasteSchematic extends Effect {
 			e.printStackTrace();
 		}
 
-		if (exair == false) {
+		if (!exair) {
 			cc.paste(es, v, false);
 		} else {
 			cc.paste(es, v, true);

@@ -1,17 +1,16 @@
 package me.sharpjaws.sharpSK.Conditions;
 
-import javax.annotation.Nullable;
-
+import ch.njol.skript.lang.Condition;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser;
+import ch.njol.util.Kleenean;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
-import ch.njol.skript.lang.Condition;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser;
-import ch.njol.util.Kleenean;
+import javax.annotation.Nullable;
 
 public class CondNotPlayerStandingOn extends Condition {
 	private Expression<Entity> entity;
@@ -35,10 +34,7 @@ public class CondNotPlayerStandingOn extends Condition {
 		Block mb = entity.getSingle(e).getLocation().getBlock().getRelative(BlockFace.DOWN);
 		ItemStack block2 = block.getSingle(e);
 
-		if ((block.getSingle(e).getType().isBlock()) && (mb.getType() == block2.getType())) {
-			return true;
-		}
-		return false;
-	}
+        return (block.getSingle(e).getType().isBlock()) && (mb.getType() == block2.getType());
+    }
 
 }

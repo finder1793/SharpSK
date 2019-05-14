@@ -1,31 +1,23 @@
 package me.sharpjaws.sharpSK.hooks.WorldGuard;
 
-import java.util.Map.Entry;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-import org.bukkit.event.Event;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.sk89q.worldguard.protection.flags.DefaultFlag;
-import com.sk89q.worldguard.protection.flags.DoubleFlag;
-import com.sk89q.worldguard.protection.flags.Flag;
-import com.sk89q.worldguard.protection.flags.IntegerFlag;
-import com.sk89q.worldguard.protection.flags.StateFlag;
-import com.sk89q.worldguard.protection.flags.StateFlag.State;
-import com.sk89q.worldguard.protection.flags.StringFlag;
-import com.sk89q.worldguard.protection.managers.RegionManager;
-import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.*;
+import com.sk89q.worldguard.protection.flags.StateFlag.State;
+import com.sk89q.worldguard.protection.managers.RegionManager;
+import com.sk89q.worldguard.protection.regions.ProtectedRegion;
+import me.sharpjaws.sharpSK.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.event.Event;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import javax.annotation.Nullable;
+import java.util.Map.Entry;
 
 public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
 	private Expression<String> flag;
@@ -104,7 +96,7 @@ public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		JavaPlugin mainp = main.plugin;
+		JavaPlugin mainp = Main.plugin;
 		Flag<?> fl = null;
 
 		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");

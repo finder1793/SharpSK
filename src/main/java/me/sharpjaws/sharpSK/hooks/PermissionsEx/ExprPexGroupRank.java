@@ -1,16 +1,15 @@
 package me.sharpjaws.sharpSK.hooks.PermissionsEx;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import org.bukkit.event.Event;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
+
+import javax.annotation.Nullable;
 
 public class ExprPexGroupRank extends SimpleExpression<Number> {
 	private Expression<String> s;
@@ -49,7 +48,7 @@ public class ExprPexGroupRank extends SimpleExpression<Number> {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
 				Number first = (Number) delta[0];
-				Integer second = first.intValue();
+				int second = first.intValue();
 				PermissionsEx.getPermissionManager().getGroup(s.getSingle(e)).setRank(second);
 			} catch (NullPointerException ex) {
 

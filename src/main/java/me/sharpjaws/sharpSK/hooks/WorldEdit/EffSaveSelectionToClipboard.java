@@ -1,12 +1,9 @@
 package me.sharpjaws.sharpSK.hooks.WorldEdit;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
+import ch.njol.skript.lang.Effect;
+import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
+import ch.njol.util.Kleenean;
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.Vector;
@@ -17,12 +14,13 @@ import com.sk89q.worldedit.function.operation.ForwardExtentCopy;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.session.ClipboardHolder;
+import me.sharpjaws.sharpSK.Main;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 
-import ch.njol.skript.lang.Effect;
-import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser.ParseResult;
-import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;
+import javax.annotation.Nullable;
 
 public class EffSaveSelectionToClipboard extends Effect {
 	private Expression<Location> point1;
@@ -71,7 +69,7 @@ public class EffSaveSelectionToClipboard extends Effect {
 			Operations.complete(copy);
 
 		} catch (WorldEditException e1) {
-			main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger().warning("Failed to save selection. Something went wrong");
 			return;
 		}

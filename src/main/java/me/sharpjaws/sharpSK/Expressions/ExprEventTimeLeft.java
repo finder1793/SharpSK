@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.Expressions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.Events.EvtTimerTick;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprEventTimeLeft extends SimpleExpression<Number> {
 
@@ -25,11 +24,7 @@ public class ExprEventTimeLeft extends SimpleExpression<Number> {
 
 	@Override
 	public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
-		if (!ScriptLoader.isCurrentEvent(EvtTimerTick.class)) {
-			return false;
-		} else {
-			return true;
-		}
+        return ScriptLoader.isCurrentEvent(EvtTimerTick.class);
 	}
 
 	@Override

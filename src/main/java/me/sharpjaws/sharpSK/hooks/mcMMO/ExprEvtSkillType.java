@@ -1,18 +1,16 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
-import com.gmail.nossr50.datatypes.skills.SkillType;
-import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
-import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.gmail.nossr50.datatypes.skills.SkillType;
+import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
+import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprEvtSkillType extends SimpleExpression<SkillType> {
 
@@ -33,12 +31,9 @@ public class ExprEvtSkillType extends SimpleExpression<SkillType> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(McMMOPlayerLevelUpEvent.class)
-				&& !ScriptLoader.isCurrentEvent(McMMOPlayerXpGainEvent.class)) {
-			return false;
-		}
-		return true;
-	}
+        return ScriptLoader.isCurrentEvent(McMMOPlayerLevelUpEvent.class)
+                || ScriptLoader.isCurrentEvent(McMMOPlayerXpGainEvent.class);
+    }
 
 	@Override
 	@Nullable

@@ -1,18 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.CoreProtect;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
@@ -20,6 +7,17 @@ import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
 import net.coreprotect.CoreProtect;
 import net.coreprotect.CoreProtectAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ExprCoreLookupData extends SimpleExpression<ItemStack> {
 	private int mark;
@@ -54,7 +52,7 @@ public class ExprCoreLookupData extends SimpleExpression<ItemStack> {
 
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[(coreprotect|cp)] [(0¦removal|1¦placement|2¦interaction)] lookup data [from by %-offlineplayers%] from %location% in radius %number% from %timespan% ago";
+		return "[(coreprotect|cp)] [(0Â¦removal|1Â¦placement|2Â¦interaction)] lookup data [from by %-offlineplayers%] from %location% in radius %number% from %timespan% ago";
 	}
 
 	@Override

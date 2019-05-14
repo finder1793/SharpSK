@@ -1,25 +1,33 @@
 package me.sharpjaws.sharpSK;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Nullable;
-
+import ch.njol.skript.Skript;
+import ch.njol.skript.SkriptAPIException;
+import ch.njol.skript.classes.ClassInfo;
+import ch.njol.skript.classes.Parser;
+import ch.njol.skript.lang.ExpressionType;
+import ch.njol.skript.lang.ParseContext;
+import ch.njol.skript.lang.util.SimpleEvent;
+import ch.njol.skript.registrations.Classes;
+import ch.njol.skript.registrations.EventValues;
+import ch.njol.skript.util.Getter;
+import ch.njol.skript.util.Timespan;
+import com.codingforcookies.armorequip.ArmorEquipEvent;
+import com.codingforcookies.armorequip.ArmorEquipListener;
+import com.codingforcookies.armorequip.ArmorunEquipEvent;
+import com.codingforcookies.armorequip.ArmorunEquipListener;
+import me.sharpjaws.sharpSK.Conditions.*;
+import me.sharpjaws.sharpSK.Effects.*;
+import me.sharpjaws.sharpSK.Events.EvtExpChange;
+import me.sharpjaws.sharpSK.Events.EvtTimerComplete;
+import me.sharpjaws.sharpSK.Events.EvtTimerTick;
+import me.sharpjaws.sharpSK.Expressions.*;
+import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
+import me.sharpjaws.sharpSK.Threads.CTimerThread;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Chest;
-import org.bukkit.block.Dispenser;
-import org.bukkit.block.DoubleChest;
-import org.bukkit.block.Dropper;
-import org.bukkit.block.Furnace;
-import org.bukkit.block.Hopper;
+import org.bukkit.block.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -46,61 +54,27 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.codingforcookies.armorequip.ArmorEquipEvent;
-import com.codingforcookies.armorequip.ArmorEquipListener;
-import com.codingforcookies.armorequip.ArmorunEquipEvent;
-import com.codingforcookies.armorequip.ArmorunEquipListener;
+import javax.annotation.Nullable;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import ch.njol.skript.Skript;
-import ch.njol.skript.SkriptAPIException;
-import ch.njol.skript.classes.ClassInfo;
-import ch.njol.skript.classes.Parser;
-import ch.njol.skript.lang.ExpressionType;
-import ch.njol.skript.lang.ParseContext;
-import ch.njol.skript.lang.util.SimpleEvent;
-import ch.njol.skript.registrations.Classes;
-import ch.njol.skript.registrations.EventValues;
-import ch.njol.skript.util.Getter;
-import ch.njol.skript.util.Timespan;
-import me.sharpjaws.sharpSK.Conditions.CondEventCancelled;
-import me.sharpjaws.sharpSK.Conditions.CondEventNotCancelled;
-import me.sharpjaws.sharpSK.Conditions.CondNotPlayerStandingOn;
-import me.sharpjaws.sharpSK.Conditions.CondNotleashed;
-import me.sharpjaws.sharpSK.Conditions.CondPlayerIsStandingOn;
-import me.sharpjaws.sharpSK.Conditions.CondTimerActive;
-import me.sharpjaws.sharpSK.Conditions.CondTimerNotActive;
-import me.sharpjaws.sharpSK.Conditions.Condisleashed;
-import me.sharpjaws.sharpSK.Effects.EffBrewerInv;
-import me.sharpjaws.sharpSK.Effects.EffDisablePlugin;
-import me.sharpjaws.sharpSK.Effects.EffEnablePlugin;
-import me.sharpjaws.sharpSK.Effects.EffHopperInv;
-import me.sharpjaws.sharpSK.Effects.EffLoadPlugin;
-import me.sharpjaws.sharpSK.Effects.EffSaveWorlds;
-import me.sharpjaws.sharpSK.Effects.EffTimerCreate;
-import me.sharpjaws.sharpSK.Effects.EffTimerPause;
-import me.sharpjaws.sharpSK.Effects.EffTimerResume;
-import me.sharpjaws.sharpSK.Effects.EffTimerStop;
-import me.sharpjaws.sharpSK.Events.EvtExpChange;
-import me.sharpjaws.sharpSK.Events.EvtTimerComplete;
-import me.sharpjaws.sharpSK.Events.EvtTimerTick;
-import me.sharpjaws.sharpSK.Expressions.ExpChangeListener;
-import me.sharpjaws.sharpSK.Expressions.ExprAllTimers;
-import me.sharpjaws.sharpSK.Expressions.ExprEventAnvilCost;
-import me.sharpjaws.sharpSK.Expressions.ExprEventTimeLeft;
-import me.sharpjaws.sharpSK.Expressions.ExprEventWorld;
-import me.sharpjaws.sharpSK.Expressions.ExprEventWorldLoc;
-import me.sharpjaws.sharpSK.Expressions.ExprGlowingStateEntity;
-import me.sharpjaws.sharpSK.Expressions.ExprInvType;
-import me.sharpjaws.sharpSK.Expressions.ExprOffhandItem;
-import me.sharpjaws.sharpSK.Expressions.ExprPhaseOf;
-import me.sharpjaws.sharpSK.Expressions.ExprTimerTime;
-import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
-import me.sharpjaws.sharpSK.Threads.CTimerThread;
-
-public class main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin implements Listener {
 
 	public static JavaPlugin plugin;
-	public static main instance;
+	public static Main instance;
+
+	/**
+	 * @deprecated just for intellij
+	 *
+	 * @param args command line arguments
+	 */
+	@Deprecated
+	public static final void main(final String[] args) {
+		// Just for IntelliJ to not show "Invalid main class" in MANIFEST.MF
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -142,13 +116,13 @@ public class main extends JavaPlugin implements Listener {
 								+ "Checking for any updates...");
 						try {
 							Boolean update = main2();
-							if (update == false) {
+							if (!update) {
 								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] " + org.bukkit.ChatColor.RED
 										+ "No Updates have been found");
 								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] " + org.bukkit.ChatColor.GREEN
 										+ "You are running on the latest version");
 							}
-							if (update == true) {
+							if (update) {
 								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] " + org.bukkit.ChatColor.GREEN
 										+ "A new version has been found!");
 								sender.sendMessage(org.bukkit.ChatColor.AQUA + "[SharpSK] " + org.bukkit.ChatColor.GREEN
@@ -237,7 +211,7 @@ public class main extends JavaPlugin implements Listener {
 				saveDefaultConfig();
 			}
 		} catch (NullPointerException ex2) {
-			if (configfile.exists() == false) {
+			if (!configfile.exists()) {
 				getLogger().info("Generating config...");
 				saveDefaultConfig();
 			} else {
@@ -247,10 +221,10 @@ public class main extends JavaPlugin implements Listener {
 			}
 		}
 
-		if (this.getConfig().getBoolean("metrics") == true) {
+		if (this.getConfig().getBoolean("metrics")) {
 			getLogger().info("Enabling Metrics...");
 			try {
-				Metrics metrics = new Metrics(this);
+				new Metrics(this);
 				getLogger().info("Metrics successfully enabled");
 			} catch (Exception e) {
 				getLogger().info("A error occured while trying to enable metrics. Skipping...");
@@ -286,34 +260,7 @@ public class main extends JavaPlugin implements Listener {
 							@Override
 							public Block get(InventoryMoveItemEvent e) {
 								InventoryHolder iH = e.getSource().getHolder();
-
-								Block b3 = null;
-
-								if (iH instanceof Chest) {
-									Chest b = (Chest) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof Hopper) {
-									Hopper b = (Hopper) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof Dispenser) {
-									Dispenser b = (Dispenser) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof Dropper) {
-									Dropper b = (Dropper) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof DoubleChest) {
-									DoubleChest b = (DoubleChest) iH;
-									Block b2 = b.getLocation().getBlock();
-									b3 = b2;
-								} else if (iH instanceof Furnace) {
-									Furnace b = (Furnace) iH;
-									Block b2 = b.getLocation().getBlock();
-									b3 = b2;
-								}
+								Block b3 = getBlock(iH);
 
 								return b3;
 							}
@@ -339,34 +286,7 @@ public class main extends JavaPlugin implements Listener {
 							@Override
 							public Location get(InventoryMoveItemEvent e) {
 								InventoryHolder iH = e.getDestination().getHolder();
-
-								Block b3 = null;
-
-								if (iH instanceof Chest) {
-									Chest b = (Chest) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof Hopper) {
-									Hopper b = (Hopper) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof Dispenser) {
-									Dispenser b = (Dispenser) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof Dropper) {
-									Dropper b = (Dropper) iH;
-									BlockState b2 = b.getBlock().getState();
-									b3 = b2.getBlock();
-								} else if (iH instanceof DoubleChest) {
-									DoubleChest b = (DoubleChest) iH;
-									Block b2 = b.getLocation().getBlock();
-									b3 = b2;
-								} else if (iH instanceof Furnace) {
-									Furnace b = (Furnace) iH;
-									Block b2 = b.getLocation().getBlock();
-									b3 = b2;
-								}
+								Block b3 = getBlock(iH);
 
 								return b3.getLocation();
 							}
@@ -514,20 +434,20 @@ public class main extends JavaPlugin implements Listener {
 							}
 						}, 0);
 				Skript.registerExpression(ExprEventWorld.class, World.class, ExpressionType.SIMPLE,
-						"[the] [(-1¦(past|former)|1¦future)] [event-]world");
+						"[the] [(-1ï¿½(past|former)|1ï¿½future)] [event-]world");
 				Skript.registerExpression(ExprEventWorldLoc.class, Location.class, ExpressionType.SIMPLE,
-						"[the] [(-1¦(past|former)|1¦future)] event-location");
+						"[the] [(-1ï¿½(past|former)|1ï¿½future)] event-location");
 
-				if (this.getConfig().getBoolean("updater") == true) {
+				if (this.getConfig().getBoolean("updater")) {
 					getLogger().info("Checking for any updates...");
 
 					try {
 						Boolean update = main2();
-						if (update == false) {
+						if (!update) {
 							getLogger().info("No Updates have been found");
 							getLogger().info("You are running on the latest version");
 						}
-						if (update == true) {
+						if (update) {
 							getLogger().info("A new version has been found!");
 							getLogger().info("Newest version is v" + Updater.ucheck());
 							getLogger().info("You are still running on v" + this.getDescription().getVersion());
@@ -650,7 +570,7 @@ public class main extends JavaPlugin implements Listener {
 
 				// Timers
 				Skript.registerEffect(EffTimerCreate.class,
-						"create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]");
+						"create (-1ï¿½timer|1ï¿½timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]");
 				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
 				Skript.registerEffect(EffTimerPause.class, "pause timer %string%");
 				Skript.registerEffect(EffTimerResume.class, "resume timer %string%");
@@ -678,8 +598,7 @@ public class main extends JavaPlugin implements Listener {
 								} else if (e.getTimerType() == 2) {
 									return Timespan.fromTicks_i(e.getTimeLeft());
 								}
-								return new Timespan() {
-								};
+								return new Timespan();
 							}
 						}, 0);
 
@@ -746,6 +665,38 @@ public class main extends JavaPlugin implements Listener {
 		}
 	}
 
+	private static final Block getBlock(final InventoryHolder iH) {
+		Block b3 = null;
+
+		if (iH instanceof Chest) {
+			Chest b = (Chest) iH;
+			BlockState b2 = b.getBlock().getState();
+			b3 = b2.getBlock();
+		} else if (iH instanceof Hopper) {
+			Hopper b = (Hopper) iH;
+			BlockState b2 = b.getBlock().getState();
+			b3 = b2.getBlock();
+		} else if (iH instanceof Dispenser) {
+			Dispenser b = (Dispenser) iH;
+			BlockState b2 = b.getBlock().getState();
+			b3 = b2.getBlock();
+		} else if (iH instanceof Dropper) {
+			Dropper b = (Dropper) iH;
+			BlockState b2 = b.getBlock().getState();
+			b3 = b2.getBlock();
+		} else if (iH instanceof DoubleChest) {
+			DoubleChest b = (DoubleChest) iH;
+			Block b2 = b.getLocation().getBlock();
+			b3 = b2;
+		} else if (iH instanceof Furnace) {
+			Furnace b = (Furnace) iH;
+			Block b2 = b.getLocation().getBlock();
+			b3 = b2;
+		}
+
+		return b3;
+	}
+
 	@Override
 	public void onDisable() {
 		ArrayList<String> atimers = new ArrayList<String>();
@@ -795,7 +746,7 @@ public class main extends JavaPlugin implements Listener {
 
 	public Boolean main2() throws Exception {
 		String up = Updater.ucheck();
-		Boolean check = false;
+		boolean check = false;
 		try {
 			if (!up.equals(this.getDescription().getVersion())) {
 				check = true;

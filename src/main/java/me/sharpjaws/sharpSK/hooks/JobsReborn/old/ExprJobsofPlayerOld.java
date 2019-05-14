@@ -1,21 +1,18 @@
 package me.sharpjaws.sharpSK.hooks.JobsReborn.old;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-
-import com.gamingmesh.jobs.Jobs;
-import com.gamingmesh.jobs.container.Job;
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import com.gamingmesh.jobs.Jobs;
+import com.gamingmesh.jobs.container.Job;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ExprJobsofPlayerOld extends SimpleExpression<Job> {
 	private Expression<OfflinePlayer> p;
@@ -54,14 +51,14 @@ public class ExprJobsofPlayerOld extends SimpleExpression<Job> {
 
 					if (Jobs.getPlayerManager()
 							.getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId()))
-							.isInJob(j) == true) {
+							.isInJob(j)) {
 						a.add(j);
 					}
 
 				}
 			} else {
 				for (Job j : Jobs.getJobs()) {
-					if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).isInJob(j) == true) {
+					if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).isInJob(j)) {
 						a.add(j);
 					}
 

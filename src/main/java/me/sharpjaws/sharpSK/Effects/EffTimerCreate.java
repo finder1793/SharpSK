@@ -1,10 +1,5 @@
 package me.sharpjaws.sharpSK.Effects;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.doc.Description;
 import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
@@ -14,9 +9,13 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.main;
+import me.sharpjaws.sharpSK.Main;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 @Name("Timer Create")
 @Description("Creates a timer")
@@ -44,7 +43,7 @@ public class EffTimerCreate extends Effect {
 
 	@Override
 	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]";
+		return "create (-1Â¦timer|1Â¦timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]";
 	}
 
 	@Override
@@ -55,7 +54,7 @@ public class EffTimerCreate extends Effect {
 			if (t instanceof CTimerThread && t.isAlive()) {
 				CTimerThread ti = (CTimerThread) t;
 				if (ti.getName().equals(timer)) {
-					main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 					core.getLogger().warning("Timer " + "\"" + s.getSingle(e) + "\""
 							+ " could not be created because a timer already exists with that name.");
 					return;
@@ -63,7 +62,7 @@ public class EffTimerCreate extends Effect {
 			} else if (t instanceof CTickTimerThread && t.isAlive()) {
 				CTickTimerThread ti = (CTickTimerThread) t;
 				if (ti.getName().equals(timer)) {
-					main core = (main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
 					core.getLogger().warning("Timer " + "\"" + s.getSingle(e) + "\""
 							+ " could not be created because a timer already exists with that name.");
 					return;
@@ -83,7 +82,7 @@ public class EffTimerCreate extends Effect {
 					th.instance().start();
 				}
 			} else {
-				if (active.getSingle(e) == false) {
+				if (!active.getSingle(e)) {
 
 					if (interval != null) {
 						CTimerThread th = new CTimerThread(s.getSingle(e),
@@ -96,7 +95,7 @@ public class EffTimerCreate extends Effect {
 						th.instance().start();
 					}
 
-				} else if (active.getSingle(e) == true) {
+				} else if (active.getSingle(e)) {
 					if (interval != null) {
 						CTimerThread th = new CTimerThread(s.getSingle(e),
 								(int) duration.getSingle(e).getTicks_i() / 20, true,
@@ -122,7 +121,7 @@ public class EffTimerCreate extends Effect {
 					th.instance().start();
 				}
 			} else {
-				if (active.getSingle(e) == false) {
+				if (!active.getSingle(e)) {
 					if (interval != null) {
 						CTickTimerThread th = new CTickTimerThread(s.getSingle(e),
 								(int) duration.getSingle(e).getTicks_i(), false,
@@ -133,7 +132,7 @@ public class EffTimerCreate extends Effect {
 								(int) duration.getSingle(e).getTicks_i(), false, 0);
 						th.instance().start();
 					}
-				} else if (active.getSingle(e) == true) {
+				} else if (active.getSingle(e)) {
 					if (interval != null) {
 						CTickTimerThread th = new CTickTimerThread(s.getSingle(e),
 								(int) duration.getSingle(e).getTicks_i(), true,

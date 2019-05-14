@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.Conditions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
-import org.bukkit.event.EventException;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
+import org.bukkit.event.EventException;
+
+import javax.annotation.Nullable;
 
 public class CondEventNotCancelled extends Condition {
 
@@ -31,16 +30,12 @@ public class CondEventNotCancelled extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean cancel = false;
+		boolean cancel = false;
 
 		if (e instanceof Cancellable) {
 			cancel = ((Cancellable) e).isCancelled();
 		}
 
-		if (cancel == true) {
-			return false;
-		} else {
-			return true;
-		}
+		return !cancel;
 	}
 }

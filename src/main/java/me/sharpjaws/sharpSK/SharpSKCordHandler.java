@@ -3,7 +3,7 @@ package me.sharpjaws.sharpSK;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
-public class SharpSKCordHandler extends main implements PluginMessageListener {
+public class SharpSKCordHandler extends Main implements PluginMessageListener {
 	@Override
 	public void onEnable() {
 		getServer().getMessenger().registerOutgoingPluginChannel(this, "SharpSKCord");

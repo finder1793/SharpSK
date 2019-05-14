@@ -1,14 +1,13 @@
 package me.sharpjaws.sharpSK.Conditions;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondTimerNotActive extends Condition {
 	private Expression<String> timer;
@@ -27,7 +26,7 @@ public class CondTimerNotActive extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean active = false;
+		boolean active = false;
 
 		for (Thread t : Thread.getAllStackTraces().keySet()) {
 			if (t instanceof CTimerThread) {
@@ -37,11 +36,7 @@ public class CondTimerNotActive extends Condition {
 				}
 			}
 		}
-		if (active = false) {
-			return true;
-		} else {
-			return false;
-		}
+        return active = false;
 	}
 
 }

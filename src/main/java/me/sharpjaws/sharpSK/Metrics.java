@@ -1,30 +1,23 @@
 package me.sharpjaws.sharpSK;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.zip.GZIPOutputStream;
-
-import javax.net.ssl.HttpsURLConnection;
-
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+import javax.net.ssl.HttpsURLConnection;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * bStats collects some data for plugin authors.
@@ -330,7 +323,7 @@ public class Metrics {
 		}
 		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 		GZIPOutputStream gzip = new GZIPOutputStream(outputStream);
-		gzip.write(str.getBytes("UTF-8"));
+		gzip.write(str.getBytes(StandardCharsets.UTF_8));
 		gzip.close();
 		return outputStream.toByteArray();
 	}
@@ -760,7 +753,7 @@ public class Metrics {
 										"Antarctica"), ARGENTINA("AR", "Argentina"), AMERICAN_SAMOA("AS",
 												"American Samoa"), AUSTRIA("AT", "Austria"), AUSTRALIA("AU",
 														"Australia"), ARUBA("AW", "Aruba"), ALAND_ISLANDS("AX",
-																"Åland Islands"), AZERBAIJAN("AZ",
+																"Ã…land Islands"), AZERBAIJAN("AZ",
 																		"Azerbaijan"), BOSNIA_AND_HERZEGOVINA("BA",
 																				"Bosnia and Herzegovina"), BARBADOS(
 																						"BB",
@@ -779,7 +772,7 @@ public class Metrics {
 																																				"BJ",
 																																				"Benin"), SAINT_BARTHELEMY(
 																																						"BL",
-																																						"Saint Barthélemy"), BERMUDA(
+																																						"Saint BarthÃ©lemy"), BERMUDA(
 																																								"BM",
 																																								"Bermuda"), BRUNEI(
 																																										"BN",
@@ -815,7 +808,7 @@ public class Metrics {
 																																																																								"CH",
 																																																																								"Switzerland"), COTE_D_IVOIRE(
 																																																																										"CI",
-																																																																										"Côte d'Ivoire"), COOK_ISLANDS(
+																																																																										"CÃ´te d'Ivoire"), COOK_ISLANDS(
 																																																																												"CK",
 																																																																												"Cook Islands"), CHILE(
 																																																																														"CL",
@@ -833,7 +826,7 @@ public class Metrics {
 																																																																																										"CV",
 																																																																																										"Cape Verde"), CURACAO(
 																																																																																												"CW",
-																																																																																												"Curaçao"), CHRISTMAS_ISLAND(
+																																																																																												"CuraÃ§ao"), CHRISTMAS_ISLAND(
 																																																																																														"CX",
 																																																																																														"Christmas Island"), CYPRUS(
 																																																																																																"CY",

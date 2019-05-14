@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.LightAPI;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
+import org.bukkit.event.Event;
 import ru.beykerykt.lightapi.events.SetLightEvent;
+
+import javax.annotation.Nullable;
 
 public class ExprEvtLightLevel extends SimpleExpression<Number> {
 
@@ -30,11 +29,8 @@ public class ExprEvtLightLevel extends SimpleExpression<Number> {
 
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		if (!ScriptLoader.isCurrentEvent(SetLightEvent.class)) {
-			return false;
-		}
-		return true;
-	}
+        return ScriptLoader.isCurrentEvent(SetLightEvent.class);
+    }
 
 	@Override
 	@Nullable

@@ -1,19 +1,17 @@
 package me.sharpjaws.sharpSK.hooks.mcMMO;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.OfflinePlayer;
-import org.bukkit.event.Event;
-
-import com.gmail.nossr50.api.ExperienceAPI;
-import com.gmail.nossr50.datatypes.skills.SkillType;
-
 import ch.njol.skript.classes.Changer;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import ch.njol.util.coll.CollectionUtils;
+import com.gmail.nossr50.api.ExperienceAPI;
+import com.gmail.nossr50.datatypes.skills.SkillType;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class ExprmcMMOSkillLevelXP extends SimpleExpression<Number> {
 	private Expression<OfflinePlayer> p;
@@ -49,8 +47,7 @@ public class ExprmcMMOSkillLevelXP extends SimpleExpression<Number> {
 		if (p == null) {
 			return new Integer[] { 0 };
 		}
-		;
-		if (p.getSingle(e).isOnline()) {
+        if (p.getSingle(e).isOnline()) {
 			return new Integer[] { ExperienceAPI.getXP(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) };
 		} else {
 			return new Integer[] {

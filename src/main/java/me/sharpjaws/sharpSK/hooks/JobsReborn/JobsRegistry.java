@@ -1,17 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-
-import com.gamingmesh.jobs.Jobs;
-import com.gamingmesh.jobs.api.JobsJoinEvent;
-import com.gamingmesh.jobs.api.JobsLeaveEvent;
-import com.gamingmesh.jobs.api.JobsLevelUpEvent;
-import com.gamingmesh.jobs.api.JobsPaymentEvent;
-import com.gamingmesh.jobs.container.Job;
-
 import ch.njol.skript.Skript;
 import ch.njol.skript.classes.ClassInfo;
 import ch.njol.skript.classes.Converter;
@@ -23,8 +11,18 @@ import ch.njol.skript.registrations.Classes;
 import ch.njol.skript.registrations.Converters;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
+import com.gamingmesh.jobs.Jobs;
+import com.gamingmesh.jobs.api.JobsJoinEvent;
+import com.gamingmesh.jobs.api.JobsLeaveEvent;
+import com.gamingmesh.jobs.api.JobsLevelUpEvent;
+import com.gamingmesh.jobs.api.JobsPaymentEvent;
+import com.gamingmesh.jobs.container.Job;
 import me.sharpjaws.sharpSK.hooks.JobsReborn.old.ExprJobLevelOld;
 import me.sharpjaws.sharpSK.hooks.JobsReborn.old.ExprJobsofPlayerOld;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import javax.annotation.Nullable;
 
 public class JobsRegistry {
 
@@ -156,7 +154,7 @@ public class JobsRegistry {
 		Skript.registerEffect(EffJoinAllJobs.class, "make %player% join all jobs");
 		Skript.registerCondition(CondPlayerInJob.class, "%player% is in job %job%");
 		Skript.registerCondition(CondPlayerNotInJob.class, "%player% is not in job %job%");
-		Skript.registerExpression(ExprAllJobs.class, Job.class, ExpressionType.COMBINED, "[(all|the)] (jobs|1¦JRJobs)");
+		Skript.registerExpression(ExprAllJobs.class, Job.class, ExpressionType.COMBINED, "[(all|the)] (jobs|1Â¦JRJobs)");
 
 		if (Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().matches("3.\\d.\\d")
 				|| Bukkit.getPluginManager().getPlugin("Jobs").getDescription().getVersion().matches("4.\\d.\\d")) {

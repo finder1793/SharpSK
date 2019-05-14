@@ -1,5 +1,6 @@
 package com.codingforcookies.armorequip;
 
+import com.codingforcookies.armorequip.ArmorEquipEvent.EquipMethod;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,17 +12,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.inventory.ClickType;
-import org.bukkit.event.inventory.InventoryAction;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.*;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 import org.bukkit.inventory.ItemStack;
-
-import com.codingforcookies.armorequip.ArmorEquipEvent.EquipMethod;
 
 /**
  * @Author Made by Borlea Fixed by Sharpjaws
@@ -87,17 +82,13 @@ public class ArmorEquipListener implements Listener {
 					}
 
 					if (newArmorType.equals(ArmorType.HELMET)
-							&& (equipping ? e.getWhoClicked().getInventory().getHelmet() == null
-									: e.getWhoClicked().getInventory().getHelmet() != null)
+							&& (equipping == (e.getWhoClicked().getInventory().getHelmet() == null))
 							|| newArmorType.equals(ArmorType.CHESTPLATE)
-									&& (equipping ? e.getWhoClicked().getInventory().getChestplate() == null
-											: e.getWhoClicked().getInventory().getChestplate() != null)
+									&& (equipping == (e.getWhoClicked().getInventory().getChestplate() == null))
 							|| newArmorType.equals(ArmorType.LEGGINGS)
-									&& (equipping ? e.getWhoClicked().getInventory().getLeggings() == null
-											: e.getWhoClicked().getInventory().getLeggings() != null)
+									&& (equipping == (e.getWhoClicked().getInventory().getLeggings() == null))
 							|| newArmorType.equals(ArmorType.BOOTS)
-									&& (equipping ? e.getWhoClicked().getInventory().getBoots() == null
-											: e.getWhoClicked().getInventory().getBoots() != null)) {
+									&& (equipping == (e.getWhoClicked().getInventory().getBoots() == null))) {
 						ArmorEquipEvent armorEquipEvent = new ArmorEquipEvent((Player) e.getWhoClicked(),
 								EquipMethod.SHIFT_CLICK, newArmorType, e.getCurrentItem());
 						Bukkit.getServer().getPluginManager().callEvent(armorEquipEvent);

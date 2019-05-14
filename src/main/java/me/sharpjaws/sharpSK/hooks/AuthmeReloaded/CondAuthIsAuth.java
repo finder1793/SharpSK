@@ -1,15 +1,14 @@
 package me.sharpjaws.sharpSK.hooks.AuthmeReloaded;
 
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import fr.xephi.authme.api.NewAPI;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
 
 public class CondAuthIsAuth extends Condition {
 	private Expression<Player> p;
@@ -28,7 +27,7 @@ public class CondAuthIsAuth extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		Boolean a = false;
+		boolean a = false;
 		try {
 			if (!(p.getSingle(e) instanceof Player)) {
 				a = false;

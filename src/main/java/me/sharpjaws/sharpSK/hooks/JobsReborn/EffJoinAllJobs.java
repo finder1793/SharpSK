@@ -1,20 +1,17 @@
 package me.sharpjaws.sharpSK.hooks.JobsReborn;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
-import com.gamingmesh.jobs.Jobs;
-import com.gamingmesh.jobs.container.Job;
-import com.gamingmesh.jobs.container.JobsPlayer;
-
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import com.gamingmesh.jobs.Jobs;
+import com.gamingmesh.jobs.container.Job;
+import com.gamingmesh.jobs.container.JobsPlayer;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class EffJoinAllJobs extends Effect {
 	private Expression<Player> player;
@@ -36,8 +33,8 @@ public class EffJoinAllJobs extends Effect {
 	protected void execute(Event e) {
 		JobsPlayer p = Jobs.getPlayerManager().getJobsPlayer(player.getSingle(e));
 		List<Job> l = Jobs.getJobs();
-		for (int i = 0; i < l.size(); i++) {
-			Jobs.getPlayerManager().joinJob(p, l.get(i));
-		}
+        for (Job job : l) {
+            Jobs.getPlayerManager().joinJob(p, job);
+        }
 	}
 }
