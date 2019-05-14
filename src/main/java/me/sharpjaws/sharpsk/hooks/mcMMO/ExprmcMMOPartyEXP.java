@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOPartyEXP extends SimpleExpression<Number> {
+class ExprmcMMOPartyEXP extends SimpleExpression<Number> {
 	private Expression<String> s;
 
 	@Override
@@ -71,11 +71,11 @@ public class ExprmcMMOPartyEXP extends SimpleExpression<Number> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		if (mode == Changer.ChangeMode.ADD)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		if (mode == Changer.ChangeMode.REMOVE)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		return null;
 	}
 }

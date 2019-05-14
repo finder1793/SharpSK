@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Optional;
 
-public class ExprLuckPermsAllGroups extends SimpleExpression<String> {
+class ExprLuckPermsAllGroups extends SimpleExpression<String> {
 
 	@Override
 	public boolean isSingle() {
@@ -45,7 +45,7 @@ public class ExprLuckPermsAllGroups extends SimpleExpression<String> {
 		for (Group g : api.get().getGroups()) {
 			groups.add(g.getName());
 		}
-		return groups.toArray(new String[groups.size()]);
+		return groups.toArray(new String[0]);
 
 	}
 

@@ -48,7 +48,7 @@ public class ExprGlowingStateEntity extends SimpleExpression<Boolean> {
 		if (mode == Changer.ChangeMode.SET) {
 			try {
 				this.en.getSingle(e).setGlowing((Boolean) delta[0]);
-			} catch (NullPointerException ex) {
+			} catch (NullPointerException ignored) {
 
 			}
 		}
@@ -57,7 +57,7 @@ public class ExprGlowingStateEntity extends SimpleExpression<Boolean> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { Boolean.class });
+			return CollectionUtils.array(Boolean.class);
 		return null;
 	}
 }

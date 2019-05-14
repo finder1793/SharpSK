@@ -17,7 +17,7 @@ import org.bukkit.event.Event;
 
 import java.util.Map.Entry;
 
-public class EffAddMember extends Effect {
+class EffAddMember extends Effect {
 	private Expression<?> players;
 	private Expression<?> name;
 	private Expression<?> world;

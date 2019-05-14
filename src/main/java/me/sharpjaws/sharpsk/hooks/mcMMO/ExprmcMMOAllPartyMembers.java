@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-public class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
+class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
 	private Expression<String> s;
 
 	@Override
@@ -45,7 +45,7 @@ public class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
 		for (Entry<UUID, String> user : PartyManager.getParty(s.getSingle(e)).getMembers().entrySet()) {
 			members.add(user.getValue());
 		}
-		return members.toArray(new String[members.size()]);
+		return members.toArray(new String[0]);
 
 	}
 

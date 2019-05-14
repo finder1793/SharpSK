@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffmcMMOResetAbilityCooldown extends Effect {
+class EffmcMMOResetAbilityCooldown extends Effect {
 	private Expression<Player> player;
 	private Expression<AbilityType> ab;
 

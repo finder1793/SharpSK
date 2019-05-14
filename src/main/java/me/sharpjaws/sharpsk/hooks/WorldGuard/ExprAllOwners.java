@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-public class ExprAllOwners extends SimpleExpression<String> {
+class ExprAllOwners extends SimpleExpression<String> {
 	private Expression<String> region;
 	private Expression<?> world;
 
@@ -43,10 +43,10 @@ public class ExprAllOwners extends SimpleExpression<String> {
 
 		RegionManager rm = WGBukkit.getRegionManager(world);
 		ProtectedRegion pregion = rm.getRegion(region.getSingle(event));
-		List<String> list = new ArrayList<String>(pregion.getOwners().getPlayers());
+		List<String> list = new ArrayList<>(pregion.getOwners().getPlayers());
 
 		String[] s = new String[list.size()];
-		return (String[]) list.toArray(s);
+		return list.toArray(s);
 	}
 
 	public boolean isSingle() {

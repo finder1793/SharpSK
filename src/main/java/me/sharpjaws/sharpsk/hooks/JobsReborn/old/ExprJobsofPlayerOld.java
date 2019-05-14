@@ -44,7 +44,7 @@ public class ExprJobsofPlayerOld extends SimpleExpression<Job> {
 	@Nullable
 	protected Job[] get(Event e) {
 
-		List<Job> a = new ArrayList<Job>();
+		List<Job> a = new ArrayList<>();
 		try {
 			if (!p.getSingle(e).isOnline()) {
 				for (Job j : Jobs.getJobs()) {

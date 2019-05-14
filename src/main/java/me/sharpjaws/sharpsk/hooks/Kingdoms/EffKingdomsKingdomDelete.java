@@ -9,7 +9,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class EffKingdomsKingdomDelete extends Effect {
+class EffKingdomsKingdomDelete extends Effect {
 	private Expression<String> k;
 
 	@SuppressWarnings("unchecked")
@@ -29,9 +29,8 @@ public class EffKingdomsKingdomDelete extends Effect {
 	protected void execute(Event e) {
 		try {
 			GameManagement.getKingdomManager().deleteKingdom(k.getSingle(e));
-		} catch (NullPointerException ex) {
-			return;
+		} catch (NullPointerException ignored) {
 
-		}
+        }
 	}
 }

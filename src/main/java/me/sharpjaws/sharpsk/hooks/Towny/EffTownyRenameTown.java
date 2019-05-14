@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffTownyRenameTown extends Effect {
+class EffTownyRenameTown extends Effect {
 	private Expression<String> s;
 	private Expression<String> s2;
 
@@ -45,7 +45,6 @@ public class EffTownyRenameTown extends Effect {
 			}
 		} catch (NotRegisteredException ex) {
 			core.getLogger().warning("Could not rename town: " + "\"" + s.getSingle(e) + "\"" + " Town does not exist");
-			return;
 		}
 
 	}

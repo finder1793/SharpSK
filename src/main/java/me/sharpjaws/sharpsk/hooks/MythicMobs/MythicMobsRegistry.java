@@ -27,8 +27,7 @@ public class MythicMobsRegistry {
 						@Override
 						@Nullable
 						public Location get(io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent e) {
-							Location l = e.getEntity().getLocation();
-							return l;
+                            return e.getEntity().getLocation();
 						}
 					}, 0);
 			EventValues.registerEventValue(io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent.class,
@@ -37,8 +36,7 @@ public class MythicMobsRegistry {
 						@Override
 						@Nullable
 						public String get(io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobDeathEvent e) {
-							String l = e.getMobType().getInternalName();
-							return l;
+                            return e.getMobType().getInternalName();
 						}
 					}, 0);
 			Skript.registerEvent("Mythicmob spawn", SimpleEvent.class,
@@ -49,8 +47,7 @@ public class MythicMobsRegistry {
 						@Override
 						@Nullable
 						public Entity get(io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobSpawnEvent e) {
-							Entity en = e.getEntity();
-							return en;
+                            return e.getEntity();
 						}
 					}, 0);
 			EventValues.registerEventValue(io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobSpawnEvent.class,
@@ -59,8 +56,7 @@ public class MythicMobsRegistry {
 						@Override
 						@Nullable
 						public String get(io.lumine.xikage.mythicmobs.api.bukkit.events.MythicMobSpawnEvent e) {
-							String name = e.getMobType().getInternalName();
-							return name;
+                            return e.getMobType().getInternalName();
 						}
 					}, 0);
 			Skript.registerExpression(ExprEvtMMDrops.class, ItemStack.class, ExpressionType.SIMPLE,

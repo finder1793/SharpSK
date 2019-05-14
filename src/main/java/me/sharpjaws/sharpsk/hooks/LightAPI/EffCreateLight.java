@@ -12,7 +12,7 @@ import ru.beykerykt.lightapi.chunks.ChunkInfo;
 
 import javax.annotation.Nullable;
 
-public class EffCreateLight extends Effect {
+class EffCreateLight extends Effect {
 	private Expression<Location> loc;
 	private Expression<Integer> int1;
 	private Expression<Boolean> async;

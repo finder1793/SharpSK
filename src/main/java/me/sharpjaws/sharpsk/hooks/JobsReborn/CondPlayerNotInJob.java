@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondPlayerNotInJob extends Condition {
+class CondPlayerNotInJob extends Condition {
 	private Expression<Player> p;
 	private Expression<Job> j;
 

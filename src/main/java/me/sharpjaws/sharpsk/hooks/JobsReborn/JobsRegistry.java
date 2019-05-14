@@ -32,16 +32,14 @@ public class JobsRegistry {
 			@Override
 			@Nullable
 			public Player get(JobsJoinEvent e) {
-				Player p = e.getPlayer().getPlayer();
-				return p;
+                return e.getPlayer().getPlayer();
 			}
 		}, 0);
 		EventValues.registerEventValue(JobsJoinEvent.class, Job.class, new Getter<Job, JobsJoinEvent>() {
 			@Override
 			@Nullable
 			public Job get(JobsJoinEvent e) {
-				Job j = e.getJob();
-				return j;
+                return e.getJob();
 			}
 		}, 0);
 		Skript.registerEvent("Job Leave", SimpleEvent.class, JobsLeaveEvent.class, "job leave");
@@ -49,16 +47,14 @@ public class JobsRegistry {
 			@Override
 			@Nullable
 			public Player get(JobsLeaveEvent e) {
-				Player p = e.getPlayer().getPlayer();
-				return p;
+                return e.getPlayer().getPlayer();
 			}
 		}, 0);
 		EventValues.registerEventValue(JobsLeaveEvent.class, Job.class, new Getter<Job, JobsLeaveEvent>() {
 			@Override
 			@Nullable
 			public Job get(JobsLeaveEvent e) {
-				Job j = e.getJob();
-				return j;
+                return e.getJob();
 			}
 		}, 0);
 		Skript.registerEvent("Job Payment", SimpleEvent.class, JobsPaymentEvent.class, "job payment");
@@ -66,8 +62,7 @@ public class JobsRegistry {
 			@Override
 			@Nullable
 			public Player get(JobsPaymentEvent e) {
-				Player p = e.getPlayer().getPlayer();
-				return p;
+                return e.getPlayer().getPlayer();
 			}
 		}, 0);
 		Skript.registerEvent("Job Levelup", SimpleEvent.class, JobsLevelUpEvent.class, "job levelup");
@@ -75,22 +70,20 @@ public class JobsRegistry {
 			@Override
 			@Nullable
 			public Player get(JobsLevelUpEvent e) {
-				Player p = e.getPlayer().getPlayer();
-				return p;
+                return e.getPlayer().getPlayer();
 			}
 		}, 0);
 		EventValues.registerEventValue(JobsLevelUpEvent.class, Job.class, new Getter<Job, JobsLevelUpEvent>() {
 			@Override
 			@Nullable
 			public Job get(JobsLevelUpEvent e) {
-				Job j = Jobs.getJob(e.getJobName());
-				return j;
+                return Jobs.getJob(e.getJobName());
 			}
 		}, 0);
 
 		try {
 
-			Classes.registerClass(new ClassInfo<Job>(Job.class, "job").name("Job").parser(new Parser<Job>() {
+			Classes.registerClass(new ClassInfo<>(Job.class, "job").name("Job").parser(new Parser<Job>() {
 
 				@Override
 				public String getVariableNamePattern() {
@@ -122,7 +115,7 @@ public class JobsRegistry {
 					return job.getName().replace("_", " ").toUpperCase();
 				}
 			}).user("job?s?"));
-		} catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ignored) {
 
 		}
 		Converters.registerConverter(String.class, Job.class, new Converter<String, Job>() {

@@ -16,10 +16,10 @@ import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class ExprCoreLookupData extends SimpleExpression<ItemStack> {
+class ExprCoreLookupData extends SimpleExpression<ItemStack> {
 	private int mark;
 	private Expression<Location> l;
 	private Expression<Number> n;
@@ -59,14 +59,14 @@ public class ExprCoreLookupData extends SimpleExpression<ItemStack> {
 	@Nullable
 	protected ItemStack[] get(final Event e) {
 
-		final List<String> users = new ArrayList<String>();
+		final List<String> users = new ArrayList<>();
 		if (users != null && players != null) {
 			for (OfflinePlayer b : players.getAll(e)) {
 
 				users.add(b.getName());
 			}
 		}
-		final List<Object> exclude = new ArrayList<Object>();
+		final List<Object> exclude = new ArrayList<>();
 		if (exblocks != null) {
 			for (ItemStack b : exblocks.getAll(e)) {
 
@@ -78,9 +78,9 @@ public class ExprCoreLookupData extends SimpleExpression<ItemStack> {
 		CoreProtectAPI api = ((CoreProtect) plugin).getAPI();
 
 		List<String[]> lookup = null;
-		List<ItemStack> parsedlookup = new ArrayList<ItemStack>();
+		List<ItemStack> parsedlookup = new ArrayList<>();
 		lookup = api.performLookup((int) times.getSingle(e).getTicks_i() / 20, users, null, null, exclude,
-				Arrays.asList(mark), n.getSingle(e).intValue(), l.getSingle(e));
+				Collections.singletonList(mark), n.getSingle(e).intValue(), l.getSingle(e));
 
 		for (String[] value : lookup) {
 
@@ -89,7 +89,7 @@ public class ExprCoreLookupData extends SimpleExpression<ItemStack> {
 			}
 		}
 
-		return parsedlookup.toArray(new ItemStack[parsedlookup.size()]);
+		return parsedlookup.toArray(new ItemStack[0]);
 
 	}
 

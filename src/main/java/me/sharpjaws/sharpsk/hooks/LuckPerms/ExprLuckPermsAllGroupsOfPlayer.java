@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
+class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
 	private Expression<Player> pl;
 
 	@Override
@@ -50,17 +50,13 @@ public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
 		if (pl.getSingle(e) == null) {
 			return new String[groups.size()];
 		}
-		Consumer<User> action = new Consumer<User>() {
-			@Override
-			public void accept(User t) {
+		Consumer<User> action = t -> {
 
-				for (Group g : api.get().getGroups()) {
-					if (t.isInGroup(g)) {
-						groups.add(g.getName());
-					}
+			for (Group g : api.get().getGroups()) {
+				if (t.isInGroup(g)) {
+					groups.add(g.getName());
 				}
 			}
-
 		};
 
 		User user = api.get().getUser(pl.getSingle(e).getUniqueId());
@@ -68,7 +64,7 @@ public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
 			action.accept(user);
 
 		}
-		return groups.toArray(new String[groups.size()]);
+		return groups.toArray(new String[0]);
 	}
 
 }

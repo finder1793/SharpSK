@@ -9,7 +9,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class EffKingdomsKingdomGiveShield extends Effect {
+class EffKingdomsKingdomGiveShield extends Effect {
 	private Expression<String> k;
 
 	@SuppressWarnings("unchecked")
@@ -29,9 +29,8 @@ public class EffKingdomsKingdomGiveShield extends Effect {
 	protected void execute(Event e) {
 		try {
 			GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).giveShield();
-		} catch (NullPointerException ex) {
-			return;
+		} catch (NullPointerException ignored) {
 
-		}
+        }
 	}
 }

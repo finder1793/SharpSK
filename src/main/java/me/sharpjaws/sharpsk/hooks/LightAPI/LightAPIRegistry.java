@@ -21,8 +21,7 @@ public class LightAPIRegistry {
 			@Nullable
 			@Override
 			public Location get(SetLightEvent e) {
-				Location loc = new Location(e.getWorld(), e.getX(), e.getY(), e.getZ());
-				return loc;
+                return new Location(e.getWorld(), e.getX(), e.getY(), e.getZ());
 			}
 		}, 0);
 		EventValues.registerEventValue(SetLightEvent.class, World.class, new Getter<World, SetLightEvent>() {
@@ -40,8 +39,7 @@ public class LightAPIRegistry {
 					@Nullable
 					@Override
 					public Location get(DeleteLightEvent e) {
-						Location loc = new Location(e.getWorld(), e.getX(), e.getY(), e.getZ());
-						return loc;
+                        return new Location(e.getWorld(), e.getX(), e.getY(), e.getZ());
 					}
 				}, 0);
 		EventValues.registerEventValue(DeleteLightEvent.class, World.class, new Getter<World, DeleteLightEvent>() {

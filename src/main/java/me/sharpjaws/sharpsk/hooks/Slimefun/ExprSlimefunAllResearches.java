@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprSlimefunAllResearches extends SimpleExpression<String> {
+class ExprSlimefunAllResearches extends SimpleExpression<String> {
 
 	@Override
 	public boolean isSingle() {
@@ -39,7 +39,7 @@ public class ExprSlimefunAllResearches extends SimpleExpression<String> {
 		for (Research res : Research.list()) {
 			researches.add(res.getName().replaceAll(" ", "_").toLowerCase());
 		}
-		return researches.toArray(new String[researches.size()]);
+		return researches.toArray(new String[0]);
 	}
 
 }

@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class EffLuckPermsDeleteGroup extends Effect {
+class EffLuckPermsDeleteGroup extends Effect {
 	private Expression<String> group;
 
 	@SuppressWarnings("unchecked")

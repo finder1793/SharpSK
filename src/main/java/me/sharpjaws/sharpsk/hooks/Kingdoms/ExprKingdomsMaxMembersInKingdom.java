@@ -12,7 +12,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class ExprKingdomsMaxMembersInKingdom extends SimpleExpression<Number> {
+class ExprKingdomsMaxMembersInKingdom extends SimpleExpression<Number> {
 
 	private Expression<String> kingdom;
 
@@ -77,20 +77,19 @@ public class ExprKingdomsMaxMembersInKingdom extends SimpleExpression<Number> {
 				Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
 				kdm.setMaxMember(kdm.getMaxMember() - ((Number) delta[0]).intValue());
 
-			} catch (NullPointerException ex) {
-				return;
-			}
+			} catch (NullPointerException ignored) {
+            }
 		}
 	}
 
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		} else if (mode == Changer.ChangeMode.ADD) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		} else if (mode == Changer.ChangeMode.REMOVE) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		}
 		return null;
 	}

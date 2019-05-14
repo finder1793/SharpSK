@@ -13,7 +13,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprTownyNationBalance extends SimpleExpression<Number> {
+class ExprTownyNationBalance extends SimpleExpression<Number> {
 
 	private Expression<String> nation;
 
@@ -40,12 +40,10 @@ public class ExprTownyNationBalance extends SimpleExpression<Number> {
 	protected Number[] get(Event e) {
 		try {
 			return new Number[] { TownyUniverse.getDataSource().getNation(nation.getSingle(e)).getHoldingBalance() };
-		} catch (NotRegisteredException e1) {
-			return new Number[] { 0 };
-		} catch (EconomyException e1) {
+		} catch (NotRegisteredException | EconomyException e1) {
 			return new Number[] { 0 };
 		}
-	}
+    }
 
 	@Override
 	public boolean isSingle() {
@@ -59,23 +57,16 @@ public class ExprTownyNationBalance extends SimpleExpression<Number> {
 				TownyUniverse.getDataSource().getNation(nation.getSingle(e))
 						.setBalance(((Number) delta[0]).doubleValue(), null);
 
-			} catch (NullPointerException ex) {
+			} catch (NullPointerException | EconomyException | NotRegisteredException ex) {
 				ex.printStackTrace();
-				return;
-			} catch (NotRegisteredException ex2) {
-				ex2.printStackTrace();
-				return;
-			} catch (EconomyException ex3) {
-				ex3.printStackTrace();
-				return;
-			}
-		}
+            }
+        }
 	}
 
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		}
 		return null;
 	}

@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOPartyLevel extends SimpleExpression<Number> {
+class ExprmcMMOPartyLevel extends SimpleExpression<Number> {
 	private Expression<String> s;
 
 	@Override
@@ -47,12 +47,12 @@ public class ExprmcMMOPartyLevel extends SimpleExpression<Number> {
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
 			Number n = (Number) delta[0];
-			Integer n2 = n.intValue();
+			int n2 = n.intValue();
 			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(n2);
 		}
 		if (mode == Changer.ChangeMode.ADD) {
 			Number n = (Number) delta[0];
-			Integer n2 = n.intValue();
+			int n2 = n.intValue();
 			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e))
 					.setLevel(PartyManager.getParty(s.getSingle(e)).getLevel() + n2);
 		}
@@ -60,9 +60,9 @@ public class ExprmcMMOPartyLevel extends SimpleExpression<Number> {
 
 			Number n = (Number) delta[0];
 			int n2 = n.intValue();
-			if ((int) n2 < PartyManager.getParty(s.getSingle(e)).getLevel()) {
+			if (n2 < PartyManager.getParty(s.getSingle(e)).getLevel()) {
 				com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e))
-						.setLevel(PartyManager.getParty(s.getSingle(e)).getLevel() - (int) n2);
+						.setLevel(PartyManager.getParty(s.getSingle(e)).getLevel() - n2);
 			} else {
 				com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setLevel(0);
 			}
@@ -75,13 +75,13 @@ public class ExprmcMMOPartyLevel extends SimpleExpression<Number> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		if (mode == Changer.ChangeMode.ADD)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		if (mode == Changer.ChangeMode.RESET)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		if (mode == Changer.ChangeMode.REMOVE)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		return null;
 	}
 }

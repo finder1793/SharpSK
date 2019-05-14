@@ -56,8 +56,7 @@ public class WorldGuardRegistry {
 					@Override
 					@Nullable
 					public Player get(DisallowedPVPEvent e) {
-						Player p = e.getAttacker();
-						return p;
+                        return e.getAttacker();
 					}
 				}, 0);
 		EventValues.registerEventValue(DisallowedPVPEvent.class, Location.class,
@@ -65,8 +64,7 @@ public class WorldGuardRegistry {
 					@Override
 					@Nullable
 					public Location get(DisallowedPVPEvent e) {
-						Location l = e.getAttacker().getLocation();
-						return l;
+                        return e.getAttacker().getLocation();
 					}
 				}, 0);
 	}

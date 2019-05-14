@@ -11,7 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.event.Event;
 
-public class ExprGetPoint2 extends ch.njol.skript.lang.util.SimpleExpression<Location> {
+class ExprGetPoint2 extends ch.njol.skript.lang.util.SimpleExpression<Location> {
 	private Expression<?> region;
 	private Expression<?> world;
 

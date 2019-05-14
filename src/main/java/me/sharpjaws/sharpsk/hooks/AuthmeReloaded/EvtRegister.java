@@ -4,10 +4,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class EvtRegister extends Event {
+class EvtRegister extends Event {
 	private static final HandlerList h = new HandlerList();
 	private boolean cancelled = false;
-	private Player pl;
+	private final Player pl;
 	private Number exp;
 
 	public EvtRegister(Player p) {

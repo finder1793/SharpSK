@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondIsMythicMob extends Condition {
+class CondIsMythicMob extends Condition {
 	private Expression<Entity> mythicmob;
 	@SuppressWarnings("unused")
 	private Expression<Location> loc;

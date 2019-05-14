@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprHashedPasswordOf extends SimpleExpression<String> {
+class ExprHashedPasswordOf extends SimpleExpression<String> {
 	private Expression<Player> a;
 	private DataSource dataSource;
 

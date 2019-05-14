@@ -19,8 +19,7 @@ public class AuthmeRegistry {
 			@Override
 			@Nullable
 			public Player get(LoginEvent e) {
-				Player p = e.getPlayer();
-				return p;
+                return e.getPlayer();
 			}
 		}, 0);
 		Skript.registerEvent("Authme logout", SimpleEvent.class, LogoutEvent.class, "authme logout");
@@ -28,9 +27,8 @@ public class AuthmeRegistry {
 			@Override
 			@Nullable
 			public Player get(LogoutEvent e) {
-				Player p = e.getPlayer();
 
-				return p;
+                return e.getPlayer();
 			}
 		}, 0);
 		Skript.registerEvent("Authme teleport", SimpleEvent.class, AuthMeTeleportEvent.class, "authme teleport");
@@ -39,8 +37,7 @@ public class AuthmeRegistry {
 					@Override
 					@Nullable
 					public Player get(AuthMeTeleportEvent e) {
-						Player p = e.getPlayer();
-						return p;
+                        return e.getPlayer();
 					}
 				}, 0);
 		Skript.registerEvent("Authme inventory restore", SimpleEvent.class, RestoreInventoryEvent.class,
@@ -50,8 +47,7 @@ public class AuthmeRegistry {
 					@Override
 					@Nullable
 					public Player get(RestoreInventoryEvent e) {
-						Player p = e.getPlayer();
-						return p;
+                        return e.getPlayer();
 					}
 				}, 0);
 		Skript.registerExpression(ExprHashedPasswordOf.class, String.class, ExpressionType.PROPERTY,

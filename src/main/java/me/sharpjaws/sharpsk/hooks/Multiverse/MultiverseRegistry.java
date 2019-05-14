@@ -25,8 +25,7 @@ public class MultiverseRegistry {
 					@Override
 					@Nullable
 					public Player get(MVPlayerTouchedPortalEvent e) {
-						Player p = e.getPlayer();
-						return p;
+                        return e.getPlayer();
 					}
 				}, 0);
 		EventValues.registerEventValue(MVPlayerTouchedPortalEvent.class, Location.class,
@@ -34,8 +33,7 @@ public class MultiverseRegistry {
 					@Override
 					@Nullable
 					public Location get(MVPlayerTouchedPortalEvent e) {
-						Location loc = e.getPlayer().getLocation();
-						return loc;
+                        return e.getPlayer().getLocation();
 					}
 				}, 0);
 		Skript.registerEvent("MV On World Delete", SimpleEvent.class, MVWorldDeleteEvent.class,
@@ -44,8 +42,7 @@ public class MultiverseRegistry {
 			@Override
 			@Nullable
 			public World get(MVWorldDeleteEvent e) {
-				World w = e.getWorld().getCBWorld();
-				return w;
+                return e.getWorld().getCBWorld();
 			}
 		}, 0);
 		EventValues.registerEventValue(MVWorldDeleteEvent.class, String.class,
@@ -53,8 +50,7 @@ public class MultiverseRegistry {
 					@Override
 					@Nullable
 					public String get(MVWorldDeleteEvent e) {
-						String wn = e.getWorld().getName();
-						return wn;
+                        return e.getWorld().getName();
 					}
 				}, 0);
 		Skript.registerEvent("MV On Config Reload", SimpleEvent.class, MVConfigReloadEvent.class,

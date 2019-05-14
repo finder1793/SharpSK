@@ -13,7 +13,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffTownyAddPlayerToTown extends Effect {
+class EffTownyAddPlayerToTown extends Effect {
 	private Expression<String> s;
 	private Expression<OfflinePlayer> p;
 
@@ -43,13 +43,11 @@ public class EffTownyAddPlayerToTown extends Effect {
 			} catch (NotRegisteredException ex2) {
 				core.getLogger().warning("Could not add resident: " + "\"" + p.getSingle(e).getName() + "\""
 						+ " to town " + "\"" + s.getSingle(e) + "\"");
-				return;
 			}
 		} catch (AlreadyRegisteredException ex3) {
 			core.getLogger().warning("Could not add resident: " + "\"" + p.getSingle(e).getName() + "\"" + " to town "
 					+ "\"" + s.getSingle(e) + "\"");
 			core.getLogger().warning("Resident is already in town: " + "\"" + s.getSingle(e) + "\"");
-			return;
 		}
 
 	}

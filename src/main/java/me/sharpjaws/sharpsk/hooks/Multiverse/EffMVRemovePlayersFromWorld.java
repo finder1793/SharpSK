@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffMVRemovePlayersFromWorld extends Effect {
+class EffMVRemovePlayersFromWorld extends Effect {
 
 	private Expression<String> w;
 

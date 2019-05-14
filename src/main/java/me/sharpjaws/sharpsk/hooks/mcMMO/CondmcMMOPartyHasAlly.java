@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondmcMMOPartyHasAlly extends Condition {
+class CondmcMMOPartyHasAlly extends Condition {
 	private Expression<String> s;
 
 	@SuppressWarnings("unchecked")

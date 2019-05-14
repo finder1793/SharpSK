@@ -13,7 +13,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprTownyTownBlocktypeAtLocation extends SimpleExpression<TownBlockType> {
+class ExprTownyTownBlocktypeAtLocation extends SimpleExpression<TownBlockType> {
 	private Expression<Location> loc;
 
 	@Override
@@ -58,7 +58,7 @@ public class ExprTownyTownBlocktypeAtLocation extends SimpleExpression<TownBlock
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { TownBlockType.class });
+			return CollectionUtils.array(TownBlockType.class);
 		}
 		return null;
 	}

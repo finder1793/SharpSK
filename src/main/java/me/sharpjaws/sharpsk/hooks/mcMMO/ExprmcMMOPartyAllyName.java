@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOPartyAllyName extends SimpleExpression<String> {
+class ExprmcMMOPartyAllyName extends SimpleExpression<String> {
 	private Expression<String> s;
 
 	@Override

@@ -13,9 +13,10 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
+class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 
 	@Override
 	public Class<? extends ItemStack> getReturnType() {
@@ -42,8 +43,7 @@ public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 	protected ItemStack[] get(Event e) {
 		if (e.getEventName().equals("MythicMobDeathEvent")) {
 			List<ItemStack> a = ((MythicMobDeathEvent) e).getDrops();
-			ItemStack[] b = a.toArray(new ItemStack[a.size()]);
-			return b;
+			return a.toArray(new ItemStack[0]);
 		}
 		return null;
 	}
@@ -69,13 +69,9 @@ public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 			drops.clear();
 			((MythicMobDeathEvent) e).setDrops(drops);
 
-			List<ItemStack> list = new ArrayList<ItemStack>();
-
 			ItemStack[] items = (ItemStack[]) deltas;
 
-			for (ItemStack delta : items) {
-				list.add(delta);
-			}
+			List<ItemStack> list = new ArrayList<>(Arrays.asList(items));
 			((MythicMobDeathEvent) e).setDrops(list);
 		}
 	}
@@ -83,11 +79,11 @@ public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.REMOVE_ALL)
-			return CollectionUtils.array(new Class[] { ItemStack.class });
+			return CollectionUtils.array(ItemStack.class);
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { ItemStack[].class, ItemStack.class });
+			return CollectionUtils.array(ItemStack[].class, ItemStack.class);
 		if (mode == Changer.ChangeMode.DELETE)
-			return CollectionUtils.array(new Class[] { ItemStack.class });
+			return CollectionUtils.array(ItemStack.class);
 		return null;
 	}
 }

@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprUnloadedWorlds extends SimpleExpression<String> {
+class ExprUnloadedWorlds extends SimpleExpression<String> {
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -38,7 +38,7 @@ public class ExprUnloadedWorlds extends SimpleExpression<String> {
 		mv = MultiverseCore.getPlugin(MultiverseCore.class).getCore();
 
 		return mv.getMVWorldManager().getUnloadedWorlds()
-				.toArray(new String[mv.getMVWorldManager().getUnloadedWorlds().size()]);
+				.toArray(new String[0]);
 	}
 
 }

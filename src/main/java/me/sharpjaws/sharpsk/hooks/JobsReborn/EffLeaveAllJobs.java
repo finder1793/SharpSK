@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffLeaveAllJobs extends Effect {
+class EffLeaveAllJobs extends Effect {
 	private Expression<Player> player;
 
 	@SuppressWarnings("unchecked")

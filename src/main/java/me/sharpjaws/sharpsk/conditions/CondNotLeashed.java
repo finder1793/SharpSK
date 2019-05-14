@@ -31,7 +31,7 @@ public class CondNotLeashed extends Condition {
 		try {
 			LivingEntity en2 = (LivingEntity) en.getSingle(e);
 			check = !en2.isLeashed();
-		} catch (NullPointerException ex) {
+		} catch (NullPointerException ignored) {
 		}
 		return check;
 	}

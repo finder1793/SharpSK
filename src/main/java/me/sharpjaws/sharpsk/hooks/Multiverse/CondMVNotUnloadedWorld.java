@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondMVNotUnloadedWorld extends Condition {
+class CondMVNotUnloadedWorld extends Condition {
 
 	private Expression<String> w;
 

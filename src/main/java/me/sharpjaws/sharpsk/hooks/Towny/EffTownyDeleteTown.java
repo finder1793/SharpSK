@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffTownyDeleteTown extends Effect {
+class EffTownyDeleteTown extends Effect {
 	private Expression<String> s;
 
 	@SuppressWarnings("unchecked")
@@ -36,7 +36,6 @@ public class EffTownyDeleteTown extends Effect {
 			TownyUniverse.getDataSource().removeTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)));
 		} catch (NotRegisteredException e1) {
 			core.getLogger().warning("Could not delete town: " + "\"" + s.getSingle(e) + "\"" + " Town does not exist");
-			return;
 		}
 
 	}

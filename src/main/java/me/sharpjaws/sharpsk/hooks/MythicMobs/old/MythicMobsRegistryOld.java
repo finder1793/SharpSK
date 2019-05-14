@@ -21,8 +21,7 @@ public class MythicMobsRegistryOld {
 					@Override
 					@Nullable
 					public Location get(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobDeathEvent e) {
-						Location l = e.getEntity().getLocation();
-						return l;
+                        return e.getEntity().getLocation();
 					}
 				}, 0);
 		EventValues.registerEventValue(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobDeathEvent.class,
@@ -31,8 +30,7 @@ public class MythicMobsRegistryOld {
 					@Override
 					@Nullable
 					public String get(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobDeathEvent e) {
-						String l = e.getMobType().getInternalName();
-						return l;
+                        return e.getMobType().getInternalName();
 					}
 				}, 0);
 		Skript.registerEvent("Mythicmob spawn", SimpleEvent.class,
@@ -43,8 +41,7 @@ public class MythicMobsRegistryOld {
 					@Override
 					@Nullable
 					public Entity get(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobSpawnEvent e) {
-						Entity en = e.getEntity();
-						return en;
+                        return e.getEntity();
 					}
 				}, 0);
 		EventValues.registerEventValue(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobSpawnEvent.class,
@@ -53,8 +50,7 @@ public class MythicMobsRegistryOld {
 					@Override
 					@Nullable
 					public String get(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobSpawnEvent e) {
-						String name = e.getMobType().getInternalName();
-						return name;
+                        return e.getMobType().getInternalName();
 					}
 				}, 0);
 		Skript.registerExpression(ExprEvtMMDropsOld.class, ItemStack.class, ExpressionType.SIMPLE,
@@ -72,8 +68,7 @@ public class MythicMobsRegistryOld {
 					@Override
 					@Nullable
 					public Location get(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobSkillEvent e) {
-						Location l = e.getEntity().getLocation();
-						return l;
+                        return e.getEntity().getLocation();
 					}
 				}, 0);
 		EventValues.registerEventValue(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobSkillEvent.class,
@@ -82,8 +77,7 @@ public class MythicMobsRegistryOld {
 					@Override
 					@Nullable
 					public String get(net.elseland.xikage.MythicMobs.API.Bukkit.Events.MythicMobSkillEvent e) {
-						String n = e.getSkillName();
-						return n;
+                        return e.getSkillName();
 					}
 				}, 0);
 	}

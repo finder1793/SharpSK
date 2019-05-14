@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffMVLoadWorld extends Effect {
+class EffMVLoadWorld extends Effect {
 
 	private Expression<String> w;
 

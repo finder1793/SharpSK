@@ -19,14 +19,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 
-public class EffSaveClipToSchematic extends Effect {
+class EffSaveClipToSchematic extends Effect {
 	private Expression<Player> pl;
 	private Expression<String> schem;
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		// TODO Auto-generated method stub
 		pl = (Expression<Player>) expr[0];
 		schem = (Expression<String>) expr[1];
 		return true;
@@ -41,7 +40,7 @@ public class EffSaveClipToSchematic extends Effect {
 	protected void execute(Event e) {
 		WorldEditPlugin wep = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
 		File file = new File(("plugins/WorldEdit/schematics/" + (schem.getSingle(e).contains(".") ? schem.getSingle(e)
-				: new StringBuilder(String.valueOf(schem.getSingle(e))).append(".schematic").toString()))
+				: schem.getSingle(e) + ".schematic"))
 						.replaceAll("/", Matcher.quoteReplacement(File.separator)));
 		try {
 			LocalSession session = wep.getSession(pl.getSingle(e));
@@ -61,13 +60,11 @@ public class EffSaveClipToSchematic extends Effect {
 			SharpSK core = SharpSK.instance;
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
-			return;
-		} catch (EmptyClipboardException e1) {
+        } catch (EmptyClipboardException e1) {
 			SharpSK core = SharpSK.instance;
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
-			return;
-		}
+        }
 
 	}
 

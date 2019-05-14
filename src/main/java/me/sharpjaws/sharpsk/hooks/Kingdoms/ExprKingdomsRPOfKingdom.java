@@ -12,7 +12,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class ExprKingdomsRPOfKingdom extends SimpleExpression<Number> {
+class ExprKingdomsRPOfKingdom extends SimpleExpression<Number> {
 	private Expression<String> kingdom;
 
 	@Override
@@ -76,20 +76,19 @@ public class ExprKingdomsRPOfKingdom extends SimpleExpression<Number> {
 				Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
 				kdm.setResourcepoints(kdm.getResourcepoints() - ((Number) delta[0]).intValue());
 
-			} catch (NullPointerException ex) {
-				return;
-			}
+			} catch (NullPointerException ignored) {
+            }
 		}
 	}
 
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		} else if (mode == Changer.ChangeMode.ADD) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		} else if (mode == Changer.ChangeMode.REMOVE) {
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		}
 		return null;
 	}

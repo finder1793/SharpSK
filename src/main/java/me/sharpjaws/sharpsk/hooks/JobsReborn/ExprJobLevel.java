@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprJobLevel extends SimpleExpression<Integer> {
+class ExprJobLevel extends SimpleExpression<Integer> {
 
 	private Expression<OfflinePlayer> p;
 	private Expression<Job> j;

@@ -23,8 +23,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public String get(KingdomCreateEvent e) {
-						String k = e.getKingdom().getKingdomName();
-						return k;
+                        return e.getKingdom().getKingdomName();
 					}
 				}, 0);
 		Skript.registerEvent("Kingdoms Kingdom Delete", SimpleEvent.class, KingdomDeleteEvent.class,
@@ -34,8 +33,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public String get(KingdomDeleteEvent e) {
-						String k = e.getKingdom().getKingdomName();
-						return k;
+                        return e.getKingdom().getKingdomName();
 					}
 				}, 0);
 
@@ -46,8 +44,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public String get(KingdomMemberJoinEvent e) {
-						String k = e.getKingdom().getKingdomName();
-						return k;
+                        return e.getKingdom().getKingdomName();
 					}
 				}, 0);
 		EventValues.registerEventValue(KingdomMemberJoinEvent.class, Player.class,
@@ -55,8 +52,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public Player get(KingdomMemberJoinEvent e) {
-						Player p = e.getKp().getKingdomPlayer().getPlayer();
-						return p;
+                        return e.getKp().getKingdomPlayer().getPlayer();
 					}
 				}, 0);
 		Skript.registerEvent("Kingdoms Kingdom Member Leave", SimpleEvent.class, KingdomMemberLeaveEvent.class,
@@ -66,8 +62,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public String get(KingdomMemberLeaveEvent e) {
-						String k = e.getKingdomName();
-						return k;
+                        return e.getKingdomName();
 					}
 				}, 0);
 		EventValues.registerEventValue(KingdomMemberLeaveEvent.class, Player.class,
@@ -75,8 +70,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public Player get(KingdomMemberLeaveEvent e) {
-						Player p = e.getKp().getKingdomPlayer().getPlayer();
-						return p;
+                        return e.getKp().getKingdomPlayer().getPlayer();
 					}
 				}, 0);
 		Skript.registerEvent("Kingdoms Player Lose", SimpleEvent.class, KingdomPlayerLostEvent.class,
@@ -86,8 +80,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public String get(KingdomPlayerLostEvent e) {
-						String k = e.getDefender().getKingdomName();
-						return k;
+                        return e.getDefender().getKingdomName();
 					}
 				}, 0);
 		EventValues.registerEventValue(KingdomPlayerLostEvent.class, Player.class,
@@ -95,8 +88,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public Player get(KingdomPlayerLostEvent e) {
-						Player p = e.getChallenger().getPlayer();
-						return p;
+                        return e.getChallenger().getPlayer();
 					}
 				}, 0);
 
@@ -107,8 +99,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public String get(KingdomPlayerWonEvent e) {
-						String k = e.getLostKingdom().getKingdomName();
-						return k;
+                        return e.getLostKingdom().getKingdomName();
 					}
 				}, 0);
 		EventValues.registerEventValue(KingdomPlayerWonEvent.class, Player.class,
@@ -116,8 +107,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public Player get(KingdomPlayerWonEvent e) {
-						Player p = e.getChallenger().getPlayer();
-						return p;
+                        return e.getChallenger().getPlayer();
 					}
 				}, 0);
 
@@ -128,8 +118,7 @@ public class KingdomsRegistry {
 					@Override
 					@Nullable
 					public String get(KingdomResourcePointChangeEvent e) {
-						String k = e.getKingdom().getKingdomName();
-						return k;
+                        return e.getKingdom().getKingdomName();
 					}
 				}, 0);
 

@@ -13,7 +13,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
+class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
 	private Expression<OfflinePlayer> p;
 	private Expression<SkillType> s;
 
@@ -49,10 +49,10 @@ public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
 		}
 		if (p.getSingle(e).isOnline()) {
 			return new Integer[] {
-					ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), (String) s.getSingle(e).toString()) };
+					ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) };
 		} else {
 			return new Integer[] {
-					ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), (String) s.getSingle(e).toString()) };
+					ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString()) };
 		}
 	}
 
@@ -108,11 +108,11 @@ public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		if (mode == Changer.ChangeMode.ADD)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		if (mode == Changer.ChangeMode.REMOVE)
-			return CollectionUtils.array(new Class[] { Number.class });
+			return CollectionUtils.array(Number.class);
 		return null;
 	}
 }

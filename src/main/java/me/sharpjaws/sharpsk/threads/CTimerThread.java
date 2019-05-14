@@ -12,15 +12,15 @@ import java.util.Map;
 
 public class CTimerThread extends Thread {
 
-	private int secs;
-	private String Tname;
+	private final int secs;
+	private final String Tname;
 	private boolean active;
 	private int countdown;
 	private int timetointv;
 	private int interv;
 	private boolean paused;
-	private boolean testmode;
-	Map<String, Integer> timer;
+	private final boolean testmode;
+	private final Map<String, Integer> timer;
 
 	public CTimerThread(String name, int seconds, Boolean activeT, int interval) {
 		this.active = activeT;
@@ -28,7 +28,7 @@ public class CTimerThread extends Thread {
 		this.Tname = name;
 		this.interv = interval;
 		this.testmode = false;
-		timer = new HashMap<String, Integer>();
+		timer = new HashMap<>();
 	}
 
 	public CTimerThread(String name, int seconds, int interval, Boolean testmode) {
@@ -37,12 +37,12 @@ public class CTimerThread extends Thread {
 		this.Tname = name;
 		this.interv = interval;
 		this.testmode = testmode;
-		timer = new HashMap<String, Integer>();
+		timer = new HashMap<>();
 	}
 
-	File cache = null;
-	YamlConfiguration Tcache = null;
-	BukkitScheduler scheduler = null;
+	private File cache = null;
+	private YamlConfiguration Tcache = null;
+	private BukkitScheduler scheduler = null;
 
 	@Override
 	public void run() {

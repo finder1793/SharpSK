@@ -15,7 +15,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffTownyCreateNation extends Effect {
+class EffTownyCreateNation extends Effect {
 	private Expression<String> nat;
 	private Expression<String> tow;
 	private Expression<Number> bal;
@@ -58,13 +58,11 @@ public class EffTownyCreateNation extends Effect {
 			TownyUniverse.getDataSource().saveNation(nation);
 			TownyUniverse.getDataSource().saveNationList();
 
-		} catch (NotRegisteredException ex1) {
+		} catch (NotRegisteredException | EconomyException ex1) {
 			core.getLogger().warning("Could not register nation: " + "\"" + nat.getSingle(e) + "\"");
 		} catch (AlreadyRegisteredException ex2) {
 			core.getLogger().warning(
 					"Could not register nation: " + "\"" + nat.getSingle(e) + "\"" + ". Nation already exists in town");
-		} catch (EconomyException ex3) {
-			core.getLogger().warning("Could not register nation: " + "\"" + nat.getSingle(e) + "\"");
 		}
 
 	}

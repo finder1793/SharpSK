@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffSpawnMM extends Effect {
+class EffSpawnMM extends Effect {
 
 	private Expression<String> mn;
 	private Expression<Location> loc;
@@ -41,12 +41,10 @@ public class EffSpawnMM extends Effect {
 				} else {
 					MythicMobs.inst().getAPIHelper().spawnMythicMob(mn.getSingle(e), loc.getSingle(e), 1);
 				}
-			} catch (NullPointerException ex) {
-				return;
-			}
-		} catch (InvalidMobTypeException e1) {
-			return;
-		}
+			} catch (NullPointerException ignored) {
+            }
+		} catch (InvalidMobTypeException ignored) {
+        }
 	}
 
 }

@@ -119,11 +119,11 @@ public class ExprTimerTime extends SimpleExpression<Integer> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { Timespan.class });
+			return CollectionUtils.array(Timespan.class);
 		if (mode == Changer.ChangeMode.ADD)
-			return CollectionUtils.array(new Class[] { Timespan.class });
+			return CollectionUtils.array(Timespan.class);
 		if (mode == Changer.ChangeMode.REMOVE)
-			return CollectionUtils.array(new Class[] { Timespan.class });
+			return CollectionUtils.array(Timespan.class);
 		return null;
 	}
 

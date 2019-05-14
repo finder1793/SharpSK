@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-public class ExprAllFlagsOfRegion extends SimpleExpression<String> {
+class ExprAllFlagsOfRegion extends SimpleExpression<String> {
 	private Expression<String> region;
 	private Expression<?> world;
 
@@ -44,14 +44,14 @@ public class ExprAllFlagsOfRegion extends SimpleExpression<String> {
 
 		RegionManager rm = WGBukkit.getRegionManager(world);
 		ProtectedRegion pregion = rm.getRegion(region.getSingle(event));
-		List<String> rfl = new ArrayList<String>();
+		List<String> rfl = new ArrayList<>();
 
 		for (Entry<Flag<?>, Object> ra : pregion.getFlags().entrySet()) {
 			rfl.add(ra.getKey().getName());
 		}
 
 		String[] s = new String[rfl.size()];
-		return (String[]) rfl.toArray(s);
+		return rfl.toArray(s);
 	}
 
 	public boolean isSingle() {

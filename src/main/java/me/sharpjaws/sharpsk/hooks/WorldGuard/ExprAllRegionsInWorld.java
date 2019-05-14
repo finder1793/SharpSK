@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ExprAllRegionsInWorld extends SimpleExpression<String> {
+class ExprAllRegionsInWorld extends SimpleExpression<String> {
 	private Expression<?> world;
 
 	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
@@ -28,10 +28,10 @@ public class ExprAllRegionsInWorld extends SimpleExpression<String> {
 
 		RegionManager set = WGBukkit.getRegionManager(world);
 		Map<String, ProtectedRegion> regions = set.getRegions();
-		List<String> list = new ArrayList<String>(regions.keySet());
+		List<String> list = new ArrayList<>(regions.keySet());
 
 		String[] s = new String[list.size()];
-		return (String[]) list.toArray(s);
+		return list.toArray(s);
 	}
 
 	public boolean isSingle() {

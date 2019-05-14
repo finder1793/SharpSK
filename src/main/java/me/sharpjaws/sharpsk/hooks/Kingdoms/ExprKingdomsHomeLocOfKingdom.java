@@ -13,7 +13,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class ExprKingdomsHomeLocOfKingdom extends SimpleExpression<Location> {
+class ExprKingdomsHomeLocOfKingdom extends SimpleExpression<Location> {
 	private Expression<String> kingdom;
 
 	@Override
@@ -58,16 +58,15 @@ public class ExprKingdomsHomeLocOfKingdom extends SimpleExpression<Location> {
 				Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
 				kdm.setHome_loc((Location) delta[0]);
 
-			} catch (NullPointerException ex) {
-				return;
-			}
+			} catch (NullPointerException ignored) {
+            }
 		}
 	}
 
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { Location.class });
+			return CollectionUtils.array(Location.class);
 		}
 		return null;
 	}

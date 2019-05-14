@@ -9,7 +9,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class CondKingdomsKingdomHasShield extends Condition {
+class CondKingdomsKingdomHasShield extends Condition {
 
 	private Expression<String> kingdom;
 

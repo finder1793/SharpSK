@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffTownyAddPlayerToNation extends Effect {
+class EffTownyAddPlayerToNation extends Effect {
 
 	private Expression<OfflinePlayer> p;
 	private Expression<String> nat;
@@ -41,7 +41,6 @@ public class EffTownyAddPlayerToNation extends Effect {
 			core.getLogger().warning("Could not add resident: " + "\"" + p.getSingle(e).getName() + "\"" + " to nation "
 					+ "\"" + nat.getSingle(e) + "\"");
 			core.getLogger().warning("Nation was not found in town: " + "\"" + nat.getSingle(e) + "\"");
-			return;
 		}
 
 	}

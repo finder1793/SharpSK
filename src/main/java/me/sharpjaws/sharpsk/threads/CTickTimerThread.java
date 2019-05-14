@@ -12,26 +12,26 @@ import java.util.Map;
 
 public class CTickTimerThread extends Thread {
 
-	private int ticks;
-	private String Tname;
+	private final int ticks;
+	private final String Tname;
 	private boolean active;
 	private int countdown;
 	private int timetointv;
 	private int interv;
 	private boolean paused;
-	Map<String, Integer> timer;
+	private final Map<String, Integer> timer;
 
 	public CTickTimerThread(String name, int ticks, Boolean activeT, int interval) {
 		this.active = activeT;
 		this.ticks = ticks;
 		this.Tname = name;
 		this.interv = interval;
-		timer = new HashMap<String, Integer>();
+		timer = new HashMap<>();
 	}
 
-	File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "TTickcache.yml");
-	YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
-	BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+	private final File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "TTickcache.yml");
+	private final YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
+	private final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 
 	@Override
 	public void run() {

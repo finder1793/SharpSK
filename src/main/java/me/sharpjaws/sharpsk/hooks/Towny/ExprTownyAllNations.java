@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprTownyAllNations extends SimpleExpression<String> {
+class ExprTownyAllNations extends SimpleExpression<String> {
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -34,13 +34,13 @@ public class ExprTownyAllNations extends SimpleExpression<String> {
 	@Nullable
 	protected String[] get(Event e) {
 
-		ArrayList<String> narr = new ArrayList<String>();
+		ArrayList<String> narr = new ArrayList<>();
 		for (Nation a1 : TownyUniverse.getDataSource().getNations()) {
 
 			narr.add(a1.getName());
 		}
 
-		return narr.toArray(new String[narr.size()]);
+		return narr.toArray(new String[0]);
 
 	}
 

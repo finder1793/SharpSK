@@ -12,7 +12,7 @@ import ru.beykerykt.lightapi.chunks.ChunkInfo;
 
 import javax.annotation.Nullable;
 
-public class EffDeleteLight extends Effect {
+class EffDeleteLight extends Effect {
 	private Expression<Location> loc;
 	private Expression<Boolean> async;
 

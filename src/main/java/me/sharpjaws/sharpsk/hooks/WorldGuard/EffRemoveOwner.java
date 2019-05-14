@@ -17,16 +17,17 @@ import org.bukkit.event.Event;
 
 import java.util.Map.Entry;
 
-public class EffRemoveOwner extends Effect {
+class EffRemoveOwner extends Effect {
 	private Expression<?> players;
 	private Expression<?> name;
 	private Expression<?> world;
 	private int mark = 0;
 
-	public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult Result) {
+	public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult result) {
 		this.players = exprs[0];
 		this.name = exprs[1];
 		this.world = exprs[2];
+		this.mark = result.mark;
 
 		return true;
 	}

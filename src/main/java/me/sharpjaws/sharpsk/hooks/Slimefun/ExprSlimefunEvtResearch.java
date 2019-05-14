@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprSlimefunEvtResearch extends SimpleExpression<String> {
+class ExprSlimefunEvtResearch extends SimpleExpression<String> {
 
 	@Override
 	public Class<? extends String> getReturnType() {

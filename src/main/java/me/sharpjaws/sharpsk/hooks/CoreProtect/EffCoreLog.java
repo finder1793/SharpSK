@@ -14,7 +14,7 @@ import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
 
-public class EffCoreLog extends Effect {
+class EffCoreLog extends Effect {
 	private Expression<Location> l;
 	private Expression<OfflinePlayer> pl;
 	private int mark;

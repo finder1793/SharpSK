@@ -9,7 +9,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class CondKingdomsKingdomIsOnline extends Condition {
+class CondKingdomsKingdomIsOnline extends Condition {
 
 	private Expression<String> kingdom;
 

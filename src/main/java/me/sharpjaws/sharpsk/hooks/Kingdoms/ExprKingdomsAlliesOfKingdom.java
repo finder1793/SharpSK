@@ -10,7 +10,7 @@ import org.kingdoms.manager.game.GameManagement;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprKingdomsAlliesOfKingdom extends SimpleExpression<String> {
+class ExprKingdomsAlliesOfKingdom extends SimpleExpression<String> {
 	private Expression<String> kingdom;
 
 	@Override
@@ -35,13 +35,9 @@ public class ExprKingdomsAlliesOfKingdom extends SimpleExpression<String> {
 	@Nullable
 	protected String[] get(Event e) {
 
-		ArrayList<String> narr = new ArrayList<String>();
-		for (String en : GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getAlliesList()) {
+        ArrayList<String> narr = new ArrayList<>(GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getAlliesList());
 
-			narr.add(en);
-		}
-
-		return narr.toArray(new String[narr.size()]);
+		return narr.toArray(new String[0]);
 
 	}
 

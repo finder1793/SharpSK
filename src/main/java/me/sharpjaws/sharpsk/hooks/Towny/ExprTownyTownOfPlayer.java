@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprTownyTownOfPlayer extends SimpleExpression<String> {
+class ExprTownyTownOfPlayer extends SimpleExpression<String> {
 
 	private Expression<OfflinePlayer> resident;
 

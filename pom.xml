@@ -93,7 +93,7 @@
     </repositories>
 
     <build>
-        <defaultGoal>clean test package</defaultGoal>
+        <defaultGoal>test package</defaultGoal>
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>

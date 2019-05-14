@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 public class GlowAPIRegistry {
 	public static void registerGlowAPI() {
 		Classes.registerClass(
-				new ClassInfo<GlowAPI.Color>(GlowAPI.Color.class, "glowapicolor").parser(new Parser<GlowAPI.Color>() {
+                new ClassInfo<>(GlowAPI.Color.class, "glowapicolor").parser(new Parser<GlowAPI.Color>() {
 					@Override
 					public String getVariableNamePattern() {
 						return ".+";

@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOParty extends SimpleExpression<String> {
+class ExprmcMMOParty extends SimpleExpression<String> {
 	private Expression<Player> p;
 
 	@Override
@@ -50,7 +50,7 @@ public class ExprmcMMOParty extends SimpleExpression<String> {
 			if (mode == Changer.ChangeMode.SET) {
 				PartyAPI.addToParty(p.getSingle(e), (String) delta[0]);
 			}
-		} catch (NullPointerException ex) {
+		} catch (NullPointerException ignored) {
 
 		}
 	}
@@ -58,7 +58,7 @@ public class ExprmcMMOParty extends SimpleExpression<String> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { String.class });
+			return CollectionUtils.array(String.class);
 		return null;
 	}
 }

@@ -11,7 +11,7 @@ import org.kingdoms.manager.game.GameManagement;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
+class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
 	private GameManagement kman;
 
 	@Override
@@ -35,13 +35,13 @@ public class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
 	@Nullable
 	protected String[] get(Event e) {
 
-		ArrayList<String> narr = new ArrayList<String>();
+		ArrayList<String> narr = new ArrayList<>();
 		for (OfflineKingdom k : GameManagement.getKingdomManager().getKingdomList().values()) {
 
 			narr.add(k.getKingdomName());
 		}
 
-		return narr.toArray(new String[narr.size()]);
+		return narr.toArray(new String[0]);
 
 	}
 

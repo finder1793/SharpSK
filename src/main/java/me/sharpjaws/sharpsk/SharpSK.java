@@ -61,7 +61,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SharpSK extends JavaPlugin implements Listener {
+public final class SharpSK extends JavaPlugin implements Listener {
 
 	public static JavaPlugin plugin;
 	public static SharpSK instance;
@@ -75,6 +75,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 	 *
 	 * @param args command line arguments
 	 */
+	@SuppressWarnings("EmptyMethod")
 	@Deprecated
 	public static final void main(final String[] args) {
 		// Just for IntelliJ to not show "Invalid main class" in MANIFEST.MF
@@ -147,7 +148,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 				} else if (args.length == 2) {
 					if (args[0].equalsIgnoreCase("timers") && args[1].equalsIgnoreCase("list")) {
 
-						ArrayList<String> timers = new ArrayList<String>();
+						ArrayList<String> timers = new ArrayList<>();
 						for (Thread t : Thread.getAllStackTraces().keySet()) {
 							if (t instanceof CTimerThread || t instanceof CTickTimerThread) {
 								timers.add(t.getName());
@@ -215,9 +216,11 @@ public class SharpSK extends JavaPlugin implements Listener {
 				getLogger().info("Attempting to register stuff...");
 
 				try {
-					Skript.registerEvent("Firework Explode", SimpleEvent.class, FireworkExplodeEvent.class,
-							"firework explode");
-				} catch (NoClassDefFoundError ex) {
+					if (Skript.classExists("org.bukkit.event.entity.FireworkExplodeEvent")) {
+						Skript.registerEvent("Firework Explode", SimpleEvent.class, FireworkExplodeEvent.class,
+								"firework explode");
+					}
+				} catch (final Throwable tw) {
 					getLogger().info("An error occurred while trying to register Firework Explode event");
 				}
 				Skript.registerEvent("Shear", SimpleEvent.class, PlayerShearEntityEvent.class, "[on] shear");
@@ -226,8 +229,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 						new Getter<ItemStack, InventoryMoveItemEvent>() {
 							@Override
 							public ItemStack get(InventoryMoveItemEvent e) {
-								ItemStack i = e.getItem();
-								return i;
+								return e.getItem();
 							}
 						}, 0);
 				EventValues.registerEventValue(InventoryMoveItemEvent.class, Block.class,
@@ -235,9 +237,8 @@ public class SharpSK extends JavaPlugin implements Listener {
 							@Override
 							public Block get(InventoryMoveItemEvent e) {
 								InventoryHolder iH = e.getSource().getHolder();
-								Block b3 = getBlock(iH);
 
-								return b3;
+								return getBlock(iH);
 							}
 						}, 0);
 				EventValues.registerEventValue(InventoryMoveItemEvent.class, Entity.class,
@@ -246,8 +247,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 							public Entity get(InventoryMoveItemEvent e) {
 								try {
 									if (e.getSource().getHolder() instanceof Entity) {
-										Entity en = (Entity) e.getSource().getHolder();
-										return en;
+										return (Entity) e.getSource().getHolder();
 									}
 								} catch (NullPointerException ex) {
 									return null;
@@ -272,16 +272,14 @@ public class SharpSK extends JavaPlugin implements Listener {
 						new Getter<Inventory, InventoryPickupItemEvent>() {
 							@Override
 							public Inventory get(InventoryPickupItemEvent e) {
-								Inventory s = e.getInventory();
-								return s;
+								return e.getInventory();
 							}
 						}, 0);
 				EventValues.registerEventValue(InventoryPickupItemEvent.class, ItemStack.class,
 						new Getter<ItemStack, InventoryPickupItemEvent>() {
 							@Override
 							public ItemStack get(InventoryPickupItemEvent e) {
-								ItemStack s = e.getItem().getItemStack();
-								return s;
+								return e.getItem().getItemStack();
 							}
 						}, 0);
 				EventValues.registerEventValue(InventoryPickupItemEvent.class, Location.class,
@@ -305,8 +303,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 							new Getter<ItemStack, ArmorEquipEvent>() {
 								@Override
 								public ItemStack get(ArmorEquipEvent e) {
-									ItemStack item = e.getItem();
-									return item;
+									return e.getItem();
 								}
 							}, 0);
 					Skript.registerEvent("Armor unEquip", SimpleEvent.class, ArmorunEquipEvent.class,
@@ -315,8 +312,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 							new Getter<ItemStack, ArmorunEquipEvent>() {
 								@Override
 								public ItemStack get(ArmorunEquipEvent e) {
-									ItemStack i2 = e.getItem();
-									return i2;
+									return e.getItem();
 								}
 							}, 0);
 				} else {
@@ -326,8 +322,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 							new Getter<ItemStack, ArmorEquipEvent>() {
 								@Override
 								public ItemStack get(ArmorEquipEvent e) {
-									ItemStack item = e.getItem();
-									return item;
+									return e.getItem();
 								}
 							}, 0);
 					Skript.registerEvent("Armor unEquip", SimpleEvent.class, ArmorunEquipEvent.class,
@@ -336,8 +331,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 							new Getter<ItemStack, ArmorunEquipEvent>() {
 								@Override
 								public ItemStack get(ArmorunEquipEvent e) {
-									ItemStack i2 = e.getItem();
-									return i2;
+									return e.getItem();
 								}
 							}, 0);
 				}
@@ -348,8 +342,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 						new Getter<ItemStack, FurnaceExtractEvent>() {
 							@Override
 							public ItemStack get(FurnaceExtractEvent e) {
-								ItemStack i = new ItemStack(e.getItemType(), e.getItemAmount());
-								return i;
+								return new ItemStack(e.getItemType(), e.getItemAmount());
 							}
 						}, 0);
 				Bukkit.getPluginManager().registerEvents(new ArmorEquipListener(), this);
@@ -360,8 +353,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 						new Getter<String, ServerCommandEvent>() {
 							@Override
 							public String get(ServerCommandEvent e) {
-								String s = e.getCommand();
-								return s;
+								return e.getCommand();
 							}
 						}, 0);
 				Skript.registerEvent("Remote Server Command", SimpleEvent.class, RemoteServerCommandEvent.class,
@@ -370,8 +362,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 						new Getter<String, RemoteServerCommandEvent>() {
 							@Override
 							public String get(RemoteServerCommandEvent e) {
-								String s = e.getCommand();
-								return s;
+								return e.getCommand();
 							}
 						}, 0);
 				new ExpChangeListener(this);
@@ -405,8 +396,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 						new Getter<Player, PlayerChangedWorldEvent>() {
 							@Override
 							public Player get(PlayerChangedWorldEvent e) {
-								Player p = e.getPlayer();
-								return p;
+								return e.getPlayer();
 							}
 						}, 0);
 				Skript.registerExpression(ExprEventWorld.class, World.class, ExpressionType.SIMPLE,
@@ -440,9 +430,8 @@ public class SharpSK extends JavaPlugin implements Listener {
 								@Override
 								@Nullable
 								public Player get(PrepareAnvilEvent e) {
-									Player p = Bukkit.getPlayer(e.getView().getPlayer().getName());
 
-									return p;
+									return Bukkit.getPlayer(e.getView().getPlayer().getName());
 								}
 							}, 0);
 					EventValues.registerEventValue(PrepareAnvilEvent.class, ItemStack.class,
@@ -450,11 +439,10 @@ public class SharpSK extends JavaPlugin implements Listener {
 								@Override
 								@Nullable
 								public ItemStack get(PrepareAnvilEvent e) {
-									ItemStack i = e.getInventory().getItem(0);
-									return i;
+									return e.getInventory().getItem(0);
 								}
 							}, 0);
-					Classes.registerClass(new ClassInfo<Phase>(Phase.class, "phase").parser(new Parser<Phase>() {
+					Classes.registerClass(new ClassInfo<>(Phase.class, "phase").parser(new Parser<Phase>() {
 						@Override
 						public String getVariableNamePattern() {
 							return ".+";
@@ -484,7 +472,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 					try {
 						Skript.registerExpression(ExprEventAnvilCost.class, Number.class, ExpressionType.SIMPLE,
 								"(anvil[]cost|event-[anvil]cost)");
-					} catch (Exception ex) {
+					} catch (Exception ignored) {
 
 					}
 					Skript.registerExpression(ExprPhaseOf.class, Phase.class, ExpressionType.SIMPLE,
@@ -508,17 +496,17 @@ public class SharpSK extends JavaPlugin implements Listener {
 				// PirateSK Syntaxes
 				// -------------------
 				if (Bukkit.getServer().getPluginManager().getPlugin("PirateSK") != null) {
-					Skript.registerEffect(EffLoadPlugin.class, new String[] { "[sharpsk] load plugin %string%" });
-					Skript.registerEffect(EffEnablePlugin.class, new String[] { "[sharpsk] enable plugin %string%" });
-					Skript.registerEffect(EffDisablePlugin.class, new String[] { "[sharpsk] disable plugin %string%" });
+					Skript.registerEffect(EffLoadPlugin.class, "[sharpsk] load plugin %string%");
+					Skript.registerEffect(EffEnablePlugin.class, "[sharpsk] enable plugin %string%");
+					Skript.registerEffect(EffDisablePlugin.class, "[sharpsk] disable plugin %string%");
 
-					Skript.registerEffect(EffSaveWorlds.class, new String[] { "[sharpsk] save %worlds%" });
+					Skript.registerEffect(EffSaveWorlds.class, "[sharpsk] save %worlds%");
 				} else {
-					Skript.registerEffect(EffLoadPlugin.class, new String[] { "load plugin %string%" });
-					Skript.registerEffect(EffEnablePlugin.class, new String[] { "enable plugin %string%" });
-					Skript.registerEffect(EffDisablePlugin.class, new String[] { "disable plugin %string%" });
+					Skript.registerEffect(EffLoadPlugin.class, "load plugin %string%");
+					Skript.registerEffect(EffEnablePlugin.class, "enable plugin %string%");
+					Skript.registerEffect(EffDisablePlugin.class, "disable plugin %string%");
 
-					Skript.registerEffect(EffSaveWorlds.class, new String[] { "save %worlds%" });
+					Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
 				}
 
 				// -------------------
@@ -589,7 +577,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 							}
 						}
 						cache.delete();
-					} catch (NullPointerException ex) {
+					} catch (NullPointerException ignored) {
 
 					}
 				}
@@ -607,7 +595,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 							}
 						}
 						Tickcache.delete();
-					} catch (NullPointerException ex) {
+					} catch (NullPointerException ignored) {
 
 					}
 				}
@@ -645,12 +633,10 @@ public class SharpSK extends JavaPlugin implements Listener {
 			b3 = b2.getBlock();
 		} else if (iH instanceof DoubleChest) {
 			DoubleChest b = (DoubleChest) iH;
-			Block b2 = b.getLocation().getBlock();
-			b3 = b2;
+			b3 = b.getLocation().getBlock();
 		} else if (iH instanceof Furnace) {
 			Furnace b = (Furnace) iH;
-			Block b2 = b.getLocation().getBlock();
-			b3 = b2;
+			b3 = b.getLocation().getBlock();
 		}
 
 		return b3;
@@ -658,7 +644,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 
 	@Override
 	public void onDisable() {
-		ArrayList<String> atimers = new ArrayList<String>();
+		ArrayList<String> atimers = new ArrayList<>();
 		for (Thread t1 : Thread.getAllStackTraces().keySet()) {
 			if (t1 instanceof CTimerThread) {
 				if (((CTimerThread) t1).instance().isActive()) {
@@ -676,12 +662,12 @@ public class SharpSK extends JavaPlugin implements Listener {
 			if (!cache.exists()) {
 				try {
 					cache.createNewFile();
-				} catch (IOException e) {
+				} catch (IOException ignored) {
 
 				}
 			}
 			YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
-			Map<String, Integer> timers = new HashMap<String, Integer>();
+			Map<String, Integer> timers = new HashMap<>();
 
 			for (Thread t2 : Thread.getAllStackTraces().keySet()) {
 				if (t2 instanceof CTimerThread) {
@@ -696,7 +682,7 @@ public class SharpSK extends JavaPlugin implements Listener {
 			Tcache.getMapList("timers").add(timers);
 			try {
 				Tcache.save(cache);
-			} catch (IOException e) {
+			} catch (IOException ignored) {
 
 			}
 		}

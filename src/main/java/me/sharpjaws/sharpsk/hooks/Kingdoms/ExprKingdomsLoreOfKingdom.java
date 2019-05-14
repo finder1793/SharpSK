@@ -12,7 +12,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class ExprKingdomsLoreOfKingdom extends SimpleExpression<String> {
+class ExprKingdomsLoreOfKingdom extends SimpleExpression<String> {
 
 	private Expression<String> kingdom;
 
@@ -52,16 +52,15 @@ public class ExprKingdomsLoreOfKingdom extends SimpleExpression<String> {
 				Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
 				kdm.setKingdomLore((String) delta[0]);
 
-			} catch (NullPointerException ex) {
-				return;
-			}
+			} catch (NullPointerException ignored) {
+            }
 		}
 	}
 
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { String.class });
+			return CollectionUtils.array(String.class);
 		}
 		return null;
 	}

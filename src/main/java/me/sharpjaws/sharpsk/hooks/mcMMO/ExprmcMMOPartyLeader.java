@@ -14,7 +14,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOPartyLeader extends SimpleExpression<String> {
+class ExprmcMMOPartyLeader extends SimpleExpression<String> {
 	private Expression<String> s;
 
 	@Override
@@ -65,7 +65,7 @@ public class ExprmcMMOPartyLeader extends SimpleExpression<String> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { Player.class });
+			return CollectionUtils.array(Player.class);
 		return null;
 	}
 }

@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
+class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
 	private Expression<OfflinePlayer> p;
 
 	@Override

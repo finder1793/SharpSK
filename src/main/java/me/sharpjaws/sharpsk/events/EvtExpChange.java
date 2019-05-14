@@ -8,8 +8,8 @@ import org.bukkit.event.HandlerList;
 public class EvtExpChange extends Event implements Cancellable {
 	private static final HandlerList h = new HandlerList();
 	private boolean cancelled = false;
-	private Player pl;
-	private Number exp;
+	private final Player pl;
+	private final Number exp;
 
 	public EvtExpChange(Player p, Number xp) {
 		cancelled = false;

@@ -24,7 +24,7 @@ public class TownyRegistry {
 
 	public static void RegisterTowny() {
 		// Town Types:
-		Classes.registerClass(new ClassInfo<TownBlockType>(TownBlockType.class, "townblocktype").name("TownBlockType")
+		Classes.registerClass(new ClassInfo<>(TownBlockType.class, "townblocktype").name("TownBlockType")
 				.parser(new Parser<TownBlockType>() {
 
 					@Override
@@ -56,7 +56,7 @@ public class TownyRegistry {
 					public String toVariableNameString(TownBlockType tbt) {
 						return tbt.name().replace("_", " ").toUpperCase();
 					}
-				}).serializer(new EnumSerializer<TownBlockType>(TownBlockType.class)).user("town ?blocktypes?"));
+				}).serializer(new EnumSerializer<>(TownBlockType.class)).user("town ?blocktypes?"));
 
 		Converters.registerConverter(TownBlockType.class, String.class, new Converter<TownBlockType, String>() {
 
@@ -76,8 +76,7 @@ public class TownyRegistry {
 			@Override
 			@Nullable
 			public Entity get(MobRemovalEvent e) {
-				Entity en = e.getEntity();
-				return en;
+                return e.getEntity();
 			}
 		}, 0);
 		Skript.registerEvent("Towny Nation Create", SimpleEvent.class, NewNationEvent.class,
@@ -97,9 +96,8 @@ public class TownyRegistry {
 					@Override
 					@Nullable
 					public String get(RenameResidentEvent e) {
-						String s = e.getOldName();
 
-						return s;
+                        return e.getOldName();
 					}
 				}, 0);
 		Skript.registerEvent("Towny Nation Rename", SimpleEvent.class, RenameNationEvent.class,
@@ -108,8 +106,7 @@ public class TownyRegistry {
 			@Override
 			@Nullable
 			public String get(RenameNationEvent e) {
-				String s = e.getOldName();
-				return s;
+                return e.getOldName();
 			}
 		}, 0);
 		Skript.registerEvent("Towny Town Rename", SimpleEvent.class, RenameTownEvent.class, "[towny] town rename[d]");
@@ -117,8 +114,7 @@ public class TownyRegistry {
 			@Override
 			@Nullable
 			public String get(RenameTownEvent e) {
-				String s = e.getOldName();
-				return s;
+                return e.getOldName();
 			}
 		}, 0);
 		Skript.registerEvent("Towny Nation Rename", SimpleEvent.class, RenameNationEvent.class,
@@ -127,8 +123,7 @@ public class TownyRegistry {
 			@Override
 			@Nullable
 			public String get(RenameNationEvent e) {
-				String s = e.getOldName();
-				return s;
+                return e.getOldName();
 			}
 		}, 0);
 		Skript.registerEvent("Towny Town Claim", SimpleEvent.class, TownClaimEvent.class, "[towny] town claim[ed]");
@@ -141,9 +136,8 @@ public class TownyRegistry {
 					@Override
 					@Nullable
 					public String get(TownAddResidentEvent e) {
-						String s = e.getResident().getName();
 
-						return s;
+                        return e.getResident().getName();
 					}
 				}, 0);
 		Skript.registerEvent("Towny Resident Remove", SimpleEvent.class, TownRemoveResidentEvent.class,
@@ -153,8 +147,7 @@ public class TownyRegistry {
 					@Override
 					@Nullable
 					public String get(TownRemoveResidentEvent e) {
-						String s = e.getResident().getName();
-						return s;
+                        return e.getResident().getName();
 					}
 				}, 0);
 		Skript.registerEvent("Towny Plot Clear", SimpleEvent.class, PlotClearEvent.class, "[towny] plot clear[ed]");
@@ -165,8 +158,7 @@ public class TownyRegistry {
 					@Override
 					@Nullable
 					public Player get(PlayerChangePlotEvent e) {
-						Player p = e.getPlayer();
-						return p;
+                        return e.getPlayer();
 					}
 				}, 0);
 		Skript.registerEvent("Towny PVP Disallow", SimpleEvent.class, DisallowedPVPEvent.class,
@@ -176,8 +168,7 @@ public class TownyRegistry {
 					@Override
 					@Nullable
 					public Player get(DisallowedPVPEvent e) {
-						Player p = e.getAttacker();
-						return p;
+                        return e.getAttacker();
 					}
 				}, 0);
 		Skript.registerEvent("Towny Town Block Settings Change", SimpleEvent.class, TownBlockSettingsChangedEvent.class,

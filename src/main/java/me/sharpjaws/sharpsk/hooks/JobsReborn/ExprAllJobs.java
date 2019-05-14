@@ -11,9 +11,9 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprAllJobs extends SimpleExpression<Job> {
+class ExprAllJobs extends SimpleExpression<Job> {
 
-	boolean job;
+	private boolean job;
 
 	@Override
 	public boolean isSingle() {
@@ -47,7 +47,7 @@ public class ExprAllJobs extends SimpleExpression<Job> {
 				jobs.add(p);
 			}
 		}
-		return jobs.toArray(new Job[jobs.size()]);
+		return jobs.toArray(new Job[0]);
 	}
 
 	@Override

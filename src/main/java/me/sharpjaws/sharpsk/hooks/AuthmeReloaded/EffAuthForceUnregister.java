@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffAuthForceUnregister extends Effect {
+class EffAuthForceUnregister extends Effect {
 	private Expression<Player> player;
 
 	@SuppressWarnings("unchecked")

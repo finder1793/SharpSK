@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 
-public class ConduCarsNotInCar extends Condition {
+class ConduCarsNotInCar extends Condition {
 	private Expression<Player> player;
 	@SuppressWarnings("unused")
 	private Expression<ItemStack> block;

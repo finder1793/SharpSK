@@ -26,7 +26,7 @@ public class EffTimerCreate extends Effect {
 	private Expression<Boolean> active;
 	private Expression<Timespan> interval;
 	int task;
-	int mark;
+	private int mark;
 
 	@SuppressWarnings("unchecked")
 	@Override

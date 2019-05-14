@@ -16,10 +16,10 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class EffLuckPermsUnsetPerm extends Effect {
+class EffLuckPermsUnsetPerm extends Effect {
 	private Expression<OfflinePlayer> offplayer;
 	private Expression<String> perm;
-	int mark;
+	private int mark;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -41,44 +41,39 @@ public class EffLuckPermsUnsetPerm extends Effect {
 			return;
 		}
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
-		Consumer<User> action = new Consumer<User>() {
-
-			@Override
-			public void accept(User t) {
-				if (mark == -1) {
-					for (Node nperm : t.getTransientPermissions()) {
-						if (nperm.getKey().equals(perm.getSingle(e))) {
-							DataMutateResult result = t.unsetTransientPermissionUnchecked(nperm);
-							if (result != DataMutateResult.SUCCESS) {
-								return;
-							}
-							break;
+		Consumer<User> action = t -> {
+			if (mark == -1) {
+				for (Node nperm : t.getTransientPermissions()) {
+					if (nperm.getKey().equals(perm.getSingle(e))) {
+						DataMutateResult result = t.unsetTransientPermissionUnchecked(nperm);
+						if (result != DataMutateResult.SUCCESS) {
+							return;
 						}
-					}
-				} else {
-					for (Node nperm : t.getPermanentPermissionNodes()) {
-						if (nperm.getKey().equals(perm.getSingle(e))) {
-							DataMutateResult result = t.unsetPermissionUnchecked(nperm);
-							if (result != DataMutateResult.SUCCESS) {
-
-								return;
-							}
-							break;
-						}
+						break;
 					}
 				}
+			} else {
+				for (Node nperm : t.getPermanentPermissionNodes()) {
+					if (nperm.getKey().equals(perm.getSingle(e))) {
+						DataMutateResult result = t.unsetPermissionUnchecked(nperm);
+						if (result != DataMutateResult.SUCCESS) {
 
-				api.get().getStorage().saveUser(t).thenAcceptAsync(wasSuccessful -> {
-					if (!wasSuccessful) {
-						return;
+							return;
+						}
+						break;
 					}
-
-					t.refreshPermissions();
-
-				}, api.get().getStorage().getAsyncExecutor());
+				}
 			}
 
-        };
+			api.get().getStorage().saveUser(t).thenAcceptAsync(wasSuccessful -> {
+				if (!wasSuccessful) {
+					return;
+				}
+
+				t.refreshPermissions();
+
+			}, api.get().getStorage().getAsyncExecutor());
+		};
 
 		if (offplayer.getSingle(e).isOnline()) {
 			User user = api.get().getUser(offplayer.getSingle(e).getUniqueId());

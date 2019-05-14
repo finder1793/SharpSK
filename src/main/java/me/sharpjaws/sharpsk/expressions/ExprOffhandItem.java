@@ -59,7 +59,7 @@ public class ExprOffhandItem extends SimpleExpression<ItemStack> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { ItemStack.class });
+			return CollectionUtils.array(ItemStack.class);
 		return null;
 	}
 }

@@ -6,7 +6,6 @@ import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import com.palmergames.bukkit.towny.exceptions.AlreadyRegisteredException;
 import com.palmergames.bukkit.towny.exceptions.EconomyException;
-import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.object.*;
 import me.sharpjaws.sharpsk.SharpSK;
@@ -16,7 +15,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffTownyCreateTown extends Effect {
+class EffTownyCreateTown extends Effect {
 	private Expression<String> s;
 	private Expression<Number> sb;
 	private Expression<Location> homespawn;
@@ -90,14 +89,10 @@ public class EffTownyCreateTown extends Effect {
 			TownyUniverse.getDataSource().saveTownList();
 			TownyUniverse.getDataSource().saveTownBlockList();
 
-		} catch (NotRegisteredException ex1) {
-			core.getLogger().warning("Could not register town: " + "\"" + s.getSingle(e) + "\"");
 		} catch (AlreadyRegisteredException ex2) {
 			core.getLogger()
 					.warning("Could not register town: " + "\"" + s.getSingle(e) + "\"" + ". Town already exists");
-		} catch (TownyException ex3) {
-			core.getLogger().warning("Could not register town: " + "\"" + s.getSingle(e) + "\"");
-		} catch (EconomyException ex4) {
+		} catch (EconomyException | TownyException ex1) {
 			core.getLogger().warning("Could not register town: " + "\"" + s.getSingle(e) + "\"");
 		}
 

@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondAuthIsAuth extends Condition {
+class CondAuthIsAuth extends Condition {
 	private Expression<Player> p;
 
 	@SuppressWarnings("unchecked")

@@ -10,7 +10,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class EffKingdomsKingdomCreate extends Effect {
+class EffKingdomsKingdomCreate extends Effect {
 	private Expression<String> k;
 	private Expression<Player> p;
 
@@ -34,9 +34,8 @@ public class EffKingdomsKingdomCreate extends Effect {
 		try {
 			GameManagement.getKingdomManager().createNewKingdom(k.getSingle(e),
 					GameManagement.getPlayerManager().getOfflineKingdomPlayer(p.getSingle(e)).getKingdomPlayer());
-		} catch (NullPointerException ex) {
-			return;
+		} catch (NullPointerException ignored) {
 
-		}
+        }
 	}
 }

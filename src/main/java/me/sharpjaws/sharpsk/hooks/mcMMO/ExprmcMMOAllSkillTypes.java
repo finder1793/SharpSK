@@ -10,9 +10,9 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprmcMMOAllSkillTypes extends SimpleExpression<SkillType> {
+class ExprmcMMOAllSkillTypes extends SimpleExpression<SkillType> {
 
-	boolean skilltype;
+	private boolean skilltype;
 
 	@Override
 	public boolean isSingle() {
@@ -46,7 +46,7 @@ public class ExprmcMMOAllSkillTypes extends SimpleExpression<SkillType> {
 				skilltypes.add(p);
 			}
 		}
-		return skilltypes.toArray(new SkillType[skilltypes.size()]);
+		return skilltypes.toArray(new SkillType[0]);
 	}
 
 	@Override

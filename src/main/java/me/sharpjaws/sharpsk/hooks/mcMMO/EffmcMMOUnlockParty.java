@@ -8,7 +8,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffmcMMOUnlockParty extends Effect {
+class EffmcMMOUnlockParty extends Effect {
 	private Expression<String> p;
 
 	@SuppressWarnings("unchecked")

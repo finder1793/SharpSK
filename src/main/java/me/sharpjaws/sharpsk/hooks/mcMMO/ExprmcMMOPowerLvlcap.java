@@ -9,7 +9,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOPowerLvlcap extends SimpleExpression<Integer> {
+class ExprmcMMOPowerLvlcap extends SimpleExpression<Integer> {
 
 	@Override
 	public boolean isSingle() {

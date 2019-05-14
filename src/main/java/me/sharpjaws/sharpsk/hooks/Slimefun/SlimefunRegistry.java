@@ -19,8 +19,7 @@ public class SlimefunRegistry {
 					@Override
 					@Nullable
 					public Player get(ResearchUnlockEvent e) {
-						Player p = e.getPlayer();
-						return p;
+                        return e.getPlayer();
 					}
 				}, 0);
 		Skript.registerExpression(ExprSlimefunEvtResearch.class, String.class, ExpressionType.SIMPLE, "event-research");

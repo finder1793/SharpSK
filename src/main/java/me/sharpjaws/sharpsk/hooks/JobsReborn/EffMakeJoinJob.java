@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffMakeJoinJob extends Effect {
+class EffMakeJoinJob extends Effect {
 	private Expression<Player> player;
 	private Expression<Job> j;
 
@@ -35,7 +35,7 @@ public class EffMakeJoinJob extends Effect {
 		JobsPlayer p = Jobs.getPlayerManager().getJobsPlayer(player.getSingle(e));
 		try {
 			Jobs.getPlayerManager().joinJob(p, j.getSingle(e));
-		} catch (NullPointerException localNullPointerException) {
+		} catch (NullPointerException ignored) {
 		}
 	}
 }

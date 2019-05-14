@@ -10,7 +10,7 @@ import ru.beykerykt.lightapi.events.SetLightEvent;
 
 import javax.annotation.Nullable;
 
-public class ExprEvtLightLevel extends SimpleExpression<Number> {
+class ExprEvtLightLevel extends SimpleExpression<Number> {
 
 	@Override
 	public Class<? extends Number> getReturnType() {

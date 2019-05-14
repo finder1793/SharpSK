@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffmcMMORemoveFromParty extends Effect {
+class EffmcMMORemoveFromParty extends Effect {
 	private Expression<Player> p;
 
 	@SuppressWarnings("unchecked")

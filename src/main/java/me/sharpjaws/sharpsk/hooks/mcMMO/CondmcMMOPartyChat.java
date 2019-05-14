@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondmcMMOPartyChat extends Condition {
+class CondmcMMOPartyChat extends Condition {
 	private Expression<Player> p;
 
 	@SuppressWarnings("unchecked")

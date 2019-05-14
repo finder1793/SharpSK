@@ -12,7 +12,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class ExprKingdomsKingOfKingdom extends SimpleExpression<OfflinePlayer> {
+class ExprKingdomsKingOfKingdom extends SimpleExpression<OfflinePlayer> {
 
 	private GameManagement kman;
 	private Expression<String> kingdom;

@@ -16,11 +16,11 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class EffLuckPermsSetPerm extends Effect {
+class EffLuckPermsSetPerm extends Effect {
 	private Expression<OfflinePlayer> offplayer;
 	private Expression<String> perm;
 	private Expression<Boolean> bool;
-	int mark;
+	private int mark;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -45,7 +45,7 @@ public class EffLuckPermsSetPerm extends Effect {
 		}
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
 		Consumer<User> action = new Consumer<User>() {
-			Node pn = api.get().getNodeFactory().newBuilder(perm.getSingle(e)).setValue(bool.getSingle(e)).build();
+			final Node pn = api.get().getNodeFactory().newBuilder(perm.getSingle(e)).setValue(bool.getSingle(e)).build();
 
 			@Override
 			public void accept(User t) {

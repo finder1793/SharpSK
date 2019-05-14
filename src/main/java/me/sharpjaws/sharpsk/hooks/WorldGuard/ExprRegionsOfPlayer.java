@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 
-public class ExprRegionsOfPlayer extends SimpleExpression<String> {
+class ExprRegionsOfPlayer extends SimpleExpression<String> {
 	private Expression<OfflinePlayer> player;
 	private Expression<World> wo;
 
@@ -63,13 +63,13 @@ public class ExprRegionsOfPlayer extends SimpleExpression<String> {
 		} else {
 			wpl = wg.wrapOfflinePlayer(player.getSingle(e));
 		}
-		ArrayList<String> pregions = new ArrayList<String>();
+		ArrayList<String> pregions = new ArrayList<>();
 		for (Entry<String, ProtectedRegion> reg : regionManager.getRegions().entrySet()) {
 			if (reg.getValue().isMember(wpl)) {
 				pregions.add(reg.getValue().getId());
 			}
 		}
-		return pregions.toArray(new String[pregions.size()]);
+		return pregions.toArray(new String[0]);
 
 	}
 

@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprTownyEventTown extends SimpleExpression<String> {
+class ExprTownyEventTown extends SimpleExpression<String> {
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -46,31 +46,30 @@ public class ExprTownyEventTown extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		if (e.getEventName().equals("TownAddResidentEvent")) {
-			return new String[] { ((TownAddResidentEvent) e).getTown().getName() };
-		} else if (e.getEventName().equals("TownRemoveResidentEvent")) {
-			return new String[] { ((TownRemoveResidentEvent) e).getTown().getName() };
-		} else if (e.getEventName().equals("RenameTownEvent")) {
-			return new String[] { ((RenameTownEvent) e).getTown().getName() };
-		} else if (e.getEventName().equals("DeleteTownEvent")) {
-			return new String[] { ((DeleteTownEvent) e).getTownName() };
-		} else if (e.getEventName().equals("NewTownEvent")) {
-			return new String[] { ((NewTownEvent) e).getTown().getName() };
-		} else if (e.getEventName().equals("TownClaimEvent")) {
-			try {
-				return new String[] { ((TownClaimEvent) e).getTownBlock().getTown().getName() };
-			} catch (NotRegisteredException e1) {
-				return new String[] {};
-			}
-		} else if (e.getEventName().equals("TownUnclaimEvent")) {
-			return new String[] { ((TownUnclaimEvent) e).getTown().getName() };
-		} else if (e.getEventName().equals("TownAddResidentEvent")) {
-			return new String[] { ((TownAddResidentEvent) e).getTown().getName() };
-		} else if (e.getEventName().equals("NationAddTownEvent")) {
-			return new String[] { ((NationAddTownEvent) e).getTown().getName() };
-		} else if (e.getEventName().equals("NationRemoveTownEvent")) {
-			return new String[] { ((NationRemoveTownEvent) e).getTown().getName() };
-		}
+        switch (e.getEventName()) {
+            case "TownAddResidentEvent":
+                return new String[]{((TownAddResidentEvent) e).getTown().getName()};
+            case "TownRemoveResidentEvent":
+                return new String[]{((TownRemoveResidentEvent) e).getTown().getName()};
+            case "RenameTownEvent":
+                return new String[]{((RenameTownEvent) e).getTown().getName()};
+            case "DeleteTownEvent":
+                return new String[]{((DeleteTownEvent) e).getTownName()};
+            case "NewTownEvent":
+                return new String[]{((NewTownEvent) e).getTown().getName()};
+            case "TownClaimEvent":
+                try {
+                    return new String[]{((TownClaimEvent) e).getTownBlock().getTown().getName()};
+                } catch (NotRegisteredException e1) {
+                    return new String[]{};
+                }
+            case "TownUnclaimEvent":
+                return new String[]{((TownUnclaimEvent) e).getTown().getName()};
+            case "NationAddTownEvent":
+                return new String[]{((NationAddTownEvent) e).getTown().getName()};
+            case "NationRemoveTownEvent":
+                return new String[]{((NationRemoveTownEvent) e).getTown().getName()};
+        }
 		return null;
 	}
 

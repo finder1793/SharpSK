@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprEvtParty extends SimpleExpression<String> {
+class ExprEvtParty extends SimpleExpression<String> {
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -39,13 +39,14 @@ public class ExprEvtParty extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		if (e.getEventName().equals("McMMOPartyChatEvent")) {
-			return new String[] { ((McMMOPartyChatEvent) e).getParty() };
-		} else if (e.getEventName().equals("McMMOPartyLevelUpEvent")) {
-			return new String[] { ((McMMOPartyLevelUpEvent) e).getParty().getName() };
-		} else if (e.getEventName().equals("McMMOPartyXpGainEvent")) {
-			return new String[] { ((McMMOPartyXpGainEvent) e).getParty().getName() };
-		}
+        switch (e.getEventName()) {
+            case "McMMOPartyChatEvent":
+                return new String[]{((McMMOPartyChatEvent) e).getParty()};
+            case "McMMOPartyLevelUpEvent":
+                return new String[]{((McMMOPartyLevelUpEvent) e).getParty().getName()};
+            case "McMMOPartyXpGainEvent":
+                return new String[]{((McMMOPartyXpGainEvent) e).getParty().getName()};
+        }
 		return null;
 	}
 

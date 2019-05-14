@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprmcMMOSkillLevelReXP extends SimpleExpression<Integer> {
+class ExprmcMMOSkillLevelReXP extends SimpleExpression<Integer> {
 	private Expression<OfflinePlayer> p;
 	private Expression<SkillType> s;
 

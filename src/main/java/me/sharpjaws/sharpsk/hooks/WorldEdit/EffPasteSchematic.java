@@ -18,12 +18,11 @@ import org.bukkit.event.Event;
 import java.io.File;
 import java.util.regex.Matcher;
 
-public class EffPasteSchematic extends Effect {
+class EffPasteSchematic extends Effect {
 	private Expression<?> name;
 	private Expression<?> loc;
 	private Expression<?> exair;
 	private Expression<Number> angle;
-	private int mark = 0;
 
 	@SuppressWarnings("unchecked")
 	public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, SkriptParser.ParseResult Result) {
@@ -31,7 +30,6 @@ public class EffPasteSchematic extends Effect {
 		loc = expression[1];
 		exair = expression[2];
 		angle = (Expression<Number>) expression[3];
-		mark = Result.mark;
 		return true;
 	}
 
@@ -78,7 +76,7 @@ public class EffPasteSchematic extends Effect {
 		}
 	}
 
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings({"deprecation", "UnusedReturnValue"})
 	private static boolean paste(String f, Location loc, Boolean exair, SchemFacingDirection facing) throws Exception {
 		File file;
 
@@ -88,7 +86,7 @@ public class EffPasteSchematic extends Effect {
 			file = new File(
 
 					("plugins/WorldEdit/schematics/" + (f.contains(".") ? f
-							: new StringBuilder(f).append(".schematic").toString())).replaceAll("/",
+							: f + ".schematic")).replaceAll("/",
 									Matcher.quoteReplacement(File.separator)));
 		}
 		Vector v = new Vector(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());

@@ -1,5 +1,6 @@
 package com.codingforcookies.armorequip;
 
+import com.codingforcookies.armorequip.ArmorunEquipEvent.EquipMethod;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,8 +12,6 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerItemBreakEvent;
 import org.bukkit.inventory.ItemStack;
-
-import com.codingforcookies.armorequip.ArmorunEquipEvent.EquipMethod;
 
 /**
  * @Author Made by Borlea Fixed by Sharpjaws
@@ -27,7 +26,7 @@ public class ArmorunEquipListener implements Listener {
 		boolean shift = false, numberkey = false;
 		if (e.isCancelled())
 			return;
-		if (!e.getInventory().equals(InventoryType.CREATIVE)) {
+		if (e.getInventory().getType() != InventoryType.CREATIVE) {
 			if (e.getClick().equals(ClickType.SHIFT_LEFT) || e.getClick().equals(ClickType.SHIFT_RIGHT)) {
 				shift = true;
 			}
@@ -48,7 +47,6 @@ public class ArmorunEquipListener implements Listener {
 
 			}
 
-		} else {
 		}
 
 	}

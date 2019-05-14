@@ -8,10 +8,10 @@ public class TimerHandler implements Runnable {
 
 	// Class implemented as a workaround for avoiding async problems in timers that
 	// are running synchronously.
-	String timername;
-	int timercountdown;
-	int timert;
-	int type;
+    private final String timername;
+	private final int timercountdown;
+	private final int timert;
+	private final int type;
 
 	public TimerHandler(String Tname, int Countdown, int type, int timertype) {
 		timername = Tname;

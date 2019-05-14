@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 
-public class ExprRegionAt extends SimpleExpression<String> {
+class ExprRegionAt extends SimpleExpression<String> {
 	private Expression<Location> loc;
 
 	@SuppressWarnings("unchecked")
@@ -29,7 +29,7 @@ public class ExprRegionAt extends SimpleExpression<String> {
 		for (ProtectedRegion reg : regionManager.getApplicableRegions(loc)) {
 
 			if (reg.contains(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())) {
-				a = reg.getId().toString();
+				a = reg.getId();
 			}
 		}
 		return new String[] { a };

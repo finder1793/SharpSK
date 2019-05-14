@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprTownyTownAtLocation extends SimpleExpression<String> {
+class ExprTownyTownAtLocation extends SimpleExpression<String> {
 
 	private Expression<Location> loc;
 

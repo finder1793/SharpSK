@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffmcMMOPartyMsg extends Effect {
+class EffmcMMOPartyMsg extends Effect {
 	private Expression<String> s;
 	private Expression<String> s2;
 	private Expression<String> s3;
@@ -35,8 +35,7 @@ public class EffmcMMOPartyMsg extends Effect {
 		try {
 			ChatAPI.sendPartyChat(Bukkit.getPluginManager().getPlugin("SharpSK"), s3.getSingle(e), s2.getSingle(e),
 					s.getSingle(e));
-		} catch (NullPointerException ex) {
-			return;
-		}
+		} catch (NullPointerException ignored) {
+        }
 	}
 }

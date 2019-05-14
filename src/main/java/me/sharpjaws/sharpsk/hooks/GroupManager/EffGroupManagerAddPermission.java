@@ -16,7 +16,7 @@ import org.bukkit.plugin.Plugin;
 import javax.annotation.Nullable;
 import java.util.Map.Entry;
 
-public class EffGroupManagerAddPermission extends Effect {
+class EffGroupManagerAddPermission extends Effect {
 	private Expression<OfflinePlayer> player;
 	private Expression<String> perm;
 	private Expression<World> world;
@@ -54,7 +54,7 @@ public class EffGroupManagerAddPermission extends Effect {
 			handler = GM.getWorldsHolder().getWorldData(world.getSingle(e).getName());
 		}
 		for (Entry<String, User> a : handler.getUsers().entrySet()) {
-			if (player.getSingle(e).getUniqueId().toString().equals(a.getValue().getUUID().toString())) {
+			if (player.getSingle(e).getUniqueId().toString().equals(a.getValue().getUUID())) {
 				a.getValue().addPermission(perm.getSingle(e));
 				a.getValue().setLastName(player.getSingle(e).getName());
 				break;

@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class ExprKingdomsMembersOfKingdom extends SimpleExpression<OfflinePlayer> {
+class ExprKingdomsMembersOfKingdom extends SimpleExpression<OfflinePlayer> {
 	private Expression<String> kingdom;
 	private GameManagement kman;
 
@@ -39,13 +39,13 @@ public class ExprKingdomsMembersOfKingdom extends SimpleExpression<OfflinePlayer
 	@Nullable
 	protected OfflinePlayer[] get(Event e) {
 
-		ArrayList<OfflinePlayer> narr = new ArrayList<OfflinePlayer>();
+		ArrayList<OfflinePlayer> narr = new ArrayList<>();
 		for (UUID u : GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getMembersList()) {
 
 			narr.add(Bukkit.getOfflinePlayer(u));
 		}
 
-		return narr.toArray(new OfflinePlayer[narr.size()]);
+		return narr.toArray(new OfflinePlayer[0]);
 
 	}
 

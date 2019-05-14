@@ -14,7 +14,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class EffLuckPermsCreateGroup extends Effect {
+class EffLuckPermsCreateGroup extends Effect {
 	private Expression<String> group;
 	private Expression<String> perms;
 
@@ -54,6 +54,8 @@ public class EffLuckPermsCreateGroup extends Effect {
 						// Not in catch clause to not cause classpath errors
 						if (ex instanceof ObjectAlreadyHasException || ex instanceof  IllegalArgumentException)
 							return;
+						else
+							throw new RuntimeException(ex);
 					}
 				}
 			}

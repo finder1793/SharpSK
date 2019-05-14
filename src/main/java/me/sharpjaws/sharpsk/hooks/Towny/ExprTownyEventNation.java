@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprTownyEventNation extends SimpleExpression<String> {
+class ExprTownyEventNation extends SimpleExpression<String> {
 
 	@Override
 	public Class<? extends String> getReturnType() {
@@ -39,17 +39,18 @@ public class ExprTownyEventNation extends SimpleExpression<String> {
 	@Override
 	@Nullable
 	protected String[] get(Event e) {
-		if (e.getEventName().equals("RenameNationEvent")) {
-			return new String[] { ((RenameNationEvent) e).getNation().getName() };
-		} else if (e.getEventName().equals("DeleteNationEvent")) {
-			return new String[] { ((DeleteNationEvent) e).getNationName() };
-		} else if (e.getEventName().equals("NewNationEvent")) {
-			return new String[] { ((NewNationEvent) e).getNation().getName() };
-		} else if (e.getEventName().equals("NationAddTownEvent")) {
-			return new String[] { ((NationAddTownEvent) e).getNation().getName() };
-		} else if (e.getEventName().equals("NationRemoveTownEvent")) {
-			return new String[] { ((NationRemoveTownEvent) e).getNation().getName() };
-		}
+        switch (e.getEventName()) {
+            case "RenameNationEvent":
+                return new String[]{((RenameNationEvent) e).getNation().getName()};
+            case "DeleteNationEvent":
+                return new String[]{((DeleteNationEvent) e).getNationName()};
+            case "NewNationEvent":
+                return new String[]{((NewNationEvent) e).getNation().getName()};
+            case "NationAddTownEvent":
+                return new String[]{((NationAddTownEvent) e).getNation().getName()};
+            case "NationRemoveTownEvent":
+                return new String[]{((NationRemoveTownEvent) e).getNation().getName()};
+        }
 		return null;
 	}
 

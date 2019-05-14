@@ -32,7 +32,7 @@ public class mcMMORegistry {
 		Boolean failed = false;
 
 		try {
-			Classes.registerClass(new ClassInfo<SkillType>(SkillType.class, "skilltype").name("SkillType")
+			Classes.registerClass(new ClassInfo<>(SkillType.class, "skilltype").name("SkillType")
 					.parser(new Parser<SkillType>() {
 
 						@Override
@@ -64,7 +64,7 @@ public class mcMMORegistry {
 						public String toVariableNameString(SkillType skilltype) {
 							return skilltype.name().replace("_", " ").toUpperCase();
 						}
-					}).serializer(new EnumSerializer<SkillType>(SkillType.class)).user("skill ?types?"));
+					}).serializer(new EnumSerializer<>(SkillType.class)).user("skill ?types?"));
 
 			Converters.registerConverter(SkillType.class, String.class, new Converter<SkillType, String>() {
 
@@ -131,7 +131,7 @@ public class mcMMORegistry {
 		}
 
 		try {
-			Classes.registerClass(new ClassInfo<AbilityType>(AbilityType.class, "abilitytype").name("AbilityType")
+			Classes.registerClass(new ClassInfo<>(AbilityType.class, "abilitytype").name("AbilityType")
 					.parser(new Parser<AbilityType>() {
 
 						@Override
@@ -164,9 +164,9 @@ public class mcMMORegistry {
 							return abilitytype.name().replace("_", " ").toUpperCase();
 						}
 
-					}).serializer(new EnumSerializer<AbilityType>(AbilityType.class)).user("ability ?types?"));
+					}).serializer(new EnumSerializer<>(AbilityType.class)).user("ability ?types?"));
 
-		} catch (IllegalArgumentException ex) {
+		} catch (IllegalArgumentException ignored) {
 
 		}
 
@@ -207,8 +207,7 @@ public class mcMMORegistry {
 					@Override
 					@Nullable
 					public Player get(McMMOPlayerLevelUpEvent e) {
-						Player p = e.getPlayer();
-						return p;
+						return e.getPlayer();
 					}
 				}, 0);
 		EventValues.registerEventValue(McMMOPlayerLevelUpEvent.class, Number.class,

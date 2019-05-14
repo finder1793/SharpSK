@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprEvtSkillType extends SimpleExpression<SkillType> {
+class ExprEvtSkillType extends SimpleExpression<SkillType> {
 
 	@Override
 	public Class<? extends SkillType> getReturnType() {

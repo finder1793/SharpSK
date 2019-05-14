@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprJobsofPlayer extends SimpleExpression<Job> {
+class ExprJobsofPlayer extends SimpleExpression<Job> {
 	private Expression<OfflinePlayer> p;
 
 	@Override
@@ -41,7 +41,7 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 	@Override
 	@Nullable
 	protected Job[] get(Event e) {
-		ArrayList<Job> a = new ArrayList<Job>();
+		ArrayList<Job> a = new ArrayList<>();
 		if (!a.isEmpty()) {
 			a.clear();
 		}
@@ -66,7 +66,7 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
 		} catch (NullPointerException ex) {
 			return new Job[] {};
 		}
-		return a.toArray(new Job[a.size()]);
+		return a.toArray(new Job[0]);
 
 	}
 

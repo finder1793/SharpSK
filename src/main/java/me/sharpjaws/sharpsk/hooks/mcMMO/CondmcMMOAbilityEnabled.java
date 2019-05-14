@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondmcMMOAbilityEnabled extends Condition {
+class CondmcMMOAbilityEnabled extends Condition {
 	private Expression<OfflinePlayer> p;
 	private Expression<AbilityType> ability;
 

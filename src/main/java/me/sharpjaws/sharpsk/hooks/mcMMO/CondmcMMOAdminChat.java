@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondmcMMOAdminChat extends Condition {
+class CondmcMMOAdminChat extends Condition {
 	private Expression<Player> p;
 
 	@SuppressWarnings("unchecked")

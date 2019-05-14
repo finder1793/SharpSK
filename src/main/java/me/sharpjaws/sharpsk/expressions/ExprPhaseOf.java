@@ -40,7 +40,7 @@ public class ExprPhaseOf extends SimpleExpression<Phase> {
 		return "phase of dragon in %world%";
 	}
 
-	protected EnderDragon.Phase GetPhase(Event e) {
+	private EnderDragon.Phase GetPhase(Event e) {
 		World w1 = w.getSingle(e);
 		List<Entity> entities = w1.getEntities();
 		EnderDragon enderDragon = null;
@@ -54,7 +54,7 @@ public class ExprPhaseOf extends SimpleExpression<Phase> {
 		return p;
 	}
 
-	protected EnderDragon GetDragon(Event e) {
+	private EnderDragon GetDragon(Event e) {
 		World w1 = w.getSingle(e);
 		List<Entity> entities = w1.getEntities();
 		EnderDragon enderDragon = null;

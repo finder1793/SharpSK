@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprmcMMOAllParties extends SimpleExpression<String> {
+class ExprmcMMOAllParties extends SimpleExpression<String> {
 
 	@Override
 	public boolean isSingle() {
@@ -44,7 +44,7 @@ public class ExprmcMMOAllParties extends SimpleExpression<String> {
 				parties.add(p.getName());
 			}
 		}
-		return parties.toArray(new String[parties.size()]);
+		return parties.toArray(new String[0]);
 	}
 
 }

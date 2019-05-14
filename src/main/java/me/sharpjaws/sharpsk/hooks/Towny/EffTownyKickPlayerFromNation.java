@@ -13,7 +13,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffTownyKickPlayerFromNation extends Effect {
+class EffTownyKickPlayerFromNation extends Effect {
 	private Expression<String> s;
 	private Expression<OfflinePlayer> p;
 
@@ -39,14 +39,12 @@ public class EffTownyKickPlayerFromNation extends Effect {
 		try {
 			TownyUniverse.getDataSource().getTown(s.getSingle(e))
 					.removeResident(TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()));
-		} catch (EmptyTownException ex1) {
-			return;
+		} catch (EmptyTownException ignored) {
 
 		} catch (NotRegisteredException ex2) {
 			core.getLogger().warning("Could not kick resident: " + "\"" + p.getSingle(e).getName() + "\""
 					+ " from town " + "\"" + s.getSingle(e) + "\"");
 			core.getLogger().warning("Resident is not in town: " + "\"" + s.getSingle(e) + "\"");
-			return;
 		}
 
 	}

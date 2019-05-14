@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondPlayerInJob extends Condition {
+class CondPlayerInJob extends Condition {
 
 	private Expression<Player> p;
 	private Expression<Job> j;
@@ -31,8 +31,7 @@ public class CondPlayerInJob extends Condition {
 
 	@Override
 	public boolean check(Event e) {
-		boolean bool = Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e)).isInJob(j.getSingle(e));
 
-		return bool;
+        return Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e)).isInJob(j.getSingle(e));
 	}
 }

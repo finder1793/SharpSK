@@ -13,7 +13,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class EffJoinAllJobs extends Effect {
+class EffJoinAllJobs extends Effect {
 	private Expression<Player> player;
 
 	@SuppressWarnings("unchecked")

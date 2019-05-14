@@ -16,7 +16,7 @@ import org.inventivetalent.glow.GlowAPI;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class ExprGlowingColorOf extends SimpleExpression<GlowAPI.Color> {
+class ExprGlowingColorOf extends SimpleExpression<GlowAPI.Color> {
 	private Expression<Entity> en;
 
 	@Override
@@ -59,10 +59,9 @@ public class ExprGlowingColorOf extends SimpleExpression<GlowAPI.Color> {
 				Player p2 = (Player) Bukkit.getServer().getOnlinePlayers().toArray()[random];
 				try {
 					c = GlowAPI.getGlowColor(en.getSingle(e), p2);
-				} catch (NullPointerException ex) {
+				} catch (NullPointerException ignored) {
 
 				}
-			} else if (en.getSingle(e).getType() == null) {
 			}
 		} catch (NullPointerException ex) {
 			c = GlowAPI.Color.NONE;
@@ -83,7 +82,7 @@ public class ExprGlowingColorOf extends SimpleExpression<GlowAPI.Color> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { GlowAPI.Color.class });
+			return CollectionUtils.array(GlowAPI.Color.class);
 		return null;
 	}
 }

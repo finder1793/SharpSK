@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nullable;
 import java.sql.SQLException;
 
-public class EffQueueLog extends Effect {
+class EffQueueLog extends Effect {
 	private Expression<Player> player;
 	private Expression<Location> loc;
 	private Expression<ItemStack> previ;
@@ -80,7 +80,7 @@ public class EffQueueLog extends Effect {
 						oldstate2 = bc.data;
 						break;
 					}
-				} catch (SQLException ex) {
+				} catch (SQLException ignored) {
 
 				}
 				con.queueBlockReplace(a, loc.getSingle(e), oldstate, oldstate2, loc.getSingle(e).getBlock().getTypeId(),

@@ -22,7 +22,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffSaveSelectionToClipboard extends Effect {
+class EffSaveSelectionToClipboard extends Effect {
 	private Expression<Location> point1;
 	private Expression<Location> point2;
 	private Expression<Location> origin;
@@ -71,8 +71,7 @@ public class EffSaveSelectionToClipboard extends Effect {
 		} catch (WorldEditException e1) {
 			SharpSK core = SharpSK.instance;
 			core.getLogger().warning("Failed to save selection. Something went wrong");
-			return;
-		}
+        }
 
 	}
 }

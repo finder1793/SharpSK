@@ -12,7 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.event.Event;
 
-public class EffCreateRegion extends Effect {
+class EffCreateRegion extends Effect {
 	private Expression<?> name;
 	private Expression<?> loc1;
 	private Expression<?> loc2;

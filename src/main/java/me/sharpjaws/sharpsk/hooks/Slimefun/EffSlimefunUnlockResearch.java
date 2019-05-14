@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffSlimefunUnlockResearch extends Effect {
+class EffSlimefunUnlockResearch extends Effect {
 	private Expression<String> rs;
 	private Expression<Player> pl;
 

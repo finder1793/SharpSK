@@ -14,7 +14,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
+class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
 
 	private Expression<String> town;
 
@@ -59,16 +59,15 @@ public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
 			try {
 				TownyUniverse.getDataSource().getTown(town.getSingle(e))
 						.setMayor(TownyUniverse.getDataSource().getResident(((OfflinePlayer) delta[0]).getName()));
-			} catch (TownyException e1) {
-				return;
-			}
+			} catch (TownyException ignored) {
+            }
 		}
 	}
 
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(new Class[] { OfflinePlayer.class });
+			return CollectionUtils.array(OfflinePlayer.class);
 		}
 		return null;
 	}

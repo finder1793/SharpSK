@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 public class EvtTimerComplete extends Event implements Cancellable {
 	private static final HandlerList h = new HandlerList();
 	private boolean cancelled = false;
-	private String timer;
+	private final String timer;
 
 	public EvtTimerComplete(String timer) {
 		cancelled = false;

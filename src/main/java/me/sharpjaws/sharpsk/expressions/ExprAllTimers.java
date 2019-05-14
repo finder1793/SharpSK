@@ -45,7 +45,7 @@ public class ExprAllTimers extends SimpleExpression<String> {
 
 			}
 		}
-		return timers.toArray(new String[timers.size()]);
+		return timers.toArray(new String[0]);
 	}
 
 }

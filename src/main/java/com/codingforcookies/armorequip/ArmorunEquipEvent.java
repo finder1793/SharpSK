@@ -19,7 +19,7 @@ public final class ArmorunEquipEvent extends PlayerEvent implements Cancellable 
 	private boolean cancel = false;
 	private final EquipMethod equipType;
 	private final ArmorType type;
-	private ItemStack item;
+	private final ItemStack item;
 
 	/**
 	 * Constructor for the ArmorEquipEvent.

@@ -11,7 +11,7 @@ import com.sk89q.worldguard.protection.managers.RemovalStrategy;
 import org.bukkit.World;
 import org.bukkit.event.Event;
 
-public class EffDeleteRegion extends Effect {
+class EffDeleteRegion extends Effect {
 	private Expression<?> name;
 	private Expression<?> world;
 

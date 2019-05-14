@@ -19,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import javax.annotation.Nullable;
 import java.util.Map.Entry;
 
-public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
+class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
 	private Expression<String> flag;
 	private Expression<String> region;
 	private Expression<World> world;

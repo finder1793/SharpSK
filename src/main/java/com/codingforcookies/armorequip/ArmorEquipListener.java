@@ -69,7 +69,7 @@ public class ArmorEquipListener implements Listener {
 				try {
 					if (!e.getClickedInventory().getType().equals(InventoryType.PLAYER))
 						return;
-				} catch (NoSuchMethodError ex) {
+				} catch (NoSuchMethodError ignored) {
 
 				}
 				newArmorType = ArmorType.matchType(e.getCurrentItem());
@@ -172,15 +172,13 @@ public class ArmorEquipListener implements Listener {
 									|| e.getClickedBlock().getType().equals(Material.FURNACE))
 								return;
 						}
-						ArmorEquipEvent armorEquipEvent = new ArmorEquipEvent((Player) e.getPlayer(),
+						ArmorEquipEvent armorEquipEvent = new ArmorEquipEvent(e.getPlayer(),
 								EquipMethod.HOTBAR, newArmorType, e.getItem());
 						Bukkit.getServer().getPluginManager().callEvent(armorEquipEvent);
 						if (armorEquipEvent.isCancelled()) {
 							e.setCancelled(true);
 							final Player player = e.getPlayer();
 							player.updateInventory();
-						} else {
-							return;
 						}
 					}
 				}

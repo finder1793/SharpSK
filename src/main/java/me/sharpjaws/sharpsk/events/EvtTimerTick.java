@@ -6,9 +6,9 @@ import org.bukkit.event.HandlerList;
 public class EvtTimerTick extends Event {
 	private static final HandlerList h = new HandlerList();
 
-	private String timer;
-	private int timeleft;
-	private int timertype;
+	private final String timer;
+	private final int timeleft;
+	private final int timertype;
 
 	public EvtTimerTick(String timer, int timeleft, int timertype) {
 		this.timer = timer;

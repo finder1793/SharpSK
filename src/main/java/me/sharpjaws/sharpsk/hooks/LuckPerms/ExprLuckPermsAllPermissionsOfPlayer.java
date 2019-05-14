@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String> {
+class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String> {
 	private Expression<Player> pl;
-	int mark;
+	private int mark;
 
 	@Override
 	public boolean isSingle() {
@@ -50,22 +50,17 @@ public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String
 		if (pl.getSingle(e) == null) {
 			return new String[perms.size()];
 		}
-		Consumer<User> action = new Consumer<User>() {
+		Consumer<User> action = t -> {
 
-			@Override
-			public void accept(User t) {
-
-				if (mark == -1) {
-					for (Node n : t.getTransientPermissions()) {
-						perms.add(n.getPermission());
-					}
-				} else {
-					for (Node n : t.getPermanentPermissionNodes()) {
-						perms.add(n.getPermission());
-					}
+			if (mark == -1) {
+				for (Node n : t.getTransientPermissions()) {
+					perms.add(n.getPermission());
+				}
+			} else {
+				for (Node n : t.getPermanentPermissionNodes()) {
+					perms.add(n.getPermission());
 				}
 			}
-
 		};
 		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
 		User user = api.get().getUser(pl.getSingle(e).getUniqueId());
@@ -73,7 +68,7 @@ public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String
 			action.accept(user);
 		}
 
-		return perms.toArray(new String[perms.size()]);
+		return perms.toArray(new String[0]);
 	}
 
 }

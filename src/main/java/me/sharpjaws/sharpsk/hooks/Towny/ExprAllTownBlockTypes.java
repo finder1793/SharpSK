@@ -10,9 +10,9 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-public class ExprAllTownBlockTypes extends SimpleExpression<TownBlockType> {
+class ExprAllTownBlockTypes extends SimpleExpression<TownBlockType> {
 
-	boolean townblocktype;
+	private boolean townblocktype;
 
 	@Override
 	public boolean isSingle() {
@@ -46,7 +46,7 @@ public class ExprAllTownBlockTypes extends SimpleExpression<TownBlockType> {
 				townblocktypes.add(t);
 			}
 		}
-		return townblocktypes.toArray(new TownBlockType[townblocktypes.size()]);
+		return townblocktypes.toArray(new TownBlockType[0]);
 	}
 
 	@Override

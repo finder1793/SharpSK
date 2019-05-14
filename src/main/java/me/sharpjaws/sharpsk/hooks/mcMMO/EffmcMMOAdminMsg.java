@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffmcMMOAdminMsg extends Effect {
+class EffmcMMOAdminMsg extends Effect {
 	private Expression<String> s;
 	private Expression<String> s2;
 

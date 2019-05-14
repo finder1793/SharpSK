@@ -14,7 +14,7 @@ import org.bukkit.util.EulerAngle;
 
 import javax.annotation.Nullable;
 
-public class ExprstandHead extends SimpleExpression<Location> {
+class ExprstandHead extends SimpleExpression<Location> {
 	private Expression<Entity> en;
 
 	@Override
@@ -49,7 +49,7 @@ public class ExprstandHead extends SimpleExpression<Location> {
 			arstand1 = (ArmorStand) en.getSingle(e);
 		}
 
-		return new Location[] { (Location) arstand1.getEyeLocation() };
+		return new Location[] {arstand1.getEyeLocation()};
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ExprstandHead extends SimpleExpression<Location> {
 					arstand.setHeadPose(a);
 
 				}
-			} catch (NullPointerException ex) {
+			} catch (NullPointerException ignored) {
 
 			}
 
@@ -77,9 +77,9 @@ public class ExprstandHead extends SimpleExpression<Location> {
 	@Override
 	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
 		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(new Class[] { Location.class });
+			return CollectionUtils.array(Location.class);
 		if (mode == Changer.ChangeMode.ADD)
-			return CollectionUtils.array(new Class[] { Location.class });
+			return CollectionUtils.array(Location.class);
 		return null;
 	}
 }

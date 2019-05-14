@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class EffAuthForceRegister extends Effect {
+class EffAuthForceRegister extends Effect {
 	private Expression<Player> player;
 	private Expression<String> pass;
 

@@ -10,7 +10,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-public class CondmcMMOSameParty extends Condition {
+class CondmcMMOSameParty extends Condition {
 	private Expression<Player> p;
 	private Expression<Player> p2;
 

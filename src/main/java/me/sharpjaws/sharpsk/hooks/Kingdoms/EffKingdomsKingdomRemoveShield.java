@@ -9,7 +9,7 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-public class EffKingdomsKingdomRemoveShield extends Effect {
+class EffKingdomsKingdomRemoveShield extends Effect {
 	private Expression<String> k;
 
 	@SuppressWarnings("unchecked")
@@ -30,9 +30,8 @@ public class EffKingdomsKingdomRemoveShield extends Effect {
 
 		try {
 			GameManagement.getKingdomManager().getOrLoadKingdom(k.getSingle(e)).giveShield();
-		} catch (NullPointerException ex) {
-			return;
+		} catch (NullPointerException ignored) {
 
-		}
+        }
 	}
 }
