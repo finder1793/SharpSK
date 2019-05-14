@@ -8,7 +8,7 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.Main;
+import me.sharpjaws.sharpSK.SharpSK;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 import org.bukkit.Bukkit;
@@ -65,7 +65,7 @@ public class EffTimerStop extends Effect {
 
 			}
 		} catch (NullPointerException ex2) {
-			Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger().warning(
 					"Timer " + "\"" + timer.getSingle(e) + "\"" + " could not be stopped because it does not exist.");
 		}

@@ -10,7 +10,7 @@ import com.sk89q.worldguard.protection.flags.*;
 import com.sk89q.worldguard.protection.flags.StateFlag.State;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-import me.sharpjaws.sharpSK.Main;
+import me.sharpjaws.sharpSK.SharpSK;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.event.Event;
@@ -96,7 +96,7 @@ public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
 
 	@Override
 	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		JavaPlugin mainp = Main.plugin;
+		JavaPlugin mainp = SharpSK.plugin;
 		Flag<?> fl = null;
 
 		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");

@@ -9,7 +9,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.util.Timespan;
 import ch.njol.util.Kleenean;
-import me.sharpjaws.sharpSK.Main;
+import me.sharpjaws.sharpSK.SharpSK;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
 import org.bukkit.Bukkit;
@@ -54,7 +54,7 @@ public class EffTimerCreate extends Effect {
 			if (t instanceof CTimerThread && t.isAlive()) {
 				CTimerThread ti = (CTimerThread) t;
 				if (ti.getName().equals(timer)) {
-					Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 					core.getLogger().warning("Timer " + "\"" + s.getSingle(e) + "\""
 							+ " could not be created because a timer already exists with that name.");
 					return;
@@ -62,7 +62,7 @@ public class EffTimerCreate extends Effect {
 			} else if (t instanceof CTickTimerThread && t.isAlive()) {
 				CTickTimerThread ti = (CTickTimerThread) t;
 				if (ti.getName().equals(timer)) {
-					Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 					core.getLogger().warning("Timer " + "\"" + s.getSingle(e) + "\""
 							+ " could not be created because a timer already exists with that name.");
 					return;

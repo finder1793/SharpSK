@@ -10,7 +10,7 @@ import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.Nation;
 import com.palmergames.bukkit.towny.object.Town;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
-import me.sharpjaws.sharpSK.Main;
+import me.sharpjaws.sharpSK.SharpSK;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
@@ -39,7 +39,7 @@ public class EffTownyCreateNation extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+		SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 
 		// Nation Generator
 

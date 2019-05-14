@@ -9,7 +9,7 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.data.DataException;
 import com.sk89q.worldedit.schematic.SchematicFormat;
 import com.sk89q.worldedit.session.ClipboardHolder;
-import me.sharpjaws.sharpSK.Main;
+import me.sharpjaws.sharpSK.SharpSK;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -58,12 +58,12 @@ public class EffSaveClipToSchematic extends Effect {
 			editSession.flushQueue();
 
 		} catch (DataException | IOException e1) {
-			Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
 			return;
 		} catch (EmptyClipboardException e1) {
-			Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
 			return;

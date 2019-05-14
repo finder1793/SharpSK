@@ -10,7 +10,7 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.bukkit.BukkitWorld;
 import com.sk89q.worldedit.schematic.SchematicFormat;
-import me.sharpjaws.sharpSK.Main;
+import me.sharpjaws.sharpSK.SharpSK;
 import me.sharpjaws.sharpSK.hooks.WorldEdit.enums.SchemFacingDirection;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -107,7 +107,7 @@ public class EffPasteSchematic extends Effect {
 				if (SchemFacingDirection.getDegree(facing) != -1) {
 					cc.rotate2D(SchemFacingDirection.getDegree(facing));
 				} else {
-					Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+					SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 					core.getLogger().warning("Invalid rotation angle for schematic: " + "\"" + f + "\"");
 					core.getLogger().warning("Valid angles are: 0, 90, 180, 270, 360");
 

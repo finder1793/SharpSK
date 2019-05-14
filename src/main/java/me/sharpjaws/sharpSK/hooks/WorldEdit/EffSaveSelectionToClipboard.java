@@ -14,7 +14,7 @@ import com.sk89q.worldedit.function.operation.ForwardExtentCopy;
 import com.sk89q.worldedit.function.operation.Operations;
 import com.sk89q.worldedit.regions.CuboidRegion;
 import com.sk89q.worldedit.session.ClipboardHolder;
-import me.sharpjaws.sharpSK.Main;
+import me.sharpjaws.sharpSK.SharpSK;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -69,7 +69,7 @@ public class EffSaveSelectionToClipboard extends Effect {
 			Operations.complete(copy);
 
 		} catch (WorldEditException e1) {
-			Main core = (Main) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
 			core.getLogger().warning("Failed to save selection. Something went wrong");
 			return;
 		}

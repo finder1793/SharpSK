@@ -25,7 +25,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class HookManager {
 
 	public void RegisterHooks() {
-		JavaPlugin mainp = Main.plugin;
+		JavaPlugin mainp = SharpSK.plugin;
 		mainp.getLogger().info("Registering available hooks...");
 		if (Bukkit.getPluginManager().getPlugin("Jobs") != null) {
 			if (mainp.getConfig().getBoolean("jobsreborn")) {
