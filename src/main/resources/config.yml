@@ -1,10 +1,7 @@
-cfgver: "1.6.4"
+cfgver: "1.6.5"
 
 # SharpSK Config
 # True to enable plugin hook / False to Disable plugin hook
-metrics: true
-updater: true
-
 
 # Plugin hooks
 permissionsex: true
