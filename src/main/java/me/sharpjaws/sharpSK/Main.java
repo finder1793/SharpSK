@@ -434,9 +434,9 @@ public class Main extends JavaPlugin implements Listener {
 							}
 						}, 0);
 				Skript.registerExpression(ExprEventWorld.class, World.class, ExpressionType.SIMPLE,
-						"[the] [(-1�(past|former)|1�future)] [event-]world");
+						"[the] [(-1¦(past|former)|1¦future)] [event-]world");
 				Skript.registerExpression(ExprEventWorldLoc.class, Location.class, ExpressionType.SIMPLE,
-						"[the] [(-1�(past|former)|1�future)] event-location");
+						"[the] [(-1¦(past|former)|1¦future)] event-location");
 
 				if (this.getConfig().getBoolean("updater")) {
 					getLogger().info("Checking for any updates...");
@@ -570,7 +570,7 @@ public class Main extends JavaPlugin implements Listener {
 
 				// Timers
 				Skript.registerEffect(EffTimerCreate.class,
-						"create (-1�timer|1�timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]");
+						"create (-1¦timer|1¦timer in ticks) %string% for %timespan% [keep active %-boolean%] [[with] (interval|delay) %-timespan% [between ticks]]");
 				Skript.registerEffect(EffTimerStop.class, "stop timer %string%");
 				Skript.registerEffect(EffTimerPause.class, "pause timer %string%");
 				Skript.registerEffect(EffTimerResume.class, "resume timer %string%");

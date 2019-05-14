@@ -9,7 +9,7 @@ public class GroupManagerRegistry {
 		Skript.registerEffect(EffGroupManagerRemovePermission.class,
 				"[sharpsk] (gman|group[ ]manager) (remove|delete) perm[ission] %string% from [player] %offlineplayer% [in [world] %-world%]");
 		Skript.registerEffect(EffGroupManagerSetGroupOfPlayer.class,
-				"[sharpsk] (gman|group[ ]manager) set [Main] group of [player] %offlineplayer% to %string% [in [world] %-world%]");
+				"[sharpsk] (gman|group[ ]manager) set [main] group of [player] %offlineplayer% to %string% [in [world] %-world%]");
 		Skript.registerEffect(EffGroupManagerAddSubGroupToPlayer.class,
 				"[sharpsk] (gman|group[ ]manager) add [sub] group %string% to %offlineplayer% [in [world] %-world%]");
 	}
