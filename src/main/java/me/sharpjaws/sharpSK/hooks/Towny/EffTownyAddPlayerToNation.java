@@ -7,7 +7,6 @@ import ch.njol.util.Kleenean;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 import me.sharpjaws.sharpSK.SharpSK;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
 
@@ -34,7 +33,7 @@ public class EffTownyAddPlayerToNation extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+		SharpSK core = SharpSK.instance;
 
 		try {
 			TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()).setName(nat.getSingle(e));

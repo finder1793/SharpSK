@@ -11,7 +11,6 @@ import ch.njol.util.Kleenean;
 import me.sharpjaws.sharpSK.SharpSK;
 import me.sharpjaws.sharpSK.Threads.CTickTimerThread;
 import me.sharpjaws.sharpSK.Threads.CTimerThread;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
@@ -64,7 +63,7 @@ public class EffTimerResume extends Effect {
 					b.resumeTimer(b.getName());
 			}
 		} catch (NullPointerException ex) {
-			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = SharpSK.instance;
 			core.getLogger().warning(
 					"Timer " + "\"" + timer.getSingle(e) + "\"" + " could not be resumed because it does not exist.");
 		}

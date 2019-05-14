@@ -69,7 +69,7 @@ public class EffFAWEPasteSchematic extends Effect {
 									excludeair, null);
 
 						} catch (IOException e1) {
-							SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+							SharpSK core = SharpSK.instance;
 							core.getLogger().warning("Failed to paste schematic: " + "\"" + name.getSingle(e) + "\""
 									+ " An error occurred");
 							return;

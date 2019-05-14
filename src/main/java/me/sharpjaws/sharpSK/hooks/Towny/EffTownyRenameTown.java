@@ -8,7 +8,6 @@ import com.palmergames.bukkit.towny.exceptions.AlreadyRegisteredException;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 import me.sharpjaws.sharpSK.SharpSK;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
@@ -34,7 +33,7 @@ public class EffTownyRenameTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+		SharpSK core = SharpSK.instance;
 
 		try {
 			try {

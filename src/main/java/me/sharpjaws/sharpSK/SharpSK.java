@@ -66,6 +66,10 @@ public class SharpSK extends JavaPlugin implements Listener {
 	public static JavaPlugin plugin;
 	public static SharpSK instance;
 
+	public SharpSK() {
+		SharpSK.instance = this;
+	}
+
 	/**
 	 * @deprecated just for intellij
 	 *

@@ -10,7 +10,6 @@ import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.object.*;
 import me.sharpjaws.sharpSK.SharpSK;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.Event;
@@ -44,7 +43,7 @@ public class EffTownyCreateTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+		SharpSK core = SharpSK.instance;
 
 		// Town Generator
 

@@ -7,7 +7,6 @@ import ch.njol.util.Kleenean;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import com.palmergames.bukkit.towny.object.TownyUniverse;
 import me.sharpjaws.sharpSK.SharpSK;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
@@ -31,7 +30,7 @@ public class EffTownyDeleteTown extends Effect {
 
 	@Override
 	protected void execute(Event e) {
-		SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+		SharpSK core = SharpSK.instance;
 
 		try {
 			TownyUniverse.getDataSource().removeTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)));

@@ -58,12 +58,12 @@ public class EffSaveClipToSchematic extends Effect {
 			editSession.flushQueue();
 
 		} catch (DataException | IOException e1) {
-			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = SharpSK.instance;
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
 			return;
 		} catch (EmptyClipboardException e1) {
-			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = SharpSK.instance;
 			core.getLogger()
 					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
 			return;

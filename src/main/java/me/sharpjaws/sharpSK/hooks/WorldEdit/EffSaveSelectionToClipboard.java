@@ -69,7 +69,7 @@ public class EffSaveSelectionToClipboard extends Effect {
 			Operations.complete(copy);
 
 		} catch (WorldEditException e1) {
-			SharpSK core = (SharpSK) Bukkit.getPluginManager().getPlugin("SharpSK");
+			SharpSK core = SharpSK.instance;
 			core.getLogger().warning("Failed to save selection. Something went wrong");
 			return;
 		}
