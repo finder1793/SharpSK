@@ -1,14 +1,5 @@
 package me.sharpjaws.sharpSK.hooks.LuckPerms;
 
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.function.Consumer;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
@@ -17,6 +8,13 @@ import me.lucko.luckperms.LuckPerms;
 import me.lucko.luckperms.api.LuckPermsApi;
 import me.lucko.luckperms.api.Node;
 import me.lucko.luckperms.api.User;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String> {
 	private Expression<Player> pl;
@@ -42,7 +40,7 @@ public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String
 
 	@Override
 	public String toString(@Nullable Event e, boolean debug) {
-		return "[sharpsk] (luckperms|lp) [(all|the)] (-1¦transient perm[ission]s|1¦perm[ission]s) of %player%";
+		return "[sharpsk] (luckperms|lp) [(all|the)] (-1Â¦transient perm[ission]s|1Â¦perm[ission]s) of %player%";
 	}
 
 	@Override

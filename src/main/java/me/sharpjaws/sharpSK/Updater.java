@@ -10,7 +10,7 @@ public class Updater {
 	public static String ucheck() {
 		String result = null;
 		try {
-			URL url = new URL("https://raw.githubusercontent.com/Sharpjaws/SharpSK/master/Version.txt");
+			URL url = new URL("https://raw.githubusercontent.com/TheDGOfficial/SharpSK/master/version.txt");
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 			String v = in.readLine();
 			in.close();

@@ -1,18 +1,16 @@
 package me.sharpjaws.sharpSK.hooks.PermissionsEx;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.bukkit.event.Event;
-
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
+import org.bukkit.event.Event;
 import ru.tehkode.permissions.PermissionGroup;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EffPexAddAGroup extends Effect {
 	private Expression<String> s;
@@ -49,7 +47,7 @@ public class EffPexAddAGroup extends Effect {
 		}
 		try {
 			PermissionsEx.getPermissionManager().getGroup(s.getSingle(e))
-					.setSuffix(" " + suffix.getSingle(e).toString().replaceAll("('|\")", "\\") + " ", null);
+					.setSuffix(" " + suffix.getSingle(e).toString().replaceAll("(['\"])", "\\") + " ", null);
 		} catch (NullPointerException ex) {
 			PermissionsEx.getPermissionManager().getGroup(s.getSingle(e)).setSuffix("", null);
 		}
