@@ -13,40 +13,40 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Optional;
 
-class ExprLuckPermsAllGroups extends SimpleExpression<String> {
+public class ExprLuckPermsAllGroups extends SimpleExpression<String> {
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult result) {
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult result) {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "[sharpsk] (luckperms|lp) [all] groups";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "[sharpsk] (luckperms|lp) [all] groups";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
-		ArrayList<String> groups = new ArrayList<>();
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
+        ArrayList<String> groups = new ArrayList<>();
 
-		for (Group g : api.get().getGroups()) {
-			groups.add(g.getName());
-		}
-		return groups.toArray(new String[0]);
+        for (Group g : api.get().getGroups()) {
+            groups.add(g.getName());
+        }
+        return groups.toArray(new String[0]);
 
-	}
+    }
 
 }

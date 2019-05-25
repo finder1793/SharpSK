@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: com.sk89q.worldguard:worldguard-legacy:7.0.0-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/sk89q/worldguard/worldguard-legacy/7.0.0-SNAPSHOT/worldguard-legacy-7.0.0-20190514.103633-89.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/sk89q/worldguard/worldguard-legacy/7.0.0-SNAPSHOT/worldguard-legacy-7.0.0-20190522.222338-98.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/com/sk89q/worldguard/worldguard-legacy/7.0.0-SNAPSHOT/worldguard-legacy-7.0.0-20190514.103633-89-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/sk89q/worldguard/worldguard-legacy/7.0.0-SNAPSHOT/worldguard-legacy-7.0.0-20190522.222338-98-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/sk89q/worldguard/worldguard-legacy/7.0.0-SNAPSHOT/worldguard-legacy-7.0.0-20190514.103633-89-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/sk89q/worldguard/worldguard-legacy/7.0.0-SNAPSHOT/worldguard-legacy-7.0.0-20190522.222338-98-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -9,36 +9,36 @@ import org.kingdoms.manager.game.GameManagement;
 
 import javax.annotation.Nullable;
 
-class CondKingdomsKingdomHasShield extends Condition {
+public class CondKingdomsKingdomHasShield extends Condition {
 
-	private Expression<String> kingdom;
+    private Expression<String> kingdom;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult result) {
-		kingdom = (Expression<String>) expr[0];
-		setNegated(result.mark == 1);
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult result) {
+        kingdom = (Expression<String>) expr[0];
+        setNegated(result.mark == 1);
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[sharpsk] [kingdoms] kingdom %string% (0¦has|1¦doesn[']t (have|has)) [a] shield";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "[sharpsk] [kingdoms] kingdom %string% (0¦has|1¦doesn[']t (have|has)) [a] shield";
+    }
 
-	@Override
-	public boolean check(Event e) {
-		boolean a = isNegated();
-		try {
-			if (!a) {
-				return GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
-			} else {
-				return !GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
-			}
+    @Override
+    public boolean check(Event e) {
+        boolean a = isNegated();
+        try {
+            if (!a) {
+                return GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
+            } else {
+                return !GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).isShieldUp();
+            }
 
-		} catch (NullPointerException ex) {
-			return false;
+        } catch (NullPointerException ex) {
+            return false;
 
-		}
-	}
+        }
+    }
 }

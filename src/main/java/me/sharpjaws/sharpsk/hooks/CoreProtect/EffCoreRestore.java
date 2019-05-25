@@ -20,51 +20,51 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-class EffCoreRestore extends Effect {
-	private Expression<Location> l;
-	private Expression<Number> n;
-	private Expression<Timespan> times;
-	private Expression<ItemStack> exblocks;
-	private Expression<OfflinePlayer> players;
-	private int mark;
+public class EffCoreRestore extends Effect {
+    private Expression<Location> l;
+    private Expression<Number> n;
+    private Expression<Timespan> times;
+    private Expression<ItemStack> exblocks;
+    private Expression<OfflinePlayer> players;
+    private int mark;
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult result) {
-		players = (Expression<OfflinePlayer>) expr[0];
-		l = (Expression<Location>) expr[1];
-		n = (Expression<Number>) expr[2];
-		times = (Expression<Timespan>) expr[3];
-		exblocks = (Expression<ItemStack>) expr[4];
-		mark = result.mark;
-		return true;
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult result) {
+        players = (Expression<OfflinePlayer>) expr[0];
+        l = (Expression<Location>) expr[1];
+        n = (Expression<Number>) expr[2];
+        times = (Expression<Timespan>) expr[3];
+        exblocks = (Expression<ItemStack>) expr[4];
+        mark = result.mark;
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[(coreprotect|cp)] (rollback|restore|revert) changes at [the] %location% in radius %integer% [back] to %timespan% [ago] [exclude %-blocks%]";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "[(coreprotect|cp)] (rollback|restore|revert) changes at [the] %location% in radius %integer% [back] to %timespan% [ago] [exclude %-blocks%]";
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	protected void execute(final Event e) {
-		final List<String> users = new ArrayList<>();
-		if (users != null && players != null) {
-			for (OfflinePlayer b : players.getAll(e)) {
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void execute(final Event e) {
+        final List<String> users = new ArrayList<>();
+        if (users != null && players != null) {
+            for (OfflinePlayer b : players.getAll(e)) {
 
-				users.add(b.getName());
-			}
-		}
-		final List<Object> exclude = new ArrayList<>();
-		if (exblocks != null) {
-			for (ItemStack b : exblocks.getAll(e)) {
+                users.add(b.getName());
+            }
+        }
+        final List<Object> exclude = new ArrayList<>();
+        if (exblocks != null) {
+            for (ItemStack b : exblocks.getAll(e)) {
 
-				exclude.add(b.getType());
-			}
-		}
+                exclude.add(b.getType());
+            }
+        }
 
-		Runnable RestoreRun = () -> {
+        Runnable RestoreRun = () -> {
             Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("CoreProtect");
             CoreProtectAPI api = ((CoreProtect) plugin).getAPI();
 
@@ -82,8 +82,8 @@ class EffCoreRestore extends Effect {
             }
         };
 
-		Thread RestoreThread = new Thread(RestoreRun);
-		RestoreThread.start();
+        Thread RestoreThread = new Thread(RestoreRun);
+        RestoreThread.start();
 
-	}
+    }
 }

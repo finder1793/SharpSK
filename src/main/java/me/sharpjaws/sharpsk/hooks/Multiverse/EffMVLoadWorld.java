@@ -9,30 +9,30 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffMVLoadWorld extends Effect {
+public class EffMVLoadWorld extends Effect {
 
-	private Expression<String> w;
+    private Expression<String> w;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		w = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        w = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "mv load world %string%";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "mv load world %string%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		MultiverseCore mv = null;
-		mv = MultiverseCore.getPlugin(MultiverseCore.class).getCore();
+    @Override
+    protected void execute(Event e) {
+        MultiverseCore mv = null;
+        mv = MultiverseCore.getPlugin(MultiverseCore.class).getCore();
 
-		mv.getMVWorldManager().loadWorld(w.getSingle(e));
+        mv.getMVWorldManager().loadWorld(w.getSingle(e));
 
-	}
+    }
 
 }

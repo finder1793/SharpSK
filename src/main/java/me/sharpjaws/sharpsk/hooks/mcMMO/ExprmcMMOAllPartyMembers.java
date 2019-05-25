@@ -12,41 +12,41 @@ import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
-	private Expression<String> s;
+public class ExprmcMMOAllPartyMembers extends SimpleExpression<String> {
+    private Expression<String> s;
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		s = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        s = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[mcmmo] [(the|all)] members of party %string%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[mcmmo] [(the|all)] members of party %string%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		ArrayList<String> members = new ArrayList<>();
-		for (Entry<UUID, String> user : PartyManager.getParty(s.getSingle(e)).getMembers().entrySet()) {
-			members.add(user.getValue());
-		}
-		return members.toArray(new String[0]);
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        ArrayList<String> members = new ArrayList<>();
+        for (Entry<UUID, String> user : PartyManager.getParty(s.getSingle(e)).getMembers().entrySet()) {
+            members.add(user.getValue());
+        }
+        return members.toArray(new String[0]);
 
-	}
+    }
 
 }

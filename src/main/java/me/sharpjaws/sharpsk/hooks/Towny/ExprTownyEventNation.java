@@ -10,25 +10,25 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprTownyEventNation extends SimpleExpression<String> {
+public class ExprTownyEventNation extends SimpleExpression<String> {
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "event-nation";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "event-nation";
+    }
 
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
         return ScriptLoader.isCurrentEvent(RenameNationEvent.class)
                 || ScriptLoader.isCurrentEvent(DeleteNationEvent.class)
                 || ScriptLoader.isCurrentEvent(NewNationEvent.class)
@@ -36,9 +36,9 @@ class ExprTownyEventNation extends SimpleExpression<String> {
                 || ScriptLoader.isCurrentEvent(NationRemoveTownEvent.class);
     }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
         switch (e.getEventName()) {
             case "RenameNationEvent":
                 return new String[]{((RenameNationEvent) e).getNation().getName()};
@@ -51,7 +51,7 @@ class ExprTownyEventNation extends SimpleExpression<String> {
             case "NationRemoveTownEvent":
                 return new String[]{((NationRemoveTownEvent) e).getNation().getName()};
         }
-		return null;
-	}
+        return null;
+    }
 
 }

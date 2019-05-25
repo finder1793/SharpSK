@@ -19,53 +19,53 @@ import java.io.File;
 import java.io.IOException;
 import java.util.regex.Matcher;
 
-class EffSaveClipToSchematic extends Effect {
-	private Expression<Player> pl;
-	private Expression<String> schem;
+public class EffSaveClipToSchematic extends Effect {
+    private Expression<Player> pl;
+    private Expression<String> schem;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		pl = (Expression<Player>) expr[0];
-		schem = (Expression<String>) expr[1];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+        pl = (Expression<Player>) expr[0];
+        schem = (Expression<String>) expr[1];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "[sharpsk] [worldedit] save clipboard of %player% (to|as) [schem[atic]] %string%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "[sharpsk] [worldedit] save clipboard of %player% (to|as) [schem[atic]] %string%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		WorldEditPlugin wep = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
-		File file = new File(("plugins/WorldEdit/schematics/" + (schem.getSingle(e).contains(".") ? schem.getSingle(e)
-				: schem.getSingle(e) + ".schematic"))
-						.replaceAll("/", Matcher.quoteReplacement(File.separator)));
-		try {
-			LocalSession session = wep.getSession(pl.getSingle(e));
-			ClipboardHolder selection = wep.getSession(pl.getSingle(e)).getClipboard();
+    @Override
+    protected void execute(Event e) {
+        WorldEditPlugin wep = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+        File file = new File(("plugins/WorldEdit/schematics/" + (schem.getSingle(e).contains(".") ? schem.getSingle(e)
+                : schem.getSingle(e) + ".schematic"))
+                .replaceAll("/", Matcher.quoteReplacement(File.separator)));
+        try {
+            LocalSession session = wep.getSession(pl.getSingle(e));
+            ClipboardHolder selection = wep.getSession(pl.getSingle(e)).getClipboard();
 
-			Vector min = selection.getClipboard().getMinimumPoint();
-			Vector max = selection.getClipboard().getMaximumPoint();
-			EditSession editSession = session.createEditSession(wep.wrapPlayer(pl.getSingle(e)));
+            Vector min = selection.getClipboard().getMinimumPoint();
+            Vector max = selection.getClipboard().getMaximumPoint();
+            EditSession editSession = session.createEditSession(wep.wrapPlayer(pl.getSingle(e)));
 
-			editSession.enableQueue();
-			CuboidClipboard clipboard = new CuboidClipboard(max.subtract(min).add(new Vector(1, 1, 1)), min);
-			clipboard.copy(editSession);
-			SchematicFormat.MCEDIT.save(clipboard, file);
-			editSession.flushQueue();
+            editSession.enableQueue();
+            CuboidClipboard clipboard = new CuboidClipboard(max.subtract(min).add(new Vector(1, 1, 1)), min);
+            clipboard.copy(editSession);
+            SchematicFormat.MCEDIT.save(clipboard, file);
+            editSession.flushQueue();
 
-		} catch (DataException | IOException e1) {
-			SharpSK core = SharpSK.instance;
-			core.getLogger()
-					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
+        } catch (DataException | IOException e1) {
+            SharpSK core = SharpSK.instance;
+            core.getLogger()
+                    .warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
         } catch (EmptyClipboardException e1) {
-			SharpSK core = SharpSK.instance;
-			core.getLogger()
-					.warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
+            SharpSK core = SharpSK.instance;
+            core.getLogger()
+                    .warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
         }
 
-	}
+    }
 
 }

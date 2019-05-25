@@ -13,53 +13,53 @@ import org.bukkit.inventory.ItemStack;
 import javax.annotation.Nullable;
 
 public class ExprOffhandItem extends SimpleExpression<ItemStack> {
-	private Expression<Player> p;
+    private Expression<Player> p;
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public Class<? extends ItemStack> getReturnType() {
-		return ItemStack.class;
-	}
+    @Override
+    public Class<? extends ItemStack> getReturnType() {
+        return ItemStack.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		p = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        p = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "%player%'s offhand";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "%player%'s offhand";
+    }
 
-	@Override
-	@Nullable
-	protected ItemStack[] get(Event e) {
-		return new ItemStack[] { this.p.getSingle(e).getInventory().getItemInOffHand() };
-	}
+    @Override
+    @Nullable
+    protected ItemStack[] get(Event e) {
+        return new ItemStack[] { this.p.getSingle(e).getInventory().getItemInOffHand() };
+    }
 
-	@Override
-	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		Integer limit = 64;
-		if (mode == Changer.ChangeMode.SET) {
-			this.p.getSingle(e).getInventory().setItemInOffHand((ItemStack) delta[0]);
-			Integer a = this.p.getSingle(e).getInventory().getItemInOffHand().getAmount();
-			if (limit <= a) {
-				this.p.getSingle(e).getInventory().getItemInOffHand().setAmount(64);
-			}
-		}
-	}
+    @Override
+    public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+        Integer limit = 64;
+        if (mode == Changer.ChangeMode.SET) {
+            this.p.getSingle(e).getInventory().setItemInOffHand((ItemStack) delta[0]);
+            Integer a = this.p.getSingle(e).getInventory().getItemInOffHand().getAmount();
+            if (limit <= a) {
+                this.p.getSingle(e).getInventory().getItemInOffHand().setAmount(64);
+            }
+        }
+    }
 
-	@Override
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(ItemStack.class);
-		return null;
-	}
+    @Override
+    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET)
+            return CollectionUtils.array(ItemStack.class);
+        return null;
+    }
 }

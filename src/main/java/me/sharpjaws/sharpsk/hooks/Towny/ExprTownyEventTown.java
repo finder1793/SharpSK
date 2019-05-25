@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprTownyEventTown extends SimpleExpression<String> {
+public class ExprTownyEventTown extends SimpleExpression<String> {
 
 	@Override
 	public Class<? extends String> getReturnType() {

@@ -10,40 +10,40 @@ import org.kingdoms.manager.game.GameManagement;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-class ExprKingdomsEnemiesOfKingdom extends SimpleExpression<String> {
-	private Expression<String> kingdom;
+public class ExprKingdomsEnemiesOfKingdom extends SimpleExpression<String> {
+    private Expression<String> kingdom;
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult Result) {
-		kingdom = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult Result) {
+        kingdom = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [kingdoms] enemies of kingdom %string%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [kingdoms] enemies of kingdom %string%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
 
         ArrayList<String> narr = new ArrayList<>(GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getEnemiesList());
 
-		return narr.toArray(new String[0]);
+        return narr.toArray(new String[0]);
 
-	}
+    }
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
 }

@@ -9,36 +9,36 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprmcMMOPartyAllyName extends SimpleExpression<String> {
-	private Expression<String> s;
+public class ExprmcMMOPartyAllyName extends SimpleExpression<String> {
+    private Expression<String> s;
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		s = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        s = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[mcmmo] [party] ally of party %string%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[mcmmo] [party] ally of party %string%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		return new String[] { PartyAPI.getAllyName(s.getSingle(e)) };
-	}
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        return new String[] { PartyAPI.getAllyName(s.getSingle(e)) };
+    }
 
 }

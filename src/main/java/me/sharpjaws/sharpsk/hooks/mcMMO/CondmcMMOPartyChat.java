@@ -10,24 +10,24 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class CondmcMMOPartyChat extends Condition {
-	private Expression<Player> p;
+public class CondmcMMOPartyChat extends Condition {
+    private Expression<Player> p;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
-		p = (Expression<Player>) expr[0];
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
+        p = (Expression<Player>) expr[0];
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "[mcmmo] %player% is using party[]chat";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "[mcmmo] %player% is using party[]chat";
+    }
 
-	@Override
-	public boolean check(Event e) {
-		return ChatAPI.isUsingPartyChat(p.getSingle(e));
-	}
+    @Override
+    public boolean check(Event e) {
+        return ChatAPI.isUsingPartyChat(p.getSingle(e));
+    }
 }

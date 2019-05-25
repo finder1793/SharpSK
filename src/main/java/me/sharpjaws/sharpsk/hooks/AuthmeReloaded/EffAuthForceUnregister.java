@@ -10,25 +10,25 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffAuthForceUnregister extends Effect {
-	private Expression<Player> player;
+public class EffAuthForceUnregister extends Effect {
+    private Expression<Player> player;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		player = (Expression<Player>) expr[0];
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        player = (Expression<Player>) expr[0];
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "force logout %player%";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "force logout %player%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		NewAPI.getInstance().forceUnregister(player.getSingle(e));
-	}
+    @Override
+    protected void execute(Event e) {
+        NewAPI.getInstance().forceUnregister(player.getSingle(e));
+    }
 }

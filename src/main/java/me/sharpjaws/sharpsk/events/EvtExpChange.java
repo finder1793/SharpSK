@@ -6,39 +6,39 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class EvtExpChange extends Event implements Cancellable {
-	private static final HandlerList h = new HandlerList();
-	private boolean cancelled = false;
-	private final Player pl;
-	private final Number exp;
+    private static final HandlerList h = new HandlerList();
+    private boolean cancelled = false;
+    private final Player pl;
+    private final Number exp;
 
-	public EvtExpChange(Player p, Number xp) {
-		cancelled = false;
-		this.pl = p;
-		this.exp = xp;
-	}
+    public EvtExpChange(Player p, Number xp) {
+        cancelled = false;
+        this.pl = p;
+        this.exp = xp;
+    }
 
-	public Player getPlayer() {
-		return pl;
-	}
+    public Player getPlayer() {
+        return pl;
+    }
 
-	public Number getExp() {
-		return exp;
-	}
+    public Number getExp() {
+        return exp;
+    }
 
-	public boolean isCancelled() {
-		return cancelled;
-	}
+    public boolean isCancelled() {
+        return cancelled;
+    }
 
-	public void setCancelled(boolean b) {
-		cancelled = b;
-	}
+    public void setCancelled(boolean b) {
+        cancelled = b;
+    }
 
-	@Override
-	public HandlerList getHandlers() {
-		return h;
-	}
+    @Override
+    public HandlerList getHandlers() {
+        return h;
+    }
 
-	public static HandlerList getHandlerList() {
-		return h;
-	}
+    public static HandlerList getHandlerList() {
+        return h;
+    }
 }

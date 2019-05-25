@@ -5,33 +5,33 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class EvtTimerComplete extends Event implements Cancellable {
-	private static final HandlerList h = new HandlerList();
-	private boolean cancelled = false;
-	private final String timer;
+    private static final HandlerList h = new HandlerList();
+    private boolean cancelled = false;
+    private final String timer;
 
-	public EvtTimerComplete(String timer) {
-		cancelled = false;
-		this.timer = timer;
-	}
+    public EvtTimerComplete(String timer) {
+        cancelled = false;
+        this.timer = timer;
+    }
 
-	public boolean isCancelled() {
-		return cancelled;
-	}
+    public boolean isCancelled() {
+        return cancelled;
+    }
 
-	public void setCancelled(boolean b) {
-		cancelled = b;
-	}
+    public void setCancelled(boolean b) {
+        cancelled = b;
+    }
 
-	@Override
-	public HandlerList getHandlers() {
-		return h;
-	}
+    @Override
+    public HandlerList getHandlers() {
+        return h;
+    }
 
-	public static HandlerList getHandlerList() {
-		return h;
-	}
+    public static HandlerList getHandlerList() {
+        return h;
+    }
 
-	public String getTimer() {
-		return timer;
-	}
+    public String getTimer() {
+        return timer;
+    }
 }

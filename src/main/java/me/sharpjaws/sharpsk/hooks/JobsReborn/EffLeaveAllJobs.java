@@ -11,25 +11,25 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffLeaveAllJobs extends Effect {
-	private Expression<Player> player;
+public class EffLeaveAllJobs extends Effect {
+    private Expression<Player> player;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		player = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        player = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "make %player% leave all jobs ";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "make %player% leave all jobs ";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		JobsPlayer p = Jobs.getPlayerManager().getJobsPlayer(player.getSingle(e));
-		Jobs.getPlayerManager().leaveAllJobs(p);
-	}
+    @Override
+    protected void execute(Event e) {
+        JobsPlayer p = Jobs.getPlayerManager().getJobsPlayer(player.getSingle(e));
+        Jobs.getPlayerManager().leaveAllJobs(p);
+    }
 }

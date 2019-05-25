@@ -12,36 +12,36 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffTownyAddPlayerToNation extends Effect {
+public class EffTownyAddPlayerToNation extends Effect {
 
-	private Expression<OfflinePlayer> p;
-	private Expression<String> nat;
+    private Expression<OfflinePlayer> p;
+    private Expression<String> nat;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		p = (Expression<OfflinePlayer>) expr[0];
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        p = (Expression<OfflinePlayer>) expr[0];
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "[towny] add %offlineplayer% to nation %string%";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "[towny] add %offlineplayer% to nation %string%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		SharpSK core = SharpSK.instance;
+    @Override
+    protected void execute(Event e) {
+        SharpSK core = SharpSK.instance;
 
-		try {
-			TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()).setName(nat.getSingle(e));
-		} catch (NotRegisteredException e1) {
-			core.getLogger().warning("Could not add resident: " + "\"" + p.getSingle(e).getName() + "\"" + " to nation "
-					+ "\"" + nat.getSingle(e) + "\"");
-			core.getLogger().warning("Nation was not found in town: " + "\"" + nat.getSingle(e) + "\"");
-		}
+        try {
+            TownyUniverse.getDataSource().getResident(p.getSingle(e).getName()).setName(nat.getSingle(e));
+        } catch (NotRegisteredException e1) {
+            core.getLogger().warning("Could not add resident: " + "\"" + p.getSingle(e).getName() + "\"" + " to nation "
+                    + "\"" + nat.getSingle(e) + "\"");
+            core.getLogger().warning("Nation was not found in town: " + "\"" + nat.getSingle(e) + "\"");
+        }
 
-	}
+    }
 }

@@ -11,27 +11,27 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class CondPlayerInJob extends Condition {
+public class CondPlayerInJob extends Condition {
 
-	private Expression<Player> p;
-	private Expression<Job> j;
+    private Expression<Player> p;
+    private Expression<Job> j;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
-		p = (Expression<Player>) expr[0];
-		j = (Expression<Job>) expr[1];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
+        p = (Expression<Player>) expr[0];
+        j = (Expression<Job>) expr[1];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "%player% is in job %job%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "%player% is in job %job%";
+    }
 
-	@Override
-	public boolean check(Event e) {
+    @Override
+    public boolean check(Event e) {
 
         return Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e)).isInJob(j.getSingle(e));
-	}
+    }
 }

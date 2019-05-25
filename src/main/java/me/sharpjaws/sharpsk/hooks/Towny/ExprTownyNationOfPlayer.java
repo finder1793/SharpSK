@@ -12,48 +12,48 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprTownyNationOfPlayer extends SimpleExpression<String> {
+public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
 
-	private Expression<OfflinePlayer> resident;
+    private Expression<OfflinePlayer> resident;
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult Result) {
-		resident = (Expression<OfflinePlayer>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult Result) {
+        resident = (Expression<OfflinePlayer>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [towny] nation of %player%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [towny] nation of %player%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
 
-		String natname = null;
-		Resident res;
-		try {
-			res = TownyUniverse.getDataSource().getResident(resident.getSingle(e).getName());
-			natname = res.getTown().getNation().getName();
+        String natname = null;
+        Resident res;
+        try {
+            res = TownyUniverse.getDataSource().getResident(resident.getSingle(e).getName());
+            natname = res.getTown().getNation().getName();
 
-		} catch (NotRegisteredException ex) {
-			ex.printStackTrace();
-		}
+        } catch (NotRegisteredException ex) {
+            ex.printStackTrace();
+        }
 
-		return new String[] { natname };
-	}
+        return new String[] { natname };
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
 }

@@ -14,62 +14,62 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
+public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
 
-	private Expression<String> town;
+    private Expression<String> town;
 
-	@Override
-	public Class<? extends OfflinePlayer> getReturnType() {
-		return OfflinePlayer.class;
-	}
+    @Override
+    public Class<? extends OfflinePlayer> getReturnType() {
+        return OfflinePlayer.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult Result) {
-		town = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult Result) {
+        town = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [towny] mayor of town %string%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [towny] mayor of town %string%";
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	@Nullable
-	protected OfflinePlayer[] get(Event e) {
-		try {
-			return new OfflinePlayer[] { Bukkit.getOfflinePlayer(TownyUniverse
-					.getPlayer(TownyUniverse.getDataSource().getTown(town.getSingle(e)).getMayor()).getUniqueId()) };
-		} catch (TownyException e1) {
-			return new OfflinePlayer[] {};
-		}
+    @Override
+    @Nullable
+    protected OfflinePlayer[] get(Event e) {
+        try {
+            return new OfflinePlayer[] { Bukkit.getOfflinePlayer(TownyUniverse
+                    .getPlayer(TownyUniverse.getDataSource().getTown(town.getSingle(e)).getMayor()).getUniqueId()) };
+        } catch (TownyException e1) {
+            return new OfflinePlayer[] {};
+        }
 
-	}
+    }
 
-	@Override
-	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET) {
-			try {
-				TownyUniverse.getDataSource().getTown(town.getSingle(e))
-						.setMayor(TownyUniverse.getDataSource().getResident(((OfflinePlayer) delta[0]).getName()));
-			} catch (TownyException ignored) {
+    @Override
+    public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) {
+            try {
+                TownyUniverse.getDataSource().getTown(town.getSingle(e))
+                        .setMayor(TownyUniverse.getDataSource().getResident(((OfflinePlayer) delta[0]).getName()));
+            } catch (TownyException ignored) {
             }
-		}
-	}
+        }
+    }
 
-	@Override
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(OfflinePlayer.class);
-		}
-		return null;
-	}
+    @Override
+    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) {
+            return CollectionUtils.array(OfflinePlayer.class);
+        }
+        return null;
+    }
 
 }

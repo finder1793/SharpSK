@@ -11,34 +11,34 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffSpawnMMOld extends Effect {
+public class EffSpawnMMOld extends Effect {
 
-	private Expression<String> mn;
-	private Expression<Location> loc;
-	private Expression<Integer> level;
+    private Expression<String> mn;
+    private Expression<Location> loc;
+    private Expression<Integer> level;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
-		mn = (Expression<String>) expr[0];
-		loc = (Expression<Location>) expr[1];
-		level = (Expression<Integer>) expr[2];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
+        mn = (Expression<String>) expr[0];
+        loc = (Expression<Location>) expr[1];
+        level = (Expression<Integer>) expr[2];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "spawn [a] mythicmob %string% at %location% with level %integer%";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "spawn [a] mythicmob %string% at %location% with level %integer%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		try {
-			MythicMobs.inst().getAPI().getMobAPI().spawnMythicMob(mn.getSingle(e), loc.getSingle(e),
-					level.getSingle(e));
-		} catch (InvalidMobTypeException ignored) {
+    @Override
+    protected void execute(Event e) {
+        try {
+            MythicMobs.inst().getAPI().getMobAPI().spawnMythicMob(mn.getSingle(e), loc.getSingle(e),
+                    level.getSingle(e));
+        } catch (InvalidMobTypeException ignored) {
 
-		}
-	}
+        }
+    }
 
 }

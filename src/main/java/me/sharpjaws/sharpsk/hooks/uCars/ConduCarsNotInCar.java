@@ -11,25 +11,25 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 
-class ConduCarsNotInCar extends Condition {
-	private Expression<Player> player;
-	@SuppressWarnings("unused")
-	private Expression<ItemStack> block;
+public class ConduCarsNotInCar extends Condition {
+    private Expression<Player> player;
+    @SuppressWarnings("unused")
+    private Expression<ItemStack> block;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
-		player = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
+        player = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "%player% is in a car";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "%player% is in a car";
+    }
 
-	@Override
-	public boolean check(Event e) {
-		return !uCarsAPI.getAPI().checkInCar(player.getSingle(e));
-	}
+    @Override
+    public boolean check(Event e) {
+        return !uCarsAPI.getAPI().checkInCar(player.getSingle(e));
+    }
 }

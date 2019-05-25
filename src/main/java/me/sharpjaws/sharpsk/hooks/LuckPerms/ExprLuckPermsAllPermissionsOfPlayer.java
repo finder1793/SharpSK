@@ -16,59 +16,59 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String> {
-	private Expression<Player> pl;
-	private int mark;
+public class ExprLuckPermsAllPermissionsOfPlayer extends SimpleExpression<String> {
+    private Expression<Player> pl;
+    private int mark;
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult result) {
-		pl = (Expression<Player>) expr[0];
-		mark = result.mark;
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult result) {
+        pl = (Expression<Player>) expr[0];
+        mark = result.mark;
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "[sharpsk] (luckperms|lp) [(all|the)] (-1¦transient perm[ission]s|1¦perm[ission]s) of %player%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "[sharpsk] (luckperms|lp) [(all|the)] (-1¦transient perm[ission]s|1¦perm[ission]s) of %player%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		ArrayList<String> perms = new ArrayList<>();
-		if (pl.getSingle(e) == null) {
-			return new String[perms.size()];
-		}
-		Consumer<User> action = t -> {
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        ArrayList<String> perms = new ArrayList<>();
+        if (pl.getSingle(e) == null) {
+            return new String[perms.size()];
+        }
+        Consumer<User> action = t -> {
 
-			if (mark == -1) {
-				for (Node n : t.getTransientPermissions()) {
-					perms.add(n.getPermission());
-				}
-			} else {
-				for (Node n : t.getPermanentPermissionNodes()) {
-					perms.add(n.getPermission());
-				}
-			}
-		};
-		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
-		User user = api.get().getUser(pl.getSingle(e).getUniqueId());
-		if (user != null) {
-			action.accept(user);
-		}
+            if (mark == -1) {
+                for (Node n : t.getTransientPermissions()) {
+                    perms.add(n.getPermission());
+                }
+            } else {
+                for (Node n : t.getPermanentPermissionNodes()) {
+                    perms.add(n.getPermission());
+                }
+            }
+        };
+        Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
+        User user = api.get().getUser(pl.getSingle(e).getUniqueId());
+        if (user != null) {
+            action.accept(user);
+        }
 
-		return perms.toArray(new String[0]);
-	}
+        return perms.toArray(new String[0]);
+    }
 
 }

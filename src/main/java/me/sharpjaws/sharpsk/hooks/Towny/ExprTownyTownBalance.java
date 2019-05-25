@@ -13,62 +13,62 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprTownyTownBalance extends SimpleExpression<Number> {
+public class ExprTownyTownBalance extends SimpleExpression<Number> {
 
-	private Expression<String> town;
+    private Expression<String> town;
 
-	@Override
-	public Class<? extends Number> getReturnType() {
-		return Number.class;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult Result) {
-		town = (Expression<String>) expr[0];
-		return true;
-	}
-
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [towny] balance of town %string%";
-	}
-
-	@Override
-	@Nullable
-	protected Number[] get(Event e) {
-		try {
-			return new Number[] { TownyUniverse.getDataSource().getTown(town.getSingle(e)).getHoldingBalance() };
-		} catch (NotRegisteredException | EconomyException e1) {
-			return new Number[] { 0 };
-		}
+    @Override
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
     }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult Result) {
+        town = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET) {
-			try {
-				TownyUniverse.getDataSource().getTown(town.getSingle(e)).setBalance(((Number) delta[0]).doubleValue(),
-						"Server");
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [towny] balance of town %string%";
+    }
 
-			} catch (NullPointerException | EconomyException | NotRegisteredException ex) {
-				ex.printStackTrace();
+    @Override
+    @Nullable
+    protected Number[] get(Event e) {
+        try {
+            return new Number[] { TownyUniverse.getDataSource().getTown(town.getSingle(e)).getHoldingBalance() };
+        } catch (NotRegisteredException | EconomyException e1) {
+            return new Number[] { 0 };
+        }
+    }
+
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
+
+    @Override
+    public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) {
+            try {
+                TownyUniverse.getDataSource().getTown(town.getSingle(e)).setBalance(((Number) delta[0]).doubleValue(),
+                        "Server");
+
+            } catch (NullPointerException | EconomyException | NotRegisteredException ex) {
+                ex.printStackTrace();
             }
         }
-	}
+    }
 
-	@Override
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(Number.class);
-		}
-		return null;
-	}
+    @Override
+    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) {
+            return CollectionUtils.array(Number.class);
+        }
+        return null;
+    }
 
 }

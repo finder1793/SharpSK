@@ -9,34 +9,34 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprmcMMOPowerLvlcap extends SimpleExpression<Integer> {
+public class ExprmcMMOPowerLvlcap extends SimpleExpression<Integer> {
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public Class<? extends Integer> getReturnType() {
-		return Integer.class;
-	}
+    @Override
+    public Class<? extends Integer> getReturnType() {
+        return Integer.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[mcmmo] power[]level cap";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[mcmmo] power[]level cap";
+    }
 
-	@Override
-	@Nullable
-	protected Integer[] get(Event e) {
-		return new Integer[] { ExperienceAPI.getPowerLevelCap() };
-	}
+    @Override
+    @Nullable
+    protected Integer[] get(Event e) {
+        return new Integer[] { ExperienceAPI.getPowerLevelCap() };
+    }
 
 }

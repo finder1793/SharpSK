@@ -8,24 +8,24 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffmcMMOLockParty extends Effect {
-	private Expression<String> p;
+public class EffmcMMOLockParty extends Effect {
+    private Expression<String> p;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		p = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        p = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "[mcmmo] lock party %string%";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "[mcmmo] lock party %string%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		com.gmail.nossr50.party.PartyManager.getParty(p.getSingle(e)).setLocked(true);
-	}
+    @Override
+    protected void execute(Event e) {
+        com.gmail.nossr50.party.PartyManager.getParty(p.getSingle(e)).setLocked(true);
+    }
 }

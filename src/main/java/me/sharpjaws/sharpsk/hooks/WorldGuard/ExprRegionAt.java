@@ -11,41 +11,41 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.Event;
 
-class ExprRegionAt extends SimpleExpression<String> {
-	private Expression<Location> loc;
+public class ExprRegionAt extends SimpleExpression<String> {
+    private Expression<Location> loc;
 
-	@SuppressWarnings("unchecked")
-	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.loc = (Expression<Location>) expressions[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.loc = (Expression<Location>) expressions[0];
+        return true;
+    }
 
-	protected String[] get(Event event) {
-		Location loc = this.loc.getSingle(event);
-		String a = null;
-		WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
-		RegionManager regionManager = wg.getRegionContainer().get(loc.getWorld());
+    protected String[] get(Event event) {
+        Location loc = this.loc.getSingle(event);
+        String a = null;
+        WorldGuardPlugin wg = (WorldGuardPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldGuard");
+        RegionManager regionManager = wg.getRegionContainer().get(loc.getWorld());
 
-		for (ProtectedRegion reg : regionManager.getApplicableRegions(loc)) {
+        for (ProtectedRegion reg : regionManager.getApplicableRegions(loc)) {
 
-			if (reg.contains(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())) {
-				a = reg.getId();
-			}
-		}
-		return new String[] { a };
+            if (reg.contains(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ())) {
+                a = reg.getId();
+            }
+        }
+        return new String[] { a };
 
-	}
+    }
 
-	public boolean isSingle() {
-		return true;
-	}
+    public boolean isSingle() {
+        return true;
+    }
 
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	public String toString(Event event, boolean b) {
-		return "wg region at" + this.loc.getSingle(event).toString();
-	}
+    public String toString(Event event, boolean b) {
+        return "wg region at" + this.loc.getSingle(event).toString();
+    }
 
 }

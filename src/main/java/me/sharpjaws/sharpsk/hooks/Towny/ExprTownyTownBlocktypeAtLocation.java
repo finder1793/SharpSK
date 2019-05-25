@@ -13,54 +13,54 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprTownyTownBlocktypeAtLocation extends SimpleExpression<TownBlockType> {
-	private Expression<Location> loc;
+public class ExprTownyTownBlocktypeAtLocation extends SimpleExpression<TownBlockType> {
+    private Expression<Location> loc;
 
-	@Override
-	public Class<? extends TownBlockType> getReturnType() {
-		return TownBlockType.class;
-	}
+    @Override
+    public Class<? extends TownBlockType> getReturnType() {
+        return TownBlockType.class;
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [towny] [town] (block|plot)type at %location%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [towny] [town] (block|plot)type at %location%";
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		loc = (Expression<Location>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
+        loc = (Expression<Location>) expr[0];
+        return true;
+    }
 
-	@Override
-	@Nullable
-	protected TownBlockType[] get(Event e) {
-		try {
-			return new TownBlockType[] { TownyUniverse.getTownBlock(loc.getSingle(e)).getType() };
-		} catch (NullPointerException ex) {
-			return new TownBlockType[] {};
-		}
-	}
+    @Override
+    @Nullable
+    protected TownBlockType[] get(Event e) {
+        try {
+            return new TownBlockType[] { TownyUniverse.getTownBlock(loc.getSingle(e)).getType() };
+        } catch (NullPointerException ex) {
+            return new TownBlockType[] {};
+        }
+    }
 
-	@Override
-	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET) {
-			TownyUniverse.getTownBlock(loc.getSingle(e)).setType((TownBlockType) delta[0]);
-		}
-	}
+    @Override
+    public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) {
+            TownyUniverse.getTownBlock(loc.getSingle(e)).setType((TownBlockType) delta[0]);
+        }
+    }
 
-	@Override
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET) {
-			return CollectionUtils.array(TownBlockType.class);
-		}
-		return null;
-	}
+    @Override
+    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) {
+            return CollectionUtils.array(TownBlockType.class);
+        }
+        return null;
+    }
 
 }

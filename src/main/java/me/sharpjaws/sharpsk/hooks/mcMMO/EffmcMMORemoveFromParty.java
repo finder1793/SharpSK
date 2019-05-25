@@ -10,24 +10,24 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffmcMMORemoveFromParty extends Effect {
-	private Expression<Player> p;
+public class EffmcMMORemoveFromParty extends Effect {
+    private Expression<Player> p;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		p = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        p = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "[mcmmo] (kick|remove) %player% from (its [own]|own) party";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "[mcmmo] (kick|remove) %player% from (its [own]|own) party";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		PartyAPI.removeFromParty(p.getSingle(e));
-	}
+    @Override
+    protected void execute(Event e) {
+        PartyAPI.removeFromParty(p.getSingle(e));
+    }
 }

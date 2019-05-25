@@ -9,25 +9,25 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class CondmcMMOPartyHasAlly extends Condition {
-	private Expression<String> s;
+public class CondmcMMOPartyHasAlly extends Condition {
+    private Expression<String> s;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
-		s = (Expression<String>) expr[0];
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
+        s = (Expression<String>) expr[0];
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "[mcmmo] party %string% has [a] ally";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "[mcmmo] party %string% has [a] ally";
+    }
 
-	@Override
-	public boolean check(Event e) {
+    @Override
+    public boolean check(Event e) {
 
-		return PartyAPI.hasAlly(s.getSingle(e));
-	}
+        return PartyAPI.hasAlly(s.getSingle(e));
+    }
 }

@@ -13,39 +13,39 @@ import java.util.ArrayList;
 
 public class ExprAllTimers extends SimpleExpression<String> {
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@Override
-	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		return true;
-	}
+    @Override
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
 
-		ArrayList<String> timers = new ArrayList<>();
+        ArrayList<String> timers = new ArrayList<>();
 
-		for (Thread t : Thread.getAllStackTraces().keySet()) {
-			if (t instanceof CTimerThread || t instanceof CTickTimerThread) {
-				timers.add(t.getName());
+        for (Thread t : Thread.getAllStackTraces().keySet()) {
+            if (t instanceof CTimerThread || t instanceof CTickTimerThread) {
+                timers.add(t.getName());
 
-			}
-		}
-		return timers.toArray(new String[0]);
-	}
+            }
+        }
+        return timers.toArray(new String[0]);
+    }
 
 }

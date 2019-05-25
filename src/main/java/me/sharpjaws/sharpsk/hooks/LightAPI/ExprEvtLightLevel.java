@@ -10,36 +10,36 @@ import ru.beykerykt.lightapi.events.SetLightEvent;
 
 import javax.annotation.Nullable;
 
-class ExprEvtLightLevel extends SimpleExpression<Number> {
+public class ExprEvtLightLevel extends SimpleExpression<Number> {
 
-	@Override
-	public Class<? extends Number> getReturnType() {
-		return Number.class;
-	}
+    @Override
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "event-lightlevel";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "event-lightlevel";
+    }
 
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
         return ScriptLoader.isCurrentEvent(SetLightEvent.class);
     }
 
-	@Override
-	@Nullable
-	protected Number[] get(Event e) {
-		if (e.getEventName().equals("SetLightEvent")) {
-			return new Number[] { ((SetLightEvent) e).getLightLevel() };
-		}
+    @Override
+    @Nullable
+    protected Number[] get(Event e) {
+        if (e.getEventName().equals("SetLightEvent")) {
+            return new Number[] { ((SetLightEvent) e).getLightLevel() };
+        }
 
-		return null;
-	}
+        return null;
+    }
 
 }

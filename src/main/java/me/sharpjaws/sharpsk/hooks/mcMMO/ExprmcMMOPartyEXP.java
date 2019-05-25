@@ -11,71 +11,71 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprmcMMOPartyEXP extends SimpleExpression<Number> {
-	private Expression<String> s;
+public class ExprmcMMOPartyEXP extends SimpleExpression<Number> {
+    private Expression<String> s;
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public Class<? extends Number> getReturnType() {
-		return Number.class;
-	}
+    @Override
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		s = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        s = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [mcmmo] exp[erience] of party %string%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [mcmmo] exp[erience] of party %string%";
+    }
 
-	@Override
-	@Nullable
-	protected Number[] get(Event e) {
-		return new Number[] { PartyManager.getParty(s.getSingle(e)).getXp() };
-	}
+    @Override
+    @Nullable
+    protected Number[] get(Event e) {
+        return new Number[] { PartyManager.getParty(s.getSingle(e)).getXp() };
+    }
 
-	@Override
-	public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET) {
+    @Override
+    public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET) {
 
-			Number n = (Number) delta[0];
-			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(n.floatValue());
-		}
-		if (mode == Changer.ChangeMode.ADD) {
-			Number n = (Number) delta[0];
-			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).applyXpGain(n.floatValue());
-		}
-		if (mode == Changer.ChangeMode.REMOVE) {
+            Number n = (Number) delta[0];
+            com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(n.floatValue());
+        }
+        if (mode == Changer.ChangeMode.ADD) {
+            Number n = (Number) delta[0];
+            com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).applyXpGain(n.floatValue());
+        }
+        if (mode == Changer.ChangeMode.REMOVE) {
 
-			Number n = (Number) delta[0];
+            Number n = (Number) delta[0];
 
-			float exp = PartyManager.getParty(s.getSingle(e)).getXp() - n.floatValue();
-			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(exp);
+            float exp = PartyManager.getParty(s.getSingle(e)).getXp() - n.floatValue();
+            com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(exp);
 
-		}
-		if (mode == Changer.ChangeMode.RESET) {
-			com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(0);
-		}
+        }
+        if (mode == Changer.ChangeMode.RESET) {
+            com.gmail.nossr50.party.PartyManager.getParty(s.getSingle(e)).setXp(0);
+        }
 
-	}
+    }
 
-	@Override
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(Number.class);
-		if (mode == Changer.ChangeMode.ADD)
-			return CollectionUtils.array(Number.class);
-		if (mode == Changer.ChangeMode.REMOVE)
-			return CollectionUtils.array(Number.class);
-		return null;
-	}
+    @Override
+    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.SET)
+            return CollectionUtils.array(Number.class);
+        if (mode == Changer.ChangeMode.ADD)
+            return CollectionUtils.array(Number.class);
+        if (mode == Changer.ChangeMode.REMOVE)
+            return CollectionUtils.array(Number.class);
+        return null;
+    }
 }

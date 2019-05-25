@@ -14,42 +14,42 @@ import org.bukkit.plugin.Plugin;
 
 import javax.annotation.Nullable;
 
-class EffCoreLog extends Effect {
-	private Expression<Location> l;
-	private Expression<OfflinePlayer> pl;
-	private int mark;
+public class EffCoreLog extends Effect {
+    private Expression<Location> l;
+    private Expression<OfflinePlayer> pl;
+    private int mark;
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult result) {
-		l = (Expression<Location>) expr[0];
-		pl = (Expression<OfflinePlayer>) expr[1];
-		mark = result.mark;
-		return true;
-	}
+    @Override
+    @SuppressWarnings("unchecked")
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult result) {
+        l = (Expression<Location>) expr[0];
+        pl = (Expression<OfflinePlayer>) expr[1];
+        mark = result.mark;
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[(coreprotect|cp)] log block at %location%";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "[(coreprotect|cp)] log block at %location%";
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	protected void execute(final Event e) {
-		Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("CoreProtect");
-		CoreProtectAPI api = ((CoreProtect) plugin).getAPI();
-		if (mark == 0) {
-			api.logRemoval(pl.getSingle(e).getName(), l.getSingle(e), l.getSingle(e).getBlock().getType(),
-					l.getSingle(e).getBlock().getData());
-		} else if (mark == 1) {
-			api.logPlacement(pl.getSingle(e).getName(), l.getSingle(e), l.getSingle(e).getBlock().getType(),
-					l.getSingle(e).getBlock().getData());
+    @SuppressWarnings("deprecation")
+    @Override
+    protected void execute(final Event e) {
+        Plugin plugin = Bukkit.getServer().getPluginManager().getPlugin("CoreProtect");
+        CoreProtectAPI api = ((CoreProtect) plugin).getAPI();
+        if (mark == 0) {
+            api.logRemoval(pl.getSingle(e).getName(), l.getSingle(e), l.getSingle(e).getBlock().getType(),
+                    l.getSingle(e).getBlock().getData());
+        } else if (mark == 1) {
+            api.logPlacement(pl.getSingle(e).getName(), l.getSingle(e), l.getSingle(e).getBlock().getType(),
+                    l.getSingle(e).getBlock().getData());
 
-		} else if (mark == 2) {
-			api.logInteraction(pl.getSingle(e).getName(), l.getSingle(e));
+        } else if (mark == 2) {
+            api.logInteraction(pl.getSingle(e).getName(), l.getSingle(e));
 
-		}
-	}
+        }
+    }
 
 }

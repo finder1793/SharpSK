@@ -5,13 +5,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
-class AuthRegisterListener implements Listener {
+public class AuthRegisterListener implements Listener {
 
-	public AuthRegisterListener(Plugin main) {
-		main.getServer().getPluginManager().registerEvents(this, main);
-	}
+    public AuthRegisterListener(Plugin main) {
+        main.getServer().getPluginManager().registerEvents(this, main);
+    }
 
-	@EventHandler
-	public final void onAuthRegister(CustomEvent e) {
-	}
+    @EventHandler
+    public final void onAuthRegister(CustomEvent e) {
+    }
 }

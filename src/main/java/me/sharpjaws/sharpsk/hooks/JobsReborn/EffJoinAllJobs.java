@@ -13,28 +13,28 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.List;
 
-class EffJoinAllJobs extends Effect {
-	private Expression<Player> player;
+public class EffJoinAllJobs extends Effect {
+    private Expression<Player> player;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		player = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        player = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "make %player% join all jobs";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "make %player% join all jobs";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		JobsPlayer p = Jobs.getPlayerManager().getJobsPlayer(player.getSingle(e));
-		List<Job> l = Jobs.getJobs();
+    @Override
+    protected void execute(Event e) {
+        JobsPlayer p = Jobs.getPlayerManager().getJobsPlayer(player.getSingle(e));
+        List<Job> l = Jobs.getJobs();
         for (Job job : l) {
             Jobs.getPlayerManager().joinJob(p, job);
         }
-	}
+    }
 }

@@ -8,6 +8,7 @@ public class TimerHandler implements Runnable {
 
 	// Class implemented as a workaround for avoiding async problems in timers that
 	// are running synchronously.
+
     private final String timername;
 	private final int timercountdown;
 	private final int timert;
@@ -18,7 +19,6 @@ public class TimerHandler implements Runnable {
 		timert = timertype;
 		timercountdown = Countdown;
 		this.type = type;
-
 	}
 
 	@Override
@@ -30,9 +30,7 @@ public class TimerHandler implements Runnable {
 		} else if (type == 2) {
 			EvtTimerComplete ev2 = new EvtTimerComplete(timername);
 			Bukkit.getPluginManager().callEvent(ev2);
-
 		}
-
 	}
 
 }

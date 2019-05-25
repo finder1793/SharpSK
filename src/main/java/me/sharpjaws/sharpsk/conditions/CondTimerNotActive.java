@@ -10,33 +10,33 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 
 public class CondTimerNotActive extends Condition {
-	private Expression<String> timer;
+    private Expression<String> timer;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
-		timer = (Expression<String>) exprs[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
+        timer = (Expression<String>) exprs[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "timer %string% is not active";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "timer %string% is not active";
+    }
 
-	@Override
-	public boolean check(Event e) {
-		boolean active = false;
+    @Override
+    public boolean check(Event e) {
+        boolean active = false;
 
-		for (Thread t : Thread.getAllStackTraces().keySet()) {
-			if (t instanceof CTimerThread) {
-				if (t.getName().contains(timer.getSingle(e))) {
-					active = t.isAlive();
+        for (Thread t : Thread.getAllStackTraces().keySet()) {
+            if (t instanceof CTimerThread) {
+                if (t.getName().contains(timer.getSingle(e))) {
+                    active = t.isAlive();
 
-				}
-			}
-		}
+                }
+            }
+        }
         return active = false;
-	}
+    }
 
 }

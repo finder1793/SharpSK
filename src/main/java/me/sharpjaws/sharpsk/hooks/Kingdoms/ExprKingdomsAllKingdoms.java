@@ -11,43 +11,43 @@ import org.kingdoms.manager.game.GameManagement;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
-	private GameManagement kman;
+public class ExprKingdomsAllKingdoms extends SimpleExpression<String> {
+    private GameManagement kman;
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult Result) {
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult Result) {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "groups of %player%/%offlineplayer%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "groups of %player%/%offlineplayer%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
 
-		ArrayList<String> narr = new ArrayList<>();
-		for (OfflineKingdom k : GameManagement.getKingdomManager().getKingdomList().values()) {
+        ArrayList<String> narr = new ArrayList<>();
+        for (OfflineKingdom k : GameManagement.getKingdomManager().getKingdomList().values()) {
 
-			narr.add(k.getKingdomName());
-		}
+            narr.add(k.getKingdomName());
+        }
 
-		return narr.toArray(new String[0]);
+        return narr.toArray(new String[0]);
 
-	}
+    }
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
 }

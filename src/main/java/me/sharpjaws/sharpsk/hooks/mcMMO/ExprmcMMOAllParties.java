@@ -11,40 +11,40 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 
-class ExprmcMMOAllParties extends SimpleExpression<String> {
+public class ExprmcMMOAllParties extends SimpleExpression<String> {
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[mcmmo] [(the|all)] [of] [the] party['s]";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[mcmmo] [(the|all)] [of] [the] party['s]";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		ArrayList<String> parties = new ArrayList<>();
-		for (Party p : PartyAPI.getParties()) {
-			if (p != null) {
-				parties.add(p.getName());
-			}
-		}
-		return parties.toArray(new String[0]);
-	}
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        ArrayList<String> parties = new ArrayList<>();
+        for (Party p : PartyAPI.getParties()) {
+            if (p != null) {
+                parties.add(p.getName());
+            }
+        }
+        return parties.toArray(new String[0]);
+    }
 
 }

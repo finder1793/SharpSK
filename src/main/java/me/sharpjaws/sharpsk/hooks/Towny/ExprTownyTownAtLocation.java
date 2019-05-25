@@ -10,37 +10,37 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprTownyTownAtLocation extends SimpleExpression<String> {
+public class ExprTownyTownAtLocation extends SimpleExpression<String> {
 
-	private Expression<Location> loc;
+    private Expression<Location> loc;
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult Result) {
-		loc = (Expression<Location>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult Result) {
+        loc = (Expression<Location>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [towny] town at %location%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [towny] town at %location%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		return new String[] { TownyUniverse.getTownName(loc.getSingle(e)) };
-	}
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        return new String[] { TownyUniverse.getTownName(loc.getSingle(e)) };
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
 }

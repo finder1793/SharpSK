@@ -15,59 +15,59 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ExprJobsofPlayerOld extends SimpleExpression<Job> {
-	private Expression<OfflinePlayer> p;
+    private Expression<OfflinePlayer> p;
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public Class<? extends Job> getReturnType() {
-		return Job.class;
-	}
+    @Override
+    public Class<? extends Job> getReturnType() {
+        return Job.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		p = (Expression<OfflinePlayer>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        p = (Expression<OfflinePlayer>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "jobs of %offlineplayer%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "jobs of %offlineplayer%";
+    }
 
-	@Override
-	@Nullable
-	protected Job[] get(Event e) {
+    @Override
+    @Nullable
+    protected Job[] get(Event e) {
 
-		List<Job> a = new ArrayList<>();
-		try {
-			if (!p.getSingle(e).isOnline()) {
-				for (Job j : Jobs.getJobs()) {
+        List<Job> a = new ArrayList<>();
+        try {
+            if (!p.getSingle(e).isOnline()) {
+                for (Job j : Jobs.getJobs()) {
 
-					if (Jobs.getPlayerManager()
-							.getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId()))
-							.isInJob(j)) {
-						a.add(j);
-					}
+                    if (Jobs.getPlayerManager()
+                            .getJobsPlayerOffline(Jobs.getPlayerManager().getPlayerInfo(p.getSingle(e).getUniqueId()))
+                            .isInJob(j)) {
+                        a.add(j);
+                    }
 
-				}
-			} else {
-				for (Job j : Jobs.getJobs()) {
-					if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).isInJob(j)) {
-						a.add(j);
-					}
+                }
+            } else {
+                for (Job j : Jobs.getJobs()) {
+                    if (Jobs.getPlayerManager().getJobsPlayer(p.getSingle(e).getPlayer()).isInJob(j)) {
+                        a.add(j);
+                    }
 
-				}
-			}
-		} catch (NullPointerException ex) {
-			a.clear();
-		}
-		return Arrays.copyOf(a.toArray(), a.toArray().length, Job[].class);
-	}
+                }
+            }
+        } catch (NullPointerException ex) {
+            a.clear();
+        }
+        return Arrays.copyOf(a.toArray(), a.toArray().length, Job[].class);
+    }
 
 }

@@ -16,55 +16,55 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
-	private Expression<Player> pl;
+public class ExprLuckPermsAllGroupsOfPlayer extends SimpleExpression<String> {
+    private Expression<Player> pl;
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult result) {
-		pl = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean isDelayed, ParseResult result) {
+        pl = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "[sharpsk] (luckperms|lp) [(all|the)] groups";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "[sharpsk] (luckperms|lp) [(all|the)] groups";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
 
-		ArrayList<String> groups = new ArrayList<>();
-		Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
-		if (pl.getSingle(e) == null) {
-			return new String[groups.size()];
-		}
-		Consumer<User> action = t -> {
+        ArrayList<String> groups = new ArrayList<>();
+        Optional<LuckPermsApi> api = LuckPerms.getApiSafe();
+        if (pl.getSingle(e) == null) {
+            return new String[groups.size()];
+        }
+        Consumer<User> action = t -> {
 
-			for (Group g : api.get().getGroups()) {
-				if (t.isInGroup(g)) {
-					groups.add(g.getName());
-				}
-			}
-		};
+            for (Group g : api.get().getGroups()) {
+                if (t.isInGroup(g)) {
+                    groups.add(g.getName());
+                }
+            }
+        };
 
-		User user = api.get().getUser(pl.getSingle(e).getUniqueId());
-		if (user != null) {
-			action.accept(user);
+        User user = api.get().getUser(pl.getSingle(e).getUniqueId());
+        if (user != null) {
+            action.accept(user);
 
-		}
-		return groups.toArray(new String[0]);
-	}
+        }
+        return groups.toArray(new String[0]);
+    }
 
 }

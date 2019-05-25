@@ -15,38 +15,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-class ExprAllRegionsInWorld extends SimpleExpression<String> {
-	private Expression<?> world;
+public class ExprAllRegionsInWorld extends SimpleExpression<String> {
+    private Expression<?> world;
 
-	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.world = expressions[0];
-		return true;
-	}
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.world = expressions[0];
+        return true;
+    }
 
-	protected String[] get(Event event) {
-		World world = (World) this.world.getSingle(event);
+    protected String[] get(Event event) {
+        World world = (World) this.world.getSingle(event);
 
-		RegionManager set = WGBukkit.getRegionManager(world);
-		Map<String, ProtectedRegion> regions = set.getRegions();
-		List<String> list = new ArrayList<>(regions.keySet());
+        RegionManager set = WGBukkit.getRegionManager(world);
+        Map<String, ProtectedRegion> regions = set.getRegions();
+        List<String> list = new ArrayList<>(regions.keySet());
 
-		String[] s = new String[list.size()];
-		return list.toArray(s);
-	}
+        String[] s = new String[list.size()];
+        return list.toArray(s);
+    }
 
-	public boolean isSingle() {
-		return false;
-	}
+    public boolean isSingle() {
+        return false;
+    }
 
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	public String toString(Event event, boolean b) {
-		return "[sharpsk] [all] [worldguard] regions in %world%";
-	}
+    public String toString(Event event, boolean b) {
+        return "[sharpsk] [all] [worldguard] regions in %world%";
+    }
 
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		return null;
-	}
+    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        return null;
+    }
 }

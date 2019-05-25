@@ -11,36 +11,36 @@ import com.sk89q.worldguard.protection.managers.RemovalStrategy;
 import org.bukkit.World;
 import org.bukkit.event.Event;
 
-class EffDeleteRegion extends Effect {
-	private Expression<?> name;
-	private Expression<?> world;
+public class EffDeleteRegion extends Effect {
+    private Expression<?> name;
+    private Expression<?> world;
 
-	public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.name = expressions[0];
-		this.world = expressions[1];
+    public boolean init(Expression<?>[] expressions, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.name = expressions[0];
+        this.world = expressions[1];
 
-		return true;
-	}
+        return true;
+    }
 
-	protected void execute(Event event) {
-		String name = (String) this.name.getSingle(event);
-		World world = (World) this.world.getSingle(event);
+    protected void execute(Event event) {
+        String name = (String) this.name.getSingle(event);
+        World world = (World) this.world.getSingle(event);
 
-		RegionManager regionManager = WGBukkit.getRegionManager(world);
-		if (!regionManager.hasRegion(name)) {
-			Skript.error("Region \"" + name + "\" in world \"" + world.getName() + "\" does not exists.");
-			return;
-		}
+        RegionManager regionManager = WGBukkit.getRegionManager(world);
+        if (!regionManager.hasRegion(name)) {
+            Skript.error("Region \"" + name + "\" in world \"" + world.getName() + "\" does not exists.");
+            return;
+        }
 
-		regionManager.removeRegion(name, RemovalStrategy.REMOVE_CHILDREN);
-		try {
-			regionManager.save();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        regionManager.removeRegion(name, RemovalStrategy.REMOVE_CHILDREN);
+        try {
+            regionManager.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	public String toString(Event e, boolean debug) {
-		return getClass().getName();
-	}
+    public String toString(Event e, boolean debug) {
+        return getClass().getName();
+    }
 }

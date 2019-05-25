@@ -11,32 +11,32 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffTownyDeleteTown extends Effect {
-	private Expression<String> s;
+public class EffTownyDeleteTown extends Effect {
+    private Expression<String> s;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		s = (Expression<String>) expr[0];
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        s = (Expression<String>) expr[0];
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "[towny] delete town %string%";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "[towny] delete town %string%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		SharpSK core = SharpSK.instance;
+    @Override
+    protected void execute(Event e) {
+        SharpSK core = SharpSK.instance;
 
-		try {
-			TownyUniverse.getDataSource().removeTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)));
-		} catch (NotRegisteredException e1) {
-			core.getLogger().warning("Could not delete town: " + "\"" + s.getSingle(e) + "\"" + " Town does not exist");
-		}
+        try {
+            TownyUniverse.getDataSource().removeTown(TownyUniverse.getDataSource().getTown(s.getSingle(e)));
+        } catch (NotRegisteredException e1) {
+            core.getLogger().warning("Could not delete town: " + "\"" + s.getSingle(e) + "\"" + " Town does not exist");
+        }
 
-	}
+    }
 }

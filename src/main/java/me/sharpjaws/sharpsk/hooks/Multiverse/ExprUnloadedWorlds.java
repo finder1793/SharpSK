@@ -9,36 +9,36 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprUnloadedWorlds extends SimpleExpression<String> {
+public class ExprUnloadedWorlds extends SimpleExpression<String> {
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, ParseResult arg3) {
-		return true;
-	}
+    @Override
+    public boolean init(Expression<?>[] arg0, int arg1, Kleenean arg2, ParseResult arg3) {
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return null;
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return null;
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event arg0) {
-		MultiverseCore mv = null;
-		mv = MultiverseCore.getPlugin(MultiverseCore.class).getCore();
+    @Override
+    @Nullable
+    protected String[] get(Event arg0) {
+        MultiverseCore mv = null;
+        mv = MultiverseCore.getPlugin(MultiverseCore.class).getCore();
 
-		return mv.getMVWorldManager().getUnloadedWorlds()
-				.toArray(new String[0]);
-	}
+        return mv.getMVWorldManager().getUnloadedWorlds()
+                .toArray(new String[0]);
+    }
 
 }

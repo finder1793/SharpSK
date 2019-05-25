@@ -13,35 +13,35 @@ import javax.annotation.Nullable;
 
 public class ExprEventAnvilCost extends SimpleExpression<Number> {
 
-	@Override
-	public Class<? extends Number> getReturnType() {
-		return Number.class;
-	}
+    @Override
+    public Class<? extends Number> getReturnType() {
+        return Number.class;
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
+    @Override
+    public boolean init(Expression<?>[] e, int arg1, Kleenean arg2, ParseResult arg3) {
         return ScriptLoader.isCurrentEvent(PrepareAnvilEvent.class);
-	}
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "anvil-cost";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "anvil-cost";
+    }
 
-	@Override
-	@Nullable
-	protected Number[] get(Event e) {
-		try {
-			AnvilInventory a = ((PrepareAnvilEvent) e).getInventory();
-			return new Number[] { a.getRepairCost() };
-		} catch (NullPointerException ex) {
-			return new Number[] { 0 };
-		}
-	}
+    @Override
+    @Nullable
+    protected Number[] get(Event e) {
+        try {
+            AnvilInventory a = ((PrepareAnvilEvent) e).getInventory();
+            return new Number[] { a.getRepairCost() };
+        } catch (NullPointerException ex) {
+            return new Number[] { 0 };
+        }
+    }
 
 }

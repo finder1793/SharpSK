@@ -11,36 +11,36 @@ import org.inventivetalent.glow.GlowAPI;
 import javax.annotation.Nullable;
 
 public class GlowAPIRegistry {
-	public static void registerGlowAPI() {
-		Classes.registerClass(
+    public static void registerGlowAPI() {
+        Classes.registerClass(
                 new ClassInfo<>(GlowAPI.Color.class, "glowapicolor").parser(new Parser<GlowAPI.Color>() {
-					@Override
-					public String getVariableNamePattern() {
-						return ".+";
-					}
+                    @Override
+                    public String getVariableNamePattern() {
+                        return ".+";
+                    }
 
-					@Override
-					@Nullable
-					public GlowAPI.Color parse(String s, ParseContext cont) {
-						try {
-							return GlowAPI.Color.valueOf(s.replace(" ", "_").trim().toUpperCase());
-						} catch (IllegalArgumentException e) {
-							return null;
-						}
-					}
+                    @Override
+                    @Nullable
+                    public GlowAPI.Color parse(String s, ParseContext cont) {
+                        try {
+                            return GlowAPI.Color.valueOf(s.replace(" ", "_").trim().toUpperCase());
+                        } catch (IllegalArgumentException e) {
+                            return null;
+                        }
+                    }
 
-					@Override
-					public String toString(GlowAPI.Color eff, int i) {
-						return eff.name().replace("_", " ").toUpperCase();
-					}
+                    @Override
+                    public String toString(GlowAPI.Color eff, int i) {
+                        return eff.name().replace("_", " ").toUpperCase();
+                    }
 
-					@Override
-					public String toVariableNameString(GlowAPI.Color eff) {
-						return eff.name().replace("_", " ").toUpperCase();
-					}
+                    @Override
+                    public String toVariableNameString(GlowAPI.Color eff) {
+                        return eff.name().replace("_", " ").toUpperCase();
+                    }
 
-				}));
-		Skript.registerExpression(ExprGlowingColorOf.class, GlowAPI.Color.class, ExpressionType.SIMPLE,
-				"glow[ing] color of %entity%");
-	}
+                }));
+        Skript.registerExpression(ExprGlowingColorOf.class, GlowAPI.Color.class, ExpressionType.SIMPLE,
+                "glow[ing] color of %entity%");
+    }
 }

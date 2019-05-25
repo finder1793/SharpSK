@@ -10,35 +10,35 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 
 public class ExprInvType extends SimpleExpression<String> {
-	private Expression<Player> p;
+    private Expression<Player> p;
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		p = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        p = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "%player%'s current inventory type";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "%player%'s current inventory type";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		return new String[] { p.getSingle(e).getOpenInventory().getType().toString() };
-	}
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        return new String[] { p.getSingle(e).getOpenInventory().getType().toString() };
+    }
 
 }

@@ -10,40 +10,40 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprHashedPasswordOf extends SimpleExpression<String> {
-	private Expression<Player> a;
-	private DataSource dataSource;
+public class ExprHashedPasswordOf extends SimpleExpression<String> {
+    private Expression<Player> a;
+    private DataSource dataSource;
 
-	@Override
-	public Class<? extends String> getReturnType() {
-		return String.class;
-	}
+    @Override
+    public Class<? extends String> getReturnType() {
+        return String.class;
+    }
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		a = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        a = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "[authme] hashed password of %player%";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "[authme] hashed password of %player%";
+    }
 
-	@Override
-	@Nullable
-	protected String[] get(Event e) {
-		String pass = fr.xephi.authme.data.auth.PlayerCache.getInstance().getAuth(a.getSingle(e).getName())
-				.getPassword().getHash();
-		return new String[] { pass };
+    @Override
+    @Nullable
+    protected String[] get(Event e) {
+        String pass = fr.xephi.authme.data.auth.PlayerCache.getInstance().getAuth(a.getSingle(e).getName())
+                .getPassword().getHash();
+        return new String[] { pass };
 
-	}
+    }
 
 }

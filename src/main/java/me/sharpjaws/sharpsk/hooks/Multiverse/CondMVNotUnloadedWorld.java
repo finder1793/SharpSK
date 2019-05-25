@@ -9,28 +9,28 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class CondMVNotUnloadedWorld extends Condition {
+public class CondMVNotUnloadedWorld extends Condition {
 
-	private Expression<String> w;
+    private Expression<String> w;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
-		w = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int arg1, Kleenean arg2, ParseResult arg3) {
+        w = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event arg0, boolean arg1) {
-		return "(mv|multiverse) world %string% is unloaded";
-	}
+    @Override
+    public String toString(@Nullable Event arg0, boolean arg1) {
+        return "(mv|multiverse) world %string% is unloaded";
+    }
 
-	@Override
-	public boolean check(Event e) {
-		MultiverseCore mv = null;
-		mv = MultiverseCore.getPlugin(MultiverseCore.class);
+    @Override
+    public boolean check(Event e) {
+        MultiverseCore mv = null;
+        mv = MultiverseCore.getPlugin(MultiverseCore.class);
 
         return !mv.getMVWorldManager().hasUnloadedWorld(w.getSingle(e), false);
-	}
+    }
 
 }

@@ -16,74 +16,74 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
+public class ExprEvtMMDrops extends SimpleExpression<ItemStack> {
 
-	@Override
-	public Class<? extends ItemStack> getReturnType() {
-		return ItemStack.class;
-	}
+    @Override
+    public Class<? extends ItemStack> getReturnType() {
+        return ItemStack.class;
+    }
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "event-mmdrops";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "event-mmdrops";
+    }
 
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
-		return ScriptLoader.isCurrentEvent(MythicMobDeathEvent.class);
-	}
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
+        return ScriptLoader.isCurrentEvent(MythicMobDeathEvent.class);
+    }
 
-	@Override
-	@Nullable
-	protected ItemStack[] get(Event e) {
-		if (e.getEventName().equals("MythicMobDeathEvent")) {
-			List<ItemStack> a = ((MythicMobDeathEvent) e).getDrops();
-			return a.toArray(new ItemStack[0]);
-		}
-		return null;
-	}
+    @Override
+    @Nullable
+    protected ItemStack[] get(Event e) {
+        if (e.getEventName().equals("MythicMobDeathEvent")) {
+            List<ItemStack> a = ((MythicMobDeathEvent) e).getDrops();
+            return a.toArray(new ItemStack[0]);
+        }
+        return null;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public void change(Event e, Object[] deltas, Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.REMOVE_ALL) {
-			final List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
-			drops.clear();
-			((MythicMobDeathEvent) e).setDrops(drops);
+    @SuppressWarnings("unchecked")
+    @Override
+    public void change(Event e, Object[] deltas, Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.REMOVE_ALL) {
+            final List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
+            drops.clear();
+            ((MythicMobDeathEvent) e).setDrops(drops);
 
-		}
-		if (mode == Changer.ChangeMode.DELETE) {
-			final List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
-			drops.clear();
-			((MythicMobDeathEvent) e).setDrops(drops);
-		}
-		if (mode == Changer.ChangeMode.SET) {
+        }
+        if (mode == Changer.ChangeMode.DELETE) {
+            final List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
+            drops.clear();
+            ((MythicMobDeathEvent) e).setDrops(drops);
+        }
+        if (mode == Changer.ChangeMode.SET) {
 
-			List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
+            List<ItemStack> drops = ((MythicMobDeathEvent) e).getDrops();
 
-			drops.clear();
-			((MythicMobDeathEvent) e).setDrops(drops);
+            drops.clear();
+            ((MythicMobDeathEvent) e).setDrops(drops);
 
-			ItemStack[] items = (ItemStack[]) deltas;
+            ItemStack[] items = (ItemStack[]) deltas;
 
-			List<ItemStack> list = new ArrayList<>(Arrays.asList(items));
-			((MythicMobDeathEvent) e).setDrops(list);
-		}
-	}
+            List<ItemStack> list = new ArrayList<>(Arrays.asList(items));
+            ((MythicMobDeathEvent) e).setDrops(list);
+        }
+    }
 
-	@Override
-	public Class<?>[] acceptChange(Changer.ChangeMode mode) {
-		if (mode == Changer.ChangeMode.REMOVE_ALL)
-			return CollectionUtils.array(ItemStack.class);
-		if (mode == Changer.ChangeMode.SET)
-			return CollectionUtils.array(ItemStack[].class, ItemStack.class);
-		if (mode == Changer.ChangeMode.DELETE)
-			return CollectionUtils.array(ItemStack.class);
-		return null;
-	}
+    @Override
+    public Class<?>[] acceptChange(Changer.ChangeMode mode) {
+        if (mode == Changer.ChangeMode.REMOVE_ALL)
+            return CollectionUtils.array(ItemStack.class);
+        if (mode == Changer.ChangeMode.SET)
+            return CollectionUtils.array(ItemStack[].class, ItemStack.class);
+        if (mode == Changer.ChangeMode.DELETE)
+            return CollectionUtils.array(ItemStack.class);
+        return null;
+    }
 }

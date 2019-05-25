@@ -13,45 +13,45 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.UUID;
 
-class ExprKingdomsMembersOfKingdom extends SimpleExpression<OfflinePlayer> {
-	private Expression<String> kingdom;
-	private GameManagement kman;
+public class ExprKingdomsMembersOfKingdom extends SimpleExpression<OfflinePlayer> {
+    private Expression<String> kingdom;
+    private GameManagement kman;
 
-	@Override
-	public Class<? extends OfflinePlayer> getReturnType() {
-		return OfflinePlayer.class;
-	}
+    @Override
+    public Class<? extends OfflinePlayer> getReturnType() {
+        return OfflinePlayer.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult Result) {
-		kingdom = (Expression<String>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult Result) {
+        kingdom = (Expression<String>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[sharpsk] [kingdoms] members (of|in) kingdom %string%";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[sharpsk] [kingdoms] members (of|in) kingdom %string%";
+    }
 
-	@Override
-	@Nullable
-	protected OfflinePlayer[] get(Event e) {
+    @Override
+    @Nullable
+    protected OfflinePlayer[] get(Event e) {
 
-		ArrayList<OfflinePlayer> narr = new ArrayList<>();
-		for (UUID u : GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getMembersList()) {
+        ArrayList<OfflinePlayer> narr = new ArrayList<>();
+        for (UUID u : GameManagement.getKingdomManager().getOfflineKingdom(kingdom.getSingle(e)).getMembersList()) {
 
-			narr.add(Bukkit.getOfflinePlayer(u));
-		}
+            narr.add(Bukkit.getOfflinePlayer(u));
+        }
 
-		return narr.toArray(new OfflinePlayer[0]);
+        return narr.toArray(new OfflinePlayer[0]);
 
-	}
+    }
 
-	@Override
-	public boolean isSingle() {
-		return false;
-	}
+    @Override
+    public boolean isSingle() {
+        return false;
+    }
 
 }

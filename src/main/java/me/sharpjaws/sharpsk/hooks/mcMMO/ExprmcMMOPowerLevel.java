@@ -10,43 +10,43 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
-	private Expression<OfflinePlayer> p;
+public class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
+    private Expression<OfflinePlayer> p;
 
-	@Override
-	public boolean isSingle() {
-		return true;
-	}
+    @Override
+    public boolean isSingle() {
+        return true;
+    }
 
-	@Override
-	public Class<? extends Integer> getReturnType() {
-		return Integer.class;
-	}
+    @Override
+    public Class<? extends Integer> getReturnType() {
+        return Integer.class;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		p = (Expression<OfflinePlayer>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        p = (Expression<OfflinePlayer>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean paramBoolean) {
-		return "[mcmmo] %offlineplayer%'s power[]level";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean paramBoolean) {
+        return "[mcmmo] %offlineplayer%'s power[]level";
+    }
 
-	@Override
-	@Nullable
-	protected Integer[] get(Event e) {
-		if (p == null) {
-			return new Integer[] { 0 };
-		}
+    @Override
+    @Nullable
+    protected Integer[] get(Event e) {
+        if (p == null) {
+            return new Integer[] { 0 };
+        }
         if (p.getSingle(e).isOnline()) {
-			return new Integer[] { ExperienceAPI.getPowerLevel(p.getSingle(e).getPlayer()) };
-		} else {
-			return new Integer[] { ExperienceAPI.getPowerLevelOffline(p.getSingle(e).getUniqueId()) };
-		}
-	}
+            return new Integer[] { ExperienceAPI.getPowerLevel(p.getSingle(e).getPlayer()) };
+        } else {
+            return new Integer[] { ExperienceAPI.getPowerLevelOffline(p.getSingle(e).getUniqueId()) };
+        }
+    }
 
 }

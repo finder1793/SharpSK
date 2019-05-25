@@ -17,24 +17,24 @@ import org.bukkit.plugin.Plugin;
 @Examples({ "command /disable:", "trigger:", "\topen brewer inventory to the player", " ", })
 @Since("1.6, 1.6.4")
 public class EffDisablePlugin extends Effect {
-	private Expression<?> plugin;
+    private Expression<?> plugin;
 
-	public boolean init(Expression<?>[] expresion, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.plugin = expresion[0];
-		return true;
-	}
+    public boolean init(Expression<?>[] expresion, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.plugin = expresion[0];
+        return true;
+    }
 
-	public String toString(Event e, boolean debug) {
-		return "disable plugin";
-	}
+    public String toString(Event e, boolean debug) {
+        return "disable plugin";
+    }
 
-	protected void execute(Event event) {
-		String name = (String) this.plugin.getSingle(event);
+    protected void execute(Event event) {
+        String name = (String) this.plugin.getSingle(event);
 
-		Plugin plugin = Bukkit.getPluginManager().getPlugin(name);
+        Plugin plugin = Bukkit.getPluginManager().getPlugin(name);
 
-		if ((plugin != null) && (plugin.isEnabled())) {
-			Bukkit.getPluginManager().disablePlugin(plugin);
-		}
-	}
+        if ((plugin != null) && (plugin.isEnabled())) {
+            Bukkit.getPluginManager().disablePlugin(plugin);
+        }
+    }
 }

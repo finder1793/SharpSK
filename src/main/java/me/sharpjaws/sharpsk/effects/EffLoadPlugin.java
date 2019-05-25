@@ -13,27 +13,27 @@ import org.bukkit.plugin.UnknownDependencyException;
 import java.io.File;
 
 public class EffLoadPlugin extends Effect {
-	private Expression<?> plugin;
+    private Expression<?> plugin;
 
-	public boolean init(Expression<?>[] expresion, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
-		this.plugin = expresion[0];
-		return true;
-	}
+    public boolean init(Expression<?>[] expresion, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
+        this.plugin = expresion[0];
+        return true;
+    }
 
-	public String toString(Event e, boolean debug) {
-		return "loads plugin";
-	}
+    public String toString(Event e, boolean debug) {
+        return "loads plugin";
+    }
 
-	protected void execute(Event event) {
-		String name = (String) this.plugin.getSingle(event);
+    protected void execute(Event event) {
+        String name = (String) this.plugin.getSingle(event);
 
-		name = name.replaceAll("/", File.separator);
+        name = name.replaceAll("/", File.separator);
 
-		File plugin = new File(name);
-		try {
-			Bukkit.getPluginManager().loadPlugin(plugin);
-		} catch (UnknownDependencyException | InvalidPluginException | InvalidDescriptionException e) {
-			e.printStackTrace();
-		}
-	}
+        File plugin = new File(name);
+        try {
+            Bukkit.getPluginManager().loadPlugin(plugin);
+        } catch (UnknownDependencyException | InvalidPluginException | InvalidDescriptionException e) {
+            e.printStackTrace();
+        }
+    }
 }

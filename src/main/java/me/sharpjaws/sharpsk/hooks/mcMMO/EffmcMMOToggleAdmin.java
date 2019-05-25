@@ -10,24 +10,24 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class EffmcMMOToggleAdmin extends Effect {
-	private Expression<Player> player;
+public class EffmcMMOToggleAdmin extends Effect {
+    private Expression<Player> player;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
-			SkriptParser.ParseResult paramParseResult) {
-		player = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean paramKleenean,
+                        SkriptParser.ParseResult paramParseResult) {
+        player = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-		return "[mcmmo] reset all [ability] cooldowns of %player%";
-	}
+    @Override
+    public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
+        return "[mcmmo] reset all [ability] cooldowns of %player%";
+    }
 
-	@Override
-	protected void execute(Event e) {
-		ChatAPI.toggleAdminChat(player.getSingle(e));
-	}
+    @Override
+    protected void execute(Event e) {
+        ChatAPI.toggleAdminChat(player.getSingle(e));
+    }
 }

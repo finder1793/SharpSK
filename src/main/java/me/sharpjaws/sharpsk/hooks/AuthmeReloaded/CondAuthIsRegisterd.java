@@ -10,24 +10,24 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 
-class CondAuthIsRegisterd extends Condition {
-	private Expression<Player> p;
+public class CondAuthIsRegisterd extends Condition {
+    private Expression<Player> p;
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
-		p = (Expression<Player>) expr[0];
-		return true;
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, SkriptParser.ParseResult arg3) {
+        p = (Expression<Player>) expr[0];
+        return true;
+    }
 
-	@Override
-	public String toString(@Nullable Event e, boolean debug) {
-		return "%entity% is a mythicmob";
-	}
+    @Override
+    public String toString(@Nullable Event e, boolean debug) {
+        return "%entity% is a mythicmob";
+    }
 
-	@Override
-	public boolean check(Event e) {
-		return NewAPI.getInstance().isRegistered(p.getSingle(e).getName());
+    @Override
+    public boolean check(Event e) {
+        return NewAPI.getInstance().isRegistered(p.getSingle(e).getName());
 
-	}
+    }
 }
