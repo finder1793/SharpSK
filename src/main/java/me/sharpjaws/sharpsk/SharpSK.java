@@ -61,6 +61,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO re-add updater
+// TODO re-add bStats
+// TODO re-add Travis CI
+// TODO re-add readme and contributing files
+// TODO maybe also re-add PermissionsEx support
 public final class SharpSK extends JavaPlugin implements Listener {
 
     public static JavaPlugin plugin;
@@ -71,9 +76,8 @@ public final class SharpSK extends JavaPlugin implements Listener {
     }
 
     /**
-     * @deprecated just for intellij
-     *
      * @param args command line arguments
+     * @deprecated just for intellij
      */
     @SuppressWarnings("EmptyMethod")
     @Deprecated
@@ -245,6 +249,7 @@ public final class SharpSK extends JavaPlugin implements Listener {
                         new Getter<Entity, InventoryMoveItemEvent>() {
                             @Override
                             public Entity get(InventoryMoveItemEvent e) {
+                                // TODO find out all NullPointerException catch clauses and replace them with proper null-checks.
                                 try {
                                     if (e.getSource().getHolder() instanceof Entity) {
                                         return (Entity) e.getSource().getHolder();

@@ -14,7 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SharpSK" target="1.8" />
+      <module name="SharpSK" target="8" />
     </bytecodeTargetLevel>
   </component>
   <component name="EclipseCompilerSettings">
