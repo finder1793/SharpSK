@@ -42,14 +42,14 @@ public class ExprmcMMOSkillLevelReXP extends SimpleExpression<Integer> {
     @Nullable
     protected Integer[] get(Event e) {
         if (p == null) {
-            return new Integer[] { 0 };
+            return new Integer[]{0};
         }
         if (p.getSingle(e).isOnline()) {
-            return new Integer[] {
-                    ExperienceAPI.getXPRemaining(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) };
+            return new Integer[]{
+                    ExperienceAPI.getXPRemaining(p.getSingle(e).getPlayer(), s.getSingle(e).toString())};
         } else {
-            return new Integer[] { (int) ExperienceAPI.getOfflineXPRemaining(p.getSingle(e).getUniqueId(),
-                    s.getSingle(e).toString()) };
+            return new Integer[]{(int) ExperienceAPI.getOfflineXPRemaining(p.getSingle(e).getUniqueId(),
+                    s.getSingle(e).toString())};
         }
     }
 

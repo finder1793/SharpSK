@@ -6,12 +6,16 @@ import org.bukkit.event.HandlerList;
 
 public class EvtTimerComplete extends Event implements Cancellable {
     private static final HandlerList h = new HandlerList();
-    private boolean cancelled = false;
     private final String timer;
+    private boolean cancelled;
 
     public EvtTimerComplete(String timer) {
         cancelled = false;
         this.timer = timer;
+    }
+
+    public static HandlerList getHandlerList() {
+        return h;
     }
 
     public boolean isCancelled() {
@@ -24,10 +28,6 @@ public class EvtTimerComplete extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return h;
-    }
-
-    public static HandlerList getHandlerList() {
         return h;
     }
 

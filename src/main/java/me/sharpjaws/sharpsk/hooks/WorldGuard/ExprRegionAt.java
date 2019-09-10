@@ -32,7 +32,7 @@ public class ExprRegionAt extends SimpleExpression<String> {
                 a = reg.getId();
             }
         }
-        return new String[] { a };
+        return new String[]{a};
 
     }
 

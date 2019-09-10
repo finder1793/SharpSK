@@ -17,7 +17,7 @@ import javax.annotation.Nullable;
 
 @Name("Timer Stop")
 @Description("Stops a timer")
-@Examples({ "command /stoptimer:", "trigger:", "\tstop timer \"test\" ", " ", })
+@Examples({"command /stoptimer:", "trigger:", "\tstop timer \"test\" ", " ",})
 @Since("1.5, 1.6.4")
 public class EffTimerStop extends Effect {
     private Expression<String> timer;

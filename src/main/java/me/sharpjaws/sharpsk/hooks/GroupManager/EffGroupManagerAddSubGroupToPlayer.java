@@ -18,10 +18,10 @@ import javax.annotation.Nullable;
 import java.util.Map.Entry;
 
 public class EffGroupManagerAddSubGroupToPlayer extends Effect {
+    GroupManager groupManager;
     private Expression<OfflinePlayer> player;
     private Expression<String> group;
     private Expression<World> world;
-    GroupManager groupManager;
 
     @SuppressWarnings("unchecked")
     @Override

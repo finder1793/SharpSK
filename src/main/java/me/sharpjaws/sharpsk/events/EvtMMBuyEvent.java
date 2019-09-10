@@ -12,6 +12,10 @@ public class EvtMMBuyEvent extends Event implements Cancellable {
         cancelled = false;
     }
 
+    public static HandlerList getHandlerList() {
+        return h;
+    }
+
     public boolean isCancelled() {
         return cancelled;
     }
@@ -22,10 +26,6 @@ public class EvtMMBuyEvent extends Event implements Cancellable {
 
     @Override
     public HandlerList getHandlers() {
-        return h;
-    }
-
-    public static HandlerList getHandlerList() {
         return h;
     }
 }

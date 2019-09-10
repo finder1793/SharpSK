@@ -41,7 +41,7 @@ public class ExprmcMMOParty extends SimpleExpression<String> {
     @Override
     @Nullable
     protected String[] get(Event e) {
-        return new String[] { PartyAPI.getPartyName(p.getSingle(e)) };
+        return new String[]{PartyAPI.getPartyName(p.getSingle(e))};
     }
 
     @Override

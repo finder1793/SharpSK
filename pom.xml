@@ -6,7 +6,7 @@
 
     <groupId>me.sharpjaws.SharpSK</groupId>
     <artifactId>SharpSK</artifactId>
-    <version>1.6.7</version>
+    <version>1.6.8</version>
 
     <name>SharpSK</name>
     <description>An addon made for automating your favourite plugins.</description>

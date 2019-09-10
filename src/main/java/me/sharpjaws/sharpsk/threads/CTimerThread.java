@@ -14,14 +14,16 @@ public class CTimerThread extends Thread {
 
     private final int secs;
     private final String Tname;
+    private final boolean testmode;
+    private final Map<String, Integer> timer;
     private boolean active;
     private int countdown;
     private int timetointv;
     private int interv;
     private boolean paused;
-    private final boolean testmode;
-    private final Map<String, Integer> timer;
-
+    private File cache = null;
+    private YamlConfiguration Tcache = null;
+    private BukkitScheduler scheduler = null;
     public CTimerThread(String name, int seconds, Boolean activeT, int interval) {
         this.active = activeT;
         this.secs = seconds;
@@ -30,7 +32,6 @@ public class CTimerThread extends Thread {
         this.testmode = false;
         timer = new HashMap<>();
     }
-
     public CTimerThread(String name, int seconds, int interval, Boolean testmode) {
         this.active = false;
         this.secs = seconds;
@@ -39,10 +40,6 @@ public class CTimerThread extends Thread {
         this.testmode = testmode;
         timer = new HashMap<>();
     }
-
-    private File cache = null;
-    private YamlConfiguration Tcache = null;
-    private BukkitScheduler scheduler = null;
 
     @Override
     public void run() {
@@ -131,12 +128,12 @@ public class CTimerThread extends Thread {
         this.instance().countdown = this.instance().countdown + time;
     }
 
-    public void setTime(int time) {
-        this.instance().countdown = time;
-    }
-
     public int getTime() {
         return this.instance().countdown;
+    }
+
+    public void setTime(int time) {
+        this.instance().countdown = time;
     }
 
     public void stopTimer(String name) {

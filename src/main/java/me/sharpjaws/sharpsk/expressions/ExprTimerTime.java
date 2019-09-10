@@ -58,7 +58,7 @@ public class ExprTimerTime extends SimpleExpression<Integer> {
         }
 
         time = a;
-        return new Integer[] { time };
+        return new Integer[]{time};
     }
 
     @Override

@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 
 @Name("Open Brewing Inventory")
 @Description("Opens a brewing inventory for the player.")
-@Examples({ "command /inv:", "trigger:", "\topen brewer inventory to the player", " ", })
+@Examples({"command /inv:", "trigger:", "\topen brewer inventory to the player", " ",})
 @Since("1.4, 1.6.4")
 public class EffBrewerInv extends Effect {
     private Expression<Player> p;

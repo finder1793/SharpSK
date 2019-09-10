@@ -37,7 +37,7 @@ public class ExprGetPoint1 extends ch.njol.skript.lang.util.SimpleExpression<Loc
 
         Location pos1 = new Location(world, x, y, z);
 
-        return new Location[] { pos1 };
+        return new Location[]{pos1};
     }
 
     public boolean isSingle() {

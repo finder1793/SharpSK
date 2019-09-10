@@ -64,7 +64,7 @@ public class ExprJobsofPlayer extends SimpleExpression<Job> {
             }
 
         } catch (NullPointerException ex) {
-            return new Job[] {};
+            return new Job[]{};
         }
         return a.toArray(new Job[0]);
 

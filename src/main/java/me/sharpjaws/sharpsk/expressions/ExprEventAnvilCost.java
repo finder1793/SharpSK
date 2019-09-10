@@ -38,9 +38,9 @@ public class ExprEventAnvilCost extends SimpleExpression<Number> {
     protected Number[] get(Event e) {
         try {
             AnvilInventory a = ((PrepareAnvilEvent) e).getInventory();
-            return new Number[] { a.getRepairCost() };
+            return new Number[]{a.getRepairCost()};
         } catch (NullPointerException ex) {
-            return new Number[] { 0 };
+            return new Number[]{0};
         }
     }
 

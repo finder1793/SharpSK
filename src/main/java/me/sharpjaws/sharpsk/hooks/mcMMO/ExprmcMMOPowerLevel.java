@@ -40,12 +40,12 @@ public class ExprmcMMOPowerLevel extends SimpleExpression<Integer> {
     @Nullable
     protected Integer[] get(Event e) {
         if (p == null) {
-            return new Integer[] { 0 };
+            return new Integer[]{0};
         }
         if (p.getSingle(e).isOnline()) {
-            return new Integer[] { ExperienceAPI.getPowerLevel(p.getSingle(e).getPlayer()) };
+            return new Integer[]{ExperienceAPI.getPowerLevel(p.getSingle(e).getPlayer())};
         } else {
-            return new Integer[] { ExperienceAPI.getPowerLevelOffline(p.getSingle(e).getUniqueId()) };
+            return new Integer[]{ExperienceAPI.getPowerLevelOffline(p.getSingle(e).getUniqueId())};
         }
     }
 

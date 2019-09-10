@@ -41,7 +41,7 @@ public class ExprHashedPasswordOf extends SimpleExpression<String> {
     @Nullable
     protected String[] get(Event e) {
         String pass = fr.xephi.authme.data.auth.PlayerCache.getInstance().getAuth(a.getSingle(e).getName()).getPassword().getHash();
-        return new String[] { pass };
+        return new String[]{pass};
     }
 
 }

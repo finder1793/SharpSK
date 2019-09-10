@@ -40,11 +40,11 @@ public class ExprTownyTownOfPlayer extends SimpleExpression<String> {
 
         try {
             Resident a = TownyUniverse.getDataSource().getResident(resident.getSingle(e).getName());
-            return new String[] { a.getTown().getName() };
+            return new String[]{a.getTown().getName()};
         } catch (NotRegisteredException ex) {
             ex.printStackTrace();
         }
-        return new String[] {};
+        return new String[]{};
 
     }
 

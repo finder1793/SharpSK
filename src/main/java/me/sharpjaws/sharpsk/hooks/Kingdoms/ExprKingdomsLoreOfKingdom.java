@@ -41,8 +41,8 @@ public class ExprKingdomsLoreOfKingdom extends SimpleExpression<String> {
     @Override
     @Nullable
     protected String[] get(Event e) {
-        return new String[] {
-                GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).getKingdomLore() };
+        return new String[]{
+                GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e)).getKingdomLore()};
     }
 
     @Override

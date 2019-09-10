@@ -24,6 +24,55 @@ public class EffPasteSchematic extends Effect {
     private Expression<?> exair;
     private Expression<Number> angle;
 
+    @SuppressWarnings({"deprecation", "UnusedReturnValue"})
+    private static boolean paste(String f, Location loc, Boolean exair, SchemFacingDirection facing) throws Exception {
+        File file;
+
+        if (f.startsWith("/")) {
+            file = new File((f + ".schematic").replaceAll("/", Matcher.quoteReplacement(File.separator)));
+        } else {
+            file = new File(
+
+                    ("plugins/WorldEdit/schematics/" + (f.contains(".") ? f
+                            : f + ".schematic")).replaceAll("/",
+                            Matcher.quoteReplacement(File.separator)));
+        }
+        Vector v = new Vector(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
+        if ((!file.exists()) && (file.isDirectory())) {
+            return false;
+        }
+        EditSession es = WorldEdit.getInstance().getEditSessionFactory()
+                .getEditSession((new BukkitWorld(loc.getWorld())), 800000);
+
+        CuboidClipboard cc = SchematicFormat.getFormat(file).load(file);
+        try {
+
+            if (facing != null) {
+
+                if (SchemFacingDirection.getDegree(facing) != -1) {
+                    cc.rotate2D(SchemFacingDirection.getDegree(facing));
+                } else {
+                    SharpSK core = SharpSK.instance;
+                    core.getLogger().warning("Invalid rotation angle for schematic: " + "\"" + f + "\"");
+                    core.getLogger().warning("Valid angles are: 0, 90, 180, 270, 360");
+
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (!exair) {
+            cc.paste(es, v, false);
+        } else {
+            cc.paste(es, v, true);
+        }
+
+        return true;
+
+    }
+
     @SuppressWarnings("unchecked")
     public boolean init(Expression<?>[] expression, int i, Kleenean kleenean, SkriptParser.ParseResult Result) {
         name = expression[0];
@@ -74,54 +123,5 @@ public class EffPasteSchematic extends Effect {
                 e1.printStackTrace();
             }
         }
-    }
-
-    @SuppressWarnings({"deprecation", "UnusedReturnValue"})
-    private static boolean paste(String f, Location loc, Boolean exair, SchemFacingDirection facing) throws Exception {
-        File file;
-
-        if (f.startsWith("/")) {
-            file = new File((f + ".schematic").replaceAll("/", Matcher.quoteReplacement(File.separator)));
-        } else {
-            file = new File(
-
-                    ("plugins/WorldEdit/schematics/" + (f.contains(".") ? f
-                            : f + ".schematic")).replaceAll("/",
-                            Matcher.quoteReplacement(File.separator)));
-        }
-        Vector v = new Vector(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
-        if ((!file.exists()) && (file.isDirectory())) {
-            return false;
-        }
-        EditSession es = WorldEdit.getInstance().getEditSessionFactory()
-                .getEditSession((new BukkitWorld(loc.getWorld())), 800000);
-
-        CuboidClipboard cc = SchematicFormat.getFormat(file).load(file);
-        try {
-
-            if (facing != null) {
-
-                if (SchemFacingDirection.getDegree(facing) != -1) {
-                    cc.rotate2D(SchemFacingDirection.getDegree(facing));
-                } else {
-                    SharpSK core = SharpSK.instance;
-                    core.getLogger().warning("Invalid rotation angle for schematic: " + "\"" + f + "\"");
-                    core.getLogger().warning("Valid angles are: 0, 90, 180, 270, 360");
-
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (!exair) {
-            cc.paste(es, v, false);
-        } else {
-            cc.paste(es, v, true);
-        }
-
-        return true;
-
     }
 }

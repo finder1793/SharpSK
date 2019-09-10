@@ -47,10 +47,10 @@ public class ExprKingdomsKingOfKingdom extends SimpleExpression<OfflinePlayer> {
             Kingdom kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
             king = Bukkit.getOfflinePlayer(kdm.getKing());
         } catch (NullPointerException ex) {
-            return new OfflinePlayer[] {};
+            return new OfflinePlayer[]{};
         }
 
-        return new OfflinePlayer[] { king };
+        return new OfflinePlayer[]{king};
     }
 
 }

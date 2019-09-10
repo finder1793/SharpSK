@@ -18,14 +18,14 @@ import javax.annotation.Nullable;
 
 @Name("Timer Create")
 @Description("Creates a timer")
-@Examples({ "command /createtimer:", "trigger:", "\tcreate timer \"Test\" for 15 minutes ", " ", })
+@Examples({"command /createtimer:", "trigger:", "\tcreate timer \"Test\" for 15 minutes ", " ",})
 @Since("1.5, 1.6.4")
 public class EffTimerCreate extends Effect {
+    int task;
     private Expression<String> s;
     private Expression<Timespan> duration;
     private Expression<Boolean> active;
     private Expression<Timespan> interval;
-    int task;
     private int mark;
 
     @SuppressWarnings("unchecked")

@@ -69,7 +69,7 @@ public class ExprPhaseOf extends SimpleExpression<Phase> {
     @Override
     @Nullable
     protected Phase[] get(Event e) {
-        return new Phase[] { GetPhase(e) };
+        return new Phase[]{GetPhase(e)};
     }
 
     @Override
@@ -82,7 +82,7 @@ public class ExprPhaseOf extends SimpleExpression<Phase> {
     @Override
     public Class<?>[] acceptChange(Changer.ChangeMode mode) {
         if (mode == Changer.ChangeMode.SET)
-            return (new Class[] { Phase.class });
+            return (new Class[]{Phase.class});
         return null;
     }
 }

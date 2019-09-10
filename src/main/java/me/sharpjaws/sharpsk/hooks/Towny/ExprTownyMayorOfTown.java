@@ -45,10 +45,10 @@ public class ExprTownyMayorOfTown extends SimpleExpression<OfflinePlayer> {
     @Nullable
     protected OfflinePlayer[] get(Event e) {
         try {
-            return new OfflinePlayer[] { Bukkit.getOfflinePlayer(TownyUniverse
-                    .getPlayer(TownyUniverse.getDataSource().getTown(town.getSingle(e)).getMayor()).getUniqueId()) };
+            return new OfflinePlayer[]{Bukkit.getOfflinePlayer(TownyUniverse
+                    .getPlayer(TownyUniverse.getDataSource().getTown(town.getSingle(e)).getMayor()).getUniqueId())};
         } catch (TownyException e1) {
-            return new OfflinePlayer[] {};
+            return new OfflinePlayer[]{};
         }
 
     }

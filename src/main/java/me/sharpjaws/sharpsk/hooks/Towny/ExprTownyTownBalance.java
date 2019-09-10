@@ -39,9 +39,9 @@ public class ExprTownyTownBalance extends SimpleExpression<Number> {
     @Nullable
     protected Number[] get(Event e) {
         try {
-            return new Number[] { TownyUniverse.getDataSource().getTown(town.getSingle(e)).getHoldingBalance() };
+            return new Number[]{TownyUniverse.getDataSource().getTown(town.getSingle(e)).getHoldingBalance()};
         } catch (NotRegisteredException | EconomyException e1) {
-            return new Number[] { 0 };
+            return new Number[]{0};
         }
     }
 

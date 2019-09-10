@@ -48,7 +48,7 @@ public class ExprTownyNationOfPlayer extends SimpleExpression<String> {
             ex.printStackTrace();
         }
 
-        return new String[] { natname };
+        return new String[]{natname};
     }
 
     @Override

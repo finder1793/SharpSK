@@ -45,11 +45,11 @@ public class ExprmcMMOPartyLeader extends SimpleExpression<String> {
     protected String[] get(Event e) {
         for (Party a : PartyAPI.getParties()) {
             if (a.getName().equalsIgnoreCase(s.getSingle(e))) {
-                return new String[] { a.getLeader().getPlayerName() };
+                return new String[]{a.getLeader().getPlayerName()};
             }
         }
 
-        return new String[] { null };
+        return new String[]{null};
     }
 
     @Override

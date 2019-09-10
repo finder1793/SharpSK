@@ -6,8 +6,13 @@ import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.sk89q.worldguard.protection.flags.*;
+import com.sk89q.worldguard.protection.flags.DefaultFlag;
+import com.sk89q.worldguard.protection.flags.DoubleFlag;
+import com.sk89q.worldguard.protection.flags.Flag;
+import com.sk89q.worldguard.protection.flags.IntegerFlag;
+import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.flags.StateFlag.State;
+import com.sk89q.worldguard.protection.flags.StringFlag;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import me.sharpjaws.sharpsk.SharpSK;
@@ -73,7 +78,7 @@ public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
                             } else if (b.getValue() == StateFlag.State.DENY) {
                                 finalv = "DENY";
                             } else {
-                                return new String[] {};
+                                return new String[]{};
                             }
                         } else if (b.getKey() instanceof StringFlag) {
                             finalv = (String) b.getKey().getDefault();
@@ -87,11 +92,11 @@ public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
                 }
 
             } catch (NullPointerException ex) {
-                return new String[] {};
+                return new String[]{};
             }
 
         }
-        return new String[] { finalv };
+        return new String[]{finalv};
     }
 
     @Override
@@ -141,7 +146,7 @@ public class ExprFlagValueOfFlagOfRegion extends SimpleExpression<String> {
     @Override
     public Class<?>[] acceptChange(Changer.ChangeMode mode) {
         if (mode == Changer.ChangeMode.SET)
-            return (new Class[] { Object.class });
+            return (new Class[]{Object.class});
         return null;
     }
 

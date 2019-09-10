@@ -37,9 +37,9 @@ public class ExprEventTimeLeft extends SimpleExpression<Number> {
     protected Number[] get(Event e) {
         try {
             EvtTimerTick a = ((EvtTimerTick) e);
-            return new Number[] { a.getTimeLeft() };
+            return new Number[]{a.getTimeLeft()};
         } catch (NullPointerException ex) {
-            return new Number[] { 0 };
+            return new Number[]{0};
         }
     }
 

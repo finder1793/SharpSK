@@ -39,9 +39,9 @@ public class ExprEvtSkillType extends SimpleExpression<SkillType> {
     @Nullable
     protected SkillType[] get(Event e) {
         if (e.getEventName().equals("McMMOPlayerLevelUpEvent")) {
-            return new SkillType[] { ((McMMOPlayerLevelUpEvent) e).getSkill() };
+            return new SkillType[]{((McMMOPlayerLevelUpEvent) e).getSkill()};
         } else if (e.getEventName().equals("McMMOPlayerXpGainEvent")) {
-            return new SkillType[] { ((McMMOPlayerXpGainEvent) e).getSkill() };
+            return new SkillType[]{((McMMOPlayerXpGainEvent) e).getSkill()};
         }
         return null;
     }

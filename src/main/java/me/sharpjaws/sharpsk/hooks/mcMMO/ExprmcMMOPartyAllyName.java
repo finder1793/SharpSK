@@ -38,7 +38,7 @@ public class ExprmcMMOPartyAllyName extends SimpleExpression<String> {
     @Override
     @Nullable
     protected String[] get(Event e) {
-        return new String[] { PartyAPI.getAllyName(s.getSingle(e)) };
+        return new String[]{PartyAPI.getAllyName(s.getSingle(e))};
     }
 
 }

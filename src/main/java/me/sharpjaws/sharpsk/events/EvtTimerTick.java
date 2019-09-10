@@ -16,12 +16,12 @@ public class EvtTimerTick extends Event {
         this.timertype = timertype;
     }
 
-    @Override
-    public HandlerList getHandlers() {
+    public static HandlerList getHandlerList() {
         return h;
     }
 
-    public static HandlerList getHandlerList() {
+    @Override
+    public HandlerList getHandlers() {
         return h;
     }
 

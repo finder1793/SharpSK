@@ -36,8 +36,8 @@ public class ExprSlimefunEvtResearch extends SimpleExpression<String> {
     @Nullable
     protected String[] get(Event e) {
         if (e.getEventName().equals("ResearchUnlockEvent")) {
-            return new String[] {
-                    ((ResearchUnlockEvent) e).getResearch().getName().replaceAll(" ", "_").toLowerCase() };
+            return new String[]{
+                    ((ResearchUnlockEvent) e).getResearch().getName().replaceAll(" ", "_").toLowerCase()};
         } else {
             return null;
         }

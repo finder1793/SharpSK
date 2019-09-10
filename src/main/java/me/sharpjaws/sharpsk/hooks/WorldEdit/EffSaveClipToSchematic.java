@@ -4,9 +4,12 @@ import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.util.Kleenean;
-import com.sk89q.worldedit.*;
+import com.sk89q.worldedit.CuboidClipboard;
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.EmptyClipboardException;
+import com.sk89q.worldedit.LocalSession;
+import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.data.DataException;
 import com.sk89q.worldedit.schematic.SchematicFormat;
 import com.sk89q.worldedit.session.ClipboardHolder;
 import me.sharpjaws.sharpsk.SharpSK;
@@ -16,7 +19,6 @@ import org.bukkit.event.Event;
 
 import javax.annotation.Nullable;
 import java.io.File;
-import java.io.IOException;
 import java.util.regex.Matcher;
 
 public class EffSaveClipToSchematic extends Effect {
@@ -56,14 +58,14 @@ public class EffSaveClipToSchematic extends Effect {
             SchematicFormat.MCEDIT.save(clipboard, file);
             editSession.flushQueue();
 
-        } catch (DataException | IOException e1) {
-            SharpSK core = SharpSK.instance;
-            core.getLogger()
-                    .warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
         } catch (EmptyClipboardException e1) {
             SharpSK core = SharpSK.instance;
             core.getLogger()
                     .warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " Clipboard was empty");
+        } catch (Exception e1) {
+            SharpSK core = SharpSK.instance;
+            core.getLogger()
+                    .warning("Failed to save schematic: " + "\"" + schem.getSingle(e) + "\"" + " An error occurred");
         }
 
     }

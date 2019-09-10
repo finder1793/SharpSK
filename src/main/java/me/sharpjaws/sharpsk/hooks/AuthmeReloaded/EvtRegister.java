@@ -6,13 +6,17 @@ import org.bukkit.event.HandlerList;
 
 public class EvtRegister extends Event {
     private static final HandlerList h = new HandlerList();
-    private boolean cancelled = false;
     private final Player pl;
+    private boolean cancelled;
     private Number exp;
 
     public EvtRegister(Player p) {
         cancelled = false;
         this.pl = p;
+    }
+
+    public static HandlerList getHandlerList() {
+        return h;
     }
 
     public Player getPlayer() {
@@ -29,10 +33,6 @@ public class EvtRegister extends Event {
 
     @Override
     public HandlerList getHandlers() {
-        return h;
-    }
-
-    public static HandlerList getHandlerList() {
         return h;
     }
 }

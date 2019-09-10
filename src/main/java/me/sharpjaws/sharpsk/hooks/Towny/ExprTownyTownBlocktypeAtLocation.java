@@ -42,9 +42,9 @@ public class ExprTownyTownBlocktypeAtLocation extends SimpleExpression<TownBlock
     @Nullable
     protected TownBlockType[] get(Event e) {
         try {
-            return new TownBlockType[] { TownyUniverse.getTownBlock(loc.getSingle(e)).getType() };
+            return new TownBlockType[]{TownyUniverse.getTownBlock(loc.getSingle(e)).getType()};
         } catch (NullPointerException ex) {
-            return new TownBlockType[] {};
+            return new TownBlockType[]{};
         }
     }
 

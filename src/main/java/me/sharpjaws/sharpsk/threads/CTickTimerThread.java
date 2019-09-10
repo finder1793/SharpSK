@@ -14,13 +14,15 @@ public class CTickTimerThread extends Thread {
 
     private final int ticks;
     private final String Tname;
+    private final Map<String, Integer> timer;
+    private final File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "TTickcache.yml");
+    private final YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
+    private final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
     private boolean active;
     private int countdown;
     private int timetointv;
     private int interv;
     private boolean paused;
-    private final Map<String, Integer> timer;
-
     public CTickTimerThread(String name, int ticks, Boolean activeT, int interval) {
         this.active = activeT;
         this.ticks = ticks;
@@ -28,10 +30,6 @@ public class CTickTimerThread extends Thread {
         this.interv = interval;
         timer = new HashMap<>();
     }
-
-    private final File cache = new File(Bukkit.getPluginManager().getPlugin("SharpSK").getDataFolder(), "TTickcache.yml");
-    private final YamlConfiguration Tcache = YamlConfiguration.loadConfiguration(cache);
-    private final BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
 
     @Override
     public void run() {
@@ -103,10 +101,6 @@ public class CTickTimerThread extends Thread {
         this.instance().countdown = this.instance().countdown + time;
     }
 
-    public void setTime(int time) {
-        this.instance().countdown = time;
-    }
-
     public void pauseTimer(String name) {
         if (name.contains(Tname)) {
             paused = true;
@@ -122,6 +116,10 @@ public class CTickTimerThread extends Thread {
 
     public int getTime() {
         return this.instance().countdown;
+    }
+
+    public void setTime(int time) {
+        this.instance().countdown = time;
     }
 
     public void stopTimer(String name) {

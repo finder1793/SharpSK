@@ -45,10 +45,10 @@ public class ExprKingdomsMightOfKingdom extends SimpleExpression<Number> {
 
             kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
         } catch (NullPointerException ex) {
-            return new Number[] { 0 };
+            return new Number[]{0};
         }
 
-        return new Number[] { kdm.getMight() };
+        return new Number[]{kdm.getMight()};
     }
 
     @Override

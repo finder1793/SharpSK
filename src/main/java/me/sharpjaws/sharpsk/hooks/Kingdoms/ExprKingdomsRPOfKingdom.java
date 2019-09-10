@@ -44,9 +44,9 @@ public class ExprKingdomsRPOfKingdom extends SimpleExpression<Number> {
         try {
 
             kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
-            return new Number[] { kdm.getResourcepoints() };
+            return new Number[]{kdm.getResourcepoints()};
         } catch (NullPointerException ex) {
-            return new Number[] { 0 };
+            return new Number[]{0};
         }
 
     }

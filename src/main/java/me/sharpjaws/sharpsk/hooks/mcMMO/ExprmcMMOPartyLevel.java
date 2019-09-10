@@ -40,7 +40,7 @@ public class ExprmcMMOPartyLevel extends SimpleExpression<Number> {
     @Override
     @Nullable
     protected Integer[] get(Event e) {
-        return new Integer[] { PartyManager.getParty(s.getSingle(e)).getLevel() };
+        return new Integer[]{PartyManager.getParty(s.getSingle(e)).getLevel()};
     }
 
     @Override

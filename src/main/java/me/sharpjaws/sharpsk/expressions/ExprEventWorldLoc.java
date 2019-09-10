@@ -15,6 +15,8 @@ import javax.annotation.Nullable;
 
 public class ExprEventWorldLoc extends SimpleExpression<Location> {
 
+    private int mark;
+
     @Override
     public Class<? extends Location> getReturnType() {
         return Location.class;
@@ -29,8 +31,6 @@ public class ExprEventWorldLoc extends SimpleExpression<Location> {
     public String toString(@Nullable Event e, boolean paramBoolean) {
         return "[the] [(-1¦past|1¦future) state of] event-location";
     }
-
-    private int mark;
 
     @Override
     public boolean init(Expression<?>[] expr, int matchedPattern, Kleenean arg2, ParseResult result) {
@@ -47,11 +47,11 @@ public class ExprEventWorldLoc extends SimpleExpression<Location> {
     @Nullable
     protected Location[] get(Event e) {
         if (mark == 0) {
-            return new Location[] { ((PlayerChangedWorldEvent) e).getPlayer().getLocation() };
+            return new Location[]{((PlayerChangedWorldEvent) e).getPlayer().getLocation()};
         } else if (mark == 1) {
-            return new Location[] { ((PlayerChangedWorldEvent) e).getPlayer().getLocation() };
+            return new Location[]{((PlayerChangedWorldEvent) e).getPlayer().getLocation()};
         } else if (mark == -1) {
-            return new Location[] { ((PlayerChangedWorldEvent) e).getFrom().getSpawnLocation() };
+            return new Location[]{((PlayerChangedWorldEvent) e).getFrom().getSpawnLocation()};
         }
         return null;
     }

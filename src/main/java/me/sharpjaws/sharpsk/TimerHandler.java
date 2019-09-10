@@ -6,31 +6,31 @@ import org.bukkit.Bukkit;
 
 public class TimerHandler implements Runnable {
 
-	// Class implemented as a workaround for avoiding async problems in timers that
-	// are running synchronously.
+    // Class implemented as a workaround for avoiding async problems in timers that
+    // are running synchronously.
 
     private final String timername;
-	private final int timercountdown;
-	private final int timert;
-	private final int type;
+    private final int timercountdown;
+    private final int timert;
+    private final int type;
 
-	public TimerHandler(String Tname, int Countdown, int type, int timertype) {
-		timername = Tname;
-		timert = timertype;
-		timercountdown = Countdown;
-		this.type = type;
-	}
+    public TimerHandler(String Tname, int Countdown, int type, int timertype) {
+        timername = Tname;
+        timert = timertype;
+        timercountdown = Countdown;
+        this.type = type;
+    }
 
-	@Override
-	public void run() {
-		if (type == 1) {
-			EvtTimerTick ev1 = new EvtTimerTick(timername, timercountdown, timert);
-			Bukkit.getPluginManager().callEvent(ev1);
+    @Override
+    public void run() {
+        if (type == 1) {
+            EvtTimerTick ev1 = new EvtTimerTick(timername, timercountdown, timert);
+            Bukkit.getPluginManager().callEvent(ev1);
 
-		} else if (type == 2) {
-			EvtTimerComplete ev2 = new EvtTimerComplete(timername);
-			Bukkit.getPluginManager().callEvent(ev2);
-		}
-	}
+        } else if (type == 2) {
+            EvtTimerComplete ev2 = new EvtTimerComplete(timername);
+            Bukkit.getPluginManager().callEvent(ev2);
+        }
+    }
 
 }

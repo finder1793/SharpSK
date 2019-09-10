@@ -45,9 +45,9 @@ public class ExprKingdomsMaxMembersInKingdom extends SimpleExpression<Number> {
         try {
 
             kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
-            return new Number[] { kdm.getMaxMember() };
+            return new Number[]{kdm.getMaxMember()};
         } catch (NullPointerException ex) {
-            return new Number[] { 0 };
+            return new Number[]{0};
         }
 
     }

@@ -55,7 +55,7 @@ public class ExprJobLevel extends SimpleExpression<Integer> {
         } catch (NullPointerException ex) {
             level = 0;
         }
-        return new Integer[] { level };
+        return new Integer[]{level};
     }
 
 }

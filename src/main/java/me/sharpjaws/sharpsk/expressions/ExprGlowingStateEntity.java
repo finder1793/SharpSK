@@ -40,7 +40,7 @@ public class ExprGlowingStateEntity extends SimpleExpression<Boolean> {
     @Override
     @Nullable
     protected Boolean[] get(Event e) {
-        return new Boolean[] {this.en.getSingle(e).isGlowing()};
+        return new Boolean[]{this.en.getSingle(e).isGlowing()};
     }
 
     @Override

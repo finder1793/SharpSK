@@ -14,7 +14,7 @@ import org.bukkit.plugin.Plugin;
 
 @Name("Disable Plugoin")
 @Description("Disables a plugin")
-@Examples({ "command /disable:", "trigger:", "\topen brewer inventory to the player", " ", })
+@Examples({"command /disable:", "trigger:", "\topen brewer inventory to the player", " ",})
 @Since("1.6, 1.6.4")
 public class EffDisablePlugin extends Effect {
     private Expression<?> plugin;

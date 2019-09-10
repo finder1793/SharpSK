@@ -52,7 +52,7 @@ public class EffLuckPermsCreateGroup extends Effect {
                         Lgroup.setPermission(permission);
                     } catch (final Exception ex) {
                         // Not in catch clause to not cause classpath errors
-                        if (ex instanceof ObjectAlreadyHasException || ex instanceof  IllegalArgumentException)
+                        if (ex instanceof ObjectAlreadyHasException || ex instanceof IllegalArgumentException)
                             return;
                         else
                             throw new RuntimeException(ex);

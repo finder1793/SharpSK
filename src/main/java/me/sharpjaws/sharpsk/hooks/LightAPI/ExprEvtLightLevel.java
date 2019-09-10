@@ -36,7 +36,7 @@ public class ExprEvtLightLevel extends SimpleExpression<Number> {
     @Nullable
     protected Number[] get(Event e) {
         if (e.getEventName().equals("SetLightEvent")) {
-            return new Number[] { ((SetLightEvent) e).getLightLevel() };
+            return new Number[]{((SetLightEvent) e).getLightLevel()};
         }
 
         return null;

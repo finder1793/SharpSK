@@ -39,9 +39,9 @@ public class ExprEvtAbilityType extends SimpleExpression<AbilityType> {
     @Nullable
     protected AbilityType[] get(Event e) {
         if (e.getEventName().equals("McMMOPlayerAbilityActivateEvent")) {
-            return new AbilityType[] { ((McMMOPlayerAbilityActivateEvent) e).getAbility() };
+            return new AbilityType[]{((McMMOPlayerAbilityActivateEvent) e).getAbility()};
         } else if (e.getEventName().equals("McMMOPlayerAbilityDeactivateEvent")) {
-            return new AbilityType[] { ((McMMOPlayerAbilityDeactivateEvent) e).getAbility() };
+            return new AbilityType[]{((McMMOPlayerAbilityDeactivateEvent) e).getAbility()};
         }
         return null;
     }

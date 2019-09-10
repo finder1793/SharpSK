@@ -67,7 +67,7 @@ public class ExprGlowingColorOf extends SimpleExpression<GlowAPI.Color> {
             c = GlowAPI.Color.NONE;
         }
 
-        return new GlowAPI.Color[] { c };
+        return new GlowAPI.Color[]{c};
 
     }
 

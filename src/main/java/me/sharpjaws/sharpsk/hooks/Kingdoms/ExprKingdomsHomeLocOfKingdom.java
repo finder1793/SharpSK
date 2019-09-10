@@ -46,9 +46,9 @@ public class ExprKingdomsHomeLocOfKingdom extends SimpleExpression<Location> {
 
             kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
         } catch (NullPointerException ex) {
-            return new Location[] {};
+            return new Location[]{};
         }
-        return new Location[] { kdm.getHome_loc() };
+        return new Location[]{kdm.getHome_loc()};
     }
 
     @Override

@@ -45,7 +45,7 @@ public class ExprKingdomsKingdomOfPlayer extends SimpleExpression<String> {
             return null;
         }
 
-        return new String[] { kingdom };
+        return new String[]{kingdom};
     }
 
 }

@@ -35,7 +35,7 @@ public class ExprTownyTownAtLocation extends SimpleExpression<String> {
     @Override
     @Nullable
     protected String[] get(Event e) {
-        return new String[] { TownyUniverse.getTownName(loc.getSingle(e)) };
+        return new String[]{TownyUniverse.getTownName(loc.getSingle(e))};
     }
 
     @Override

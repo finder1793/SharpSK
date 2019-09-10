@@ -15,19 +15,50 @@ import com.codingforcookies.armorequip.ArmorEquipEvent;
 import com.codingforcookies.armorequip.ArmorEquipListener;
 import com.codingforcookies.armorequip.ArmorunEquipEvent;
 import com.codingforcookies.armorequip.ArmorunEquipListener;
-import me.sharpjaws.sharpsk.conditions.*;
-import me.sharpjaws.sharpsk.effects.*;
+import me.sharpjaws.sharpsk.conditions.CondIsLeashed;
+import me.sharpjaws.sharpsk.conditions.CondNotLeashed;
+import me.sharpjaws.sharpsk.conditions.CondNotPlayerStandingOn;
+import me.sharpjaws.sharpsk.conditions.CondPlayerIsStandingOn;
+import me.sharpjaws.sharpsk.conditions.CondTimerActive;
+import me.sharpjaws.sharpsk.conditions.CondTimerNotActive;
+import me.sharpjaws.sharpsk.effects.EffBrewerInv;
+import me.sharpjaws.sharpsk.effects.EffDisablePlugin;
+import me.sharpjaws.sharpsk.effects.EffEnablePlugin;
+import me.sharpjaws.sharpsk.effects.EffHopperInv;
+import me.sharpjaws.sharpsk.effects.EffLoadPlugin;
+import me.sharpjaws.sharpsk.effects.EffSaveWorlds;
+import me.sharpjaws.sharpsk.effects.EffTimerCreate;
+import me.sharpjaws.sharpsk.effects.EffTimerPause;
+import me.sharpjaws.sharpsk.effects.EffTimerResume;
+import me.sharpjaws.sharpsk.effects.EffTimerStop;
 import me.sharpjaws.sharpsk.events.EvtExpChange;
 import me.sharpjaws.sharpsk.events.EvtTimerComplete;
 import me.sharpjaws.sharpsk.events.EvtTimerTick;
-import me.sharpjaws.sharpsk.expressions.*;
+import me.sharpjaws.sharpsk.expressions.ExpChangeListener;
+import me.sharpjaws.sharpsk.expressions.ExprAllTimers;
+import me.sharpjaws.sharpsk.expressions.ExprEventAnvilCost;
+import me.sharpjaws.sharpsk.expressions.ExprEventTimeLeft;
+import me.sharpjaws.sharpsk.expressions.ExprEventWorld;
+import me.sharpjaws.sharpsk.expressions.ExprEventWorldLoc;
+import me.sharpjaws.sharpsk.expressions.ExprGlowingStateEntity;
+import me.sharpjaws.sharpsk.expressions.ExprInvType;
+import me.sharpjaws.sharpsk.expressions.ExprOffhandItem;
+import me.sharpjaws.sharpsk.expressions.ExprPhaseOf;
+import me.sharpjaws.sharpsk.expressions.ExprTimerTime;
 import me.sharpjaws.sharpsk.threads.CTickTimerThread;
 import me.sharpjaws.sharpsk.threads.CTimerThread;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.*;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Chest;
+import org.bukkit.block.Dispenser;
+import org.bukkit.block.DoubleChest;
+import org.bukkit.block.Dropper;
+import org.bukkit.block.Furnace;
+import org.bukkit.block.Hopper;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -83,6 +114,36 @@ public final class SharpSK extends JavaPlugin implements Listener {
     @Deprecated
     public static final void main(final String[] args) {
         // Just for IntelliJ to not show "Invalid main class" in MANIFEST.MF
+    }
+
+    private static final Block getBlock(final InventoryHolder iH) {
+        Block b3 = null;
+
+        if (iH instanceof Chest) {
+            Chest b = (Chest) iH;
+            BlockState b2 = b.getBlock().getState();
+            b3 = b2.getBlock();
+        } else if (iH instanceof Hopper) {
+            Hopper b = (Hopper) iH;
+            BlockState b2 = b.getBlock().getState();
+            b3 = b2.getBlock();
+        } else if (iH instanceof Dispenser) {
+            Dispenser b = (Dispenser) iH;
+            BlockState b2 = b.getBlock().getState();
+            b3 = b2.getBlock();
+        } else if (iH instanceof Dropper) {
+            Dropper b = (Dropper) iH;
+            BlockState b2 = b.getBlock().getState();
+            b3 = b2.getBlock();
+        } else if (iH instanceof DoubleChest) {
+            DoubleChest b = (DoubleChest) iH;
+            b3 = b.getLocation().getBlock();
+        } else if (iH instanceof Furnace) {
+            Furnace b = (Furnace) iH;
+            b3 = b.getLocation().getBlock();
+        }
+
+        return b3;
     }
 
     @Override
@@ -615,36 +676,6 @@ public final class SharpSK extends JavaPlugin implements Listener {
             getLogger().info("Error Skript was not found or enabled. Disabling...");
             Bukkit.getPluginManager().disablePlugin(this);
         }
-    }
-
-    private static final Block getBlock(final InventoryHolder iH) {
-        Block b3 = null;
-
-        if (iH instanceof Chest) {
-            Chest b = (Chest) iH;
-            BlockState b2 = b.getBlock().getState();
-            b3 = b2.getBlock();
-        } else if (iH instanceof Hopper) {
-            Hopper b = (Hopper) iH;
-            BlockState b2 = b.getBlock().getState();
-            b3 = b2.getBlock();
-        } else if (iH instanceof Dispenser) {
-            Dispenser b = (Dispenser) iH;
-            BlockState b2 = b.getBlock().getState();
-            b3 = b2.getBlock();
-        } else if (iH instanceof Dropper) {
-            Dropper b = (Dropper) iH;
-            BlockState b2 = b.getBlock().getState();
-            b3 = b2.getBlock();
-        } else if (iH instanceof DoubleChest) {
-            DoubleChest b = (DoubleChest) iH;
-            b3 = b.getLocation().getBlock();
-        } else if (iH instanceof Furnace) {
-            Furnace b = (Furnace) iH;
-            b3 = b.getLocation().getBlock();
-        }
-
-        return b3;
     }
 
     @Override

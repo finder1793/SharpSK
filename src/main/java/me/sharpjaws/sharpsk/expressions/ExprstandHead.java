@@ -49,7 +49,7 @@ public class ExprstandHead extends SimpleExpression<Location> {
             arstand1 = (ArmorStand) en.getSingle(e);
         }
 
-        return new Location[] {arstand1.getEyeLocation()};
+        return new Location[]{arstand1.getEyeLocation()};
     }
 
     @Override

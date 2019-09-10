@@ -46,9 +46,9 @@ public class ExprKingdomsNexusLocOfKingdom extends SimpleExpression<Location> {
 
             kdm = GameManagement.getKingdomManager().getOrLoadKingdom(kingdom.getSingle(e));
         } catch (NullPointerException ex) {
-            return new Location[] {};
+            return new Location[]{};
         }
-        return new Location[] { kdm.getNexus_loc() };
+        return new Location[]{kdm.getNexus_loc()};
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ExprmcMMOPartyEXP extends SimpleExpression<Number> {
     @Override
     @Nullable
     protected Number[] get(Event e) {
-        return new Number[] { PartyManager.getParty(s.getSingle(e)).getXp() };
+        return new Number[]{PartyManager.getParty(s.getSingle(e)).getXp()};
     }
 
     @Override

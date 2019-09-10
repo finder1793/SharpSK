@@ -55,9 +55,9 @@ public class ExprRegionsOfPlayer extends SimpleExpression<String> {
             regionManager = wg.getRegionManager(Bukkit.getServer().getWorlds().get(0));
         }
         if (player.getSingle(e) == null) {
-            return new String[] {};
+            return new String[]{};
         }
-        LocalPlayer wpl = null;
+        LocalPlayer wpl;
         if (player.getSingle(e).isOnline()) {
             wpl = wg.wrapPlayer(player.getSingle(e).getPlayer());
         } else {

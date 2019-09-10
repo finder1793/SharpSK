@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 
 @Name("Timer Pause")
 @Description("Pauses a timer")
-@Examples({ "command /pausetimer:", "trigger:", "\tpause timer \"test\" ", " ", })
+@Examples({"command /pausetimer:", "trigger:", "\tpause timer \"test\" ", " ",})
 @Since("1.5, 1.6.4")
 public class EffTimerPause extends Effect {
     private Expression<String> timer;

@@ -45,14 +45,14 @@ public class ExprmcMMOSkillLevel extends SimpleExpression<Number> {
     @Nullable
     protected Integer[] get(Event e) {
         if (p == null) {
-            return new Integer[] { 0 };
+            return new Integer[]{0};
         }
         if (p.getSingle(e).isOnline()) {
-            return new Integer[] {
-                    ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString()) };
+            return new Integer[]{
+                    ExperienceAPI.getLevel(p.getSingle(e).getPlayer(), s.getSingle(e).toString())};
         } else {
-            return new Integer[] {
-                    ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString()) };
+            return new Integer[]{
+                    ExperienceAPI.getLevelOffline(p.getSingle(e).getUniqueId(), s.getSingle(e).toString())};
         }
     }
 

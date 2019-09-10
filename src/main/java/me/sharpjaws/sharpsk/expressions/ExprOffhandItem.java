@@ -41,7 +41,7 @@ public class ExprOffhandItem extends SimpleExpression<ItemStack> {
     @Override
     @Nullable
     protected ItemStack[] get(Event e) {
-        return new ItemStack[] { this.p.getSingle(e).getInventory().getItemInOffHand() };
+        return new ItemStack[]{this.p.getSingle(e).getInventory().getItemInOffHand()};
     }
 
     @Override

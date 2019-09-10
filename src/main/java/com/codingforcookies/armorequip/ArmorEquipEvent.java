@@ -16,22 +16,18 @@ import org.bukkit.inventory.ItemStack;
 public final class ArmorEquipEvent extends PlayerEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
-    private boolean cancel = false;
     private final EquipMethod equipType;
     private final ArmorType type;
     private final ItemStack item;
+    private boolean cancel = false;
 
     /**
      * Constructor for the ArmorEquipEvent.
      *
-     * @param player
-     *            The player who put on / removed the armor.
-     * @param type
-     *            The ArmorType of the armor added
-     * @param oldArmorPiece
-     *            The ItemStack of the armor removed.
-     * @param newArmorPiece
-     *            The ItemStack of the armor added.
+     * @param player        The player who put on / removed the armor.
+     * @param type          The ArmorType of the armor added
+     * @param oldArmorPiece The ItemStack of the armor removed.
+     * @param newArmorPiece The ItemStack of the armor added.
      */
     public ArmorEquipEvent(final Player player, final EquipMethod equipType, final ArmorType type, ItemStack item) {
         super(player);
@@ -60,22 +56,21 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Sets if this event should be cancelled.
-     *
-     * @param cancel
-     *            If this event should be cancelled.
-     */
-    public final void setCancelled(final boolean cancel) {
-        this.cancel = cancel;
-    }
-
-    /**
      * Gets if this event is cancelled.
      *
      * @return If this event is cancelled
      */
     public final boolean isCancelled() {
         return cancel;
+    }
+
+    /**
+     * Sets if this event should be cancelled.
+     *
+     * @param cancel If this event should be cancelled.
+     */
+    public final void setCancelled(final boolean cancel) {
+        this.cancel = cancel;
     }
 
     public final ArmorType getType() {
@@ -94,6 +89,7 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable {
         return equipType;
     }
 
+    // TODO combine enums on equip and unequip events
     public enum EquipMethod {
         /**
          * When you shift click an armor piece to equip or unequip
@@ -124,6 +120,6 @@ public final class ArmorEquipEvent extends PlayerEvent implements Cancellable {
         /**
          * When you die causing all armor to unequip
          */
-        DEATH,;
+        DEATH
     }
 }
