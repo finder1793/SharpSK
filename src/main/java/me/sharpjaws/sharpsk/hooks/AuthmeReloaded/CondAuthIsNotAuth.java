@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 
 public class CondAuthIsNotAuth extends Condition {
-    private Expression<Player> p;
+    private Expression<Player> player;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -29,7 +29,7 @@ public class CondAuthIsNotAuth extends Condition {
     public boolean check(Event e) {
         boolean a = false;
         try {
-            a = !NewAPI.getInstance().isAuthenticated(p.getSingle(e));
+            a = !NewAPI.getInstance().isAuthenticated(player.getSingle(e));
         } catch (NullPointerException ignored) {
 
         }

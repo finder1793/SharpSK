@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 import javax.annotation.Nullable;
 
 public class CondAuthIsRegistered extends Condition {
-    private Expression<Player> p;
+    private Expression<Player> player;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -27,7 +27,7 @@ public class CondAuthIsRegistered extends Condition {
 
     @Override
     public boolean check(Event e) {
-        return NewAPI.getInstance().isRegistered(p.getSingle(e).getName());
+        return NewAPI.getInstance().isRegistered(player.getSingle(e).getName());
 
     }
 }

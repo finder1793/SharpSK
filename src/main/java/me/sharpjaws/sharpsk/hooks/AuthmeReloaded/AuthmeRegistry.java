@@ -5,7 +5,11 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import fr.xephi.authme.events.*;
+import fr.xephi.authme.events.AuthMeTeleportEvent;
+import fr.xephi.authme.events.CustomEvent;
+import fr.xephi.authme.events.LoginEvent;
+import fr.xephi.authme.events.LogoutEvent;
+import fr.xephi.authme.events.RestoreInventoryEvent;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -42,14 +46,14 @@ public class AuthmeRegistry {
                 }, 0);
         Skript.registerEvent("Authme inventory restore", SimpleEvent.class, RestoreInventoryEvent.class, "authme inventory restore");
         EventValues.registerEventValue(
-            RestoreInventoryEvent.class, Player.class,
-            new Getter<Player, RestoreInventoryEvent>() {
-                @Override
-                @Nullable
-                public Player get(RestoreInventoryEvent e) {
-                    return e.getPlayer();
-                }
-            }, 0);
+                RestoreInventoryEvent.class, Player.class,
+                new Getter<Player, RestoreInventoryEvent>() {
+                    @Override
+                    @Nullable
+                    public Player get(RestoreInventoryEvent e) {
+                        return e.getPlayer();
+                    }
+                }, 0);
         Skript.registerExpression(ExprHashedPasswordOf.class, String.class, ExpressionType.PROPERTY, "[authme] hashed password of %player%");
         Skript.registerEffect(EffAuthForceLogout.class, "[authme] force %player% to log[]out");
         Skript.registerEffect(EffAuthForceLogin.class, "[authme] force %player% to log[]in");
