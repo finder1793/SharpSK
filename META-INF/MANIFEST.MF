@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
-Sealed: true
 Main-Class: me.sharpjaws.sharpsk.SharpSK
+Sealed: true
 
