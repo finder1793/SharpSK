@@ -1,12 +1,12 @@
 name: SharpSK
-authors: [Sharpjaws, TheDGOfficial]
+authors: [ Sharpjaws, TheDGOfficial ]
 description: An addon made for automating your favourite plugins.
-version: 1.6.8
+version: 1.6.9
 main: me.sharpjaws.sharpsk.SharpSK
-depend: [Skript]
-softdepend: [LightAPI, GlowAPI, Jobs, AuthMe, MythicMobs, PermissionsEx, ExertSK, SkRambled, Umbaska,PirateSK, mcMMO, uCars, Multiverse-Core, WorldEdit, WorldGuard, LogBlock, Towny, Kingdoms, Citizens, Sentinal]
-loadbefore: [MassiveCore,Factions]
+depend: [ Skript ]
+softdepend: [ LightAPI, GlowAPI, Jobs, AuthMe, MythicMobs, PermissionsEx, ExertSK, SkRambled, Umbaska,PirateSK, mcMMO, uCars, Multiverse-Core, WorldEdit, WorldGuard, LogBlock, Towny, Kingdoms, Citizens, Sentinal ]
+loadbefore: [ MassiveCore,Factions ]
 commands:
   sharpsk:
     description: All sharpsk commands
-    aliases: [sharpsk,shsk]
+    aliases: [ sharpsk,shsk ]

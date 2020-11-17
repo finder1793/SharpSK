@@ -5,15 +5,7 @@ import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
-import com.palmergames.bukkit.towny.event.DeleteTownEvent;
-import com.palmergames.bukkit.towny.event.NationAddTownEvent;
-import com.palmergames.bukkit.towny.event.NationRemoveTownEvent;
-import com.palmergames.bukkit.towny.event.NewTownEvent;
-import com.palmergames.bukkit.towny.event.RenameTownEvent;
-import com.palmergames.bukkit.towny.event.TownAddResidentEvent;
-import com.palmergames.bukkit.towny.event.TownClaimEvent;
-import com.palmergames.bukkit.towny.event.TownRemoveResidentEvent;
-import com.palmergames.bukkit.towny.event.TownUnclaimEvent;
+import com.palmergames.bukkit.towny.event.*;
 import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
 import org.bukkit.event.Event;
 

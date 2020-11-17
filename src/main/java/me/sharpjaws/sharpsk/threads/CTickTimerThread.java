@@ -23,6 +23,7 @@ public class CTickTimerThread extends Thread {
     private int timetointv;
     private int interv;
     private boolean paused;
+
     public CTickTimerThread(String name, int ticks, Boolean activeT, int interval) {
         this.active = activeT;
         this.ticks = ticks;
@@ -74,7 +75,7 @@ public class CTickTimerThread extends Thread {
                     scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"),
                             new TimerHandler(Tname, countdown, 1, 2));
                 }
-                CTickTimerThread.sleep(50);
+                CTickTimerThread.sleep(50L);
             }
 
             scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"), new TimerHandler(Tname, countdown, 2, 2));

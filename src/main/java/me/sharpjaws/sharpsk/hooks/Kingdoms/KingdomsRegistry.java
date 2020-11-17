@@ -8,13 +8,7 @@ import ch.njol.skript.util.Getter;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-import org.kingdoms.events.KingdomCreateEvent;
-import org.kingdoms.events.KingdomDeleteEvent;
-import org.kingdoms.events.KingdomMemberJoinEvent;
-import org.kingdoms.events.KingdomMemberLeaveEvent;
-import org.kingdoms.events.KingdomPlayerLostEvent;
-import org.kingdoms.events.KingdomPlayerWonEvent;
-import org.kingdoms.events.KingdomResourcePointChangeEvent;
+import org.kingdoms.events.*;
 
 import javax.annotation.Nullable;
 

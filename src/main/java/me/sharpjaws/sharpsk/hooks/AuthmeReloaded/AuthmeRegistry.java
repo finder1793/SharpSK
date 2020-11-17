@@ -5,11 +5,7 @@ import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.util.SimpleEvent;
 import ch.njol.skript.registrations.EventValues;
 import ch.njol.skript.util.Getter;
-import fr.xephi.authme.events.AuthMeTeleportEvent;
-import fr.xephi.authme.events.CustomEvent;
-import fr.xephi.authme.events.LoginEvent;
-import fr.xephi.authme.events.LogoutEvent;
-import fr.xephi.authme.events.RestoreInventoryEvent;
+import fr.xephi.authme.events.*;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;

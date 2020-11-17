@@ -24,6 +24,7 @@ public class CTimerThread extends Thread {
     private File cache = null;
     private YamlConfiguration Tcache = null;
     private BukkitScheduler scheduler = null;
+
     public CTimerThread(String name, int seconds, Boolean activeT, int interval) {
         this.active = activeT;
         this.secs = seconds;
@@ -32,6 +33,7 @@ public class CTimerThread extends Thread {
         this.testmode = false;
         timer = new HashMap<>();
     }
+
     public CTimerThread(String name, int seconds, int interval, Boolean testmode) {
         this.active = false;
         this.secs = seconds;
@@ -96,7 +98,7 @@ public class CTimerThread extends Thread {
                     }
                 }
 
-                CTimerThread.sleep(1000);
+                CTimerThread.sleep(1000L);
             }
             if (!testmode) {
                 scheduler.runTask(Bukkit.getPluginManager().getPlugin("SharpSK"),

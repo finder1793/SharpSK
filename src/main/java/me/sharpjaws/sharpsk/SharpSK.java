@@ -15,50 +15,19 @@ import com.codingforcookies.armorequip.ArmorEquipEvent;
 import com.codingforcookies.armorequip.ArmorEquipListener;
 import com.codingforcookies.armorequip.ArmorunEquipEvent;
 import com.codingforcookies.armorequip.ArmorunEquipListener;
-import me.sharpjaws.sharpsk.conditions.CondIsLeashed;
-import me.sharpjaws.sharpsk.conditions.CondNotLeashed;
-import me.sharpjaws.sharpsk.conditions.CondNotPlayerStandingOn;
-import me.sharpjaws.sharpsk.conditions.CondPlayerIsStandingOn;
-import me.sharpjaws.sharpsk.conditions.CondTimerActive;
-import me.sharpjaws.sharpsk.conditions.CondTimerNotActive;
-import me.sharpjaws.sharpsk.effects.EffBrewerInv;
-import me.sharpjaws.sharpsk.effects.EffDisablePlugin;
-import me.sharpjaws.sharpsk.effects.EffEnablePlugin;
-import me.sharpjaws.sharpsk.effects.EffHopperInv;
-import me.sharpjaws.sharpsk.effects.EffLoadPlugin;
-import me.sharpjaws.sharpsk.effects.EffSaveWorlds;
-import me.sharpjaws.sharpsk.effects.EffTimerCreate;
-import me.sharpjaws.sharpsk.effects.EffTimerPause;
-import me.sharpjaws.sharpsk.effects.EffTimerResume;
-import me.sharpjaws.sharpsk.effects.EffTimerStop;
+import me.sharpjaws.sharpsk.conditions.*;
+import me.sharpjaws.sharpsk.effects.*;
 import me.sharpjaws.sharpsk.events.EvtExpChange;
 import me.sharpjaws.sharpsk.events.EvtTimerComplete;
 import me.sharpjaws.sharpsk.events.EvtTimerTick;
-import me.sharpjaws.sharpsk.expressions.ExpChangeListener;
-import me.sharpjaws.sharpsk.expressions.ExprAllTimers;
-import me.sharpjaws.sharpsk.expressions.ExprEventAnvilCost;
-import me.sharpjaws.sharpsk.expressions.ExprEventTimeLeft;
-import me.sharpjaws.sharpsk.expressions.ExprEventWorld;
-import me.sharpjaws.sharpsk.expressions.ExprEventWorldLoc;
-import me.sharpjaws.sharpsk.expressions.ExprGlowingStateEntity;
-import me.sharpjaws.sharpsk.expressions.ExprInvType;
-import me.sharpjaws.sharpsk.expressions.ExprOffhandItem;
-import me.sharpjaws.sharpsk.expressions.ExprPhaseOf;
-import me.sharpjaws.sharpsk.expressions.ExprTimerTime;
+import me.sharpjaws.sharpsk.expressions.*;
 import me.sharpjaws.sharpsk.threads.CTickTimerThread;
 import me.sharpjaws.sharpsk.threads.CTimerThread;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
-import org.bukkit.block.Chest;
-import org.bukkit.block.Dispenser;
-import org.bukkit.block.DoubleChest;
-import org.bukkit.block.Dropper;
-import org.bukkit.block.Furnace;
-import org.bukkit.block.Hopper;
+import org.bukkit.block.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -470,93 +439,80 @@ public final class SharpSK extends JavaPlugin implements Listener {
                 Skript.registerExpression(ExprEventWorldLoc.class, Location.class, ExpressionType.SIMPLE,
                         "[the] [(-1¦(past|former)|1¦future)] event-location");
 
-                if (Bukkit.getServer().getVersion().contains("MC: 1.9")
-                        || Bukkit.getServer().getVersion().contains("MC: 1.10")
-                        || Bukkit.getServer().getVersion().contains("MC: 1.11")
-                        || Bukkit.getServer().getVersion().contains("MC: 1.12")
-                        || Bukkit.getServer().getVersion().contains("MC: 1.13")
-                        || Bukkit.getServer().getVersion().contains("MC: 1.14")) {
-                    if (Bukkit.getServer().getVersion().contains("MC: 1.14")) {
-                        getLogger().info("1.14+ Server detecded! Registering some MC 1.9 related stuff..");
-                    } else if (Bukkit.getServer().getVersion().contains("MC: 1.13")) {
-                        getLogger().info("1.13+ Server detected! Registering some MC 1.9 related stuff..");
-                    } else if (Bukkit.getServer().getVersion().contains("MC: 1.12")) {
-                        getLogger().info("1.12+ Server detected! Registering some MC 1.9 related stuff..");
-                    } else if (Bukkit.getServer().getVersion().contains("MC: 1.11")) {
-                        getLogger().info("1.11+ Server detected! Registering some MC 1.9 related stuff..");
-                    } else if (Bukkit.getServer().getVersion().contains("MC: 1.10")) {
-                        getLogger().info("1.10+ Server detected! Registering some MC 1.9 related stuff..");
-                    } else if (Bukkit.getServer().getVersion().contains("MC: 1.9")) {
-                        getLogger().info("1.9 Server detected! Registering some MC 1.9 stuff..");
-                    }
+                try {
+                    if (Skript.isRunningMinecraft(1, 9)) {
+                        getLogger().info("MC 1.9+ (MC " + Skript.getMinecraftVersion().getMajor() + "." + Skript.getMinecraftVersion().getMinor() + ") Server detected! Registering some MC 1.9 related stuff..");
 
-                    Skript.registerEvent("Anvil Prepare", SimpleEvent.class, PrepareAnvilEvent.class, "anvil prepare");
-                    EventValues.registerEventValue(PrepareAnvilEvent.class, Player.class,
-                            new Getter<Player, PrepareAnvilEvent>() {
-                                @Override
-                                @Nullable
-                                public Player get(PrepareAnvilEvent e) {
+                        Skript.registerEvent("Anvil Prepare", SimpleEvent.class, PrepareAnvilEvent.class, "anvil prepare");
+                        EventValues.registerEventValue(PrepareAnvilEvent.class, Player.class,
+                                new Getter<Player, PrepareAnvilEvent>() {
+                                    @Override
+                                    @Nullable
+                                    public Player get(PrepareAnvilEvent e) {
 
-                                    return Bukkit.getPlayer(e.getView().getPlayer().getName());
-                                }
-                            }, 0);
-                    EventValues.registerEventValue(PrepareAnvilEvent.class, ItemStack.class,
-                            new Getter<ItemStack, PrepareAnvilEvent>() {
-                                @Override
-                                @Nullable
-                                public ItemStack get(PrepareAnvilEvent e) {
-                                    return e.getInventory().getItem(0);
-                                }
-                            }, 0);
-                    Classes.registerClass(new ClassInfo<>(Phase.class, "phase").parser(new Parser<Phase>() {
-                        @Override
-                        public String getVariableNamePattern() {
-                            return ".+";
-                        }
-
-                        @Override
-                        @Nullable
-                        public Phase parse(String s, ParseContext cont) {
-                            try {
-                                return Phase.valueOf(s.replace(" ", "_").trim().toUpperCase());
-                            } catch (IllegalArgumentException e) {
-                                return null;
+                                        return Bukkit.getPlayer(e.getView().getPlayer().getName());
+                                    }
+                                }, 0);
+                        EventValues.registerEventValue(PrepareAnvilEvent.class, ItemStack.class,
+                                new Getter<ItemStack, PrepareAnvilEvent>() {
+                                    @Override
+                                    @Nullable
+                                    public ItemStack get(PrepareAnvilEvent e) {
+                                        return e.getInventory().getItem(0);
+                                    }
+                                }, 0);
+                        Classes.registerClass(new ClassInfo<>(Phase.class, "phase").parser(new Parser<Phase>() {
+                            @Override
+                            public String getVariableNamePattern() {
+                                return ".+";
                             }
-                        }
 
-                        @Override
-                        public String toString(Phase eff, int i) {
-                            return eff.name().replace("_", " ").toUpperCase();
-                        }
-
-                        @Override
-                        public String toVariableNameString(Phase eff) {
-                            return eff.name().replace("_", " ").toUpperCase();
-                        }
-
-                    }));
-                    try {
-                        Skript.registerExpression(ExprEventAnvilCost.class, Number.class, ExpressionType.SIMPLE,
-                                "(anvil[]cost|event-[anvil]cost)");
-                    } catch (Exception ignored) {
-
-                    }
-                    Skript.registerExpression(ExprPhaseOf.class, Phase.class, ExpressionType.SIMPLE,
-                            "phase of [ender]dragon in %world%");
-                    Skript.registerEvent("Dragon Phase Change", SimpleEvent.class, EnderDragonChangePhaseEvent.class,
-                            "[ender]dragon phase change");
-                    EventValues.registerEventValue(EnderDragonChangePhaseEvent.class, Phase.class,
-                            new Getter<Phase, EnderDragonChangePhaseEvent>() {
-                                @Override
-                                @Nullable
-                                public Phase get(EnderDragonChangePhaseEvent e) {
-                                    return e.getNewPhase();
+                            @Override
+                            @Nullable
+                            public Phase parse(String s, ParseContext cont) {
+                                try {
+                                    return Phase.valueOf(s.replace(" ", "_").trim().toUpperCase());
+                                } catch (IllegalArgumentException e) {
+                                    return null;
                                 }
-                            }, 0);
-                    Skript.registerExpression(ExprGlowingStateEntity.class, Boolean.class, ExpressionType.SIMPLE,
-                            "[sharpsk] glowing state of %entity%");
-                    Skript.registerExpression(ExprOffhandItem.class, ItemStack.class, ExpressionType.PROPERTY,
-                            "[sharpsk] [item in] %player%'s offhand");
+                            }
+
+                            @Override
+                            public String toString(Phase eff, int i) {
+                                return eff.name().replace("_", " ").toUpperCase();
+                            }
+
+                            @Override
+                            public String toVariableNameString(Phase eff) {
+                                return eff.name().replace("_", " ").toUpperCase();
+                            }
+
+                        }));
+                        try {
+                            Skript.registerExpression(ExprEventAnvilCost.class, Number.class, ExpressionType.SIMPLE,
+                                    "(anvil[]cost|event-[anvil]cost)");
+                        } catch (Exception ignored) {
+
+                        }
+                        Skript.registerExpression(ExprPhaseOf.class, Phase.class, ExpressionType.SIMPLE,
+                                "phase of [ender]dragon in %world%");
+                        Skript.registerEvent("Dragon Phase Change", SimpleEvent.class, EnderDragonChangePhaseEvent.class,
+                                "[ender]dragon phase change");
+                        EventValues.registerEventValue(EnderDragonChangePhaseEvent.class, Phase.class,
+                                new Getter<Phase, EnderDragonChangePhaseEvent>() {
+                                    @Override
+                                    @Nullable
+                                    public Phase get(EnderDragonChangePhaseEvent e) {
+                                        return e.getNewPhase();
+                                    }
+                                }, 0);
+                        Skript.registerExpression(ExprGlowingStateEntity.class, Boolean.class, ExpressionType.SIMPLE,
+                                "[sharpsk] glowing state of %entity%");
+                        Skript.registerExpression(ExprOffhandItem.class, ItemStack.class, ExpressionType.PROPERTY,
+                                "[sharpsk] [item in] %player%'s offhand");
+                    }
+                } catch (final NoSuchMethodError e) {
+                    // Skript < 2.2, assume no 1.9+
                 }
 
                 // PirateSK Syntaxes

@@ -28,7 +28,7 @@ public final class SharpSKTest {
 
             while (testtimer.getTime() > 9) {
                 try {
-                    Thread.sleep(30);
+                    Thread.sleep(30L);
                 } catch (InterruptedException ignored) {
                 }
             }

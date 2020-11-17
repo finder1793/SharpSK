@@ -63,11 +63,7 @@ public class EffPasteSchematic extends Effect {
             e.printStackTrace();
         }
 
-        if (!exair) {
-            cc.paste(es, v, false);
-        } else {
-            cc.paste(es, v, true);
-        }
+        cc.paste(es, v, exair);
 
         return true;
 

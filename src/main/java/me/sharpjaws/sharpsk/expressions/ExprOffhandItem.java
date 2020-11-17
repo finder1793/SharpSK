@@ -46,10 +46,10 @@ public class ExprOffhandItem extends SimpleExpression<ItemStack> {
 
     @Override
     public void change(Event e, Object[] delta, Changer.ChangeMode mode) {
-        Integer limit = 64;
+        int limit = 64;
         if (mode == Changer.ChangeMode.SET) {
             this.p.getSingle(e).getInventory().setItemInOffHand((ItemStack) delta[0]);
-            Integer a = this.p.getSingle(e).getInventory().getItemInOffHand().getAmount();
+            int a = this.p.getSingle(e).getInventory().getItemInOffHand().getAmount();
             if (limit <= a) {
                 this.p.getSingle(e).getInventory().getItemInOffHand().setAmount(64);
             }

@@ -30,7 +30,7 @@ public class CondIsMythicMobOld extends Condition {
 
     @Override
     public boolean check(Event e) {
-        Boolean result = Boolean.FALSE;
+        boolean result = Boolean.FALSE;
         try {
             result = MythicMobs.inst().getAPI().getMobAPI().isMythicMob(mythicmob.getSingle(e).getUniqueId());
         } catch (NullPointerException ex) {
