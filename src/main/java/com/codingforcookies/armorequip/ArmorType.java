@@ -54,7 +54,19 @@ public enum ArmorType {
             case LEATHER_BOOTS:
                 return BOOTS;
             default:
-                return null;
+		switch (itemStack.getType().name()) {
+		    case "TURTLE_HELMET":
+		    case "NETHERITE_HELMET":
+		    	return HELMET;
+		    case "NETHERITE_CHESTPLATE":
+		    	return CHESTPLATE;
+		    case "NETHERITE_LEGGINGS":
+		    	return LEGGINGS;
+		    case "NETHERITE_BOOTS":
+		    	return BOOTS;
+		    default:
+		    	return null;
+		}
         }
     }
 
