@@ -76,11 +76,6 @@
         </repository>
 
         <repository>
-            <id>ess-repo</id>
-            <url>http://repo.ess3.net/content/groups/essentials</url>
-        </repository>
-
-        <repository>
             <id>stormdev-repo</id>
             <url>https://stormdev.org/jenkins/job/uCars/47/maven-repository/repository/</url>
         </repository>
@@ -210,7 +205,7 @@
         <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldedit</artifactId>
-            <version>6.1.9</version>
+            <version>6.0.0-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <artifactId>junit</artifactId>
@@ -222,7 +217,7 @@
         <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldguard</artifactId>
-            <version>6.1.2</version>
+            <version>6.1.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
