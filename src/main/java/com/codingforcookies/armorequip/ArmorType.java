@@ -64,6 +64,14 @@ public enum ArmorType {
 		    	return LEGGINGS;
 		    case "NETHERITE_BOOTS":
 		    	return BOOTS;
+		    case "GOLDEN_HELMET":
+		    	return HELMET;
+		    case "GOLDEN_CHESTPLATE":
+		    	return CHESTPLATE;
+		    case "GOLDEN_LEGGINGS":
+		    	return LEGGINGS;
+		    case "GOLDEN_BOOTS":
+		    	return BOOTS;
 		    default:
 		    	return null;
 		}

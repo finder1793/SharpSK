@@ -146,6 +146,8 @@ class HookManager {
                     mainp.getLogger().info("Hooked into WorldEdit v"
                             + Bukkit.getPluginManager().getPlugin("WorldEdit").getDescription().getVersion());
                 } catch (Exception | NoClassDefFoundError ex) {
+                    if (Boolean.getBoolean("sharpsk.whyitdoesntworkiwantdetails"))
+                    	ex.printStackTrace();
                     mainp.getLogger().warning("Could not hook into WorldEdit." + " Version not supported");
                 }
             }
@@ -157,6 +159,8 @@ class HookManager {
                     mainp.getLogger().info("Hooked into WorldGuard v"
                             + Bukkit.getPluginManager().getPlugin("WorldEdit").getDescription().getVersion());
                 } catch (Exception | NoClassDefFoundError ex) {
+                    if (Boolean.getBoolean("sharpsk.whyitdoesntworkiwantdetails"))
+                    	ex.printStackTrace();
                     mainp.getLogger().warning("Could not hook into WorldGuard." + " Version not supported");
                 }
             }

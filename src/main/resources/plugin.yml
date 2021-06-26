@@ -1,7 +1,7 @@
 name: SharpSK
 authors: [ Sharpjaws, TheDGOfficial ]
 description: An addon made for automating your favourite plugins.
-version: 1.6.10
+version: 1.6.11
 api-version: 1.13
 main: me.sharpjaws.sharpsk.SharpSK
 depend: [ Skript ]
