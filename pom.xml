@@ -6,7 +6,7 @@
 
     <groupId>me.sharpjaws.SharpSK</groupId>
     <artifactId>SharpSK</artifactId>
-    <version>1.6.11</version>
+    <version>1.6.12</version>
 
     <name>SharpSK</name>
     <description>An addon made for automating your favourite plugins.</description>
@@ -159,7 +159,7 @@
         <dependency>
             <groupId>com.github.SkriptLang</groupId>
             <artifactId>Skript</artifactId>
-            <version>2.6-alpha1</version>
+            <version>2.6-beta2</version>
             <exclusions>
                 <exclusion>
                     <artifactId>guava</artifactId>

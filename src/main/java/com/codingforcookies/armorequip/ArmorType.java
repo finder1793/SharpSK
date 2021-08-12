@@ -57,20 +57,17 @@ public enum ArmorType {
 		switch (itemStack.getType().name()) {
 		    case "TURTLE_HELMET":
 		    case "NETHERITE_HELMET":
+		    case "GOLDEN_HELMET":	
 		    	return HELMET;
 		    case "NETHERITE_CHESTPLATE":
+		    case "GOLDEN_CHESTPLATE":
+		    case "ELYTRA":
 		    	return CHESTPLATE;
 		    case "NETHERITE_LEGGINGS":
+		    case "GOLDEN_LEGGINGS":	
 		    	return LEGGINGS;
 		    case "NETHERITE_BOOTS":
-		    	return BOOTS;
-		    case "GOLDEN_HELMET":
-		    	return HELMET;
-		    case "GOLDEN_CHESTPLATE":
-		    	return CHESTPLATE;
-		    case "GOLDEN_LEGGINGS":
-		    	return LEGGINGS;
-		    case "GOLDEN_BOOTS":
+		    case "GOLDEN_BOOTS":	
 		    	return BOOTS;
 		    default:
 		    	return null;
