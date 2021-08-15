@@ -166,9 +166,11 @@ public class ArmorEquipListener implements Listener {
                             if (e.getClickedBlock().getType().equals(Material.CHEST)
                                     || e.getClickedBlock().getType().equals(Material.DISPENSER)
                                     || e.getClickedBlock().getType().equals(Material.HOPPER)
-                                    || e.getClickedBlock().getType().equals(Material.STORAGE_MINECART)
+                                    || e.getClickedBlock().getType().name().equals("STORAGE_MINECART")
+                                    || e.getClickedBlock().getType().name().equals("CHEST_MINECART")
                                     || e.getClickedBlock().getType().equals(Material.HOPPER_MINECART)
-                                    || e.getClickedBlock().getType().equals(Material.ENCHANTMENT_TABLE)
+                                    || e.getClickedBlock().getType().name().equals("ENCHANTMENT_TABLE")
+                                    || e.getClickedBlock().getType().name().equals("ENCHANTING_TABLE")
                                     || e.getClickedBlock().getType().equals(Material.FURNACE))
                                 return;
                         }
