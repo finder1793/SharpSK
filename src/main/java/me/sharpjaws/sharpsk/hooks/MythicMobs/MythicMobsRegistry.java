@@ -16,7 +16,7 @@ import javax.annotation.Nullable;
 public class MythicMobsRegistry {
 
     public static void RegisterMythicMobs() {
-        if (!Bukkit.getPluginManager().getPlugin("MythicMobs").getDescription().getVersion().matches("4.\\d.\\d.*")) {
+        if (!Bukkit.getPluginManager().getPlugin("MythicMobs").getDescription().getVersion().matches("5.\\d.\\d.*")) {
             MythicMobsRegistryOld.RegisterMythicMobsOld();
         } else {
             Skript.registerEvent("Mythicmob death", SimpleEvent.class,
