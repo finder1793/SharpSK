@@ -260,6 +260,121 @@
         </dependency>
 
 
+        <!-- Dependencies from file system -->
+
+
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>generallib</artifactId>
+            <version>0.1.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/GeneralLib-0.1.3.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gmail</groupId>
+            <artifactId>nossr50</artifactId>
+            <version>1.5.04</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/mcMMO-1.5.04.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gamingmesh</groupId>
+            <artifactId>jobs</artifactId>
+            <version>3.8.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/JobsReborn-3.8.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>ru</groupId>
+            <artifactId>tehkode</artifactId>
+            <version>1.23.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/PermissionsEx-1.23.4.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>net.elseland</groupId>
+            <artifactId>xikage.MythicMobs</artifactId>
+            <version>2.5.11</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/MythicMobs-2.5.11.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>net.elseland.xikage</groupId>
+            <artifactId>MythicMobs</artifactId>
+            <version>4.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/MythicMobs-4.1.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>net</groupId>
+            <artifactId>coreprotect</artifactId>
+            <version>2.14.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/CoreProtect-2.14.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>inventivetalent</artifactId>
+            <version>1.4.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/GlowAPI-1.4.4.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.beykerykt</groupId>
+            <artifactId>lightapi</artifactId>
+            <version>3.2.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/LightAPI-3.2.4.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>me.mrcookieslime</groupId>
+            <artifactId>slimefun</artifactId>
+            <version>4.1.10</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Slimefun-4.1.10.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.onarandombox</groupId>
+            <artifactId>MultiverseCore</artifactId>
+            <version>2.5.0-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Multiverse-Core-2.5.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>de.diddiz</groupId>
+            <artifactId>LogBlock</artifactId>
+            <version>1.10.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/LogBlock-1.10.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>kingdoms</artifactId>
+            <version>13.2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/Kingdoms+-13.2.0-ClassesOnly.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.useful</groupId>
+            <artifactId>uCars</artifactId>
+            <version>20</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/uCars.jar</systemPath>
+        </dependency>
+
         <!-- Test dependencies -->
 
         <dependency>
